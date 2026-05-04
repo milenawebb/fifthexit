@@ -1,26 +1,419 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { toast, Toaster } from "sonner";
+import {
+  Code2,
+  Smartphone,
+  Rocket,
+  Sparkles,
+  Zap,
+  Globe,
+  ArrowRight,
+  Check,
+} from "lucide-react";
+import { z } from "zod";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Hype Street — Web & App Development that Hits Different" },
+      {
+        name: "description",
+        content:
+          "Hype Street builds vibrant, high-performance web and mobile apps for brands ready to stand out. Book a project consultation today.",
+      },
+      { property: "og:title", content: "Hype Street — Web & App Development" },
+      {
+        property: "og:description",
+        content: "Sleek, vibrant web & app development. Book your project today.",
+      },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
+const services = [
+  {
+    icon: Globe,
+    title: "Web Development",
+    desc: "Lightning-fast, conversion-driven websites built with modern stacks.",
+  },
+  {
+    icon: Smartphone,
+    title: "Mobile Apps",
+    desc: "Native-feel iOS & Android apps that users actually open daily.",
+  },
+  {
+    icon: Sparkles,
+    title: "Brand & UI",
+    desc: "Bold visual identities and interfaces designed to turn heads.",
+  },
+  {
+    icon: Zap,
+    title: "Launch & Scale",
+    desc: "From MVP to millions — we ship fast and iterate faster.",
+  },
+];
+
+const stats = [
+  { v: "120+", l: "Projects shipped" },
+  { v: "48h", l: "Avg. response" },
+  { v: "99%", l: "Client retention" },
+  { v: "4.9★", l: "Avg. rating" },
+];
+
+const bookingSchema = z.object({
+  name: z.string().trim().min(2, "Name is required").max(80),
+  email: z.string().trim().email("Enter a valid email").max(160),
+  company: z.string().trim().max(120).optional(),
+  service: z.string().min(1, "Pick a service"),
+  budget: z.string().min(1, "Pick a budget"),
+  message: z.string().trim().min(10, "Tell us a bit more (10+ chars)").max(1500),
+});
+
+function Nav() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <header className="fixed top-0 left-0 right-0 z-50 glass">
+      <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
+        <a href="#top" className="flex items-center gap-2 font-display font-bold text-lg">
+          <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-hero shadow-glow">
+            <Rocket className="h-4 w-4 text-primary-foreground" />
+          </span>
+          Hype Street
+        </a>
+        <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
+          <a href="#services" className="hover:text-foreground transition">Services</a>
+          <a href="#work" className="hover:text-foreground transition">Work</a>
+          <a href="#process" className="hover:text-foreground transition">Process</a>
+          <a href="#book" className="hover:text-foreground transition">Contact</a>
+        </nav>
+        <Button asChild size="sm" className="bg-gradient-hero text-primary-foreground hover:opacity-90 shadow-glow">
+          <a href="#book">Book a call</a>
+        </Button>
+      </div>
+    </header>
+  );
+}
+
+function Hero() {
+  return (
+    <section id="top" className="relative pt-40 pb-32 overflow-hidden">
+      <div className="absolute inset-0 grid-bg opacity-40 pointer-events-none" />
+      <div className="absolute -top-32 left-1/2 -translate-x-1/2 h-[600px] w-[600px] rounded-full bg-primary/30 blur-[120px] pointer-events-none" />
+      <div className="absolute top-40 right-10 h-72 w-72 rounded-full bg-accent/30 blur-[100px] pointer-events-none animate-float" />
+
+      <div className="relative mx-auto max-w-7xl px-6 text-center">
+        <div className="inline-flex items-center gap-2 rounded-full border border-border glass px-4 py-1.5 text-xs font-medium mb-8">
+          <span className="h-2 w-2 rounded-full bg-neon animate-glow" />
+          Now booking projects for Q3 2026
+        </div>
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.05] mb-6">
+          Web & app dev <br />
+          <span className="text-gradient">that hits different.</span>
+        </h1>
+        <p className="mx-auto max-w-2xl text-lg md:text-xl text-muted-foreground mb-10">
+          Hype Street is a creative dev studio building blazing-fast websites, slick mobile apps,
+          and digital products that make competitors sweat.
+        </p>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Button asChild size="lg" className="bg-gradient-hero text-primary-foreground hover:opacity-90 shadow-glow text-base h-12 px-7">
+            <a href="#book">Start a project <ArrowRight className="ml-1 h-4 w-4" /></a>
+          </Button>
+          <Button asChild variant="outline" size="lg" className="h-12 px-7 glass">
+            <a href="#work">See our work</a>
+          </Button>
+        </div>
+
+        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6">
+          {stats.map((s) => (
+            <div key={s.l} className="glass rounded-2xl p-6">
+              <div className="text-3xl md:text-4xl font-bold text-gradient">{s.v}</div>
+              <div className="text-xs text-muted-foreground mt-1 uppercase tracking-wider">{s.l}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Marquee() {
+  const items = ["React", "Next.js", "Swift", "Kotlin", "Tailwind", "Node.js", "Figma", "Three.js", "Supabase"];
+  const loop = [...items, ...items];
+  return (
+    <div className="border-y border-border py-6 overflow-hidden glass">
+      <div className="flex gap-12 animate-marquee whitespace-nowrap">
+        {loop.map((t, i) => (
+          <span key={i} className="text-2xl md:text-3xl font-display font-bold text-muted-foreground/60">
+            {t} <span className="text-primary">✦</span>
+          </span>
+        ))}
+      </div>
     </div>
   );
 }
 
+function Services() {
+  return (
+    <section id="services" className="py-32 relative">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="max-w-2xl mb-16">
+          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">What we do</div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Full-stack craft, <span className="text-gradient">zero compromise.</span>
+          </h2>
+          <p className="text-muted-foreground text-lg">
+            From the first sketch to scaling on launch day — we handle every layer of your product.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          {services.map((s) => (
+            <div
+              key={s.title}
+              className="group bg-gradient-card border border-border rounded-2xl p-6 hover:border-primary/50 transition-all hover:-translate-y-1 hover:shadow-glow"
+            >
+              <div className="h-12 w-12 rounded-xl bg-gradient-hero flex items-center justify-center mb-5 shadow-glow">
+                <s.icon className="h-6 w-6 text-primary-foreground" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">{s.title}</h3>
+              <p className="text-sm text-muted-foreground">{s.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Work() {
+  const projects = [
+    { name: "Neon Coffee", tag: "E-commerce", color: "from-pink-500 to-orange-400" },
+    { name: "Pulse Fitness", tag: "Mobile App", color: "from-cyan-400 to-blue-500" },
+    { name: "Drift Studio", tag: "Brand site", color: "from-violet-500 to-fuchsia-500" },
+  ];
+  return (
+    <section id="work" className="py-32">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
+          <div>
+            <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">Selected work</div>
+            <h2 className="text-4xl md:text-5xl font-bold">Recent <span className="text-gradient">drops.</span></h2>
+          </div>
+          <a href="#book" className="text-sm text-muted-foreground hover:text-foreground transition inline-flex items-center gap-1">
+            Want to be next? <ArrowRight className="h-4 w-4" />
+          </a>
+        </div>
+        <div className="grid md:grid-cols-3 gap-5">
+          {projects.map((p) => (
+            <div key={p.name} className="group relative aspect-[4/5] rounded-2xl overflow-hidden border border-border cursor-pointer">
+              <div className={`absolute inset-0 bg-gradient-to-br ${p.color} opacity-90 group-hover:scale-110 transition-transform duration-700`} />
+              <div className="absolute inset-0 grid-bg opacity-30" />
+              <div className="absolute inset-0 p-6 flex flex-col justify-end text-white">
+                <div className="text-xs uppercase tracking-widest opacity-80">{p.tag}</div>
+                <div className="text-2xl font-bold font-display">{p.name}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Process() {
+  const steps = [
+    { n: "01", t: "Discovery", d: "We dig into your goals, audience, and vibes." },
+    { n: "02", t: "Design", d: "Bold concepts, real prototypes, fast feedback." },
+    { n: "03", t: "Build", d: "Modern stacks, clean code, weekly demos." },
+    { n: "04", t: "Launch", d: "Ship, monitor, iterate. We stick around." },
+  ];
+  return (
+    <section id="process" className="py-32 relative">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">How we roll</div>
+          <h2 className="text-4xl md:text-5xl font-bold">A simple <span className="text-gradient">4-step process.</span></h2>
+        </div>
+        <div className="grid md:grid-cols-4 gap-5">
+          {steps.map((s) => (
+            <div key={s.n} className="glass rounded-2xl p-6">
+              <div className="text-5xl font-bold font-display text-gradient mb-4">{s.n}</div>
+              <h3 className="text-xl font-bold mb-2">{s.t}</h3>
+              <p className="text-sm text-muted-foreground">{s.d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function BookingForm() {
+  const [submitting, setSubmitting] = useState(false);
+  const [done, setDone] = useState(false);
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    company: "",
+    service: "",
+    budget: "",
+    message: "",
+  });
+
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const result = bookingSchema.safeParse(form);
+    if (!result.success) {
+      toast.error(result.error.issues[0]?.message ?? "Please review the form");
+      return;
+    }
+    setSubmitting(true);
+    setTimeout(() => {
+      setSubmitting(false);
+      setDone(true);
+      toast.success("Booking received! We'll reach out within 48 hours.");
+    }, 800);
+  };
+
+  if (done) {
+    return (
+      <div className="glass rounded-3xl p-12 text-center">
+        <div className="mx-auto h-16 w-16 rounded-full bg-gradient-hero flex items-center justify-center mb-6 shadow-glow">
+          <Check className="h-8 w-8 text-primary-foreground" />
+        </div>
+        <h3 className="text-2xl font-bold mb-2">You're on the list 🚀</h3>
+        <p className="text-muted-foreground">We'll be in your inbox within 48 hours with next steps.</p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={onSubmit} className="glass rounded-3xl p-6 md:p-10 space-y-5">
+      <div className="grid md:grid-cols-2 gap-5">
+        <div className="space-y-2">
+          <Label htmlFor="name">Name *</Label>
+          <Input id="name" maxLength={80} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Alex Rivera" />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="email">Email *</Label>
+          <Input id="email" type="email" maxLength={160} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="alex@brand.com" />
+        </div>
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="company">Company</Label>
+        <Input id="company" maxLength={120} value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} placeholder="Acme Inc." />
+      </div>
+      <div className="grid md:grid-cols-2 gap-5">
+        <div className="space-y-2">
+          <Label>Service *</Label>
+          <Select value={form.service} onValueChange={(v) => setForm({ ...form, service: v })}>
+            <SelectTrigger><SelectValue placeholder="Pick one" /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="web">Web Development</SelectItem>
+              <SelectItem value="mobile">Mobile App</SelectItem>
+              <SelectItem value="brand">Brand & UI</SelectItem>
+              <SelectItem value="full">Full Product Build</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="space-y-2">
+          <Label>Budget *</Label>
+          <Select value={form.budget} onValueChange={(v) => setForm({ ...form, budget: v })}>
+            <SelectTrigger><SelectValue placeholder="Pick a range" /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="5-10k">$5k – $10k</SelectItem>
+              <SelectItem value="10-25k">$10k – $25k</SelectItem>
+              <SelectItem value="25-50k">$25k – $50k</SelectItem>
+              <SelectItem value="50k+">$50k+</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="message">Project details *</Label>
+        <Textarea
+          id="message"
+          maxLength={1500}
+          rows={5}
+          value={form.message}
+          onChange={(e) => setForm({ ...form, message: e.target.value })}
+          placeholder="Tell us about your goals, timeline, and any links to inspiration..."
+        />
+      </div>
+      <Button type="submit" disabled={submitting} size="lg" className="w-full bg-gradient-hero text-primary-foreground hover:opacity-90 shadow-glow h-12 text-base">
+        {submitting ? "Sending..." : "Book my project"}
+        {!submitting && <ArrowRight className="ml-2 h-4 w-4" />}
+      </Button>
+      <p className="text-xs text-muted-foreground text-center">We respond within 48 hours. No spam, ever.</p>
+    </form>
+  );
+}
+
+function Booking() {
+  return (
+    <section id="book" className="py-32 relative">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 h-96 w-96 rounded-full bg-primary/20 blur-[120px] pointer-events-none" />
+      <div className="relative mx-auto max-w-5xl px-6">
+        <div className="text-center mb-12">
+          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">Let's build</div>
+          <h2 className="text-4xl md:text-6xl font-bold mb-4">
+            Book your <span className="text-gradient">free consult.</span>
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-xl mx-auto">
+            Tell us what you're cooking up. We'll come back with ideas, timeline, and a quote.
+          </p>
+        </div>
+        <BookingForm />
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="border-t border-border py-12">
+      <div className="mx-auto max-w-7xl px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="flex items-center gap-2 font-display font-bold">
+          <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-hero">
+            <Code2 className="h-3.5 w-3.5 text-primary-foreground" />
+          </span>
+          Hype Street
+        </div>
+        <p className="text-sm text-muted-foreground">© 2026 Hype Street Studio. Built with hype.</p>
+        <div className="flex items-center gap-5 text-sm text-muted-foreground">
+          <a href="mailto:hello@hypestreet.dev" className="hover:text-foreground transition">hello@hypestreet.dev</a>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
 function Index() {
-  return <PlaceholderIndex />;
+  return (
+    <div className="min-h-screen">
+      <Toaster theme="dark" position="top-center" />
+      <Nav />
+      <main>
+        <Hero />
+        <Marquee />
+        <Services />
+        <Work />
+        <Process />
+        <Booking />
+      </main>
+      <Footer />
+    </div>
+  );
 }
