@@ -407,7 +407,6 @@ function Index() {
       <Nav />
       <main>
         <Hero />
-        <Marquee />
         <Services />
         <Work />
         <Process />
