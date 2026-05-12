@@ -66,13 +66,6 @@ const services = [
   },
 ];
 
-const stats = [
-  { v: "120+", l: "Projects shipped" },
-  { v: "48h", l: "Avg. response" },
-  { v: "99%", l: "Client retention" },
-  { v: "4.9★", l: "Avg. rating" },
-];
-
 const bookingSchema = z.object({
   name: z.string().trim().min(2, "Name is required").max(80),
   email: z.string().trim().email("Enter a valid email").max(160),
@@ -114,10 +107,6 @@ function Hero() {
       <div className="absolute top-40 right-10 h-72 w-72 rounded-full bg-accent/30 blur-[100px] pointer-events-none animate-float" />
 
       <div className="relative mx-auto max-w-7xl px-6 text-center">
-        <div className="inline-flex items-center gap-2 rounded-full border border-border glass px-4 py-1.5 text-xs font-medium mb-8">
-          <span className="h-2 w-2 rounded-full bg-neon animate-glow" />
-          Now booking projects for Q3 2026
-        </div>
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.05] mb-6">
           Web & app dev <br />
           <span className="text-gradient">that hits different.</span>
@@ -134,35 +123,11 @@ function Hero() {
             <a href="#work">See our work</a>
           </Button>
         </div>
-
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6">
-          {stats.map((s) => (
-            <div key={s.l} className="glass rounded-2xl p-6">
-              <div className="text-3xl md:text-4xl font-bold text-gradient">{s.v}</div>
-              <div className="text-xs text-muted-foreground mt-1 uppercase tracking-wider">{s.l}</div>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );
 }
 
-function Marquee() {
-  const items = ["React", "Next.js", "Swift", "Kotlin", "Tailwind", "Node.js", "Figma", "Three.js", "Supabase"];
-  const loop = [...items, ...items];
-  return (
-    <div className="border-y border-border py-6 overflow-hidden glass">
-      <div className="flex gap-12 animate-marquee whitespace-nowrap">
-        {loop.map((t, i) => (
-          <span key={i} className="text-2xl md:text-3xl font-display font-bold text-muted-foreground/60">
-            {t} <span className="text-primary">✦</span>
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 function Services() {
   return (
@@ -407,7 +372,6 @@ function Index() {
       <Nav />
       <main>
         <Hero />
-        <Marquee />
         <Services />
         <Work />
         <Process />
