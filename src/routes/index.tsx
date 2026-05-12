@@ -376,30 +376,11 @@ function Booking() {
   );
 }
 
-function Footer() {
-  return (
-    <footer className="border-t border-border py-12">
-      <div className="mx-auto max-w-7xl px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-2 font-display font-bold">
-          <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-hero">
-            <Code2 className="h-3.5 w-3.5 text-primary-foreground" />
-          </span>
-          Hype Street
-        </div>
-        <p className="text-sm text-muted-foreground">© 2026 Hype Street. Built with hype.</p>
-        <div className="flex items-center gap-5 text-sm text-muted-foreground">
-          <a href="mailto:dev@hype-street.com" className="hover:text-foreground transition">dev@hype-street.com</a>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
 function Index() {
   return (
     <div className="min-h-screen">
       <Toaster theme="dark" position="top-center" />
-      <Nav />
+      <Header />
       <main>
         <Hero />
         <Services />
