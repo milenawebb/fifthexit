@@ -1,23 +1,72 @@
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/hype-street-logo.png";
 
+const navLinks = [
+  { href: "/#services", label: "Services" },
+  { href: "/#work", label: "Work" },
+  { href: "/#process", label: "Process" },
+  { href: "/#book", label: "Contact" },
+];
+
 export function Header() {
+  const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass">
       <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
-        <a href="/#top" className="flex items-center">
+        <a href="/#top" className="flex items-center" onClick={close}>
           <img src={logo} alt="Hype Street" className="h-10 w-auto" />
         </a>
         <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
-          <a href="/#services" className="hover:text-foreground transition">Services</a>
-          <a href="/#work" className="hover:text-foreground transition">Work</a>
-          <a href="/#process" className="hover:text-foreground transition">Process</a>
-          <a href="/#book" className="hover:text-foreground transition">Contact</a>
+          {navLinks.map((l) => (
+            <a key={l.href} href={l.href} className="hover:text-foreground transition">
+              {l.label}
+            </a>
+          ))}
         </nav>
-        <Button asChild size="sm" className="bg-gradient-hero text-primary-foreground hover:opacity-90 shadow-glow">
-          <a href="/#book">Book a call</a>
-        </Button>
+        <div className="hidden md:block">
+          <Button asChild size="sm" className="bg-gradient-hero text-primary-foreground hover:opacity-90 shadow-glow">
+            <a href="/#book">Book a call</a>
+          </Button>
+        </div>
+        <button
+          type="button"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+          className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-md text-foreground hover:bg-white/5 transition"
+        >
+          {open ? <Menu className="h-5 w-5 hidden" /> : null}
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
       </div>
+
+      {open && (
+        <div className="md:hidden border-t border-border/60 glass">
+          <nav className="mx-auto max-w-7xl px-6 py-4 flex flex-col gap-1">
+            {navLinks.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={close}
+                className="px-2 py-3 text-base text-muted-foreground hover:text-foreground transition"
+              >
+                {l.label}
+              </a>
+            ))}
+            <Button
+              asChild
+              size="sm"
+              className="mt-2 w-full bg-gradient-hero text-primary-foreground hover:opacity-90 shadow-glow"
+            >
+              <a href="/#book" onClick={close}>Book a call</a>
+            </Button>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
