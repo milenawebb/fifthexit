@@ -386,9 +386,9 @@ function Footer() {
           </span>
           Hype Street
         </div>
-        <p className="text-sm text-muted-foreground">© 2026 Hype Street Studio. Built with hype.</p>
+        <p className="text-sm text-muted-foreground">© 2026 Hype Street. Built with hype.</p>
         <div className="flex items-center gap-5 text-sm text-muted-foreground">
-          <a href="mailto:hello@hypestreet.dev" className="hover:text-foreground transition">hello@hypestreet.dev</a>
+          <a href="mailto:dev@hype-street.com" className="hover:text-foreground transition">dev@hype-street.com</a>
         </div>
       </div>
     </footer>
