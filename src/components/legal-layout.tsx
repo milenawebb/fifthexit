@@ -38,7 +38,7 @@ export function LegalLayout({
       <Header />
 
       {/* Page header (offset for fixed nav) */}
-      <section className="border-b border-border/60 pt-32 pb-14 md:pt-40 md:pb-20">
+      <section className="border-b border-border/60 pt-24 pb-6 md:pt-28 md:pb-8">
         <div className="mx-auto max-w-7xl px-6">
           <h1
             className="text-gradient text-4xl md:text-6xl font-bold tracking-tight"
@@ -47,13 +47,13 @@ export function LegalLayout({
             {title}
           </h1>
           {effectiveDate && (
-            <p className="mt-4 text-sm text-muted-foreground">{effectiveDate}</p>
+            <p className="mt-3 text-sm text-muted-foreground">{effectiveDate}</p>
           )}
         </div>
       </section>
 
       {/* Two-column layout */}
-      <div className="mx-auto max-w-7xl px-6 py-12 md:py-16">
+      <div className="mx-auto max-w-7xl px-6 py-8 md:py-10">
         <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-10 lg:gap-16">
           <aside className="lg:sticky lg:top-24 lg:self-start">
             <nav aria-label="Table of contents">
