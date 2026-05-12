@@ -130,35 +130,11 @@ function Hero() {
             <a href="#work">See our work</a>
           </Button>
         </div>
-
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6">
-          {stats.map((s) => (
-            <div key={s.l} className="glass rounded-2xl p-6">
-              <div className="text-3xl md:text-4xl font-bold text-gradient">{s.v}</div>
-              <div className="text-xs text-muted-foreground mt-1 uppercase tracking-wider">{s.l}</div>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );
 }
 
-function Marquee() {
-  const items = ["React", "Next.js", "Swift", "Kotlin", "Tailwind", "Node.js", "Figma", "Three.js", "Supabase"];
-  const loop = [...items, ...items];
-  return (
-    <div className="border-y border-border py-6 overflow-hidden glass">
-      <div className="flex gap-12 animate-marquee whitespace-nowrap">
-        {loop.map((t, i) => (
-          <span key={i} className="text-2xl md:text-3xl font-display font-bold text-muted-foreground/60">
-            {t} <span className="text-primary">✦</span>
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 function Services() {
   return (
