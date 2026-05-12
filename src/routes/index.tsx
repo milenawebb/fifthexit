@@ -80,7 +80,7 @@ import { Header, Footer } from "@/components/site-chrome";
 
 function Hero() {
   return (
-    <section id="top" className="relative pt-40 pb-32 overflow-hidden">
+    <section id="top" className="relative pt-28 pb-16 overflow-hidden">
       <div className="absolute inset-0 grid-bg opacity-40 pointer-events-none" />
       <div className="absolute -top-32 left-1/2 -translate-x-1/2 h-[600px] w-[600px] rounded-full bg-primary/30 blur-[120px] pointer-events-none" />
       <div className="absolute top-40 right-10 h-72 w-72 rounded-full bg-accent/30 blur-[100px] pointer-events-none animate-float" />
@@ -110,7 +110,7 @@ function Hero() {
 
 function Services() {
   return (
-    <section id="services" className="py-32 relative">
+    <section id="services" className="py-20 relative">
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-2xl mb-16">
           <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">What we do</div>
@@ -163,7 +163,7 @@ function Work() {
     },
   ] as const;
   return (
-    <section id="work" className="py-32">
+    <section id="work" className="py-20">
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
           <div>
@@ -211,7 +211,7 @@ function Process() {
     { n: "04", t: "Launch", d: "Ship, monitor, iterate. We stick around." },
   ];
   return (
-    <section id="process" className="py-32 relative">
+    <section id="process" className="py-20 relative">
       <div className="mx-auto max-w-7xl px-6">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">How we roll</div>
@@ -334,7 +334,7 @@ function BookingForm() {
 
 function Booking() {
   return (
-    <section id="book" className="py-32 relative">
+    <section id="book" className="py-20 relative">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 h-96 w-96 rounded-full bg-primary/20 blur-[120px] pointer-events-none" />
       <div className="relative mx-auto max-w-5xl px-6">
         <div className="text-center mb-12">
