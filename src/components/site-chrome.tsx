@@ -1,15 +1,13 @@
 import { Button } from "@/components/ui/button";
-import { Code2, Rocket } from "lucide-react";
+import { Code2 } from "lucide-react";
+import logo from "@/assets/hype-street-logo.png";
 
 export function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass">
       <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
-        <a href="/#top" className="flex items-center gap-2 font-display font-bold text-lg">
-          <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-hero shadow-glow">
-            <Rocket className="h-4 w-4 text-primary-foreground" />
-          </span>
-          Hype Street
+        <a href="/#top" className="flex items-center">
+          <img src={logo} alt="Hype Street" className="h-9 w-auto" />
         </a>
         <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
           <a href="/#services" className="hover:text-foreground transition">Services</a>
