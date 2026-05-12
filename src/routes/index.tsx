@@ -25,6 +25,7 @@ import {
 import { z } from "zod";
 import openSkedPreview from "@/assets/opensked-preview.png";
 import notaryPreview from "@/assets/notary-preview.png";
+import rinPreview from "@/assets/rin-preview.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -178,7 +179,12 @@ function Work() {
       href: "https://notaryclosingnetwork.com/",
       image: notaryPreview,
     },
-    { name: "Drift Studio", tag: "Brand site", color: "from-violet-500 to-fuchsia-500" },
+    {
+      name: "RIN Aesthetic Practice",
+      tag: "Cosmetic Studio Site",
+      href: "https://rinaestheticsva.com/",
+      image: rinPreview,
+    },
   ] as const;
   return (
     <section id="work" className="py-32">
