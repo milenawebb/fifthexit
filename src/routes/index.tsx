@@ -66,13 +66,6 @@ const services = [
   },
 ];
 
-const stats = [
-  { v: "120+", l: "Projects shipped" },
-  { v: "48h", l: "Avg. response" },
-  { v: "99%", l: "Client retention" },
-  { v: "4.9★", l: "Avg. rating" },
-];
-
 const bookingSchema = z.object({
   name: z.string().trim().min(2, "Name is required").max(80),
   email: z.string().trim().email("Enter a valid email").max(160),
