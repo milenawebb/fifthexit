@@ -26,16 +26,23 @@ export function Header() {
 export function Footer() {
   return (
     <footer className="border-t border-border py-12">
-      <div className="mx-auto max-w-7xl px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-2 font-display font-bold">
-          <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-hero">
-            <Code2 className="h-3.5 w-3.5 text-primary-foreground" />
-          </span>
-          Hype Street
-        </div>
-        <p className="text-sm text-muted-foreground">© 2026 Hype Street. Built with hype.</p>
-        <div className="flex items-center gap-5 text-sm text-muted-foreground">
-          <a href="mailto:dev@hype-street.com" className="hover:text-foreground transition">dev@hype-street.com</a>
+      <div className="mx-auto max-w-7xl px-6 flex flex-col gap-6">
+        <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+          <a href="/terms" className="hover:text-foreground transition">Terms of Service</a>
+          <a href="/privacy" className="hover:text-foreground transition">Privacy Policy</a>
+          <a href="/cookies" className="hover:text-foreground transition">Cookie Policy</a>
+        </nav>
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2 font-display font-bold">
+            <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-hero">
+              <Code2 className="h-3.5 w-3.5 text-primary-foreground" />
+            </span>
+            Hype Street
+          </div>
+          <p className="text-sm text-muted-foreground">© 2026 Hype Street. Built with hype.</p>
+          <div className="flex items-center gap-5 text-sm text-muted-foreground">
+            <a href="mailto:dev@hype-street.com" className="hover:text-foreground transition">dev@hype-street.com</a>
+          </div>
         </div>
       </div>
     </footer>
