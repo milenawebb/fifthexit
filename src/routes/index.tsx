@@ -114,10 +114,6 @@ function Hero() {
       <div className="absolute top-40 right-10 h-72 w-72 rounded-full bg-accent/30 blur-[100px] pointer-events-none animate-float" />
 
       <div className="relative mx-auto max-w-7xl px-6 text-center">
-        <div className="inline-flex items-center gap-2 rounded-full border border-border glass px-4 py-1.5 text-xs font-medium mb-8">
-          <span className="h-2 w-2 rounded-full bg-neon animate-glow" />
-          Now booking projects for Q3 2026
-        </div>
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.05] mb-6">
           Web & app dev <br />
           <span className="text-gradient">that hits different.</span>
