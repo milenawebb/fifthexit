@@ -88,7 +88,7 @@ function Hero() {
       <div className="relative mx-auto max-w-7xl px-6 text-center">
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.05] mb-6">
           Web & app dev <br />
-          <span className="text-gradient">that hits different.</span>
+          <span className="text-gradient">built with hype.</span>
         </h1>
         <p className="mx-auto max-w-2xl text-lg md:text-xl text-muted-foreground mb-10">
           Hype Street is a creative dev studio building blazing-fast websites, slick mobile apps,
