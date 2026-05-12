@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { z } from "zod";
 import openSkedPreview from "@/assets/opensked-preview.png";
+import notaryPreview from "@/assets/notary-preview.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -171,7 +172,12 @@ function Work() {
       href: "https://opensked.com/",
       image: openSkedPreview,
     },
-    { name: "Pulse Fitness", tag: "Mobile App", color: "from-cyan-400 to-blue-500" },
+    {
+      name: "Notary Closing Network",
+      tag: "Business Website",
+      href: "https://notaryclosingnetwork.com/",
+      image: notaryPreview,
+    },
     { name: "Drift Studio", tag: "Brand site", color: "from-violet-500 to-fuchsia-500" },
   ] as const;
   return (
