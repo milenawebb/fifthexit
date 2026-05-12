@@ -1,5 +1,4 @@
-import { Link } from "@tanstack/react-router";
-import { ArrowLeft, Code2 } from "lucide-react";
+import { Header, Footer } from "@/components/site-chrome";
 import { useEffect, useState } from "react";
 
 export type TocItem = { id: string; label: string };
@@ -36,28 +35,11 @@ export function LegalLayout({
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#0d0b1a" }}>
-      {/* Sticky top nav */}
-      <header className="sticky top-0 z-50 border-b border-border/60 backdrop-blur-xl bg-[#0d0b1a]/80">
-        <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 font-bold" style={{ fontFamily: "Syne, sans-serif" }}>
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-hero">
-              <Code2 className="h-4 w-4 text-primary-foreground" />
-            </span>
-            <span className="text-lg">Hype Street</span>
-          </Link>
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back
-          </Link>
-        </div>
-      </header>
+      <Header />
 
-      {/* Page header */}
-      <section className="border-b border-border/60">
-        <div className="mx-auto max-w-7xl px-6 py-14 md:py-20">
+      {/* Page header (offset for fixed nav) */}
+      <section className="border-b border-border/60 pt-32 pb-14 md:pt-40 md:pb-20">
+        <div className="mx-auto max-w-7xl px-6">
           <h1
             className="text-gradient text-4xl md:text-6xl font-bold tracking-tight"
             style={{ fontFamily: "Syne, sans-serif" }}
@@ -73,7 +55,6 @@ export function LegalLayout({
       {/* Two-column layout */}
       <div className="mx-auto max-w-7xl px-6 py-12 md:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-10 lg:gap-16">
-          {/* Sticky TOC */}
           <aside className="lg:sticky lg:top-24 lg:self-start">
             <nav aria-label="Table of contents">
               <p
@@ -104,36 +85,13 @@ export function LegalLayout({
             </nav>
           </aside>
 
-          {/* Content */}
           <article className="min-w-0 max-w-3xl text-foreground/90 leading-relaxed">
             {children}
           </article>
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="border-t border-border/60 mt-16">
-        <div className="mx-auto max-w-7xl px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2 font-bold" style={{ fontFamily: "Syne, sans-serif" }}>
-            <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-hero">
-              <Code2 className="h-3.5 w-3.5 text-primary-foreground" />
-            </span>
-            Hype Street
-          </div>
-          <nav className="flex items-center gap-6 text-sm text-muted-foreground">
-            <Link to="/terms" className="hover:text-foreground transition-colors" activeProps={{ className: "text-foreground" }}>
-              Terms
-            </Link>
-            <Link to="/privacy" className="hover:text-foreground transition-colors" activeProps={{ className: "text-foreground" }}>
-              Privacy
-            </Link>
-            <Link to="/cookies" className="hover:text-foreground transition-colors" activeProps={{ className: "text-foreground" }}>
-              Cookies
-            </Link>
-          </nav>
-          <p className="text-sm text-muted-foreground">© 2026 Hype Street</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
