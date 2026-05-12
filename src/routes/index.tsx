@@ -199,36 +199,28 @@ function Work() {
           </a>
         </div>
         <div className="grid md:grid-cols-3 gap-5">
-          {projects.map((p) => {
-            const Wrapper = ("href" in p ? "a" : "div") as "a" | "div";
-            const wrapperProps = "href" in p
-              ? { href: p.href, target: "_blank", rel: "noopener noreferrer" }
-              : {};
-            return (
-              <Wrapper
-                key={p.name}
-                {...wrapperProps}
-                className="group relative aspect-[4/5] rounded-2xl overflow-hidden border border-border cursor-pointer block"
-              >
-                {"image" in p ? (
-                  <img
-                    src={p.image}
-                    alt={`${p.name} website preview`}
-                    className="absolute inset-0 h-full w-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div className={`absolute inset-0 bg-gradient-to-br ${p.color} opacity-90 group-hover:scale-110 transition-transform duration-700`} />
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute inset-0 grid-bg opacity-20" />
-                <div className="absolute inset-0 p-6 flex flex-col justify-end text-white">
-                  <div className="text-xs uppercase tracking-widest opacity-80">{p.tag}</div>
-                  <div className="text-2xl font-bold font-display">{p.name}</div>
-                </div>
-              </Wrapper>
-            );
-          })}
+          {projects.map((p) => (
+            <a
+              key={p.name}
+              href={p.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative aspect-[4/5] rounded-2xl overflow-hidden border border-border cursor-pointer block"
+            >
+              <img
+                src={p.image}
+                alt={`${p.name} website preview`}
+                className="absolute inset-0 h-full w-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              <div className="absolute inset-0 grid-bg opacity-20" />
+              <div className="absolute inset-0 p-6 flex flex-col justify-end text-white">
+                <div className="text-xs uppercase tracking-widest opacity-80">{p.tag}</div>
+                <div className="text-2xl font-bold font-display">{p.name}</div>
+              </div>
+            </a>
+          ))}
         </div>
       </div>
     </section>
