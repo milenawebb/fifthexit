@@ -13,9 +13,7 @@ import {
 } from "@/components/ui/select";
 import { toast, Toaster } from "sonner";
 import {
-  Code2,
   Smartphone,
-  Rocket,
   Sparkles,
   Zap,
   Globe,
