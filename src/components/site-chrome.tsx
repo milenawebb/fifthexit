@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Code2 } from "lucide-react";
 import logo from "@/assets/hype-street-logo.png";
 
 export function Header() {
@@ -33,12 +32,9 @@ export function Footer() {
           <a href="/cookies" className="hover:text-foreground transition">Cookie Policy</a>
         </nav>
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2 font-display font-bold">
-            <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-hero">
-              <Code2 className="h-3.5 w-3.5 text-primary-foreground" />
-            </span>
-            Hype Street
-          </div>
+          <a href="/#top" className="flex items-center">
+            <img src={logo} alt="Hype Street" className="h-8 w-auto" />
+          </a>
           <p className="text-sm text-muted-foreground">© 2026 Hype Street. Built with hype.</p>
           <div className="flex items-center gap-5 text-sm text-muted-foreground">
             <a href="mailto:dev@hype-street.com" className="hover:text-foreground transition">dev@hype-street.com</a>
