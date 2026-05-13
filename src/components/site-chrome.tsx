@@ -106,14 +106,18 @@ export function Header() {
 }
 
 export function Footer() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isBg = i18n.language?.startsWith("bg");
+  const termsHref = isBg ? "/bg/terms" : "/terms";
+  const privacyHref = isBg ? "/bg/privacy" : "/privacy";
+  const cookiesHref = isBg ? "/bg/cookies" : "/cookies";
   return (
     <footer className="border-t border-border py-12" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="mx-auto max-w-7xl px-6 flex flex-col gap-6">
         <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
-          <a href="/terms" className="hover:text-foreground transition">{t("footer.terms")}</a>
-          <a href="/privacy" className="hover:text-foreground transition">{t("footer.privacy")}</a>
-          <a href="/cookies" className="hover:text-foreground transition">{t("footer.cookies")}</a>
+          <a href={termsHref} className="hover:text-foreground transition">{t("footer.terms")}</a>
+          <a href={privacyHref} className="hover:text-foreground transition">{t("footer.privacy")}</a>
+          <a href={cookiesHref} className="hover:text-foreground transition">{t("footer.cookies")}</a>
         </nav>
         <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
           <a href="/#top" className="flex items-center">

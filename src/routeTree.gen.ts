@@ -14,6 +14,9 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BgTermsRouteImport } from './routes/bg/terms'
+import { Route as BgPrivacyRouteImport } from './routes/bg/privacy'
+import { Route as BgCookiesRouteImport } from './routes/bg/cookies'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -40,6 +43,21 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BgTermsRoute = BgTermsRouteImport.update({
+  id: '/bg/terms',
+  path: '/bg/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BgPrivacyRoute = BgPrivacyRouteImport.update({
+  id: '/bg/privacy',
+  path: '/bg/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BgCookiesRoute = BgCookiesRouteImport.update({
+  id: '/bg/cookies',
+  path: '/bg/cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +65,9 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/bg/cookies': typeof BgCookiesRoute
+  '/bg/privacy': typeof BgPrivacyRoute
+  '/bg/terms': typeof BgTermsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +75,9 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/bg/cookies': typeof BgCookiesRoute
+  '/bg/privacy': typeof BgPrivacyRoute
+  '/bg/terms': typeof BgTermsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +86,41 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/bg/cookies': typeof BgCookiesRoute
+  '/bg/privacy': typeof BgPrivacyRoute
+  '/bg/terms': typeof BgTermsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/cookies' | '/privacy' | '/sitemap.xml' | '/terms'
+  fullPaths:
+    | '/'
+    | '/cookies'
+    | '/privacy'
+    | '/sitemap.xml'
+    | '/terms'
+    | '/bg/cookies'
+    | '/bg/privacy'
+    | '/bg/terms'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/cookies' | '/privacy' | '/sitemap.xml' | '/terms'
-  id: '__root__' | '/' | '/cookies' | '/privacy' | '/sitemap.xml' | '/terms'
+  to:
+    | '/'
+    | '/cookies'
+    | '/privacy'
+    | '/sitemap.xml'
+    | '/terms'
+    | '/bg/cookies'
+    | '/bg/privacy'
+    | '/bg/terms'
+  id:
+    | '__root__'
+    | '/'
+    | '/cookies'
+    | '/privacy'
+    | '/sitemap.xml'
+    | '/terms'
+    | '/bg/cookies'
+    | '/bg/privacy'
+    | '/bg/terms'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,6 +129,9 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
+  BgCookiesRoute: typeof BgCookiesRoute
+  BgPrivacyRoute: typeof BgPrivacyRoute
+  BgTermsRoute: typeof BgTermsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -116,6 +171,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/bg/terms': {
+      id: '/bg/terms'
+      path: '/bg/terms'
+      fullPath: '/bg/terms'
+      preLoaderRoute: typeof BgTermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bg/privacy': {
+      id: '/bg/privacy'
+      path: '/bg/privacy'
+      fullPath: '/bg/privacy'
+      preLoaderRoute: typeof BgPrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bg/cookies': {
+      id: '/bg/cookies'
+      path: '/bg/cookies'
+      fullPath: '/bg/cookies'
+      preLoaderRoute: typeof BgCookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -125,6 +201,9 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
+  BgCookiesRoute: BgCookiesRoute,
+  BgPrivacyRoute: BgPrivacyRoute,
+  BgTermsRoute: BgTermsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
