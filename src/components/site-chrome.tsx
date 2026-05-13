@@ -64,7 +64,7 @@ export function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 glass" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
         <a href="/#top" className="flex items-center" onClick={() => { persistLanguage(); close(); }}>
-          <img src={logo} alt="Hype Street" className="h-10 w-auto" />
+          <img src={logo} alt="Hype Street" className="h-8 w-auto" />
         </a>
         <nav className="hidden lg:flex items-center gap-8 text-sm text-muted-foreground">
           {navLinks.map((l) => (
@@ -134,7 +134,7 @@ export function Footer() {
         </nav>
         <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
           <a href="/#top" className="flex items-center">
-            <img src={logo} alt="Hype Street" className="h-10 w-auto" />
+            <img src={logo} alt="Hype Street" className="h-7 w-auto" />
           </a>
           <p className="text-sm text-muted-foreground text-center lg:text-left">{t("footer.copyright")} {t("footer.builtWith")}</p>
           <div className="flex items-center gap-5 text-sm text-muted-foreground">
