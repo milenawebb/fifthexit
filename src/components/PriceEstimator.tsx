@@ -359,15 +359,15 @@ export default function PriceEstimator() {
                 const el = document.getElementById("book");
                 if (el) el.scrollIntoView({ behavior: "smooth" });
               }}>
-                Book a free consult →
+                {t("estimator.bookConsult")}
               </button>
               <button className="est-btn-ghost" style={btnGhost} onClick={() => { setShowResult(false); setStep(0); setProjectType(null); setDesign(null); setFeatures([]); setTimeline("standard"); setSupport("none"); }}>
-                Start over
+                {t("estimator.startOver")}
               </button>
             </div>
 
             <p style={{ color: "rgba(232,228,240,0.3)", fontSize: "0.8rem", marginTop: "1.5rem" }}>
-              We respond within 48 hours. No spam, ever.
+              {t("estimator.noSpam")}
             </p>
           </div>
         )}
