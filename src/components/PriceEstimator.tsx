@@ -200,7 +200,7 @@ export default function PriceEstimator() {
                       <div style={{ fontSize: "1.5rem", marginBottom: "0.5rem", color: "#e8e4f0" }}>{p.icon}</div>
                       <div style={{ fontWeight: "600", color: "#e8e4f0", marginBottom: "0.25rem" }}>{p.label}</div>
                       <div style={{ fontSize: "0.825rem", color: "rgba(232,228,240,0.5)" }}>{p.desc}</div>
-                      <div style={{ fontSize: "0.8rem", color: "#7b78f5", marginTop: "0.5rem", fontWeight: "600" }}>From {formatPrice(p.base)}</div>
+                      <div style={{ fontSize: "0.8rem", color: "#7b78f5", marginTop: "0.5rem", fontWeight: "600" }}>{t("estimator.from")} {formatPrice(p.base)}</div>
                     </div>
                   ))}
                 </div>
