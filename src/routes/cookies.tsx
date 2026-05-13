@@ -4,10 +4,8 @@ import { LegalLayout, LegalSection, type TocItem } from "@/components/legal-layo
 export const Route = createFileRoute("/cookies")({
   head: () => ({
     meta: [
-      { title: "Cookie Policy — Hype Street" },
-      { name: "description", content: "How Hype Street uses cookies and similar tracking technologies on hype-street.com." },
-      { property: "og:title", content: "Cookie Policy — Hype Street" },
-      { property: "og:description", content: "Hype Street's Cookie Policy." },
+      { name: "description", content: "How hype/street uses cookies and similar tracking technologies on hype-street.com." },
+      { property: "og:description", content: "hype/street's Cookie Policy." },
     ],
   }),
   component: CookiesPage,
