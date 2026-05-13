@@ -263,12 +263,10 @@ function Work() {
   return (
     <section id="work" className="py-12 md:pt-16 md:pb-16">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="flex items-end justify-between gap-4 mb-8">
-          <div>
-            <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">Selected work</div>
-            <h2 className="text-4xl md:text-5xl font-bold">Recent <span className="text-gradient">drops.</span></h2>
-          </div>
-          <a href="#book" className="hidden sm:inline-flex text-sm text-muted-foreground hover:text-foreground transition items-center gap-1 shrink-0">
+        <div className="text-center mb-8">
+          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">Selected work</div>
+          <h2 className="text-4xl md:text-5xl font-bold">Recent <span className="text-gradient">drops.</span></h2>
+          <a href="#book" className="mt-3 inline-flex text-sm text-muted-foreground hover:text-foreground transition items-center gap-1">
             Want to be next? <ArrowRight className="h-4 w-4" />
           </a>
         </div>
