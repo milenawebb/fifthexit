@@ -74,7 +74,7 @@ export function Header() {
 
 export function Footer() {
   return (
-    <footer className="border-t border-border py-12">
+    <footer className="border-t border-border py-12" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="mx-auto max-w-7xl px-6 flex flex-col gap-6">
         <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
           <a href="/terms" className="hover:text-foreground transition">Terms of Service</a>
