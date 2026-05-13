@@ -45,8 +45,38 @@ export const Route = createRootRoute({
       { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/4e40a8dd-1d96-42b8-a480-4e362d620921" },
       { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/4e40a8dd-1d96-42b8-a480-4e362d620921" },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Organization",
+              name: "Hype Street",
+              url: "https://hype-street.com",
+              logo: "https://hype-street.com/favicon.png",
+            },
+            {
+              "@type": "WebSite",
+              name: "Hype Street",
+              url: "https://hype-street.com",
+            },
+            {
+              "@type": "ProfessionalService",
+              name: "Hype Street",
+              url: "https://hype-street.com",
+              image: "https://hype-street.com/favicon.png",
+              description:
+                "Web & app development studio building blazing-fast websites, slick mobile apps, and digital products.",
+            },
+          ],
+        }),
+      },
+    ],
     links: [
       { rel: "stylesheet", href: appCss },
+      { rel: "canonical", href: "https://hype-street.com" },
       { rel: "icon", type: "image/png", href: "/favicon.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
