@@ -4,10 +4,8 @@ import { LegalLayout, LegalSection, type TocItem } from "@/components/legal-layo
 export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
-      { title: "Terms of Service — Hype Street" },
-      { name: "description", content: "The Terms of Service governing your use of Hype Street's web and app development services." },
-      { property: "og:title", content: "Terms of Service — Hype Street" },
-      { property: "og:description", content: "Read the Terms of Service for Hype Street (MW Global LLC)." },
+      { name: "description", content: "The Terms of Service governing your use of hype/street's web and app development services." },
+      { property: "og:description", content: "Read the Terms of Service for hype/street (MW Global LLC)." },
     ],
   }),
   component: TermsPage,

@@ -34,13 +34,11 @@ import PriceEstimator from "@/components/PriceEstimator";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Hype Street — Web & App Development that Hits Different" },
       {
         name: "description",
         content:
-          "Hype Street builds vibrant, high-performance web and mobile apps for brands ready to stand out. Book a project consultation today.",
+          "hype/street builds vibrant, high-performance web and mobile apps for brands ready to stand out. Book a project consultation today.",
       },
-      { property: "og:title", content: "Hype Street — Web & App Development" },
       {
         property: "og:description",
         content: "Sleek, vibrant web & app development. Book your project today.",
