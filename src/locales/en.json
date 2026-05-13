@@ -147,6 +147,7 @@
     "pickDay": "Pick a day",
     "pickTime": "Pick a time",
     "name": "Name",
+    "namePlaceholder": "Your full name",
     "email": "Email",
     "projectDetails": "Project details",
     "projectPlaceholder": "Tell us about your goals, timeline, and any links to inspiration...",
