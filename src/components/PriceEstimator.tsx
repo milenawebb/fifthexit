@@ -311,10 +311,12 @@ export default function PriceEstimator() {
                 <button className="est-btn-ghost" style={btnGhost} onClick={() => setStep(step - 1)}>← {t("estimator.back")}</button>
               ) : <div />}
               {step < steps.length - 1 ? (
-                <button style={{ ...btnPrimary, opacity: canNext[step] ? 1 : 0.4, cursor: canNext[step] ? "pointer" : "not-allowed" }}
-                  onClick={() => canNext[step] && setStep(step + 1)}>
-                  {t("estimator.continue")} →
-                </button>
+                step > 0 ? (
+                  <button style={{ ...btnPrimary, opacity: canNext[step] ? 1 : 0.4, cursor: canNext[step] ? "pointer" : "not-allowed" }}
+                    onClick={() => canNext[step] && setStep(step + 1)}>
+                    {t("estimator.continue")} →
+                  </button>
+                ) : <div />
               ) : (
                 <button style={btnPrimary} onClick={() => setShowResult(true)}>
                   {t("estimator.seeEstimate")} →
