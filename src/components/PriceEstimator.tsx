@@ -262,18 +262,18 @@ export default function PriceEstimator() {
             {step === 3 && (
               <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
                 <div>
-                  <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>Timeline</p>
+                  <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>{t("estimator.timeline")}</p>
                   <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-                    {TIMELINE_OPTIONS.map((t) => (
-                      <div key={t.id} className="est-card"
-                        style={{ ...(timeline === t.id ? cardSelected : cardBase), display: "flex", justifyContent: "space-between", alignItems: "center" }}
-                        onClick={() => setTimeline(t.id)}>
+                    {TIMELINE_OPTIONS.map((tl) => (
+                      <div key={tl.id} className="est-card"
+                        style={{ ...(timeline === tl.id ? cardSelected : cardBase), display: "flex", justifyContent: "space-between", alignItems: "center" }}
+                        onClick={() => setTimeline(tl.id)}>
                         <div>
-                          <div style={{ fontWeight: "600", color: "#e8e4f0", marginBottom: "0.2rem" }}>{t.label}</div>
-                          <div style={{ fontSize: "0.825rem", color: "rgba(232,228,240,0.5)" }}>{t.desc}</div>
+                          <div style={{ fontWeight: "600", color: "#e8e4f0", marginBottom: "0.2rem" }}>{tl.label}</div>
+                          <div style={{ fontSize: "0.825rem", color: "rgba(232,228,240,0.5)" }}>{tl.desc}</div>
                         </div>
-                        <div style={{ fontSize: "0.875rem", color: t.multiplier === 1 ? "#22e4e4" : "#d96cf0", fontWeight: "700", flexShrink: 0, marginLeft: "1rem" }}>
-                          {t.multiplier === 1 ? "Standard rate" : `${Math.round((t.multiplier - 1) * 100)}% rush fee`}
+                        <div style={{ fontSize: "0.875rem", color: tl.multiplier === 1 ? "#22e4e4" : "#d96cf0", fontWeight: "700", flexShrink: 0, marginLeft: "1rem" }}>
+                          {tl.multiplier === 1 ? t("estimator.standardRate") : `${Math.round((tl.multiplier - 1) * 100)}${t("estimator.rushFee")}`}
                         </div>
                       </div>
                     ))}
