@@ -21,6 +21,7 @@ import {
   Check,
   ChevronLeft,
   ChevronRight,
+  ArrowUp,
 } from "lucide-react";
 import { z } from "zod";
 import openSkedPreview from "@/assets/opensked-preview.png";
