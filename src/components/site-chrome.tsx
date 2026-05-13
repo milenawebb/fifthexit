@@ -47,13 +47,13 @@ export function Header() {
 
       {open && (
         <div className="md:hidden border-t border-border/60 glass">
-          <nav className="mx-auto max-w-7xl px-6 py-4 flex flex-col gap-1">
+          <nav className="mx-auto max-w-7xl px-6 py-4 flex flex-col items-center gap-1">
             {navLinks.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={close}
-                className="px-2 py-3 text-base text-muted-foreground hover:text-foreground transition"
+                className="px-2 py-3 text-base text-muted-foreground hover:text-foreground transition text-center"
               >
                 {l.label}
               </a>
