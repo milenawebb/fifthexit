@@ -769,6 +769,7 @@ function Index() {
       <main style={{ backgroundColor: "#0d0b1a" }}>
         <Hero />
         <Services />
+        <TechStack />
         <Work />
         <Process />
         <section id="estimator" className="py-12 md:pt-16 md:pb-16" style={{ backgroundColor: "#0d0b1a" }}>
