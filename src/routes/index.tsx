@@ -217,7 +217,7 @@ function Process() {
         </div>
         <div className="grid md:grid-cols-4 gap-5">
           {steps.map((s) => (
-            <div key={s.n} className="glass rounded-2xl p-6">
+            <div key={s.n} className="glass rounded-2xl p-6 text-center md:text-left">
               <div className="text-5xl font-bold font-display text-gradient mb-4">{s.n}</div>
               <h3 className="text-xl font-bold mb-2">{s.t}</h3>
               <p className="text-sm text-muted-foreground">{s.d}</p>
