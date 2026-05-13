@@ -94,7 +94,7 @@ function Hero() {
           <span className="text-gradient">built with hype.</span>
         </h1>
         <p className="mx-auto max-w-2xl text-lg md:text-xl text-muted-foreground mb-10">
-          Hype Street is a creative dev studio building blazing-fast websites, slick mobile apps,
+          hype/street is a creative dev studio building blazing-fast websites, slick mobile apps,
           and digital products that make competitors sweat.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
