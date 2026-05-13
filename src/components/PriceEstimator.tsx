@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const MonitorIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: "block" }}>
@@ -8,43 +9,6 @@ const MonitorIcon = () => (
     <line x1="12" y1="17" x2="12" y2="21" />
   </svg>
 );
-
-const PROJECT_TYPES = [
-  { id: "landing", label: "Landing Page", icon: <MonitorIcon />, desc: "Single page, high-converting", base: 500 },
-  { id: "multipage", label: "Multi-Page Site", icon: "📄", desc: "5–10 pages, full brand presence", base: 2000 },
-  { id: "webapp", label: "Web App", icon: "⚡", desc: "Custom logic, user accounts, dashboards", base: 5000 },
-  { id: "mobile", label: "Mobile App", icon: "📱", desc: "iOS & Android, native-feel", base: 8000 },
-  { id: "ecommerce", label: "E-Commerce", icon: "🛒", desc: "Product listings, cart, checkout", base: 3500 },
-];
-
-const DESIGN_OPTIONS = [
-  { id: "template", label: "Template-Based", desc: "Clean & fast", price: 0 },
-  { id: "custom", label: "Custom Design", desc: "Tailored to your brand", price: 800 },
-  { id: "premium", label: "Premium Brand & UI", desc: "Full identity system", price: 2000 },
-];
-
-const FEATURES = [
-  { id: "cms", label: "CMS / Blog", icon: "✏️", price: 500 },
-  { id: "auth", label: "User Login & Auth", icon: "🔐", price: 800 },
-  { id: "booking", label: "Booking System", icon: "📅", price: 1000 },
-  { id: "payments", label: "Payments", icon: "💳", price: 1200 },
-  { id: "api", label: "API Integrations", icon: "🔗", price: 700 },
-  { id: "animations", label: "Custom Animations", icon: "✨", price: 600 },
-  { id: "seo", label: "SEO Package", icon: "📈", price: 400 },
-  { id: "multilang", label: "Multi-Language", icon: "🌍", price: 900 },
-];
-
-const TIMELINE_OPTIONS = [
-  { id: "standard", label: "Standard", desc: "6–8 weeks", multiplier: 1 },
-  { id: "fast", label: "Fast Track", desc: "3–4 weeks", multiplier: 1.3 },
-  { id: "rush", label: "Rush", desc: "1–2 weeks", multiplier: 1.6 },
-];
-
-const SUPPORT_OPTIONS = [
-  { id: "none", label: "None", desc: "Handoff & you're set", price: 0 },
-  { id: "basic", label: "Basic Maintenance", desc: "$199/mo after launch", price: 0 },
-  { id: "retainer", label: "Monthly Retainer", desc: "Ongoing dev & updates", price: 500 },
-];
 
 export default function PriceEstimator() {
   const [step, setStep] = useState(0);
