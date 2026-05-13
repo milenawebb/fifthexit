@@ -24,6 +24,7 @@ import {
   ArrowUp,
 } from "lucide-react";
 import { z } from "zod";
+import { useTranslation } from "react-i18next";
 import openSkedPreview from "@/assets/opensked-preview.png";
 import notaryPreview from "@/assets/notary-preview.png";
 import rinPreview from "@/assets/rin-preview.png";
