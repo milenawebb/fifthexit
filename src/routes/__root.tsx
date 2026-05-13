@@ -29,7 +29,7 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "hype/street" },
+      { title: "hype/street — web & app development built with hype." },
       { name: "description", content: "Web & app development. We build blazing-fast websites, slick mobile apps, and digital products." },
       { name: "author", content: "Lovable" },
       { property: "og:title", content: "hype/street" },
@@ -44,6 +44,7 @@ export const Route = createRootRoute({
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      { rel: "icon", type: "image/png", href: "/favicon.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
