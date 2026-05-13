@@ -110,6 +110,14 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
+  useEffect(() => {
+    try {
+      const stored = window.localStorage.getItem("hs_lang");
+      if ((stored === "en" || stored === "bg") && i18n.language !== stored) {
+        i18n.changeLanguage(stored);
+      }
+    } catch {}
+  }, []);
   return (
     <I18nextProvider i18n={i18n}>
       <Outlet />
