@@ -97,7 +97,7 @@ function Hero() {
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button asChild size="lg" className="bg-gradient-hero text-primary-foreground hover:opacity-90 shadow-glow text-base h-12 px-7">
-            <a href="#book">Start a project <ArrowRight className="ml-1 h-4 w-4" /></a>
+            <a href="#estimator">Start a project <ArrowRight className="ml-1 h-4 w-4" /></a>
           </Button>
           <Button asChild variant="outline" size="lg" className="h-12 px-7 glass">
             <a href="#work">See our work</a>
@@ -443,7 +443,7 @@ function Index() {
         <Services />
         <Work />
         <Process />
-        <section className="py-12 md:pt-16 md:pb-16">
+        <section id="estimator" className="py-12 md:pt-16 md:pb-16">
           <div className="mx-auto max-w-5xl px-6">
             <PriceEstimator />
           </div>

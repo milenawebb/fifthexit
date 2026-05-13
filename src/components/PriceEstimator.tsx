@@ -333,7 +333,7 @@ export default function PriceEstimator() {
 
             <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
               <button style={btnPrimary} onClick={() => {
-                const el = document.getElementById("contact");
+                const el = document.getElementById("book");
                 if (el) el.scrollIntoView({ behavior: "smooth" });
               }}>
                 Book a free consult →
