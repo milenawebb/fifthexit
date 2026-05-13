@@ -129,11 +129,17 @@ export default function PriceEstimator() {
   };
 
   return (
-    <section style={{ background: "#0d0b1a", padding: "5rem 1.5rem", fontFamily: 'var(--font-sans)' }}>
+    <section className="est-section" style={{ background: "#0d0b1a", padding: "5rem 1.5rem", fontFamily: 'var(--font-sans)' }}>
       <style>{`
         .est-card:hover { border-color: rgba(123,120,245,0.4) !important; background: rgba(123,120,245,0.07) !important; }
         .est-feat:hover { border-color: rgba(34,228,228,0.4) !important; }
         .est-btn-ghost:hover { border-color: rgba(255,255,255,0.35) !important; color: #e8e4f0 !important; }
+        @media (max-width: 640px) {
+          .est-section { padding: 3rem 1rem !important; }
+          .est-step-label, .est-step-line { display: none !important; }
+          .est-steps { gap: 0.75rem !important; }
+          .est-types-grid { grid-template-columns: 1fr !important; }
+        }
       `}</style>
 
       <div style={{ maxWidth: "800px", margin: "0 auto" }}>
@@ -154,7 +160,7 @@ export default function PriceEstimator() {
         {!showResult ? (
           <>
             {/* Step indicator */}
-            <div style={{ display: "flex", gap: "0.5rem", marginBottom: "2.5rem", justifyContent: "center" }}>
+            <div className="est-steps" style={{ display: "flex", gap: "0.5rem", marginBottom: "2.5rem", justifyContent: "center" }}>
               {steps.map((s, i) => (
                 <div key={i} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
                   <div style={{
@@ -167,8 +173,8 @@ export default function PriceEstimator() {
                     transition: "all 0.3s",
                     flexShrink: 0,
                   }}>{i + 1}</div>
-                  <span style={{ fontSize: "0.8rem", color: i === step ? "#e8e4f0" : "rgba(232,228,240,0.35)", display: window.innerWidth < 500 ? "none" : "block" }}>{s}</span>
-                  {i < steps.length - 1 && <div style={{ width: "24px", height: "1px", background: "rgba(255,255,255,0.1)" }} />}
+                  <span className="est-step-label" style={{ fontSize: "0.8rem", color: i === step ? "#e8e4f0" : "rgba(232,228,240,0.35)" }}>{s}</span>
+                  {i < steps.length - 1 && <div className="est-step-line" style={{ width: "24px", height: "1px", background: "rgba(255,255,255,0.1)" }} />}
                 </div>
               ))}
             </div>
@@ -177,12 +183,12 @@ export default function PriceEstimator() {
             {step === 0 && (
               <div>
                 <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>Select your project type</p>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "0.75rem" }}>
+                <div className="est-types-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "0.75rem" }}>
                   {PROJECT_TYPES.map((p) => (
                     <div key={p.id} className="est-card"
                       style={projectType === p.id ? cardSelected : cardBase}
                       onClick={() => setProjectType(p.id)}>
-                      <div style={{ fontSize: "1.5rem", marginBottom: "0.5rem" }}>{p.icon}</div>
+                      <div style={{ fontSize: "1.5rem", marginBottom: "0.5rem", color: "#e8e4f0" }}>{p.icon}</div>
                       <div style={{ fontWeight: "600", color: "#e8e4f0", marginBottom: "0.25rem" }}>{p.label}</div>
                       <div style={{ fontSize: "0.825rem", color: "rgba(232,228,240,0.5)" }}>{p.desc}</div>
                       <div style={{ fontSize: "0.8rem", color: "#7b78f5", marginTop: "0.5rem", fontWeight: "600" }}>From {formatPrice(p.base)}</div>
