@@ -84,6 +84,7 @@ const bookingSchema = z.object({
 import { Header, Footer } from "@/components/site-chrome";
 
 function Hero() {
+  const { t } = useTranslation();
   return (
     <section id="top" className="relative pt-24 pb-10 md:pt-28 md:pb-16 overflow-hidden" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="absolute inset-0 grid-bg opacity-40 pointer-events-none" />
@@ -92,19 +93,18 @@ function Hero() {
 
       <div className="relative mx-auto max-w-7xl px-6 text-center">
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.05] mb-6">
-          Web & app dev <br />
-          <span className="text-gradient">built with hype.</span>
+          {t("hero.heading1")} <br />
+          <span className="text-gradient">{t("hero.heading2")}</span>
         </h1>
         <p className="mx-auto max-w-2xl text-lg md:text-xl text-muted-foreground mb-10">
-          hype/street is a creative dev studio building blazing-fast websites, slick mobile apps,
-          and digital products that make competitors sweat.
+          {t("hero.subheading")}
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button asChild size="lg" className="bg-gradient-hero text-primary-foreground hover:opacity-90 shadow-glow text-base h-12 px-7">
-            <a href="#estimator">Start a project <ArrowRight className="ml-1 h-4 w-4" /></a>
+            <a href="#estimator">{t("hero.ctaPrimary")} <ArrowRight className="ml-1 h-4 w-4" /></a>
           </Button>
           <Button asChild variant="outline" size="lg" className="h-12 px-7 glass">
-            <a href="#work">See our work</a>
+            <a href="#work">{t("hero.ctaSecondary")}</a>
           </Button>
         </div>
       </div>
