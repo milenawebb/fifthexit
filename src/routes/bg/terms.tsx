@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { createFileRoute } from "@tanstack/react-router";
 import { Header, Footer } from "@/components/site-chrome";
 
@@ -17,6 +19,8 @@ export const Route = createFileRoute("/bg/terms")({
 });
 
 function Page() {
+  const { i18n } = useTranslation();
+  useEffect(() => { i18n.changeLanguage("bg"); }, [i18n]);
   return (
     <>
       <Header />
