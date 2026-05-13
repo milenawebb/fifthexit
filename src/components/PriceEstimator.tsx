@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const MonitorIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: "block" }}>
@@ -9,44 +10,8 @@ const MonitorIcon = () => (
   </svg>
 );
 
-const PROJECT_TYPES = [
-  { id: "landing", label: "Landing Page", icon: <MonitorIcon />, desc: "Single page, high-converting", base: 500 },
-  { id: "multipage", label: "Multi-Page Site", icon: "📄", desc: "5–10 pages, full brand presence", base: 2000 },
-  { id: "webapp", label: "Web App", icon: "⚡", desc: "Custom logic, user accounts, dashboards", base: 5000 },
-  { id: "mobile", label: "Mobile App", icon: "📱", desc: "iOS & Android, native-feel", base: 8000 },
-  { id: "ecommerce", label: "E-Commerce", icon: "🛒", desc: "Product listings, cart, checkout", base: 3500 },
-];
-
-const DESIGN_OPTIONS = [
-  { id: "template", label: "Template-Based", desc: "Clean & fast", price: 0 },
-  { id: "custom", label: "Custom Design", desc: "Tailored to your brand", price: 800 },
-  { id: "premium", label: "Premium Brand & UI", desc: "Full identity system", price: 2000 },
-];
-
-const FEATURES = [
-  { id: "cms", label: "CMS / Blog", icon: "✏️", price: 500 },
-  { id: "auth", label: "User Login & Auth", icon: "🔐", price: 800 },
-  { id: "booking", label: "Booking System", icon: "📅", price: 1000 },
-  { id: "payments", label: "Payments", icon: "💳", price: 1200 },
-  { id: "api", label: "API Integrations", icon: "🔗", price: 700 },
-  { id: "animations", label: "Custom Animations", icon: "✨", price: 600 },
-  { id: "seo", label: "SEO Package", icon: "📈", price: 400 },
-  { id: "multilang", label: "Multi-Language", icon: "🌍", price: 900 },
-];
-
-const TIMELINE_OPTIONS = [
-  { id: "standard", label: "Standard", desc: "6–8 weeks", multiplier: 1 },
-  { id: "fast", label: "Fast Track", desc: "3–4 weeks", multiplier: 1.3 },
-  { id: "rush", label: "Rush", desc: "1–2 weeks", multiplier: 1.6 },
-];
-
-const SUPPORT_OPTIONS = [
-  { id: "none", label: "None", desc: "Handoff & you're set", price: 0 },
-  { id: "basic", label: "Basic Maintenance", desc: "$199/mo after launch", price: 0 },
-  { id: "retainer", label: "Monthly Retainer", desc: "Ongoing dev & updates", price: 500 },
-];
-
 export default function PriceEstimator() {
+  const { t } = useTranslation();
   const [step, setStep] = useState(0);
   const [projectType, setProjectType] = useState(null);
   const [design, setDesign] = useState(null);
@@ -54,6 +19,45 @@ export default function PriceEstimator() {
   const [timeline, setTimeline] = useState("standard");
   const [support, setSupport] = useState("none");
   const [showResult, setShowResult] = useState(false);
+
+  const currency = t("estimator.currencySymbol");
+
+  const PROJECT_TYPES = [
+    { id: "landing", label: t("estimator.landingPage"), icon: <MonitorIcon />, desc: t("estimator.landingPageDesc"), base: 500 },
+    { id: "multipage", label: t("estimator.multiPage"), icon: "📄", desc: t("estimator.multiPageDesc"), base: 2000 },
+    { id: "webapp", label: t("estimator.webApp"), icon: "⚡", desc: t("estimator.webAppDesc"), base: 5000 },
+    { id: "mobile", label: t("estimator.mobileApp"), icon: "📱", desc: t("estimator.mobileAppDesc"), base: 8000 },
+    { id: "ecommerce", label: t("estimator.ecommerce"), icon: "🛒", desc: t("estimator.ecommerceDesc"), base: 3500 },
+  ];
+
+  const DESIGN_OPTIONS = [
+    { id: "template", label: t("estimator.templateBased"), desc: t("estimator.templateDesc"), price: 0 },
+    { id: "custom", label: t("estimator.customDesign"), desc: t("estimator.customDesc"), price: 800 },
+    { id: "premium", label: t("estimator.premiumBrand"), desc: t("estimator.premiumDesc"), price: 2000 },
+  ];
+
+  const FEATURES = [
+    { id: "cms", label: t("estimator.cms"), icon: "✏️", price: 500 },
+    { id: "auth", label: t("estimator.auth"), icon: "🔐", price: 800 },
+    { id: "booking", label: t("estimator.booking"), icon: "📅", price: 1000 },
+    { id: "payments", label: t("estimator.payments"), icon: "💳", price: 1200 },
+    { id: "api", label: t("estimator.api"), icon: "🔗", price: 700 },
+    { id: "animations", label: t("estimator.animations"), icon: "✨", price: 600 },
+    { id: "seo", label: t("estimator.seo"), icon: "📈", price: 400 },
+    { id: "multilang", label: t("estimator.multilang"), icon: "🌍", price: 900 },
+  ];
+
+  const TIMELINE_OPTIONS = [
+    { id: "standard", label: t("estimator.standard"), desc: t("estimator.standardDesc"), multiplier: 1 },
+    { id: "fast", label: t("estimator.fastTrack"), desc: t("estimator.fastTrackDesc"), multiplier: 1.3 },
+    { id: "rush", label: t("estimator.rush"), desc: t("estimator.rushDesc"), multiplier: 1.6 },
+  ];
+
+  const SUPPORT_OPTIONS = [
+    { id: "none", label: t("estimator.noSupport"), desc: t("estimator.noSupportDesc"), price: 0 },
+    { id: "basic", label: t("estimator.basicMaintenance"), desc: t("estimator.basicDesc"), price: 0 },
+    { id: "retainer", label: t("estimator.retainer"), desc: t("estimator.retainerDesc"), price: 500 },
+  ];
 
   const toggleFeature = (id) => {
     setFeatures((prev) =>
@@ -68,13 +72,18 @@ export default function PriceEstimator() {
       return sum + (FEATURES.find((f) => f.id === fid)?.price || 0);
     }, 0);
     const supportCost = SUPPORT_OPTIONS.find((s) => s.id === support)?.price || 0;
-    const multiplier = TIMELINE_OPTIONS.find((t) => t.id === timeline)?.multiplier || 1;
+    const multiplier = TIMELINE_OPTIONS.find((tl) => tl.id === timeline)?.multiplier || 1;
     return Math.round((base + designCost + featureCost + supportCost) * multiplier);
   };
 
-  const formatPrice = (n) => "$" + n.toLocaleString();
+  const formatPrice = (n) => currency + n.toLocaleString();
 
-  const steps = ["Project Type", "Design", "Features", "Timeline & Support"];
+  const steps = [
+    t("estimator.stepProjectType"),
+    t("estimator.stepDesign"),
+    t("estimator.stepFeatures"),
+    t("estimator.stepTimeline"),
+  ];
   const canNext = [
     !!projectType,
     !!design,
@@ -147,13 +156,13 @@ export default function PriceEstimator() {
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: "3rem" }}>
           <p style={{ fontSize: "0.75rem", fontWeight: "700", letterSpacing: "0.12em", textTransform: "uppercase", color: "#22e4e4", marginBottom: "0.75rem" }}>
-            PRICE ESTIMATOR
+            {t("estimator.label")}
           </p>
           <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: "800", fontSize: "clamp(2rem, 5vw, 3rem)", lineHeight: 1.1, color: "#e8e4f0", margin: "0 0 1rem" }}>
-            What will your <span style={gradText}>project cost?</span>
+            {t("estimator.heading1")} <span style={gradText}>{t("estimator.heading2")}</span>
           </h2>
           <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "1rem", maxWidth: "480px", margin: "0 auto" }}>
-            Select your needs below and get an instant starting estimate. No commitment, no spam.
+            {t("estimator.subheading")}
           </p>
         </div>
 
@@ -182,7 +191,7 @@ export default function PriceEstimator() {
             {/* Step 0: Project Type */}
             {step === 0 && (
               <div>
-                <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>Select your project type</p>
+                <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>{t("estimator.selectProjectType")}</p>
                 <div className="est-types-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "0.75rem" }}>
                   {PROJECT_TYPES.map((p) => (
                     <div key={p.id} className="est-card"
@@ -191,7 +200,7 @@ export default function PriceEstimator() {
                       <div style={{ fontSize: "1.5rem", marginBottom: "0.5rem", color: "#e8e4f0" }}>{p.icon}</div>
                       <div style={{ fontWeight: "600", color: "#e8e4f0", marginBottom: "0.25rem" }}>{p.label}</div>
                       <div style={{ fontSize: "0.825rem", color: "rgba(232,228,240,0.5)" }}>{p.desc}</div>
-                      <div style={{ fontSize: "0.8rem", color: "#7b78f5", marginTop: "0.5rem", fontWeight: "600" }}>From {formatPrice(p.base)}</div>
+                      <div style={{ fontSize: "0.8rem", color: "#7b78f5", marginTop: "0.5rem", fontWeight: "600" }}>{t("estimator.from")} {formatPrice(p.base)}</div>
                     </div>
                   ))}
                 </div>
@@ -201,7 +210,7 @@ export default function PriceEstimator() {
             {/* Step 1: Design */}
             {step === 1 && (
               <div>
-                <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>Choose your design approach</p>
+                <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>{t("estimator.chooseDesign")}</p>
                 <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
                   {DESIGN_OPTIONS.map((d) => (
                     <div key={d.id} className="est-card"
@@ -212,7 +221,7 @@ export default function PriceEstimator() {
                         <div style={{ fontSize: "0.825rem", color: "rgba(232,228,240,0.5)" }}>{d.desc}</div>
                       </div>
                       <div style={{ fontSize: "0.875rem", color: d.price === 0 ? "#22e4e4" : "#7b78f5", fontWeight: "700", flexShrink: 0, marginLeft: "1rem" }}>
-                        {d.price === 0 ? "Included" : `+ ${formatPrice(d.price)}`}
+                        {d.price === 0 ? t("estimator.included") : `+ ${formatPrice(d.price)}`}
                       </div>
                     </div>
                   ))}
@@ -223,7 +232,7 @@ export default function PriceEstimator() {
             {/* Step 2: Features */}
             {step === 2 && (
               <div>
-                <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>Select any additional features <span style={{ color: "rgba(232,228,240,0.35)" }}>(optional)</span></p>
+                <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>{t("estimator.selectFeatures")} <span style={{ color: "rgba(232,228,240,0.35)" }}>({t("estimator.optional")})</span></p>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "0.75rem" }}>
                   {FEATURES.map((f) => {
                     const selected = features.includes(f.id);
@@ -253,25 +262,25 @@ export default function PriceEstimator() {
             {step === 3 && (
               <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
                 <div>
-                  <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>Timeline</p>
+                  <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>{t("estimator.timeline")}</p>
                   <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-                    {TIMELINE_OPTIONS.map((t) => (
-                      <div key={t.id} className="est-card"
-                        style={{ ...(timeline === t.id ? cardSelected : cardBase), display: "flex", justifyContent: "space-between", alignItems: "center" }}
-                        onClick={() => setTimeline(t.id)}>
+                    {TIMELINE_OPTIONS.map((tl) => (
+                      <div key={tl.id} className="est-card"
+                        style={{ ...(timeline === tl.id ? cardSelected : cardBase), display: "flex", justifyContent: "space-between", alignItems: "center" }}
+                        onClick={() => setTimeline(tl.id)}>
                         <div>
-                          <div style={{ fontWeight: "600", color: "#e8e4f0", marginBottom: "0.2rem" }}>{t.label}</div>
-                          <div style={{ fontSize: "0.825rem", color: "rgba(232,228,240,0.5)" }}>{t.desc}</div>
+                          <div style={{ fontWeight: "600", color: "#e8e4f0", marginBottom: "0.2rem" }}>{tl.label}</div>
+                          <div style={{ fontSize: "0.825rem", color: "rgba(232,228,240,0.5)" }}>{tl.desc}</div>
                         </div>
-                        <div style={{ fontSize: "0.875rem", color: t.multiplier === 1 ? "#22e4e4" : "#d96cf0", fontWeight: "700", flexShrink: 0, marginLeft: "1rem" }}>
-                          {t.multiplier === 1 ? "Standard rate" : `${Math.round((t.multiplier - 1) * 100)}% rush fee`}
+                        <div style={{ fontSize: "0.875rem", color: tl.multiplier === 1 ? "#22e4e4" : "#d96cf0", fontWeight: "700", flexShrink: 0, marginLeft: "1rem" }}>
+                          {tl.multiplier === 1 ? t("estimator.standardRate") : `${Math.round((tl.multiplier - 1) * 100)}${t("estimator.rushFee")}`}
                         </div>
                       </div>
                     ))}
                   </div>
                 </div>
                 <div>
-                  <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>Ongoing support after launch</p>
+                  <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>{t("estimator.support")}</p>
                   <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
                     {SUPPORT_OPTIONS.map((s) => (
                       <div key={s.id} className="est-card"
@@ -282,7 +291,7 @@ export default function PriceEstimator() {
                           <div style={{ fontSize: "0.825rem", color: "rgba(232,228,240,0.5)" }}>{s.desc}</div>
                         </div>
                         <div style={{ fontSize: "0.875rem", color: "#22e4e4", fontWeight: "700", flexShrink: 0, marginLeft: "1rem" }}>
-                          {s.price === 0 ? "Included" : `+ ${formatPrice(s.price)}/mo`}
+                          {s.price === 0 ? t("estimator.included") : `+ ${formatPrice(s.price)}/mo`}
                         </div>
                       </div>
                     ))}
@@ -294,16 +303,16 @@ export default function PriceEstimator() {
             {/* Nav buttons */}
             <div style={{ display: "flex", justifyContent: "space-between", marginTop: "2.5rem", alignItems: "center" }}>
               {step > 0 ? (
-                <button className="est-btn-ghost" style={btnGhost} onClick={() => setStep(step - 1)}>← Back</button>
+                <button className="est-btn-ghost" style={btnGhost} onClick={() => setStep(step - 1)}>← {t("estimator.back")}</button>
               ) : <div />}
               {step < steps.length - 1 ? (
                 <button style={{ ...btnPrimary, opacity: canNext[step] ? 1 : 0.4, cursor: canNext[step] ? "pointer" : "not-allowed" }}
                   onClick={() => canNext[step] && setStep(step + 1)}>
-                  Continue →
+                  {t("estimator.continue")} →
                 </button>
               ) : (
                 <button style={btnPrimary} onClick={() => setShowResult(true)}>
-                  See my estimate →
+                  {t("estimator.seeEstimate")} →
                 </button>
               )}
             </div>
@@ -318,12 +327,12 @@ export default function PriceEstimator() {
               padding: "3rem 2rem",
               marginBottom: "2rem",
             }}>
-              <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "0.5rem", letterSpacing: "0.08em", textTransform: "uppercase" }}>Your project starts at</p>
+              <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "0.5rem", letterSpacing: "0.08em", textTransform: "uppercase" }}>{t("estimator.startsAt")}</p>
               <div style={{ fontFamily: 'var(--font-display)', fontWeight: "800", fontSize: "clamp(3rem, 10vw, 5rem)", lineHeight: 1, ...gradText, marginBottom: "1rem" }}>
                 {formatPrice(calcPrice())}
               </div>
               <p style={{ color: "rgba(232,228,240,0.5)", fontSize: "0.875rem", maxWidth: "380px", margin: "0 auto" }}>
-                This is a starting estimate based on your selections. Final pricing is confirmed after a free consult where we dig into your goals and timeline.
+                {t("estimator.estimateNote")}
               </p>
 
               {/* Summary pills */}
@@ -340,7 +349,7 @@ export default function PriceEstimator() {
                   </span>
                 ))}
                 <span style={{ background: "rgba(255,255,255,0.06)", color: "rgba(232,228,240,0.6)", borderRadius: "999px", padding: "0.3rem 0.9rem", fontSize: "0.8rem" }}>
-                  {TIMELINE_OPTIONS.find(t => t.id === timeline)?.label}
+                  {TIMELINE_OPTIONS.find(tl => tl.id === timeline)?.label}
                 </span>
               </div>
             </div>
@@ -350,15 +359,15 @@ export default function PriceEstimator() {
                 const el = document.getElementById("book");
                 if (el) el.scrollIntoView({ behavior: "smooth" });
               }}>
-                Book a free consult →
+                {t("estimator.bookConsult")}
               </button>
               <button className="est-btn-ghost" style={btnGhost} onClick={() => { setShowResult(false); setStep(0); setProjectType(null); setDesign(null); setFeatures([]); setTimeline("standard"); setSupport("none"); }}>
-                Start over
+                {t("estimator.startOver")}
               </button>
             </div>
 
             <p style={{ color: "rgba(232,228,240,0.3)", fontSize: "0.8rem", marginTop: "1.5rem" }}>
-              We respond within 48 hours. No spam, ever.
+              {t("estimator.noSpam")}
             </p>
           </div>
         )}

@@ -24,6 +24,7 @@ import {
   ArrowUp,
 } from "lucide-react";
 import { z } from "zod";
+import { useTranslation } from "react-i18next";
 import openSkedPreview from "@/assets/opensked-preview.png";
 import notaryPreview from "@/assets/notary-preview.png";
 import rinPreview from "@/assets/rin-preview.png";
@@ -52,23 +53,23 @@ export const Route = createFileRoute("/")({
 const services = [
   {
     icon: Globe,
-    title: "Web Development",
-    desc: "Lightning-fast, conversion-driven websites built with modern stacks.",
+    titleKey: "services.webDev",
+    descKey: "services.webDevDesc",
   },
   {
     icon: Smartphone,
-    title: "Mobile Apps",
-    desc: "Native-feel iOS & Android apps that users actually open daily.",
+    titleKey: "services.mobileApps",
+    descKey: "services.mobileAppsDesc",
   },
   {
     icon: Sparkles,
-    title: "Brand & UI",
-    desc: "Bold visual identities and interfaces designed to turn heads.",
+    titleKey: "services.brandUI",
+    descKey: "services.brandUIDesc",
   },
   {
     icon: Zap,
-    title: "Launch & Scale",
-    desc: "From MVP to millions — we ship fast and iterate faster.",
+    titleKey: "services.launchScale",
+    descKey: "services.launchScaleDesc",
   },
 ];
 
@@ -83,6 +84,7 @@ const bookingSchema = z.object({
 import { Header, Footer } from "@/components/site-chrome";
 
 function Hero() {
+  const { t } = useTranslation();
   return (
     <section id="top" className="relative pt-24 pb-10 md:pt-28 md:pb-16 overflow-hidden" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="absolute inset-0 grid-bg opacity-40 pointer-events-none" />
@@ -91,19 +93,18 @@ function Hero() {
 
       <div className="relative mx-auto max-w-7xl px-6 text-center">
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.05] mb-6">
-          Web & app dev <br />
-          <span className="text-gradient">built with hype.</span>
+          {t("hero.heading1")} <br />
+          <span className="text-gradient">{t("hero.heading2")}</span>
         </h1>
         <p className="mx-auto max-w-2xl text-lg md:text-xl text-muted-foreground mb-10">
-          hype/street is a creative dev studio building blazing-fast websites, slick mobile apps,
-          and digital products that make competitors sweat.
+          {t("hero.subheading")}
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button asChild size="lg" className="bg-gradient-hero text-primary-foreground hover:opacity-90 shadow-glow text-base h-12 px-7">
-            <a href="#estimator">Start a project <ArrowRight className="ml-1 h-4 w-4" /></a>
+            <a href="#estimator">{t("hero.ctaPrimary")} <ArrowRight className="ml-1 h-4 w-4" /></a>
           </Button>
           <Button asChild variant="outline" size="lg" className="h-12 px-7 glass">
-            <a href="#work">See our work</a>
+            <a href="#work">{t("hero.ctaSecondary")}</a>
           </Button>
         </div>
       </div>
@@ -113,30 +114,31 @@ function Hero() {
 
 
 function Services() {
+  const { t } = useTranslation();
   return (
     <section id="services" className="py-12 md:pt-16 md:pb-16 relative" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-2xl mx-auto text-center mb-8">
-          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">What we do</div>
+          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">{t("services.label")}</div>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Full-stack craft, <span className="text-gradient">zero compromise.</span>
+            {t("services.heading1")} <span className="text-gradient">{t("services.heading2")}</span>
           </h2>
           <p className="text-muted-foreground text-lg">
-            From the first sketch to scaling on launch day — we handle every layer of your product.
+            {t("services.subheading")}
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
           {services.map((s) => (
             <div
-              key={s.title}
+              key={s.titleKey}
               className="group bg-gradient-card border border-border rounded-2xl p-6 hover:border-primary/50 transition-all hover:-translate-y-1 hover:shadow-glow text-center md:text-left flex flex-col items-center md:items-start"
             >
               <div className="h-12 w-12 rounded-xl bg-gradient-hero flex items-center justify-center mb-5 shadow-glow">
                 <s.icon className="h-6 w-6 text-primary-foreground" />
               </div>
-              <h3 className="text-xl font-bold mb-2">{s.title}</h3>
-              <p className="text-sm text-muted-foreground">{s.desc}</p>
+              <h3 className="text-xl font-bold mb-2">{t(s.titleKey)}</h3>
+              <p className="text-sm text-muted-foreground">{t(s.descKey)}</p>
             </div>
           ))}
         </div>
@@ -146,6 +148,7 @@ function Services() {
 }
 
 function TechStack() {
+  const { t } = useTranslation();
   const row1 = [
     { name: "React", icon: "⚛️" },
     { name: "Next.js", icon: "▲" },
@@ -170,9 +173,9 @@ function TechStack() {
     { name: "Cloudflare", icon: "🟧" },
   ];
   const stats = [
-    { v: "Sub-2s", d: "Load times on every build" },
-    { v: "90+", d: "Lighthouse performance score" },
-    { v: "WCAG", d: "Accessibility compliant by default" },
+    { v: t("stack.stat1Value"), d: t("stack.stat1Desc") },
+    { v: t("stack.stat2Value"), d: t("stack.stat2Desc") },
+    { v: t("stack.stat3Value"), d: t("stack.stat3Desc") },
   ];
 
   const Pill = ({ p }: { p: { name: string; icon: string } }) => (
@@ -227,12 +230,12 @@ function TechStack() {
       `}</style>
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-2xl mx-auto text-center mb-8">
-          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">What we build with</div>
+          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">{t("stack.label")}</div>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Modern tools, <span className="text-gradient">zero bloat.</span>
+            {t("stack.heading1")} <span className="text-gradient">{t("stack.heading2")}</span>
           </h2>
           <p className="text-muted-foreground text-lg">
-            We pick the right stack for the job — not the trendiest one. Every tool we use is battle-tested, scalable, and built for the long haul.
+            {t("stack.subheading")}
           </p>
         </div>
 
@@ -258,25 +261,26 @@ function TechStack() {
 }
 
 function Work() {
+  const { t } = useTranslation();
   const projects = [
     {
-      name: "OpenSked™",
-      tag: "Task & Scheduling",
-      desc: "Modern scheduling platform for teams that move fast.",
+      name: t("work.project1Name"),
+      tag: t("work.project1Category"),
+      desc: t("work.project1Desc"),
       href: "https://opensked.com/",
       image: openSkedPreview,
     },
     {
-      name: "Notary Closing Network",
-      tag: "Business Website",
-      desc: "Nationwide notary marketplace with a polished brand.",
+      name: t("work.project2Name"),
+      tag: t("work.project2Category"),
+      desc: t("work.project2Desc"),
       href: "https://notaryclosingnetwork.com/",
       image: notaryPreview,
     },
     {
-      name: "RIN Aesthetic Practice",
-      tag: "Cosmetic Studio Site",
-      desc: "Elegant site for a luxury aesthetic studio in VA.",
+      name: t("work.project3Name"),
+      tag: t("work.project3Category"),
+      desc: t("work.project3Desc"),
       href: "https://rinaestheticsva.com/",
       image: rinPreview,
     },
@@ -377,10 +381,10 @@ function Work() {
     <section id="work" className="py-12 md:pt-16 md:pb-16" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="mx-auto max-w-7xl px-6">
         <div className="text-center mb-8">
-          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">Selected work</div>
-          <h2 className="text-4xl md:text-5xl font-bold">Recent <span className="text-gradient">drops.</span></h2>
+          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">{t("work.label")}</div>
+          <h2 className="text-4xl md:text-5xl font-bold">{t("work.heading1")} <span className="text-gradient">{t("work.heading2")}</span></h2>
           <a href="#book" className="mt-3 inline-flex text-sm text-muted-foreground hover:text-foreground transition items-center gap-1">
-            Want to be next? <ArrowRight className="h-4 w-4" />
+            {t("work.wantToBeNext")} <ArrowRight className="h-4 w-4" />
           </a>
         </div>
 
@@ -457,7 +461,7 @@ function Work() {
                       <div className="hidden md:flex absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out bg-gradient-to-t from-black/95 via-black/85 to-black/40 p-5 flex-col text-white">
                         <p className="text-sm text-white/90 mb-3">{p.desc}</p>
                         <span className="inline-flex items-center gap-1 text-sm font-semibold text-gradient w-fit">
-                          View project <ArrowRight className="h-4 w-4 text-accent" />
+                          {t("work.viewProject")} <ArrowRight className="h-4 w-4 text-accent" />
                         </span>
                       </div>
                     </div>
@@ -473,7 +477,7 @@ function Work() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition"
                     >
-                      View project <ArrowRight className="h-4 w-4" />
+                      {t("work.viewProject")} <ArrowRight className="h-4 w-4" />
                     </a>
                   </div>
                 </div>
@@ -546,18 +550,19 @@ function ProcessCard({ step, index }: { step: { n: string; t: string; d: string 
 }
 
 function Process() {
+  const { t } = useTranslation();
   const steps = [
-    { n: "01", t: "Discovery", d: "We dig into your goals, audience, and vibes." },
-    { n: "02", t: "Design", d: "Bold concepts, real prototypes, fast feedback." },
-    { n: "03", t: "Build", d: "Modern stacks, clean code, weekly demos." },
-    { n: "04", t: "Launch", d: "Ship, monitor, iterate. We stick around." },
+    { n: t("process.step1Number"), t: t("process.step1Title"), d: t("process.step1Desc") },
+    { n: t("process.step2Number"), t: t("process.step2Title"), d: t("process.step2Desc") },
+    { n: t("process.step3Number"), t: t("process.step3Title"), d: t("process.step3Desc") },
+    { n: t("process.step4Number"), t: t("process.step4Title"), d: t("process.step4Desc") },
   ];
   return (
     <section id="process" className="py-12 md:pt-16 md:pb-16 relative" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="mx-auto max-w-7xl px-6">
         <div className="text-center max-w-2xl mx-auto mb-8">
-          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">How we roll</div>
-          <h2 className="text-4xl md:text-5xl font-bold">A simple <span className="text-gradient">4-step process.</span></h2>
+          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">{t("process.label")}</div>
+          <h2 className="text-4xl md:text-5xl font-bold">{t("process.heading1")} <span className="text-gradient">{t("process.heading2")}</span></h2>
         </div>
         <div className="grid md:grid-cols-4 gap-5">
           {steps.map((s, i) => (
@@ -598,6 +603,7 @@ function formatDayLabel(d: Date) {
 }
 
 function BookingForm() {
+  const { t } = useTranslation();
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const days = getNextDays(7);
@@ -668,16 +674,16 @@ function BookingForm() {
         <div className="space-y-3">
           <Label>Pick a time *</Label>
           <div className="flex flex-wrap gap-2">
-            {TIME_SLOTS.map((t) => {
-              const selected = form.time === t;
+            {TIME_SLOTS.map((slot) => {
+              const selected = form.time === slot;
               return (
                 <button
                   type="button"
-                  key={t}
-                  onClick={() => setForm({ ...form, time: t })}
+                  key={slot}
+                  onClick={() => setForm({ ...form, time: slot })}
                   className={`${pillBase} ${selected ? pillSelected : pillIdle}`}
                 >
-                  {t}
+                  {slot}
                 </button>
               );
             })}
@@ -687,50 +693,50 @@ function BookingForm() {
 
       <div className="grid md:grid-cols-2 gap-5">
         <div className="space-y-2">
-          <Label htmlFor="name">Name *</Label>
+          <Label htmlFor="name">{t("booking.name")} *</Label>
           <Input id="name" maxLength={80} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Alex Rivera" />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="email">Email *</Label>
+          <Label htmlFor="email">{t("booking.email")} *</Label>
           <Input id="email" type="email" maxLength={160} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="alex@brand.com" />
         </div>
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="message">Tell us about your project *</Label>
+        <Label htmlFor="message">{t("booking.projectDetails")} *</Label>
         <Textarea
           id="message"
           maxLength={1500}
           rows={3}
           value={form.message}
           onChange={(e) => setForm({ ...form, message: e.target.value })}
-          placeholder="A quick overview of goals, timeline, and any links..."
+          placeholder={t("booking.projectPlaceholder")}
         />
       </div>
 
       <Button type="submit" disabled={submitting} size="lg" className="w-full bg-gradient-hero text-primary-foreground hover:opacity-90 shadow-glow h-12 text-base">
-        {submitting ? "Sending..." : "Confirm my consult"}
-        {!submitting && <ArrowRight className="ml-2 h-4 w-4" />}
+        {submitting ? "..." : t("booking.confirmButton")}
       </Button>
       <p className="text-xs text-muted-foreground text-center">
-        Free 30-minute discovery call · We respond within 2 hours to confirm
+        {t("booking.callInfo")}
       </p>
     </form>
   );
 }
 
 function Booking() {
+  const { t } = useTranslation();
   return (
     <section id="book" className="py-12 md:pt-16 md:pb-16 relative" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="absolute top-0 left-1/2 -translate-x-1/2 h-96 w-96 rounded-full bg-primary/20 blur-[120px] pointer-events-none" />
       <div className="relative mx-auto max-w-5xl px-6">
         <div className="text-center mb-8">
-          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">Let's build</div>
+          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">{t("booking.label")}</div>
           <h2 className="text-4xl md:text-6xl font-bold mb-4">
-            Book your <span className="text-gradient">free consult.</span>
+            {t("booking.heading1")} <span className="text-gradient">{t("booking.heading2")}</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            Tell us what you're cooking up. We'll come back with ideas, timeline, and a quote.
+            {t("booking.subheading")}
           </p>
         </div>
         <BookingForm />
