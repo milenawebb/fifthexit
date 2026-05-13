@@ -29,6 +29,9 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "color-scheme", content: "dark" },
+      { name: "supported-color-schemes", content: "dark" },
+      { name: "theme-color", content: "#0d0b1a" },
       { title: "hype/street — web & app development built with hype." },
       { name: "description", content: "Web & app development. We build blazing-fast websites, slick mobile apps, and digital products." },
       { name: "author", content: "Lovable" },
