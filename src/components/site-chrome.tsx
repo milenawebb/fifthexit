@@ -17,6 +17,7 @@ function LanguageToggle({ className = "" }: { className?: string }) {
   const { i18n } = useTranslation();
   const current = i18n.language?.startsWith("bg") ? "bg" : "en";
   const setLang = (lng: "en" | "bg") => {
+    localStorage.setItem("hs_lang", lng);
     i18n.changeLanguage(lng);
   };
   return (
@@ -45,17 +46,20 @@ function LanguageToggle({ className = "" }: { className?: string }) {
 export function Header() {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const persistLanguage = () => {
+    localStorage.setItem("hs_lang", i18n.language?.startsWith("bg") ? "bg" : "en");
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
-        <a href="/#top" className="flex items-center" onClick={close}>
+        <a href="/#top" className="flex items-center" onClick={() => { persistLanguage(); close(); }}>
           <img src={logo} alt="Hype Street" className="h-10 w-auto" />
         </a>
         <nav className="hidden lg:flex items-center gap-8 text-sm text-muted-foreground">
           {navLinks.map((l) => (
-            <a key={l.href} href={l.href} className="hover:text-foreground transition">
+            <a key={l.href} href={l.href} onClick={persistLanguage} className="hover:text-foreground transition">
               {t(l.key)}
             </a>
           ))}
@@ -63,7 +67,7 @@ export function Header() {
         <div className="hidden lg:flex items-center gap-5">
           <LanguageToggle />
           <Button asChild size="sm" className="bg-gradient-hero text-primary-foreground hover:opacity-90 shadow-glow">
-            <a href="/#book">{t("nav.bookCall")}</a>
+            <a href="/#book" onClick={persistLanguage}>{t("nav.bookCall")}</a>
           </Button>
         </div>
         <button
@@ -84,7 +88,7 @@ export function Header() {
               <a
                 key={l.href}
                 href={l.href}
-                onClick={close}
+                onClick={() => { persistLanguage(); close(); }}
                 className="px-2 py-3 text-base text-muted-foreground hover:text-foreground transition text-center"
               >
                 {t(l.key)}
@@ -96,7 +100,7 @@ export function Header() {
               size="sm"
               className="mt-2 w-full bg-gradient-hero text-primary-foreground hover:opacity-90 shadow-glow"
             >
-              <a href="/#book" onClick={close}>{t("nav.bookCall")}</a>
+              <a href="/#book" onClick={() => { persistLanguage(); close(); }}>{t("nav.bookCall")}</a>
             </Button>
           </nav>
         </div>
