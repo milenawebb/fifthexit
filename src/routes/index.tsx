@@ -461,7 +461,7 @@ function Work() {
                       <div className="hidden md:flex absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out bg-gradient-to-t from-black/95 via-black/85 to-black/40 p-5 flex-col text-white">
                         <p className="text-sm text-white/90 mb-3">{p.desc}</p>
                         <span className="inline-flex items-center gap-1 text-sm font-semibold text-gradient w-fit">
-                          View project <ArrowRight className="h-4 w-4 text-accent" />
+                          {t("work.viewProject")} <ArrowRight className="h-4 w-4 text-accent" />
                         </span>
                       </div>
                     </div>
