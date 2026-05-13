@@ -4,13 +4,25 @@ import en from './locales/en.json'
 import bg from './locales/bg.json'
 
 const STORAGE_KEY = 'hs_lang'
+const MANUAL_KEY = 'hs_lang_manual'
+
+function initialLang() {
+  if (typeof localStorage === 'undefined') return 'en'
+  try {
+    const manual = localStorage.getItem(MANUAL_KEY) === 'true'
+    if (!manual) return 'en'
+    return localStorage.getItem(STORAGE_KEY) || 'en'
+  } catch {
+    return 'en'
+  }
+}
 
 i18n.use(initReactI18next).init({
   resources: {
     en: { translation: en },
     bg: { translation: bg }
   },
-  lng: typeof localStorage !== 'undefined' ? localStorage.getItem(STORAGE_KEY) || 'en' : 'en',
+  lng: initialLang(),
   fallbackLng: 'en',
   interpolation: { escapeValue: false }
 })

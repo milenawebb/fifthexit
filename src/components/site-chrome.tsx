@@ -18,6 +18,7 @@ function LanguageToggle({ className = "" }: { className?: string }) {
   const current = i18n.language?.startsWith("bg") ? "bg" : "en";
   const setLang = (lng: "en" | "bg") => {
     localStorage.setItem("hs_lang", lng);
+    localStorage.setItem("hs_lang_manual", "true");
     i18n.changeLanguage(lng);
     if (typeof window !== "undefined") {
       const path = window.location.pathname;
