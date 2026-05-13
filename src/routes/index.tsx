@@ -179,12 +179,12 @@ function Work() {
           {projects.map((p) => {
             const domain = p.href.replace(/^https?:\/\//, "").replace(/\/$/, "");
             return (
-              <div key={p.name} className="flex flex-col gap-4">
+              <div key={p.name} className="flex flex-col gap-4 mb-12 md:mb-0">
                 <a
                   href={p.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="work-card group relative block overflow-hidden cursor-pointer border border-border/60 transition-all duration-300 hover:border-transparent"
+                  className="work-card group relative block overflow-hidden cursor-pointer border border-border/60 md:transition-all md:duration-300 md:hover:border-transparent"
                   style={{ borderRadius: "8px", background: "#1a1a2e" }}
                 >
                   {/* Browser chrome */}
@@ -207,18 +207,10 @@ function Work() {
                     <img
                       src={p.image}
                       alt={`${p.name} website preview`}
-                      className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 md:group-hover:scale-105"
+                      className="absolute inset-0 h-full w-full object-cover object-top md:transition-transform md:duration-700 md:group-hover:scale-105"
                       loading="lazy"
                     />
                     <div className="absolute inset-0 grid-bg opacity-10" />
-
-                    {/* Mobile: always-visible overlay */}
-                    <div className="md:hidden absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/90 via-black/60 to-transparent text-white">
-                      <p className="text-sm text-white/90 mb-2">{p.desc}</p>
-                      <span className="inline-flex items-center gap-1 text-sm font-medium text-accent">
-                        View project <ArrowRight className="h-4 w-4" />
-                      </span>
-                    </div>
 
                     {/* Desktop: hover overlay slides up */}
                     <div className="hidden md:flex absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out bg-gradient-to-t from-black/95 via-black/85 to-black/40 p-5 flex-col text-white">
@@ -234,6 +226,7 @@ function Work() {
                 <div className="px-1">
                   <div className="text-xs uppercase tracking-widest text-accent mb-1">{p.tag}</div>
                   <div className="text-xl font-bold font-display mb-2">{p.name}</div>
+                  <p className="text-sm text-muted-foreground mb-2 md:hidden">{p.desc}</p>
                   <a
                     href={p.href}
                     target="_blank"
