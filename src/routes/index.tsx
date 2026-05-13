@@ -114,30 +114,31 @@ function Hero() {
 
 
 function Services() {
+  const { t } = useTranslation();
   return (
     <section id="services" className="py-12 md:pt-16 md:pb-16 relative" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-2xl mx-auto text-center mb-8">
-          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">What we do</div>
+          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">{t("services.label")}</div>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Full-stack craft, <span className="text-gradient">zero compromise.</span>
+            {t("services.heading1")} <span className="text-gradient">{t("services.heading2")}</span>
           </h2>
           <p className="text-muted-foreground text-lg">
-            From the first sketch to scaling on launch day — we handle every layer of your product.
+            {t("services.subheading")}
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
           {services.map((s) => (
             <div
-              key={s.title}
+              key={s.titleKey}
               className="group bg-gradient-card border border-border rounded-2xl p-6 hover:border-primary/50 transition-all hover:-translate-y-1 hover:shadow-glow text-center md:text-left flex flex-col items-center md:items-start"
             >
               <div className="h-12 w-12 rounded-xl bg-gradient-hero flex items-center justify-center mb-5 shadow-glow">
                 <s.icon className="h-6 w-6 text-primary-foreground" />
               </div>
-              <h3 className="text-xl font-bold mb-2">{s.title}</h3>
-              <p className="text-sm text-muted-foreground">{s.desc}</p>
+              <h3 className="text-xl font-bold mb-2">{t(s.titleKey)}</h3>
+              <p className="text-sm text-muted-foreground">{t(s.descKey)}</p>
             </div>
           ))}
         </div>
