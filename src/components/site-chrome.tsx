@@ -53,14 +53,14 @@ export function Header() {
         <a href="/#top" className="flex items-center" onClick={close}>
           <img src={logo} alt="Hype Street" className="h-10 w-auto" />
         </a>
-        <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
+        <nav className="hidden lg:flex items-center gap-8 text-sm text-muted-foreground">
           {navLinks.map((l) => (
             <a key={l.href} href={l.href} className="hover:text-foreground transition">
               {t(l.key)}
             </a>
           ))}
         </nav>
-        <div className="hidden md:flex items-center gap-5">
+        <div className="hidden lg:flex items-center gap-5">
           <LanguageToggle />
           <Button asChild size="sm" className="bg-gradient-hero text-primary-foreground hover:opacity-90 shadow-glow">
             <a href="/#book">{t("nav.bookCall")}</a>
@@ -71,14 +71,14 @@ export function Header() {
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-md text-foreground hover:bg-white/5 transition"
+          className="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-md text-foreground hover:bg-white/5 transition"
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-border/60 glass" style={{ backgroundColor: "#0d0b1a" }}>
+        <div className="lg:hidden border-t border-border/60 glass" style={{ backgroundColor: "#0d0b1a" }}>
           <nav className="mx-auto max-w-7xl px-6 py-4 flex flex-col items-center gap-1">
             {navLinks.map((l) => (
               <a
@@ -115,7 +115,7 @@ export function Footer() {
           <a href="/privacy" className="hover:text-foreground transition">{t("footer.privacy")}</a>
           <a href="/cookies" className="hover:text-foreground transition">{t("footer.cookies")}</a>
         </nav>
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
           <a href="/#top" className="flex items-center">
             <img src={logo} alt="Hype Street" className="h-10 w-auto" />
           </a>
