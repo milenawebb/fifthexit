@@ -191,7 +191,7 @@ export default function PriceEstimator() {
             {/* Step 0: Project Type */}
             {step === 0 && (
               <div>
-                <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>Select your project type</p>
+                <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>{t("estimator.selectProjectType")}</p>
                 <div className="est-types-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "0.75rem" }}>
                   {PROJECT_TYPES.map((p) => (
                     <div key={p.id} className="est-card"
