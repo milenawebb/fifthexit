@@ -349,7 +349,7 @@ export default function PriceEstimator() {
                   </span>
                 ))}
                 <span style={{ background: "rgba(255,255,255,0.06)", color: "rgba(232,228,240,0.6)", borderRadius: "999px", padding: "0.3rem 0.9rem", fontSize: "0.8rem" }}>
-                  {TIMELINE_OPTIONS.find(t => t.id === timeline)?.label}
+                  {TIMELINE_OPTIONS.find(tl => tl.id === timeline)?.label}
                 </span>
               </div>
             </div>
