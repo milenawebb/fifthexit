@@ -327,12 +327,12 @@ export default function PriceEstimator() {
               padding: "3rem 2rem",
               marginBottom: "2rem",
             }}>
-              <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "0.5rem", letterSpacing: "0.08em", textTransform: "uppercase" }}>Your project starts at</p>
+              <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "0.5rem", letterSpacing: "0.08em", textTransform: "uppercase" }}>{t("estimator.startsAt")}</p>
               <div style={{ fontFamily: 'var(--font-display)', fontWeight: "800", fontSize: "clamp(3rem, 10vw, 5rem)", lineHeight: 1, ...gradText, marginBottom: "1rem" }}>
                 {formatPrice(calcPrice())}
               </div>
               <p style={{ color: "rgba(232,228,240,0.5)", fontSize: "0.875rem", maxWidth: "380px", margin: "0 auto" }}>
-                This is a starting estimate based on your selections. Final pricing is confirmed after a free consult where we dig into your goals and timeline.
+                {t("estimator.estimateNote")}
               </p>
 
               {/* Summary pills */}
