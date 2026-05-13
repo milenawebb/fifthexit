@@ -63,11 +63,11 @@ export const Route = createRootRoute({
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark" style={{ backgroundColor: "#0d0b1a" }}>
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body className="dark" style={{ backgroundColor: "#0d0b1a" }}>
         {children}
         <Scripts />
       </body>

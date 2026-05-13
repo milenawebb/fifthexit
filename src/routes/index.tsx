@@ -114,7 +114,7 @@ function Hero() {
 
 function Services() {
   return (
-    <section id="services" className="py-12 md:pt-16 md:pb-16 relative">
+    <section id="services" className="py-12 md:pt-16 md:pb-16 relative" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-2xl mx-auto text-center mb-8">
           <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">What we do</div>
@@ -262,7 +262,7 @@ function Work() {
   };
 
   return (
-    <section id="work" className="py-12 md:pt-16 md:pb-16">
+    <section id="work" className="py-12 md:pt-16 md:pb-16" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="mx-auto max-w-7xl px-6">
         <div className="text-center mb-8">
           <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">Selected work</div>
@@ -441,7 +441,7 @@ function Process() {
     { n: "04", t: "Launch", d: "Ship, monitor, iterate. We stick around." },
   ];
   return (
-    <section id="process" className="py-12 md:pt-16 md:pb-16 relative">
+    <section id="process" className="py-12 md:pt-16 md:pb-16 relative" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="mx-auto max-w-7xl px-6">
         <div className="text-center max-w-2xl mx-auto mb-8">
           <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">How we roll</div>
@@ -609,7 +609,7 @@ function BookingForm() {
 
 function Booking() {
   return (
-    <section id="book" className="py-12 md:pt-16 md:pb-16 relative">
+    <section id="book" className="py-12 md:pt-16 md:pb-16 relative" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="absolute top-0 left-1/2 -translate-x-1/2 h-96 w-96 rounded-full bg-primary/20 blur-[120px] pointer-events-none" />
       <div className="relative mx-auto max-w-5xl px-6">
         <div className="text-center mb-8">
@@ -657,15 +657,15 @@ function BackToTop() {
 
 function Index() {
   return (
-    <div className="min-h-screen">
+    <div className="dark min-h-screen" style={{ backgroundColor: "#0d0b1a" }}>
       <Toaster theme="dark" position="top-center" />
       <Header />
-      <main>
+      <main style={{ backgroundColor: "#0d0b1a" }}>
         <Hero />
         <Services />
         <Work />
         <Process />
-        <section id="estimator" className="py-12 md:pt-16 md:pb-16">
+        <section id="estimator" className="py-12 md:pt-16 md:pb-16" style={{ backgroundColor: "#0d0b1a" }}>
           <div className="mx-auto max-w-5xl px-6">
             <PriceEstimator />
           </div>
