@@ -48,7 +48,8 @@ export function Header() {
   const close = () => setOpen(false);
   const { t, i18n } = useTranslation();
   const persistLanguage = () => {
-    localStorage.setItem("hs_lang", i18n.language?.startsWith("bg") ? "bg" : "en");
+    const isBgRoute = window.location.pathname.startsWith("/bg/");
+    localStorage.setItem("hs_lang", isBgRoute || i18n.language?.startsWith("bg") ? "bg" : "en");
   };
 
   return (
