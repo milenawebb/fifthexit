@@ -156,13 +156,13 @@ export default function PriceEstimator() {
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: "3rem" }}>
           <p style={{ fontSize: "0.75rem", fontWeight: "700", letterSpacing: "0.12em", textTransform: "uppercase", color: "#22e4e4", marginBottom: "0.75rem" }}>
-            PRICE ESTIMATOR
+            {t("estimator.label")}
           </p>
           <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: "800", fontSize: "clamp(2rem, 5vw, 3rem)", lineHeight: 1.1, color: "#e8e4f0", margin: "0 0 1rem" }}>
-            What will your <span style={gradText}>project cost?</span>
+            {t("estimator.heading1")} <span style={gradText}>{t("estimator.heading2")}</span>
           </h2>
           <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "1rem", maxWidth: "480px", margin: "0 auto" }}>
-            Select your needs below and get an instant starting estimate. No commitment, no spam.
+            {t("estimator.subheading")}
           </p>
         </div>
 
