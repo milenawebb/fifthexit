@@ -293,8 +293,14 @@ function Work() {
 
           <div
             ref={scrollerRef}
-            className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 -mx-6 px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden touch-pan-y select-none"
-            style={{ cursor: "grab" }}
+            className="flex gap-6 snap-x snap-mandatory scroll-smooth pb-4 -mx-6 px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden select-none"
+            style={{
+              cursor: "grab",
+              overflowX: "scroll",
+              WebkitOverflowScrolling: "touch",
+              scrollSnapType: "x mandatory",
+              touchAction: "pan-x",
+            }}
           >
             {projects.map((p) => {
               const domain = p.href.replace(/^https?:\/\//, "").replace(/\/$/, "");
