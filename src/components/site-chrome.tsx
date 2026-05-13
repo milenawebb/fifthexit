@@ -5,6 +5,7 @@ import logo from "@/assets/hype-street-logo.png";
 
 const navLinks = [
   { href: "/#services", label: "Services" },
+  { href: "/#stack", label: "Stack" },
   { href: "/#work", label: "Work" },
   { href: "/#process", label: "Process" },
   { href: "/#estimator", label: "Estimate" },
