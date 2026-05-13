@@ -4,10 +4,8 @@ import { LegalLayout, LegalSection, type TocItem } from "@/components/legal-layo
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy Policy — Hype Street" },
-      { name: "description", content: "How Hype Street (MW Global LLC) collects, uses, and protects your personal information." },
-      { property: "og:title", content: "Privacy Policy — Hype Street" },
-      { property: "og:description", content: "Hype Street's Privacy Policy." },
+      { name: "description", content: "How hype/street (MW Global LLC) collects, uses, and protects your personal information." },
+      { property: "og:description", content: "hype/street's Privacy Policy." },
     ],
   }),
   component: PrivacyPage,
