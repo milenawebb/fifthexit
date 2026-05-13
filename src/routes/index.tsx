@@ -183,13 +183,8 @@ function TechStack() {
   );
 
   const Marquee = ({ items, reverse = false }: { items: { name: string; icon: string }[]; reverse?: boolean }) => (
-    <div className="marquee group relative overflow-hidden">
-      <div
-        className="flex gap-3 w-max"
-        style={{
-          animation: `marquee 40s linear infinite${reverse ? " reverse" : ""}`,
-        }}
-      >
+    <div className={`marquee${reverse ? " reverse" : ""} group relative`}>
+      <div className="flex gap-3 w-max">
         {[...items, ...items].map((p, i) => (
           <Pill key={`${p.name}-${i}`} p={p} />
         ))}
@@ -200,6 +195,17 @@ function TechStack() {
   return (
     <section id="stack" className="py-12 md:pt-16 md:pb-16 relative" style={{ backgroundColor: "#0d0b1a" }}>
       <style>{`
+        @keyframes techMarquee {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+        .marquee { overflow: hidden; }
+        .marquee > div {
+          animation: techMarquee 20s linear infinite;
+        }
+        .marquee.reverse > div {
+          animation-direction: reverse;
+        }
         .marquee:hover > div { animation-play-state: paused !important; }
         .tech-pill { position: relative; }
         .tech-pill::before {
@@ -235,14 +241,14 @@ function TechStack() {
           <Marquee items={row2} reverse />
         </div>
 
-        <div className="grid sm:grid-cols-3 gap-5">
+        <div className="flex flex-row gap-3 md:gap-5">
           {stats.map((s) => (
             <div
               key={s.v}
-              className="bg-gradient-card border border-border rounded-2xl p-6 text-center"
+              className="flex-1 basis-0 min-w-0 bg-gradient-card border border-border rounded-2xl p-3 md:p-6 text-center"
             >
-              <div className="text-5xl font-bold font-display text-gradient mb-2">{s.v}</div>
-              <p className="text-sm text-muted-foreground">{s.d}</p>
+              <div className="text-[2rem] md:text-5xl font-bold font-display text-gradient mb-2 leading-none">{s.v}</div>
+              <p className="text-xs md:text-sm text-muted-foreground">{s.d}</p>
             </div>
           ))}
         </div>
