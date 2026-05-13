@@ -230,12 +230,12 @@ function TechStack() {
       `}</style>
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-2xl mx-auto text-center mb-8">
-          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">What we build with</div>
+          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">{t("stack.label")}</div>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Modern tools, <span className="text-gradient">zero bloat.</span>
+            {t("stack.heading1")} <span className="text-gradient">{t("stack.heading2")}</span>
           </h2>
           <p className="text-muted-foreground text-lg">
-            We pick the right stack for the job — not the trendiest one. Every tool we use is battle-tested, scalable, and built for the long haul.
+            {t("stack.subheading")}
           </p>
         </div>
 
