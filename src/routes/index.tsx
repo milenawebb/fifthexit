@@ -200,6 +200,17 @@ function TechStack() {
   return (
     <section id="stack" className="py-12 md:pt-16 md:pb-16 relative" style={{ backgroundColor: "#0d0b1a" }}>
       <style>{`
+        @keyframes techMarquee {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+        .marquee { overflow: hidden; }
+        .marquee > div {
+          animation: techMarquee 20s linear infinite;
+        }
+        .marquee.reverse > div {
+          animation-direction: reverse;
+        }
         .marquee:hover > div { animation-play-state: paused !important; }
         .tech-pill { position: relative; }
         .tech-pill::before {
