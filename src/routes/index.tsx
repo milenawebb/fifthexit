@@ -477,7 +477,7 @@ function Work() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition"
                     >
-                      View project <ArrowRight className="h-4 w-4" />
+                      {t("work.viewProject")} <ArrowRight className="h-4 w-4" />
                     </a>
                   </div>
                 </div>
