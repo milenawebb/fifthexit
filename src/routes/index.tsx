@@ -795,7 +795,8 @@ function BackToTop() {
     const onScroll = () => {
       const el = document.getElementById("process");
       if (!el) return;
-      setVisible(window.scrollY >= el.offsetTop);
+      const top = el.getBoundingClientRect().top + window.scrollY;
+      setVisible(window.scrollY >= top);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
