@@ -112,7 +112,7 @@ function Services() {
   return (
     <section id="services" className="py-20 relative">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="max-w-2xl mb-16">
+        <div className="max-w-2xl mx-auto text-center mb-16">
           <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">What we do</div>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Full-stack craft, <span className="text-gradient">zero compromise.</span>
@@ -165,12 +165,10 @@ function Work() {
   return (
     <section id="work" className="py-20">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
-          <div>
-            <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">Selected work</div>
-            <h2 className="text-4xl md:text-5xl font-bold">Recent <span className="text-gradient">drops.</span></h2>
-          </div>
-          <a href="#book" className="text-sm text-muted-foreground hover:text-foreground transition inline-flex items-center gap-1">
+        <div className="text-center mb-12">
+          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">Selected work</div>
+          <h2 className="text-4xl md:text-5xl font-bold">Recent <span className="text-gradient">drops.</span></h2>
+          <a href="#book" className="mt-4 text-sm text-muted-foreground hover:text-foreground transition inline-flex items-center gap-1">
             Want to be next? <ArrowRight className="h-4 w-4" />
           </a>
         </div>
