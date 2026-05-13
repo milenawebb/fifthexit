@@ -303,16 +303,16 @@ export default function PriceEstimator() {
             {/* Nav buttons */}
             <div style={{ display: "flex", justifyContent: "space-between", marginTop: "2.5rem", alignItems: "center" }}>
               {step > 0 ? (
-                <button className="est-btn-ghost" style={btnGhost} onClick={() => setStep(step - 1)}>← Back</button>
+                <button className="est-btn-ghost" style={btnGhost} onClick={() => setStep(step - 1)}>← {t("estimator.back")}</button>
               ) : <div />}
               {step < steps.length - 1 ? (
                 <button style={{ ...btnPrimary, opacity: canNext[step] ? 1 : 0.4, cursor: canNext[step] ? "pointer" : "not-allowed" }}
                   onClick={() => canNext[step] && setStep(step + 1)}>
-                  Continue →
+                  {t("estimator.continue")} →
                 </button>
               ) : (
                 <button style={btnPrimary} onClick={() => setShowResult(true)}>
-                  See my estimate →
+                  {t("estimator.seeEstimate")} →
                 </button>
               )}
             </div>
