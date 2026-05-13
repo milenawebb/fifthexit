@@ -112,7 +112,7 @@ function Services() {
   return (
     <section id="services" className="py-12 md:pt-16 md:pb-16 relative">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="max-w-2xl mx-auto text-center mb-16">
+        <div className="max-w-2xl mx-auto text-center mb-8">
           <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">What we do</div>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Full-stack craft, <span className="text-gradient">zero compromise.</span>
@@ -168,7 +168,7 @@ function Work() {
   return (
     <section id="work" className="py-12 md:pt-16 md:pb-16">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">Selected work</div>
           <h2 className="text-4xl md:text-5xl font-bold">Recent <span className="text-gradient">drops.</span></h2>
           <a href="#book" className="mt-4 text-sm text-muted-foreground hover:text-foreground transition inline-flex items-center gap-1">
@@ -290,7 +290,7 @@ function Process() {
   return (
     <section id="process" className="py-12 md:pt-16 md:pb-16 relative">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className="text-center max-w-2xl mx-auto mb-8">
           <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">How we roll</div>
           <h2 className="text-4xl md:text-5xl font-bold">A simple <span className="text-gradient">4-step process.</span></h2>
         </div>
@@ -410,7 +410,7 @@ function Booking() {
     <section id="book" className="py-12 md:pt-16 md:pb-16 relative">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 h-96 w-96 rounded-full bg-primary/20 blur-[120px] pointer-events-none" />
       <div className="relative mx-auto max-w-5xl px-6">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">Let's build</div>
           <h2 className="text-4xl md:text-6xl font-bold mb-4">
             Book your <span className="text-gradient">free consult.</span>
