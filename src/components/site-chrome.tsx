@@ -4,12 +4,20 @@ import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/hype-street-logo.png";
 
+const navLinks = [
+  { href: "/#services", label: "Services" },
+  { href: "/#stack", label: "Stack" },
+  { href: "/#work", label: "Work" },
+  { href: "/#process", label: "Process" },
+  { href: "/#estimator", label: "Estimate" },
+  { href: "/#book", label: "Contact" },
+];
+
 function LanguageToggle({ className = "" }: { className?: string }) {
   const { i18n } = useTranslation();
   const current = i18n.language?.startsWith("bg") ? "bg" : "en";
   const setLang = (lng: "en" | "bg") => {
     i18n.changeLanguage(lng);
-    if (typeof window !== "undefined") localStorage.setItem("lang", lng);
   };
   return (
     <div className={`flex items-center gap-1 text-sm ${className}`}>
@@ -37,16 +45,6 @@ function LanguageToggle({ className = "" }: { className?: string }) {
 export function Header() {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
-  const { t } = useTranslation();
-
-  const navLinks = [
-    { href: "/#services", label: t("nav.services") },
-    { href: "/#stack", label: t("nav.stack") },
-    { href: "/#work", label: t("nav.work") },
-    { href: "/#process", label: t("nav.process") },
-    { href: "/#estimator", label: t("nav.estimate") },
-    { href: "/#book", label: t("nav.contact") },
-  ];
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass" style={{ backgroundColor: "#0d0b1a" }}>
@@ -64,7 +62,7 @@ export function Header() {
         <div className="hidden md:flex items-center gap-5">
           <LanguageToggle />
           <Button asChild size="sm" className="bg-gradient-hero text-primary-foreground hover:opacity-90 shadow-glow">
-            <a href="/#book">{t("nav.bookCall")}</a>
+            <a href="/#book">Book a call</a>
           </Button>
         </div>
         <button
@@ -97,7 +95,7 @@ export function Header() {
               size="sm"
               className="mt-2 w-full bg-gradient-hero text-primary-foreground hover:opacity-90 shadow-glow"
             >
-              <a href="/#book" onClick={close}>{t("nav.bookCall")}</a>
+              <a href="/#book" onClick={close}>Book a call</a>
             </Button>
           </nav>
         </div>
