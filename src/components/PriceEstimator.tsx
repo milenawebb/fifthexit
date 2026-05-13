@@ -11,7 +11,8 @@ const MonitorIcon = () => (
 );
 
 export default function PriceEstimator() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const priceFactor = i18n.language === "bg" ? 0.7 : 1;
   const [step, setStep] = useState(0);
   const [projectType, setProjectType] = useState(null);
   const [design, setDesign] = useState(null);
@@ -76,7 +77,7 @@ export default function PriceEstimator() {
     return Math.round((base + designCost + featureCost + supportCost) * multiplier);
   };
 
-  const formatPrice = (n) => currency + n.toLocaleString();
+  const formatPrice = (n) => currency + Math.round(n * priceFactor).toLocaleString();
 
   const steps = [
     t("estimator.stepProjectType"),
