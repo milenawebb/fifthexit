@@ -1,0 +1,15 @@
+# Hype Street
+
+> Web & app development studio. We build blazing-fast websites, slick mobile apps, and digital products.
+
+Hype Street (MW Global LLC) is a development studio focused on modern, performant web and mobile products. We pick the right stack for the job — battle-tested, scalable, accessible by default.
+
+## Pages
+
+- [Home](/): Services, tech stack, work, price estimator, and contact.
+
+## Optional
+
+- [Privacy Policy](/privacy): How we collect, use, and protect personal data.
+- [Cookie Policy](/cookies): How we use cookies and tracking technologies.
+- [Terms](/terms): Terms of service.
