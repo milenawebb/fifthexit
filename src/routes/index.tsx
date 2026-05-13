@@ -308,7 +308,8 @@ function Work() {
                 <div
                   key={p.name}
                   data-card
-                  className="snap-center shrink-0 flex flex-col gap-4 w-[85%] sm:w-[calc((100%-1.5rem)/2)] md:w-[calc((100%-3rem)/3)]"
+                  className="snap-start shrink-0 flex flex-col gap-4 w-[85%] sm:w-[calc((100%-1.5rem)/2)] md:w-[calc((100%-3rem)/3)]"
+                  style={{ scrollSnapAlign: "start", flexShrink: 0 }}
                 >
                   <a
                     href={p.href}
