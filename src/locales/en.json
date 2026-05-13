@@ -155,6 +155,13 @@
     "callInfo": "Free 30-minute discovery call · We respond within 2 hours to confirm",
     "noSpam": "We respond within 48 hours. No spam, ever."
   },
+  "cookieBanner": {
+    "title": "Cookie notice",
+    "text": "We use cookies to improve your experience and analyze site traffic. By continuing you agree to our",
+    "policyLink": "Cookie Policy",
+    "accept": "Accept All",
+    "decline": "Decline"
+  },
   "footer": {
     "copyright": "© 2026 MW Global LLC (DBA: hype/street). All rights reserved.",
     "builtWith": "Built with hype.",
