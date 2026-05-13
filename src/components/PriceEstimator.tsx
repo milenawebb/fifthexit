@@ -11,6 +11,7 @@ const MonitorIcon = () => (
 );
 
 export default function PriceEstimator() {
+  const { t } = useTranslation();
   const [step, setStep] = useState(0);
   const [projectType, setProjectType] = useState(null);
   const [design, setDesign] = useState(null);
@@ -18,6 +19,45 @@ export default function PriceEstimator() {
   const [timeline, setTimeline] = useState("standard");
   const [support, setSupport] = useState("none");
   const [showResult, setShowResult] = useState(false);
+
+  const currency = t("estimator.currencySymbol");
+
+  const PROJECT_TYPES = [
+    { id: "landing", label: t("estimator.landingPage"), icon: <MonitorIcon />, desc: t("estimator.landingPageDesc"), base: 500 },
+    { id: "multipage", label: t("estimator.multiPage"), icon: "📄", desc: t("estimator.multiPageDesc"), base: 2000 },
+    { id: "webapp", label: t("estimator.webApp"), icon: "⚡", desc: t("estimator.webAppDesc"), base: 5000 },
+    { id: "mobile", label: t("estimator.mobileApp"), icon: "📱", desc: t("estimator.mobileAppDesc"), base: 8000 },
+    { id: "ecommerce", label: t("estimator.ecommerce"), icon: "🛒", desc: t("estimator.ecommerceDesc"), base: 3500 },
+  ];
+
+  const DESIGN_OPTIONS = [
+    { id: "template", label: t("estimator.templateBased"), desc: t("estimator.templateDesc"), price: 0 },
+    { id: "custom", label: t("estimator.customDesign"), desc: t("estimator.customDesc"), price: 800 },
+    { id: "premium", label: t("estimator.premiumBrand"), desc: t("estimator.premiumDesc"), price: 2000 },
+  ];
+
+  const FEATURES = [
+    { id: "cms", label: t("estimator.cms"), icon: "✏️", price: 500 },
+    { id: "auth", label: t("estimator.auth"), icon: "🔐", price: 800 },
+    { id: "booking", label: t("estimator.booking"), icon: "📅", price: 1000 },
+    { id: "payments", label: t("estimator.payments"), icon: "💳", price: 1200 },
+    { id: "api", label: t("estimator.api"), icon: "🔗", price: 700 },
+    { id: "animations", label: t("estimator.animations"), icon: "✨", price: 600 },
+    { id: "seo", label: t("estimator.seo"), icon: "📈", price: 400 },
+    { id: "multilang", label: t("estimator.multilang"), icon: "🌍", price: 900 },
+  ];
+
+  const TIMELINE_OPTIONS = [
+    { id: "standard", label: t("estimator.standard"), desc: t("estimator.standardDesc"), multiplier: 1 },
+    { id: "fast", label: t("estimator.fastTrack"), desc: t("estimator.fastTrackDesc"), multiplier: 1.3 },
+    { id: "rush", label: t("estimator.rush"), desc: t("estimator.rushDesc"), multiplier: 1.6 },
+  ];
+
+  const SUPPORT_OPTIONS = [
+    { id: "none", label: t("estimator.noSupport"), desc: t("estimator.noSupportDesc"), price: 0 },
+    { id: "basic", label: t("estimator.basicMaintenance"), desc: t("estimator.basicDesc"), price: 0 },
+    { id: "retainer", label: t("estimator.retainer"), desc: t("estimator.retainerDesc"), price: 500 },
+  ];
 
   const toggleFeature = (id) => {
     setFeatures((prev) =>
@@ -32,13 +72,18 @@ export default function PriceEstimator() {
       return sum + (FEATURES.find((f) => f.id === fid)?.price || 0);
     }, 0);
     const supportCost = SUPPORT_OPTIONS.find((s) => s.id === support)?.price || 0;
-    const multiplier = TIMELINE_OPTIONS.find((t) => t.id === timeline)?.multiplier || 1;
+    const multiplier = TIMELINE_OPTIONS.find((tl) => tl.id === timeline)?.multiplier || 1;
     return Math.round((base + designCost + featureCost + supportCost) * multiplier);
   };
 
-  const formatPrice = (n) => "$" + n.toLocaleString();
+  const formatPrice = (n) => currency + n.toLocaleString();
 
-  const steps = ["Project Type", "Design", "Features", "Timeline & Support"];
+  const steps = [
+    t("estimator.stepProjectType"),
+    t("estimator.stepDesign"),
+    t("estimator.stepFeatures"),
+    t("estimator.stepTimeline"),
+  ];
   const canNext = [
     !!projectType,
     !!design,
