@@ -85,7 +85,7 @@ export function Footer() {
           <a href="/#top" className="flex items-center">
             <img src={logo} alt="Hype Street" className="h-10 w-auto" />
           </a>
-          <p className="text-sm text-muted-foreground">© 2026 Hype Street. Built with hype.</p>
+          <p className="text-sm text-muted-foreground">© 2026 hype/street. Built with hype.</p>
           <div className="flex items-center gap-5 text-sm text-muted-foreground">
             <a href="mailto:dev@hype-street.com" className="hover:text-foreground transition">dev@hype-street.com</a>
           </div>
