@@ -145,6 +145,112 @@ function Services() {
   );
 }
 
+function TechStack() {
+  const row1 = [
+    { name: "React", icon: "⚛️" },
+    { name: "Next.js", icon: "▲" },
+    { name: "Vue", icon: "🟢" },
+    { name: "React Native", icon: "📱" },
+    { name: "Swift UI", icon: "🦅" },
+    { name: "Tailwind CSS", icon: "🌬️" },
+    { name: "Framer Motion", icon: "🎞️" },
+    { name: "GSAP", icon: "💚" },
+    { name: "Figma", icon: "🎨" },
+  ];
+  const row2 = [
+    { name: "Node.js", icon: "🟩" },
+    { name: "Python", icon: "🐍" },
+    { name: "Supabase", icon: "⚡" },
+    { name: "Firebase", icon: "🔥" },
+    { name: "PostgreSQL", icon: "🐘" },
+    { name: "GraphQL", icon: "◈" },
+    { name: "REST APIs", icon: "🔌" },
+    { name: "Vercel", icon: "▲" },
+    { name: "AWS", icon: "☁️" },
+    { name: "Cloudflare", icon: "🟧" },
+  ];
+  const stats = [
+    { v: "Sub-2s", d: "Load times on every build" },
+    { v: "90+", d: "Lighthouse performance score" },
+    { v: "WCAG", d: "Accessibility compliant by default" },
+  ];
+
+  const Pill = ({ p }: { p: { name: string; icon: string } }) => (
+    <div className="tech-pill group relative inline-flex items-center gap-2 rounded-full border border-border/60 bg-[#16142a] px-4 py-2 text-sm text-foreground/90 whitespace-nowrap transition-colors">
+      <span className="text-base leading-none">{p.icon}</span>
+      <span className="font-medium">{p.name}</span>
+    </div>
+  );
+
+  const Marquee = ({ items, reverse = false }: { items: { name: string; icon: string }[]; reverse?: boolean }) => (
+    <div className="marquee group relative overflow-hidden">
+      <div
+        className="flex gap-3 w-max"
+        style={{
+          animation: `marquee 40s linear infinite${reverse ? " reverse" : ""}`,
+        }}
+      >
+        {[...items, ...items].map((p, i) => (
+          <Pill key={`${p.name}-${i}`} p={p} />
+        ))}
+      </div>
+    </div>
+  );
+
+  return (
+    <section id="stack" className="py-12 md:pt-16 md:pb-16 relative" style={{ backgroundColor: "#0d0b1a" }}>
+      <style>{`
+        .marquee:hover > div { animation-play-state: paused !important; }
+        .tech-pill { position: relative; }
+        .tech-pill::before {
+          content: "";
+          position: absolute;
+          inset: -1px;
+          border-radius: 9999px;
+          padding: 1px;
+          background: var(--gradient-hero);
+          -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          -webkit-mask-composite: xor;
+                  mask-composite: exclude;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          pointer-events: none;
+        }
+        .tech-pill:hover::before { opacity: 1; }
+        .tech-pill:hover { box-shadow: 0 0 20px -4px oklch(0.72 0.25 330 / 0.5); }
+      `}</style>
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="max-w-2xl mx-auto text-center mb-8">
+          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">What we build with</div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Modern tools, <span className="text-gradient">zero bloat.</span>
+          </h2>
+          <p className="text-muted-foreground text-lg">
+            We pick the right stack for the job — not the trendiest one. Every tool we use is battle-tested, scalable, and built for the long haul.
+          </p>
+        </div>
+
+        <div className="space-y-4 mb-10 -mx-6 px-6">
+          <Marquee items={row1} />
+          <Marquee items={row2} reverse />
+        </div>
+
+        <div className="grid sm:grid-cols-3 gap-5">
+          {stats.map((s) => (
+            <div
+              key={s.v}
+              className="bg-gradient-card border border-border rounded-2xl p-6 text-center"
+            >
+              <div className="text-5xl font-bold font-display text-gradient mb-2">{s.v}</div>
+              <p className="text-sm text-muted-foreground">{s.d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Work() {
   const projects = [
     {
@@ -663,6 +769,7 @@ function Index() {
       <main style={{ backgroundColor: "#0d0b1a" }}>
         <Hero />
         <Services />
+        <TechStack />
         <Work />
         <Process />
         <section id="estimator" className="py-12 md:pt-16 md:pb-16" style={{ backgroundColor: "#0d0b1a" }}>
