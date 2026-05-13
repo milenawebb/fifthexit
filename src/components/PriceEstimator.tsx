@@ -232,7 +232,7 @@ export default function PriceEstimator() {
             {/* Step 2: Features */}
             {step === 2 && (
               <div>
-                <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>Select any additional features <span style={{ color: "rgba(232,228,240,0.35)" }}>(optional)</span></p>
+                <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>{t("estimator.selectFeatures")} <span style={{ color: "rgba(232,228,240,0.35)" }}>({t("estimator.optional")})</span></p>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "0.75rem" }}>
                   {FEATURES.map((f) => {
                     const selected = features.includes(f.id);
