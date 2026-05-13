@@ -184,7 +184,7 @@ function Work() {
                   href={p.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="md:work-card group relative block overflow-hidden cursor-pointer border border-border/60 md:transition-all md:duration-300 md:hover:border-transparent"
+                  className="work-card group relative block overflow-hidden cursor-pointer border border-border/60 md:transition-all md:duration-300 md:hover:border-transparent"
                   style={{ borderRadius: "8px", background: "#1a1a2e" }}
                 >
                   {/* Browser chrome */}
