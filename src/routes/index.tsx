@@ -574,14 +574,56 @@ function Process() {
   );
 }
 
-const TIME_SLOTS = [
-  "9:00 AM",
-  "10:00 AM",
-  "11:00 AM",
-  "2:00 PM",
-  "3:00 PM",
-  "4:00 PM",
+const SLOT_POOL = [
+  "9:00", "9:30", "10:00", "10:30", "11:00", "11:30",
+  "13:00", "13:30", "14:00", "14:30", "15:00", "15:30",
+  "16:00", "16:30", "17:00", "17:30", "18:00",
 ];
+
+function hashString(s: string) {
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+function seededRandom(seed: number) {
+  let s = seed || 1;
+  return () => {
+    s = Math.imul(s ^ (s >>> 15), 2246822507);
+    s = Math.imul(s ^ (s >>> 13), 3266489909);
+    s ^= s >>> 16;
+    return (s >>> 0) / 4294967296;
+  };
+}
+
+function slotsForDate(dateKey: string): string[] {
+  const rand = seededRandom(hashString(dateKey));
+  const count = 4 + Math.floor(rand() * 3); // 4..6
+  const pool = [...SLOT_POOL];
+  // Fisher-Yates with seeded rand
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  const picked = pool.slice(0, count);
+  picked.sort((a, b) => {
+    const [ah, am] = a.split(":").map(Number);
+    const [bh, bm] = b.split(":").map(Number);
+    return ah * 60 + am - (bh * 60 + bm);
+  });
+  return picked;
+}
+
+function formatSlot(slot: string, locale: string) {
+  if (locale === "bg") return slot;
+  const [h, m] = slot.split(":").map(Number);
+  const period = h >= 12 ? "PM" : "AM";
+  const hr = h % 12 === 0 ? 12 : h % 12;
+  return `${hr}:${m.toString().padStart(2, "0")} ${period}`;
+}
 
 function getNextDays(count: number) {
   const days = [];
