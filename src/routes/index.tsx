@@ -266,16 +266,23 @@ function ProcessCard({ step, index }: { step: { n: string; t: string; d: string 
   return (
     <div
       ref={ref}
-      className="glass rounded-2xl p-6 text-center md:text-left transition-all duration-500 ease-out"
+      className="transition-all duration-500 ease-out"
       style={{
         opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(20px)",
         transitionDelay: `${index * 100}ms`,
       }}
     >
-      <div className="text-5xl font-bold font-display text-gradient mb-4">{step.n}</div>
-      <h3 className="text-xl font-bold mb-2">{step.t}</h3>
-      <p className="text-sm text-muted-foreground">{step.d}</p>
+      <div
+        className="glass rounded-2xl p-6 text-center md:text-left"
+        style={{
+          animation: visible ? "process-float 3s ease-in-out infinite" : undefined,
+          animationDelay: visible ? `${index * 0.4 + 0.5}s` : undefined,
+        }}
+      >
+        <div className="text-5xl font-bold font-display text-gradient mb-4">{step.n}</div>
+        <h3 className="text-xl font-bold mb-2">{step.t}</h3>
+        <p className="text-sm text-muted-foreground">{step.d}</p>
+      </div>
     </div>
   );
 }
