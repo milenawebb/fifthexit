@@ -598,12 +598,13 @@ function formatDayKey(d: Date) {
   return d.toISOString().slice(0, 10);
 }
 
-function formatDayLabel(d: Date) {
-  return d.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+function formatDayLabel(d: Date, locale: string) {
+  const tag = locale === "bg" ? "bg-BG" : "en-US";
+  return d.toLocaleDateString(tag, { weekday: "short", month: "long", day: "numeric" });
 }
 
 function BookingForm() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const days = getNextDays(7);
@@ -651,7 +652,7 @@ function BookingForm() {
   return (
     <form onSubmit={onSubmit} className="glass rounded-3xl p-6 md:p-10 space-y-6">
       <div className="space-y-3">
-        <Label>Pick a day *</Label>
+        <Label>{t("booking.pickDay")} *</Label>
         <div className="flex flex-wrap gap-2">
           {days.map((d) => {
             const key = formatDayKey(d);
@@ -663,7 +664,7 @@ function BookingForm() {
                 onClick={() => setForm({ ...form, date: key, time: "" })}
                 className={`${pillBase} ${selected ? pillSelected : pillIdle}`}
               >
-                {formatDayLabel(d)}
+                {formatDayLabel(d, i18n.language)}
               </button>
             );
           })}
@@ -672,7 +673,7 @@ function BookingForm() {
 
       {form.date && (
         <div className="space-y-3">
-          <Label>Pick a time *</Label>
+          <Label>{t("booking.pickTime")} *</Label>
           <div className="flex flex-wrap gap-2">
             {TIME_SLOTS.map((slot) => {
               const selected = form.time === slot;
