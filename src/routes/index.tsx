@@ -126,7 +126,7 @@ function Services() {
           {services.map((s) => (
             <div
               key={s.title}
-              className="group bg-gradient-card border border-border rounded-2xl p-6 hover:border-primary/50 transition-all hover:-translate-y-1 hover:shadow-glow"
+              className="group bg-gradient-card border border-border rounded-2xl p-6 hover:border-primary/50 transition-all hover:-translate-y-1 hover:shadow-glow text-center md:text-left flex flex-col items-center md:items-start"
             >
               <div className="h-12 w-12 rounded-xl bg-gradient-hero flex items-center justify-center mb-5 shadow-glow">
                 <s.icon className="h-6 w-6 text-primary-foreground" />
