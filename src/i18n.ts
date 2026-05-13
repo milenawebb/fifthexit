@@ -6,9 +6,9 @@ import bg from './locales/bg.json'
 const STORAGE_KEY = 'hs_lang'
 
 function getInitialLang(): string {
-  if (typeof window === 'undefined') return 'en'
+  if (typeof localStorage === 'undefined') return 'en'
   try {
-    const stored = window.localStorage.getItem(STORAGE_KEY)
+    const stored = localStorage.getItem(STORAGE_KEY) || 'en'
     if (stored === 'en' || stored === 'bg') return stored
   } catch {}
   return 'en'
@@ -27,7 +27,7 @@ i18n.use(initReactI18next).init({
 if (typeof window !== 'undefined') {
   i18n.on('languageChanged', (lng) => {
     try {
-      window.localStorage.setItem(STORAGE_KEY, lng.startsWith('bg') ? 'bg' : 'en')
+      localStorage.setItem(STORAGE_KEY, lng.startsWith('bg') ? 'bg' : 'en')
     } catch {}
   })
 }
