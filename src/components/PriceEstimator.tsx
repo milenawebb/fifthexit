@@ -1,8 +1,16 @@
 // @ts-nocheck
 import { useState } from "react";
 
+const MonitorIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: "block" }}>
+    <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+    <line x1="8" y1="21" x2="16" y2="21" />
+    <line x1="12" y1="17" x2="12" y2="21" />
+  </svg>
+);
+
 const PROJECT_TYPES = [
-  { id: "landing", label: "Landing Page", icon: "🖥️", desc: "Single page, high-converting", base: 500 },
+  { id: "landing", label: "Landing Page", icon: <MonitorIcon />, desc: "Single page, high-converting", base: 500 },
   { id: "multipage", label: "Multi-Page Site", icon: "📄", desc: "5–10 pages, full brand presence", base: 2000 },
   { id: "webapp", label: "Web App", icon: "⚡", desc: "Custom logic, user accounts, dashboards", base: 5000 },
   { id: "mobile", label: "Mobile App", icon: "📱", desc: "iOS & Android, native-feel", base: 8000 },
