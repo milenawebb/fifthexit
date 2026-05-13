@@ -28,6 +28,7 @@ import { useTranslation } from "react-i18next";
 import openSkedPreview from "@/assets/opensked-preview.png";
 import notaryPreview from "@/assets/notary-preview.png";
 import rinPreview from "@/assets/rin-preview.png";
+import bellhousePreview from "@/assets/bellhouse-preview.png";
 import eliteRidePreview from "@/assets/elite-ride-preview.png";
 import PriceEstimator from "@/components/PriceEstimator";
 
@@ -281,6 +282,13 @@ function Work() {
       desc: t("work.project3Desc"),
       href: "https://rinaestheticsva.com/",
       image: rinPreview,
+    },
+    {
+      name: t("work.project4Name"),
+      tag: t("work.project4Category"),
+      desc: t("work.project4Desc"),
+      href: "https://bellhouserealestate.com",
+      image: bellhousePreview,
     },
     {
       name: "Elite Ride Solutions",
