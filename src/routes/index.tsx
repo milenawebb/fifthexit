@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -235,12 +235,8 @@ function Process() {
           <h2 className="text-4xl md:text-5xl font-bold">A simple <span className="text-gradient">4-step process.</span></h2>
         </div>
         <div className="grid md:grid-cols-4 gap-5">
-          {steps.map((s) => (
-            <div key={s.n} className="glass rounded-2xl p-6 text-center md:text-left">
-              <div className="text-5xl font-bold font-display text-gradient mb-4">{s.n}</div>
-              <h3 className="text-xl font-bold mb-2">{s.t}</h3>
-              <p className="text-sm text-muted-foreground">{s.d}</p>
-            </div>
+          {steps.map((s, i) => (
+            <ProcessCard key={s.n} step={s} index={i} />
           ))}
         </div>
       </div>
