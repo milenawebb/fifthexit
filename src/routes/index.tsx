@@ -603,6 +603,7 @@ function formatDayLabel(d: Date) {
 }
 
 function BookingForm() {
+  const { t } = useTranslation();
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const days = getNextDays(7);
@@ -673,16 +674,16 @@ function BookingForm() {
         <div className="space-y-3">
           <Label>Pick a time *</Label>
           <div className="flex flex-wrap gap-2">
-            {TIME_SLOTS.map((t) => {
-              const selected = form.time === t;
+            {TIME_SLOTS.map((slot) => {
+              const selected = form.time === slot;
               return (
                 <button
                   type="button"
-                  key={t}
-                  onClick={() => setForm({ ...form, time: t })}
+                  key={slot}
+                  onClick={() => setForm({ ...form, time: slot })}
                   className={`${pillBase} ${selected ? pillSelected : pillIdle}`}
                 >
-                  {t}
+                  {slot}
                 </button>
               );
             })}
@@ -692,50 +693,50 @@ function BookingForm() {
 
       <div className="grid md:grid-cols-2 gap-5">
         <div className="space-y-2">
-          <Label htmlFor="name">Name *</Label>
+          <Label htmlFor="name">{t("booking.name")} *</Label>
           <Input id="name" maxLength={80} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Alex Rivera" />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="email">Email *</Label>
+          <Label htmlFor="email">{t("booking.email")} *</Label>
           <Input id="email" type="email" maxLength={160} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="alex@brand.com" />
         </div>
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="message">Tell us about your project *</Label>
+        <Label htmlFor="message">{t("booking.projectDetails")} *</Label>
         <Textarea
           id="message"
           maxLength={1500}
           rows={3}
           value={form.message}
           onChange={(e) => setForm({ ...form, message: e.target.value })}
-          placeholder="A quick overview of goals, timeline, and any links..."
+          placeholder={t("booking.projectPlaceholder")}
         />
       </div>
 
       <Button type="submit" disabled={submitting} size="lg" className="w-full bg-gradient-hero text-primary-foreground hover:opacity-90 shadow-glow h-12 text-base">
-        {submitting ? "Sending..." : "Confirm my consult"}
-        {!submitting && <ArrowRight className="ml-2 h-4 w-4" />}
+        {submitting ? "..." : t("booking.confirmButton")}
       </Button>
       <p className="text-xs text-muted-foreground text-center">
-        Free 30-minute discovery call · We respond within 2 hours to confirm
+        {t("booking.callInfo")}
       </p>
     </form>
   );
 }
 
 function Booking() {
+  const { t } = useTranslation();
   return (
     <section id="book" className="py-12 md:pt-16 md:pb-16 relative" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="absolute top-0 left-1/2 -translate-x-1/2 h-96 w-96 rounded-full bg-primary/20 blur-[120px] pointer-events-none" />
       <div className="relative mx-auto max-w-5xl px-6">
         <div className="text-center mb-8">
-          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">Let's build</div>
+          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">{t("booking.label")}</div>
           <h2 className="text-4xl md:text-6xl font-bold mb-4">
-            Book your <span className="text-gradient">free consult.</span>
+            {t("booking.heading1")} <span className="text-gradient">{t("booking.heading2")}</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            Tell us what you're cooking up. We'll come back with ideas, timeline, and a quote.
+            {t("booking.subheading")}
           </p>
         </div>
         <BookingForm />
