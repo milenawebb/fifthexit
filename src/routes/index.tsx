@@ -71,9 +71,8 @@ const services = [
 const bookingSchema = z.object({
   name: z.string().trim().min(2, "Name is required").max(80),
   email: z.string().trim().email("Enter a valid email").max(160),
-  company: z.string().trim().max(120).optional(),
-  service: z.string().min(1, "Pick a service"),
-  budget: z.string().min(1, "Pick a budget"),
+  date: z.string().min(1, "Pick a date"),
+  time: z.string().min(1, "Pick a time"),
   message: z.string().trim().min(10, "Tell us a bit more (10+ chars)").max(1500),
 });
 
@@ -312,15 +311,43 @@ function Process() {
   );
 }
 
+const TIME_SLOTS = [
+  "9:00 AM",
+  "10:00 AM",
+  "11:00 AM",
+  "2:00 PM",
+  "3:00 PM",
+  "4:00 PM",
+];
+
+function getNextDays(count: number) {
+  const days = [];
+  const today = new Date();
+  for (let i = 0; i < count; i++) {
+    const d = new Date(today);
+    d.setDate(today.getDate() + i);
+    days.push(d);
+  }
+  return days;
+}
+
+function formatDayKey(d: Date) {
+  return d.toISOString().slice(0, 10);
+}
+
+function formatDayLabel(d: Date) {
+  return d.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+}
+
 function BookingForm() {
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
+  const days = getNextDays(7);
   const [form, setForm] = useState({
     name: "",
     email: "",
-    company: "",
-    service: "",
-    budget: "",
+    date: "",
+    time: "",
     message: "",
   });
 
@@ -335,7 +362,7 @@ function BookingForm() {
     setTimeout(() => {
       setSubmitting(false);
       setDone(true);
-      toast.success("Booking received! We'll reach out within 48 hours.");
+      toast.success("Consult booked! We'll confirm within 2 hours.");
     }, 800);
   };
 
@@ -346,13 +373,60 @@ function BookingForm() {
           <Check className="h-8 w-8 text-primary-foreground" />
         </div>
         <h3 className="text-2xl font-bold mb-2">You're on the list 🚀</h3>
-        <p className="text-muted-foreground">We'll be in your inbox within 48 hours with next steps.</p>
+        <p className="text-muted-foreground">We'll confirm your consult within 2 hours.</p>
       </div>
     );
   }
 
+  const pillBase =
+    "px-4 py-2 rounded-full text-sm font-medium border transition-all cursor-pointer select-none";
+  const pillIdle = "border-border/60 text-muted-foreground hover:text-foreground hover:border-border";
+  const pillSelected =
+    "text-foreground border-transparent bg-gradient-hero shadow-glow [background-clip:padding-box]";
+
   return (
-    <form onSubmit={onSubmit} className="glass rounded-3xl p-6 md:p-10 space-y-5">
+    <form onSubmit={onSubmit} className="glass rounded-3xl p-6 md:p-10 space-y-6">
+      <div className="space-y-3">
+        <Label>Pick a day *</Label>
+        <div className="flex flex-wrap gap-2">
+          {days.map((d) => {
+            const key = formatDayKey(d);
+            const selected = form.date === key;
+            return (
+              <button
+                type="button"
+                key={key}
+                onClick={() => setForm({ ...form, date: key, time: "" })}
+                className={`${pillBase} ${selected ? pillSelected : pillIdle}`}
+              >
+                {formatDayLabel(d)}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {form.date && (
+        <div className="space-y-3">
+          <Label>Pick a time *</Label>
+          <div className="flex flex-wrap gap-2">
+            {TIME_SLOTS.map((t) => {
+              const selected = form.time === t;
+              return (
+                <button
+                  type="button"
+                  key={t}
+                  onClick={() => setForm({ ...form, time: t })}
+                  className={`${pillBase} ${selected ? pillSelected : pillIdle}`}
+                >
+                  {t}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
       <div className="grid md:grid-cols-2 gap-5">
         <div className="space-y-2">
           <Label htmlFor="name">Name *</Label>
@@ -363,52 +437,26 @@ function BookingForm() {
           <Input id="email" type="email" maxLength={160} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="alex@brand.com" />
         </div>
       </div>
+
       <div className="space-y-2">
-        <Label htmlFor="company">Company</Label>
-        <Input id="company" maxLength={120} value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} placeholder="Acme Inc." />
-      </div>
-      <div className="grid md:grid-cols-2 gap-5">
-        <div className="space-y-2">
-          <Label>Service *</Label>
-          <Select value={form.service} onValueChange={(v) => setForm({ ...form, service: v })}>
-            <SelectTrigger><SelectValue placeholder="Pick one" /></SelectTrigger>
-            <SelectContent>
-              <SelectItem value="web">Web Development</SelectItem>
-              <SelectItem value="mobile">Mobile App</SelectItem>
-              <SelectItem value="brand">Brand & UI</SelectItem>
-              <SelectItem value="full">Full Product Build</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-        <div className="space-y-2">
-          <Label>Budget *</Label>
-          <Select value={form.budget} onValueChange={(v) => setForm({ ...form, budget: v })}>
-            <SelectTrigger><SelectValue placeholder="Pick a range" /></SelectTrigger>
-            <SelectContent>
-              <SelectItem value="5-10k">$5k – $10k</SelectItem>
-              <SelectItem value="10-25k">$10k – $25k</SelectItem>
-              <SelectItem value="25-50k">$25k – $50k</SelectItem>
-              <SelectItem value="50k+">$50k+</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
-      <div className="space-y-2">
-        <Label htmlFor="message">Project details *</Label>
+        <Label htmlFor="message">Tell us about your project *</Label>
         <Textarea
           id="message"
           maxLength={1500}
-          rows={5}
+          rows={3}
           value={form.message}
           onChange={(e) => setForm({ ...form, message: e.target.value })}
-          placeholder="Tell us about your goals, timeline, and any links to inspiration..."
+          placeholder="A quick overview of goals, timeline, and any links..."
         />
       </div>
+
       <Button type="submit" disabled={submitting} size="lg" className="w-full bg-gradient-hero text-primary-foreground hover:opacity-90 shadow-glow h-12 text-base">
-        {submitting ? "Sending..." : "Book my project"}
+        {submitting ? "Sending..." : "Confirm my consult"}
         {!submitting && <ArrowRight className="ml-2 h-4 w-4" />}
       </Button>
-      <p className="text-xs text-muted-foreground text-center">We respond within 48 hours. No spam, ever.</p>
+      <p className="text-xs text-muted-foreground text-center">
+        Free 30-minute discovery call · We respond within 2 hours to confirm
+      </p>
     </form>
   );
 }
