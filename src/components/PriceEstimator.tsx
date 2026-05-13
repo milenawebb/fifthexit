@@ -221,7 +221,7 @@ export default function PriceEstimator() {
                         <div style={{ fontSize: "0.825rem", color: "rgba(232,228,240,0.5)" }}>{d.desc}</div>
                       </div>
                       <div style={{ fontSize: "0.875rem", color: d.price === 0 ? "#22e4e4" : "#7b78f5", fontWeight: "700", flexShrink: 0, marginLeft: "1rem" }}>
-                        {d.price === 0 ? "Included" : `+ ${formatPrice(d.price)}`}
+                        {d.price === 0 ? t("estimator.included") : `+ ${formatPrice(d.price)}`}
                       </div>
                     </div>
                   ))}
