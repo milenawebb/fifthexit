@@ -9,9 +9,7 @@ const BODY = "<div class=\"hero\">\n  <span class=\"pill\">Правна инфо
 export const Route = createFileRoute("/bg/privacy")({
   head: () => ({
     meta: [
-      { title: "Политика за поверителност — hype/street" },
       { name: "description", content: "Политика за поверителност на hype/street." },
-      { property: "og:title", content: "Политика за поверителност — hype/street" },
       { property: "og:description", content: "Политика за поверителност на hype/street." },
     ],
   }),
