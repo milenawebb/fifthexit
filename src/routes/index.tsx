@@ -53,23 +53,23 @@ export const Route = createFileRoute("/")({
 const services = [
   {
     icon: Globe,
-    title: "Web Development",
-    desc: "Lightning-fast, conversion-driven websites built with modern stacks.",
+    titleKey: "services.webDev",
+    descKey: "services.webDevDesc",
   },
   {
     icon: Smartphone,
-    title: "Mobile Apps",
-    desc: "Native-feel iOS & Android apps that users actually open daily.",
+    titleKey: "services.mobileApps",
+    descKey: "services.mobileAppsDesc",
   },
   {
     icon: Sparkles,
-    title: "Brand & UI",
-    desc: "Bold visual identities and interfaces designed to turn heads.",
+    titleKey: "services.brandUI",
+    descKey: "services.brandUIDesc",
   },
   {
     icon: Zap,
-    title: "Launch & Scale",
-    desc: "From MVP to millions — we ship fast and iterate faster.",
+    titleKey: "services.launchScale",
+    descKey: "services.launchScaleDesc",
   },
 ];
 
