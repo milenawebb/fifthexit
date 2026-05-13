@@ -280,7 +280,7 @@ export default function PriceEstimator() {
                   </div>
                 </div>
                 <div>
-                  <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>Ongoing support after launch</p>
+                  <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>{t("estimator.support")}</p>
                   <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
                     {SUPPORT_OPTIONS.map((s) => (
                       <div key={s.id} className="est-card"
