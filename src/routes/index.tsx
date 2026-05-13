@@ -148,6 +148,7 @@ function Services() {
 }
 
 function TechStack() {
+  const { t } = useTranslation();
   const row1 = [
     { name: "React", icon: "⚛️" },
     { name: "Next.js", icon: "▲" },
@@ -172,9 +173,9 @@ function TechStack() {
     { name: "Cloudflare", icon: "🟧" },
   ];
   const stats = [
-    { v: "Sub-2s", d: "Load times on every build" },
-    { v: "90+", d: "Lighthouse performance score" },
-    { v: "WCAG", d: "Accessibility compliant by default" },
+    { v: t("stack.stat1Value"), d: t("stack.stat1Desc") },
+    { v: t("stack.stat2Value"), d: t("stack.stat2Desc") },
+    { v: t("stack.stat3Value"), d: t("stack.stat3Desc") },
   ];
 
   const Pill = ({ p }: { p: { name: string; icon: string } }) => (
