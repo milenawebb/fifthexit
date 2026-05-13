@@ -39,7 +39,7 @@
     "stat2Value": "90+",
     "stat2Desc": "Lighthouse резултат за производителност",
     "stat3Value": "WCAG",
-    "stat3Desc": "Достъпност по подразбиране"
+    "stat3Desc": "Достъпност за всеки потребител"
   },
   "work": {
     "label": "ПОРТФОЛИО",
