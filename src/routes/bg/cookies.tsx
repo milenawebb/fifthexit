@@ -20,7 +20,10 @@ export const Route = createFileRoute("/bg/cookies")({
 
 function Page() {
   const { i18n } = useTranslation();
-  useEffect(() => { i18n.changeLanguage("bg"); }, [i18n]);
+  useEffect(() => {
+    localStorage.setItem("hs_lang", "bg");
+    i18n.changeLanguage("bg");
+  }, [i18n]);
   return (
     <>
       <Header />
