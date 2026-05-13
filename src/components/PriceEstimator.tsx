@@ -121,9 +121,8 @@ export default function PriceEstimator() {
   };
 
   return (
-    <section style={{ background: "#0d0b1a", padding: "5rem 1.5rem", fontFamily: "'DM Sans', sans-serif" }}>
+    <section style={{ background: "#0d0b1a", padding: "5rem 1.5rem", fontFamily: 'var(--font-sans)' }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap');
         .est-card:hover { border-color: rgba(123,120,245,0.4) !important; background: rgba(123,120,245,0.07) !important; }
         .est-feat:hover { border-color: rgba(34,228,228,0.4) !important; }
         .est-btn-ghost:hover { border-color: rgba(255,255,255,0.35) !important; color: #e8e4f0 !important; }
@@ -136,7 +135,7 @@ export default function PriceEstimator() {
           <p style={{ fontSize: "0.75rem", fontWeight: "700", letterSpacing: "0.12em", textTransform: "uppercase", color: "#22e4e4", marginBottom: "0.75rem" }}>
             PRICE ESTIMATOR
           </p>
-          <h2 style={{ fontFamily: "'Syne', sans-serif", fontWeight: "800", fontSize: "clamp(2rem, 5vw, 3rem)", lineHeight: 1.1, color: "#e8e4f0", margin: "0 0 1rem" }}>
+          <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: "800", fontSize: "clamp(2rem, 5vw, 3rem)", lineHeight: 1.1, color: "#e8e4f0", margin: "0 0 1rem" }}>
             What will your <span style={gradText}>project cost?</span>
           </h2>
           <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "1rem", maxWidth: "480px", margin: "0 auto" }}>
@@ -306,7 +305,7 @@ export default function PriceEstimator() {
               marginBottom: "2rem",
             }}>
               <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "0.5rem", letterSpacing: "0.08em", textTransform: "uppercase" }}>Your project starts at</p>
-              <div style={{ fontFamily: "'Syne', sans-serif", fontWeight: "800", fontSize: "clamp(3rem, 10vw, 5rem)", lineHeight: 1, ...gradText, marginBottom: "1rem" }}>
+              <div style={{ fontFamily: 'var(--font-display)', fontWeight: "800", fontSize: "clamp(3rem, 10vw, 5rem)", lineHeight: 1, ...gradText, marginBottom: "1rem" }}>
                 {formatPrice(calcPrice())}
               </div>
               <p style={{ color: "rgba(232,228,240,0.5)", fontSize: "0.875rem", maxWidth: "380px", margin: "0 auto" }}>
