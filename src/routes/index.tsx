@@ -146,18 +146,21 @@ function Work() {
     {
       name: "OpenSked™",
       tag: "Task & Scheduling",
+      desc: "Modern scheduling platform for teams that move fast.",
       href: "https://opensked.com/",
       image: openSkedPreview,
     },
     {
       name: "Notary Closing Network",
       tag: "Business Website",
+      desc: "Nationwide notary marketplace with a polished brand.",
       href: "https://notaryclosingnetwork.com/",
       image: notaryPreview,
     },
     {
       name: "RIN Aesthetic Practice",
       tag: "Cosmetic Studio Site",
+      desc: "Elegant site for a luxury aesthetic studio in VA.",
       href: "https://rinaestheticsva.com/",
       image: rinPreview,
     },
@@ -179,19 +182,35 @@ function Work() {
               href={p.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative aspect-[4/5] rounded-2xl overflow-hidden border border-border cursor-pointer block"
+              className="work-card group relative aspect-[4/5] overflow-hidden border border-border/60 cursor-pointer block transition-all duration-300 hover:border-transparent"
+              style={{ borderRadius: "16px" }}
             >
               <img
                 src={p.image}
                 alt={`${p.name} website preview`}
-                className="absolute inset-0 h-full w-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 md:group-hover:scale-105"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               <div className="absolute inset-0 grid-bg opacity-20" />
-              <div className="absolute inset-0 p-6 flex flex-col justify-end text-white">
+
+              {/* Mobile: always-visible bottom label */}
+              <div className="md:hidden absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/90 via-black/60 to-transparent text-white">
                 <div className="text-xs uppercase tracking-widest opacity-80">{p.tag}</div>
-                <div className="text-2xl font-bold font-display">{p.name}</div>
+                <div className="text-xl font-bold font-display mb-1">{p.name}</div>
+                <div className="text-sm text-white/80 mb-3">{p.desc}</div>
+                <span className="inline-flex items-center gap-1 text-sm font-medium text-accent">
+                  View project <ArrowRight className="h-4 w-4" />
+                </span>
+              </div>
+
+              {/* Desktop: hover overlay slides up */}
+              <div className="hidden md:flex absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out bg-gradient-to-t from-black/95 via-black/85 to-black/40 p-6 flex-col text-white">
+                <div className="text-xs uppercase tracking-widest text-accent mb-1">{p.tag}</div>
+                <div className="text-2xl font-bold font-display mb-2">{p.name}</div>
+                <p className="text-sm text-white/80 mb-4">{p.desc}</p>
+                <span className="inline-flex items-center gap-1 text-sm font-semibold text-gradient w-fit">
+                  View project <ArrowRight className="h-4 w-4 text-accent" />
+                </span>
               </div>
             </a>
           ))}
