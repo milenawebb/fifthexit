@@ -19,6 +19,8 @@ export const Route = createFileRoute("/bg/cookies")({
 });
 
 function Page() {
+  const { i18n } = useTranslation();
+  useEffect(() => { i18n.changeLanguage("bg"); }, [i18n]);
   return (
     <>
       <Header />
