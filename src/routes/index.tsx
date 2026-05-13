@@ -24,6 +24,7 @@ import { z } from "zod";
 import openSkedPreview from "@/assets/opensked-preview.png";
 import notaryPreview from "@/assets/notary-preview.png";
 import rinPreview from "@/assets/rin-preview.png";
+import PriceEstimator from "@/components/PriceEstimator";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -442,6 +443,11 @@ function Index() {
         <Services />
         <Work />
         <Process />
+        <section className="py-12 md:pt-16 md:pb-16">
+          <div className="mx-auto max-w-5xl px-6">
+            <PriceEstimator />
+          </div>
+        </section>
         <Booking />
       </main>
       <Footer />
