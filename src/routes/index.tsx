@@ -293,8 +293,14 @@ function Work() {
 
           <div
             ref={scrollerRef}
-            className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 -mx-6 px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden touch-pan-y select-none"
-            style={{ cursor: "grab" }}
+            className="flex gap-6 snap-x snap-mandatory scroll-smooth pb-4 -mx-6 px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden select-none"
+            style={{
+              cursor: "grab",
+              overflowX: "scroll",
+              WebkitOverflowScrolling: "touch",
+              scrollSnapType: "x mandatory",
+              touchAction: "pan-x",
+            }}
           >
             {projects.map((p) => {
               const domain = p.href.replace(/^https?:\/\//, "").replace(/\/$/, "");
@@ -302,7 +308,8 @@ function Work() {
                 <div
                   key={p.name}
                   data-card
-                  className="snap-center shrink-0 flex flex-col gap-4 w-[85%] sm:w-[calc((100%-1.5rem)/2)] md:w-[calc((100%-3rem)/3)]"
+                  className="snap-start shrink-0 flex flex-col gap-4 w-[85%] sm:w-[calc((100%-1.5rem)/2)] md:w-[calc((100%-3rem)/3)]"
+                  style={{ scrollSnapAlign: "start", flexShrink: 0 }}
                 >
                   <a
                     href={p.href}
