@@ -717,7 +717,7 @@ function BookingForm() {
         <div className="space-y-3">
           <Label>{t("booking.pickTime")} *</Label>
           <div className="flex flex-wrap gap-2">
-            {TIME_SLOTS.map((slot) => {
+            {slotsForDate(form.date).map((slot) => {
               const selected = form.time === slot;
               return (
                 <button
@@ -726,7 +726,7 @@ function BookingForm() {
                   onClick={() => setForm({ ...form, time: slot })}
                   className={`${pillBase} ${selected ? pillSelected : pillIdle}`}
                 >
-                  {slot}
+                  {formatSlot(slot, i18n.language)}
                 </button>
               );
             })}
