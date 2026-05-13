@@ -210,7 +210,7 @@ export default function PriceEstimator() {
             {/* Step 1: Design */}
             {step === 1 && (
               <div>
-                <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>Choose your design approach</p>
+                <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>{t("estimator.chooseDesign")}</p>
                 <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
                   {DESIGN_OPTIONS.map((d) => (
                     <div key={d.id} className="est-card"
