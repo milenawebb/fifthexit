@@ -1,0 +1,18 @@
+{
+  "nav": {
+    "services": "Services",
+    "stack": "Stack",
+    "work": "Work",
+    "process": "Process",
+    "estimate": "Estimate",
+    "contact": "Contact",
+    "bookCall": "Book a call"
+  },
+  "hero": {
+    "titleLine1": "Web & app dev",
+    "titleLine2": "built with hype.",
+    "subtitle": "hype/street is a creative dev studio building blazing-fast websites, slick mobile apps, and digital products that make competitors sweat.",
+    "ctaPrimary": "Start a project",
+    "ctaSecondary": "See our work"
+  }
+}
