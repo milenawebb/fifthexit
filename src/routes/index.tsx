@@ -183,13 +183,8 @@ function TechStack() {
   );
 
   const Marquee = ({ items, reverse = false }: { items: { name: string; icon: string }[]; reverse?: boolean }) => (
-    <div className="marquee group relative overflow-hidden">
-      <div
-        className="flex gap-3 w-max"
-        style={{
-          animation: `marquee 40s linear infinite${reverse ? " reverse" : ""}`,
-        }}
-      >
+    <div className={`marquee${reverse ? " reverse" : ""} group relative`}>
+      <div className="flex gap-3 w-max">
         {[...items, ...items].map((p, i) => (
           <Pill key={`${p.name}-${i}`} p={p} />
         ))}
