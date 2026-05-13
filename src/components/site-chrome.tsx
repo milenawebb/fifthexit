@@ -16,7 +16,7 @@ export function Header() {
   const close = () => setOpen(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 glass">
+    <header className="fixed top-0 left-0 right-0 z-50 glass" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
         <a href="/#top" className="flex items-center" onClick={close}>
           <img src={logo} alt="Hype Street" className="h-10 w-auto" />
@@ -46,7 +46,7 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-border/60 glass">
+        <div className="md:hidden border-t border-border/60 glass" style={{ backgroundColor: "#0d0b1a" }}>
           <nav className="mx-auto max-w-7xl px-6 py-4 flex flex-col items-center gap-1">
             {navLinks.map((l) => (
               <a
