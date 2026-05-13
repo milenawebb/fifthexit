@@ -550,18 +550,19 @@ function ProcessCard({ step, index }: { step: { n: string; t: string; d: string 
 }
 
 function Process() {
+  const { t } = useTranslation();
   const steps = [
-    { n: "01", t: "Discovery", d: "We dig into your goals, audience, and vibes." },
-    { n: "02", t: "Design", d: "Bold concepts, real prototypes, fast feedback." },
-    { n: "03", t: "Build", d: "Modern stacks, clean code, weekly demos." },
-    { n: "04", t: "Launch", d: "Ship, monitor, iterate. We stick around." },
+    { n: t("process.step1Number"), t: t("process.step1Title"), d: t("process.step1Desc") },
+    { n: t("process.step2Number"), t: t("process.step2Title"), d: t("process.step2Desc") },
+    { n: t("process.step3Number"), t: t("process.step3Title"), d: t("process.step3Desc") },
+    { n: t("process.step4Number"), t: t("process.step4Title"), d: t("process.step4Desc") },
   ];
   return (
     <section id="process" className="py-12 md:pt-16 md:pb-16 relative" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="mx-auto max-w-7xl px-6">
         <div className="text-center max-w-2xl mx-auto mb-8">
-          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">How we roll</div>
-          <h2 className="text-4xl md:text-5xl font-bold">A simple <span className="text-gradient">4-step process.</span></h2>
+          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">{t("process.label")}</div>
+          <h2 className="text-4xl md:text-5xl font-bold">{t("process.heading1")} <span className="text-gradient">{t("process.heading2")}</span></h2>
         </div>
         <div className="grid md:grid-cols-4 gap-5">
           {steps.map((s, i) => (
