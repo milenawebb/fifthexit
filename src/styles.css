@@ -184,3 +184,12 @@
     50% { transform: translateY(-8px); }
   }
 }
+
+/* Force dark scheme on iOS Safari/Chrome */
+html {
+  background-color: #0d0b1a !important;
+  color-scheme: dark only;
+}
+body {
+  background-color: #0d0b1a !important;
+}
