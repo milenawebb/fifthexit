@@ -261,25 +261,26 @@ function TechStack() {
 }
 
 function Work() {
+  const { t } = useTranslation();
   const projects = [
     {
-      name: "OpenSked™",
-      tag: "Task & Scheduling",
-      desc: "Modern scheduling platform for teams that move fast.",
+      name: t("work.project1Name"),
+      tag: t("work.project1Category"),
+      desc: t("work.project1Desc"),
       href: "https://opensked.com/",
       image: openSkedPreview,
     },
     {
-      name: "Notary Closing Network",
-      tag: "Business Website",
-      desc: "Nationwide notary marketplace with a polished brand.",
+      name: t("work.project2Name"),
+      tag: t("work.project2Category"),
+      desc: t("work.project2Desc"),
       href: "https://notaryclosingnetwork.com/",
       image: notaryPreview,
     },
     {
-      name: "RIN Aesthetic Practice",
-      tag: "Cosmetic Studio Site",
-      desc: "Elegant site for a luxury aesthetic studio in VA.",
+      name: t("work.project3Name"),
+      tag: t("work.project3Category"),
+      desc: t("work.project3Desc"),
       href: "https://rinaestheticsva.com/",
       image: rinPreview,
     },
