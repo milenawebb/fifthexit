@@ -84,7 +84,7 @@ import { Header, Footer } from "@/components/site-chrome";
 
 function Hero() {
   return (
-    <section id="top" className="relative pt-24 pb-10 md:pt-28 md:pb-16 overflow-hidden">
+    <section id="top" className="relative pt-24 pb-10 md:pt-28 md:pb-16 overflow-hidden" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="absolute inset-0 grid-bg opacity-40 pointer-events-none" />
       <div className="absolute -top-32 left-1/2 -translate-x-1/2 h-[600px] w-[600px] rounded-full bg-primary/30 blur-[120px] pointer-events-none" />
       <div className="absolute top-40 right-10 h-72 w-72 rounded-full bg-accent/30 blur-[100px] pointer-events-none animate-float" />
