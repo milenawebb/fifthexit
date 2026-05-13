@@ -26,6 +26,7 @@ import { z } from "zod";
 import openSkedPreview from "@/assets/opensked-preview.png";
 import notaryPreview from "@/assets/notary-preview.png";
 import rinPreview from "@/assets/rin-preview.png";
+import eliteRidePreview from "@/assets/elite-ride-preview.png";
 import PriceEstimator from "@/components/PriceEstimator";
 
 export const Route = createFileRoute("/")({
@@ -165,6 +166,13 @@ function Work() {
       desc: "Elegant site for a luxury aesthetic studio in VA.",
       href: "https://rinaestheticsva.com/",
       image: rinPreview,
+    },
+    {
+      name: "Elite Ride Solutions",
+      tag: "Luxury Transportation",
+      desc: "Premium ride booking site for a custom transportation brand.",
+      href: "https://eliteridesolutions.com/",
+      image: eliteRidePreview,
     },
   ] as const;
   const scrollerRef = useRef<HTMLDivElement>(null);
