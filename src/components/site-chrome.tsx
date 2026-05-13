@@ -19,6 +19,13 @@ function LanguageToggle({ className = "" }: { className?: string }) {
   const setLang = (lng: "en" | "bg") => {
     localStorage.setItem("hs_lang", lng);
     i18n.changeLanguage(lng);
+    if (typeof window !== "undefined") {
+      const path = window.location.pathname;
+      const onLegal = /^\/(bg\/)?(terms|privacy|cookies)$/.test(path);
+      if (!onLegal) {
+        window.history.replaceState({}, "", lng === "bg" ? "/bg" : "/");
+      }
+    }
   };
   return (
     <div className={`flex items-center gap-1 text-sm ${className}`}>

@@ -14,6 +14,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BgIndexRouteImport } from './routes/bg/index'
 import { Route as BgTermsRouteImport } from './routes/bg/terms'
 import { Route as BgPrivacyRouteImport } from './routes/bg/privacy'
 import { Route as BgCookiesRouteImport } from './routes/bg/cookies'
@@ -43,6 +44,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BgIndexRoute = BgIndexRouteImport.update({
+  id: '/bg/',
+  path: '/bg/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BgTermsRoute = BgTermsRouteImport.update({
   id: '/bg/terms',
   path: '/bg/terms',
@@ -68,6 +74,7 @@ export interface FileRoutesByFullPath {
   '/bg/cookies': typeof BgCookiesRoute
   '/bg/privacy': typeof BgPrivacyRoute
   '/bg/terms': typeof BgTermsRoute
+  '/bg/': typeof BgIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -78,6 +85,7 @@ export interface FileRoutesByTo {
   '/bg/cookies': typeof BgCookiesRoute
   '/bg/privacy': typeof BgPrivacyRoute
   '/bg/terms': typeof BgTermsRoute
+  '/bg': typeof BgIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -89,6 +97,7 @@ export interface FileRoutesById {
   '/bg/cookies': typeof BgCookiesRoute
   '/bg/privacy': typeof BgPrivacyRoute
   '/bg/terms': typeof BgTermsRoute
+  '/bg/': typeof BgIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,6 +110,7 @@ export interface FileRouteTypes {
     | '/bg/cookies'
     | '/bg/privacy'
     | '/bg/terms'
+    | '/bg/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -111,6 +121,7 @@ export interface FileRouteTypes {
     | '/bg/cookies'
     | '/bg/privacy'
     | '/bg/terms'
+    | '/bg'
   id:
     | '__root__'
     | '/'
@@ -121,6 +132,7 @@ export interface FileRouteTypes {
     | '/bg/cookies'
     | '/bg/privacy'
     | '/bg/terms'
+    | '/bg/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -132,6 +144,7 @@ export interface RootRouteChildren {
   BgCookiesRoute: typeof BgCookiesRoute
   BgPrivacyRoute: typeof BgPrivacyRoute
   BgTermsRoute: typeof BgTermsRoute
+  BgIndexRoute: typeof BgIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -171,6 +184,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/bg/': {
+      id: '/bg/'
+      path: '/bg'
+      fullPath: '/bg/'
+      preLoaderRoute: typeof BgIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/bg/terms': {
       id: '/bg/terms'
       path: '/bg/terms'
@@ -204,6 +224,7 @@ const rootRouteChildren: RootRouteChildren = {
   BgCookiesRoute: BgCookiesRoute,
   BgPrivacyRoute: BgPrivacyRoute,
   BgTermsRoute: BgTermsRoute,
+  BgIndexRoute: BgIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
