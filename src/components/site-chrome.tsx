@@ -5,12 +5,12 @@ import { Button } from "@/components/ui/button";
 import logo from "@/assets/hype-street-logo.png";
 
 const navLinks = [
-  { href: "/#services", label: "Services" },
-  { href: "/#stack", label: "Stack" },
-  { href: "/#work", label: "Work" },
-  { href: "/#process", label: "Process" },
-  { href: "/#estimator", label: "Estimate" },
-  { href: "/#book", label: "Contact" },
+  { href: "/#services", key: "nav.services" },
+  { href: "/#stack", key: "nav.stack" },
+  { href: "/#work", key: "nav.work" },
+  { href: "/#process", key: "nav.process" },
+  { href: "/#estimator", key: "nav.estimate" },
+  { href: "/#book", key: "nav.contact" },
 ];
 
 function LanguageToggle({ className = "" }: { className?: string }) {
