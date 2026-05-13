@@ -198,7 +198,10 @@ export default function PriceEstimator() {
                   {PROJECT_TYPES.map((p) => (
                     <div key={p.id} className="est-card"
                       style={projectType === p.id ? cardSelected : cardBase}
-                      onClick={() => setProjectType(p.id)}>
+                      onClick={() => {
+                        setProjectType(p.id);
+                        setTimeout(() => setStep(1), 300);
+                      }}>
                       <div style={{ fontSize: "1.5rem", marginBottom: "0.5rem", color: "#e8e4f0" }}>{p.icon}</div>
                       <div style={{ fontWeight: "600", color: "#e8e4f0", marginBottom: "0.25rem" }}>{p.label}</div>
                       <div style={{ fontSize: "0.825rem", color: "rgba(232,228,240,0.5)" }}>{p.desc}</div>
