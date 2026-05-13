@@ -695,7 +695,7 @@ function BookingForm() {
       <div className="grid md:grid-cols-2 gap-5">
         <div className="space-y-2">
           <Label htmlFor="name">{t("booking.name")} *</Label>
-          <Input id="name" maxLength={80} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Alex Rivera" />
+          <Input id="name" maxLength={80} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder={t("booking.namePlaceholder")} />
         </div>
         <div className="space-y-2">
           <Label htmlFor="email">{t("booking.email")} *</Label>
