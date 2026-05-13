@@ -175,45 +175,77 @@ function Work() {
             Want to be next? <ArrowRight className="h-4 w-4" />
           </a>
         </div>
-        <div className="grid md:grid-cols-3 gap-5">
-          {projects.map((p) => (
-            <a
-              key={p.name}
-              href={p.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="work-card group relative aspect-[4/5] overflow-hidden border border-border/60 cursor-pointer block transition-all duration-300 hover:border-transparent"
-              style={{ borderRadius: "16px" }}
-            >
-              <img
-                src={p.image}
-                alt={`${p.name} website preview`}
-                className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 md:group-hover:scale-105"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 grid-bg opacity-20" />
+        <div className="grid md:grid-cols-3 gap-8">
+          {projects.map((p) => {
+            const domain = p.href.replace(/^https?:\/\//, "").replace(/\/$/, "");
+            return (
+              <div key={p.name} className="flex flex-col gap-4">
+                <a
+                  href={p.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="work-card group relative block overflow-hidden cursor-pointer border border-border/60 transition-all duration-300 hover:border-transparent"
+                  style={{ borderRadius: "8px", background: "#1a1a2e" }}
+                >
+                  {/* Browser chrome */}
+                  <div className="flex items-center gap-2 px-3 py-2 border-b border-white/10 bg-[#1a1a2e]">
+                    <div className="flex gap-1.5">
+                      <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
+                      <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
+                      <span className="h-3 w-3 rounded-full bg-[#28c840]" />
+                    </div>
+                    <div className="flex-1 mx-2 flex justify-center">
+                      <div className="px-3 py-1 rounded-md bg-white/5 border border-white/10 text-[11px] text-white/60 font-mono truncate max-w-full">
+                        {domain}
+                      </div>
+                    </div>
+                    <div className="w-[42px]" />
+                  </div>
 
-              {/* Mobile: always-visible bottom label */}
-              <div className="md:hidden absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/90 via-black/60 to-transparent text-white">
-                <div className="text-xs uppercase tracking-widest opacity-80">{p.tag}</div>
-                <div className="text-xl font-bold font-display mb-1">{p.name}</div>
-                <div className="text-sm text-white/80 mb-3">{p.desc}</div>
-                <span className="inline-flex items-center gap-1 text-sm font-medium text-accent">
-                  View project <ArrowRight className="h-4 w-4" />
-                </span>
-              </div>
+                  {/* Screenshot window */}
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <img
+                      src={p.image}
+                      alt={`${p.name} website preview`}
+                      className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 md:group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 grid-bg opacity-10" />
 
-              {/* Desktop: hover overlay slides up */}
-              <div className="hidden md:flex absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out bg-gradient-to-t from-black/95 via-black/85 to-black/40 p-6 flex-col text-white">
-                <div className="text-xs uppercase tracking-widest text-accent mb-1">{p.tag}</div>
-                <div className="text-2xl font-bold font-display mb-2">{p.name}</div>
-                <p className="text-sm text-white/80 mb-4">{p.desc}</p>
-                <span className="inline-flex items-center gap-1 text-sm font-semibold text-gradient w-fit">
-                  View project <ArrowRight className="h-4 w-4 text-accent" />
-                </span>
+                    {/* Mobile: always-visible overlay */}
+                    <div className="md:hidden absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/90 via-black/60 to-transparent text-white">
+                      <p className="text-sm text-white/90 mb-2">{p.desc}</p>
+                      <span className="inline-flex items-center gap-1 text-sm font-medium text-accent">
+                        View project <ArrowRight className="h-4 w-4" />
+                      </span>
+                    </div>
+
+                    {/* Desktop: hover overlay slides up */}
+                    <div className="hidden md:flex absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out bg-gradient-to-t from-black/95 via-black/85 to-black/40 p-5 flex-col text-white">
+                      <p className="text-sm text-white/90 mb-3">{p.desc}</p>
+                      <span className="inline-flex items-center gap-1 text-sm font-semibold text-gradient w-fit">
+                        View project <ArrowRight className="h-4 w-4 text-accent" />
+                      </span>
+                    </div>
+                  </div>
+                </a>
+
+                {/* Label below the browser frame */}
+                <div className="px-1">
+                  <div className="text-xs uppercase tracking-widest text-accent mb-1">{p.tag}</div>
+                  <div className="text-xl font-bold font-display mb-2">{p.name}</div>
+                  <a
+                    href={p.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition"
+                  >
+                    View project <ArrowRight className="h-4 w-4" />
+                  </a>
+                </div>
               </div>
-            </a>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
