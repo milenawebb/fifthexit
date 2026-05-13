@@ -161,9 +161,10 @@ export default function PriceEstimator() {
           <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: "800", fontSize: "clamp(2rem, 5vw, 3rem)", lineHeight: 1.1, color: "#e8e4f0", margin: "0 0 1rem" }}>
             {t("estimator.heading1")} <span style={gradText}>{t("estimator.heading2")}</span>
           </h2>
-          <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "1rem", maxWidth: "480px", margin: "0 auto" }}>
-            {t("estimator.subheading")}
-          </p>
+          <p
+            style={{ color: "rgba(232,228,240,0.55)", fontSize: "1rem", maxWidth: "480px", margin: "0 auto" }}
+            dangerouslySetInnerHTML={{ __html: t("estimator.subheading") }}
+          />
         </div>
 
         {!showResult ? (
