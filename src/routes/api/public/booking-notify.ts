@@ -133,7 +133,7 @@ export const Route = createFileRoute('/api/public/booking-notify')({
           if (confirmTemplate) {
             const clientEmail = payload.email
             const normalizedClientEmail = clientEmail.toLowerCase()
-            const clientProps = { name: payload.name, date: payload.date, time: payload.time }
+            const clientProps = { name: payload.name, date: payload.date, time: payload.time, locale: payload.locale }
             const clientElement = React.createElement(confirmTemplate.component, clientProps)
             const clientHtml = await renderAsync(clientElement)
             const clientText = await renderAsync(clientElement, { plainText: true })
