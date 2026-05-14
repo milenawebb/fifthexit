@@ -75,6 +75,7 @@ export const Route = createFileRoute('/api/public/booking-notify')({
             time_str: payload.time,
             starts_at: startsAt.toISOString(),
             locale: payload.locale,
+            client_timezone: payload.clientTimezone ?? null,
             estimator: payload.estimator ?? null,
             cancel_token: cancelToken,
             reschedule_token: rescheduleToken,
@@ -93,11 +94,20 @@ export const Route = createFileRoute('/api/public/booking-notify')({
         const cancelUrl = `${SITE_URL}/cancel/${cancelToken}`
         const icsUrl = `${SITE_URL}/api/public/booking-ics/${cancelToken}`
 
+        const devWhen = formatForDev(payload.date, payload.time)
+        const clientWhen = formatForClient(
+          payload.date,
+          payload.time,
+          payload.clientTimezone,
+          payload.locale,
+        )
+
         // Internal notification email
         await enqueueTransactional(supabase, {
           templateName: 'booking-notification',
           props: {
             ...payload,
+            formattedDateTime: devWhen,
             googleCalendarUrl: gcalUrl,
             icsUrl,
           },
@@ -110,6 +120,7 @@ export const Route = createFileRoute('/api/public/booking-notify')({
             name: payload.name,
             date: payload.date,
             time: payload.time,
+            formattedDateTime: clientWhen,
             locale: payload.locale,
             rescheduleUrl,
             cancelUrl,
