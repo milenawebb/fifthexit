@@ -85,22 +85,6 @@ export const Route = createFileRoute('/api/public/booking-notify')({
           return Response.json({ error: 'Failed to record booking' }, { status: 500 })
         }
 
-        // Create Google Calendar event (best-effort, non-blocking)
-        const eventId = await createCalendarEvent({
-          name: payload.name,
-          email: payload.email,
-          message: payload.message,
-          date: payload.date,
-          time: payload.time,
-          durationMinutes: 30,
-        })
-        if (eventId) {
-          await supabase
-            .from('bookings')
-            .update({ google_event_id: eventId })
-            .eq('id', booking.id)
-        }
-
         // Internal notification email
         await enqueueTransactional(supabase, {
           templateName: 'booking-notification',
@@ -108,9 +92,10 @@ export const Route = createFileRoute('/api/public/booking-notify')({
           replyTo: payload.email,
         })
 
-        // Client confirmation email with reschedule/cancel links
+        // Client confirmation email with reschedule/cancel + add-to-calendar links
         const rescheduleUrl = `${SITE_URL}/reschedule/${rescheduleToken}`
         const cancelUrl = `${SITE_URL}/cancel/${cancelToken}`
+        const icsUrl = `${SITE_URL}/api/public/booking-ics/${cancelToken}`
         await enqueueTransactional(supabase, {
           templateName: 'booking-confirmation',
           to: payload.email,
@@ -121,6 +106,8 @@ export const Route = createFileRoute('/api/public/booking-notify')({
             locale: payload.locale,
             rescheduleUrl,
             cancelUrl,
+            googleCalendarUrl: googleCalendarUrl(payload.date, payload.time),
+            icsUrl,
           },
         })
 
