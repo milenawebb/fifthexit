@@ -8,25 +8,28 @@ interface Props {
   email?: string
   date?: string
   time?: string
+  formattedDateTime?: string
 }
 
-const Email = ({ name, email, date, time }: Props) => (
-  <Html lang="en" dir="ltr">
-    <Head />
-    <Preview>{name || 'A client'} cancelled their call</Preview>
-    <Body style={main}>
-      <Container style={container}>
-        <Heading style={h1}>Booking cancelled</Heading>
-        <Text style={lead}>
-          {name || 'A client'} cancelled their call scheduled for
-          {date ? ` ${date}` : ''}{time ? ` at ${time}` : ''}.
-        </Text>
-        {email ? <Text style={lead}>Email: {email}</Text> : null}
-        <Text style={footer}>The Google Calendar event was deleted and the slot is free again.</Text>
-      </Container>
-    </Body>
-  </Html>
-)
+const Email = ({ name, email, date, time, formattedDateTime }: Props) => {
+  const when = formattedDateTime || [date, time].filter(Boolean).join(' at ')
+  return (
+    <Html lang="en" dir="ltr">
+      <Head />
+      <Preview>{name || 'A client'} cancelled their call</Preview>
+      <Body style={main}>
+        <Container style={container}>
+          <Heading style={h1}>Booking cancelled</Heading>
+          <Text style={lead}>
+            {name || 'A client'} cancelled their call scheduled for {when || 'a previously booked slot'}.
+          </Text>
+          {email ? <Text style={lead}>Email: {email}</Text> : null}
+          <Text style={footer}>The slot is free again.</Text>
+        </Container>
+      </Body>
+    </Html>
+  )
+}
 
 export const template = {
   component: Email,

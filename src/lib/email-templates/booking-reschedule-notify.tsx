@@ -10,26 +10,29 @@ interface Props {
   oldTime?: string
   newDate?: string
   newTime?: string
+  oldFormatted?: string
+  newFormatted?: string
 }
 
-const Email = ({ name, email, oldDate, oldTime, newDate, newTime }: Props) => (
-  <Html lang="en" dir="ltr">
-    <Head />
-    <Preview>{name || 'A client'} rescheduled their call</Preview>
-    <Body style={main}>
-      <Container style={container}>
-        <Heading style={h1}>Booking rescheduled</Heading>
-        <Text style={lead}>
-          {name || 'A client'} moved their call from
-          {oldDate ? ` ${oldDate}` : ''}{oldTime ? ` at ${oldTime}` : ''} to
-          {newDate ? ` ${newDate}` : ''}{newTime ? ` at ${newTime}` : ''}.
-        </Text>
-        {email ? <Text style={lead}>Email: {email}</Text> : null}
-        <Text style={footer}>The Google Calendar invite has been updated.</Text>
-      </Container>
-    </Body>
-  </Html>
-)
+const Email = ({ name, email, oldDate, oldTime, newDate, newTime, oldFormatted, newFormatted }: Props) => {
+  const oldWhen = oldFormatted || [oldDate, oldTime].filter(Boolean).join(' at ')
+  const newWhen = newFormatted || [newDate, newTime].filter(Boolean).join(' at ')
+  return (
+    <Html lang="en" dir="ltr">
+      <Head />
+      <Preview>{name || 'A client'} rescheduled their call</Preview>
+      <Body style={main}>
+        <Container style={container}>
+          <Heading style={h1}>Booking rescheduled</Heading>
+          <Text style={lead}>
+            {name || 'A client'} moved their call from {oldWhen || 'their original slot'} to {newWhen || 'a new slot'}.
+          </Text>
+          {email ? <Text style={lead}>Email: {email}</Text> : null}
+        </Container>
+      </Body>
+    </Html>
+  )
+}
 
 export const template = {
   component: Email,
