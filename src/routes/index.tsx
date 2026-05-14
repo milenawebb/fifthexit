@@ -687,7 +687,7 @@ function BookingForm() {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       setDone(true);
       setEstimatorSelections(null);
-      toast.success("Consult booked! We'll confirm within 2 hours.");
+      toast.success("Your consult is confirmed.");
     } catch (err) {
       console.error("Booking submit failed", err);
       toast.error("Could not submit. Please try again or email us directly.");
@@ -703,7 +703,7 @@ function BookingForm() {
           <Check className="h-8 w-8 text-primary-foreground" />
         </div>
         <h3 className="text-2xl font-bold mb-2">You're on the list 🚀</h3>
-        <p className="text-muted-foreground">We'll confirm your consult within 2 hours.</p>
+        <p className="text-muted-foreground">Your consult is confirmed.</p>
       </div>
     );
   }
