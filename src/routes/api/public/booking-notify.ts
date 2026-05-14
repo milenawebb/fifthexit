@@ -127,6 +127,87 @@ export const Route = createFileRoute('/api/public/booking-notify')({
           return Response.json({ error: 'Failed to enqueue email' }, { status: 500 })
         }
 
+        // Send confirmation email to the client (best-effort, don't fail the request)
+        try {
+          const confirmTemplate = TEMPLATES['booking-confirmation']
+          if (confirmTemplate) {
+            const clientEmail = payload.email
+            const normalizedClientEmail = clientEmail.toLowerCase()
+            const clientProps = { name: payload.name, date: payload.date, time: payload.time }
+            const clientElement = React.createElement(confirmTemplate.component, clientProps)
+            const clientHtml = await renderAsync(clientElement)
+            const clientText = await renderAsync(clientElement, { plainText: true })
+            const clientSubject =
+              typeof confirmTemplate.subject === 'function'
+                ? confirmTemplate.subject(clientProps)
+                : confirmTemplate.subject
+            const clientMessageId = crypto.randomUUID()
+
+            // Get-or-create unsubscribe token for the client
+            let clientUnsubscribeToken: string | undefined
+            const { data: existingClient } = await supabase
+              .from('email_unsubscribe_tokens')
+              .select('token, used_at')
+              .eq('email', normalizedClientEmail)
+              .maybeSingle()
+            if (existingClient?.token && !existingClient.used_at) {
+              clientUnsubscribeToken = existingClient.token
+            } else if (!existingClient) {
+              const bytes = new Uint8Array(32)
+              crypto.getRandomValues(bytes)
+              const newToken = Array.from(bytes).map((b) => b.toString(16).padStart(2, '0')).join('')
+              await supabase
+                .from('email_unsubscribe_tokens')
+                .upsert({ token: newToken, email: normalizedClientEmail }, { onConflict: 'email', ignoreDuplicates: true })
+              const { data: stored } = await supabase
+                .from('email_unsubscribe_tokens')
+                .select('token')
+                .eq('email', normalizedClientEmail)
+                .maybeSingle()
+              clientUnsubscribeToken = stored?.token ?? newToken
+            }
+
+            await supabase.from('email_send_log').insert({
+              message_id: clientMessageId,
+              template_name: 'booking-confirmation',
+              recipient_email: clientEmail,
+              status: 'pending',
+            })
+
+            const { error: clientEnqueueError } = await supabase.rpc('enqueue_email', {
+              queue_name: 'transactional_emails',
+              payload: {
+                message_id: clientMessageId,
+                to: clientEmail,
+                from: `${SITE_NAME} <noreply@${FROM_DOMAIN}>`,
+                sender_domain: SENDER_DOMAIN,
+                subject: clientSubject,
+                html: clientHtml,
+                text: clientText,
+                purpose: 'transactional',
+                label: 'booking-confirmation',
+                idempotency_key: clientMessageId,
+                unsubscribe_token: clientUnsubscribeToken,
+                reply_to: recipient,
+                queued_at: new Date().toISOString(),
+              },
+            })
+
+            if (clientEnqueueError) {
+              console.error('Failed to enqueue client confirmation', clientEnqueueError)
+              await supabase.from('email_send_log').insert({
+                message_id: clientMessageId,
+                template_name: 'booking-confirmation',
+                recipient_email: clientEmail,
+                status: 'failed',
+                error_message: 'Failed to enqueue email',
+              })
+            }
+          }
+        } catch (err) {
+          console.error('Client confirmation email failed', err)
+        }
+
         return Response.json({ success: true })
       },
     },
