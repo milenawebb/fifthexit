@@ -28,6 +28,7 @@ interface BookingNotificationProps {
   email?: string
   date?: string
   time?: string
+  formattedDateTime?: string
   message?: string
   estimator?: EstimatorSelections
   googleCalendarUrl?: string
@@ -39,6 +40,7 @@ const BookingNotificationEmail = ({
   email,
   date,
   time,
+  formattedDateTime,
   message,
   estimator,
   googleCalendarUrl,
@@ -57,8 +59,7 @@ const BookingNotificationEmail = ({
         <Section style={card}>
           <Row label="Name" value={name} />
           <Row label="Email" value={email} />
-          <Row label="Date" value={date} />
-          <Row label="Time" value={time} />
+          <Row label="When" value={formattedDateTime || [date, time].filter(Boolean).join(' at ')} />
         </Section>
 
         {message ? (
