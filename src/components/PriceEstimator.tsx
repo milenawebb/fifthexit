@@ -364,12 +364,19 @@ export default function PriceEstimator() {
 
             <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
               <button style={btnPrimary} onClick={() => {
+                setEstimatorSelections({
+                  projectType: PROJECT_TYPES.find(p => p.id === projectType)?.label || "",
+                  design: DESIGN_OPTIONS.find(d => d.id === design)?.label || "",
+                  features: features.map(fid => FEATURES.find(f => f.id === fid)?.label || "").filter(Boolean),
+                  timeline: TIMELINE_OPTIONS.find(tl => tl.id === timeline)?.label || "",
+                  estimatedPrice: formatPrice(calcPrice()),
+                });
                 const el = document.getElementById("book");
                 if (el) el.scrollIntoView({ behavior: "smooth" });
               }}>
                 {t("estimator.bookConsult")}
               </button>
-              <button className="est-btn-ghost" style={btnGhost} onClick={() => { setShowResult(false); setStep(0); setProjectType(null); setDesign(null); setFeatures([]); setTimeline("standard"); setSupport("none"); }}>
+              <button className="est-btn-ghost" style={btnGhost} onClick={() => { setEstimatorSelections(null); setShowResult(false); setStep(0); setProjectType(null); setDesign(null); setFeatures([]); setTimeline("standard"); setSupport("none"); }}>
                 {t("estimator.startOver")}
               </button>
             </div>
