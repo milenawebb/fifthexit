@@ -4,6 +4,7 @@
 import { createClient } from '@supabase/supabase-js'
 import { createFileRoute } from '@tanstack/react-router'
 import { enqueueTransactional } from '@/lib/email-enqueue'
+import { formatForClient, formatForDev } from '@/lib/format-datetime'
 
 const DEV_EMAIL = 'dev@hype-street.com'
 
@@ -30,7 +31,7 @@ export const Route = createFileRoute('/api/public/booking-reminders')({
         // 24h reminders (client only)
         const { data: due24 } = await supabase
           .from('bookings')
-          .select('id, name, email, date_str, time_str')
+          .select('id, name, email, date_str, time_str, locale, client_timezone')
           .eq('status', 'confirmed')
           .is('reminder_24h_sent_at', null)
           .gte('starts_at', in23h30)
@@ -38,10 +39,11 @@ export const Route = createFileRoute('/api/public/booking-reminders')({
           .limit(50)
 
         for (const b of due24 ?? []) {
+          const clientWhen = formatForClient(b.date_str, b.time_str, b.client_timezone, b.locale)
           const r = await enqueueTransactional(supabase, {
             templateName: 'booking-reminder-24h',
             to: b.email,
-            props: { name: b.name, date: b.date_str, time: b.time_str },
+            props: { name: b.name, date: b.date_str, time: b.time_str, formattedDateTime: clientWhen },
           })
           if (r.ok) {
             await supabase
@@ -55,7 +57,7 @@ export const Route = createFileRoute('/api/public/booking-reminders')({
         // 1h reminders (client + dev)
         const { data: due1 } = await supabase
           .from('bookings')
-          .select('id, name, email, date_str, time_str')
+          .select('id, name, email, date_str, time_str, locale, client_timezone')
           .eq('status', 'confirmed')
           .is('reminder_1h_sent_at', null)
           .gte('starts_at', in30m)
@@ -63,15 +65,17 @@ export const Route = createFileRoute('/api/public/booking-reminders')({
           .limit(50)
 
         for (const b of due1 ?? []) {
+          const clientWhen = formatForClient(b.date_str, b.time_str, b.client_timezone, b.locale)
+          const devWhen = formatForDev(b.date_str, b.time_str)
           const clientR = await enqueueTransactional(supabase, {
             templateName: 'booking-reminder-1h',
             to: b.email,
-            props: { name: b.name, time: b.time_str, forDev: false },
+            props: { name: b.name, time: b.time_str, formattedDateTime: clientWhen, forDev: false },
           })
           await enqueueTransactional(supabase, {
             templateName: 'booking-reminder-1h',
             to: DEV_EMAIL,
-            props: { name: b.name, time: b.time_str, forDev: true },
+            props: { name: b.name, time: b.time_str, formattedDateTime: devWhen, forDev: true },
           })
           if (clientR.ok) {
             await supabase

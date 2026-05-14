@@ -18,6 +18,7 @@ export type Database = {
         Row: {
           cancel_token: string
           cancelled_at: string | null
+          client_timezone: string | null
           created_at: string
           date_str: string
           duration_minutes: number
@@ -41,6 +42,7 @@ export type Database = {
         Insert: {
           cancel_token: string
           cancelled_at?: string | null
+          client_timezone?: string | null
           created_at?: string
           date_str: string
           duration_minutes?: number
@@ -64,6 +66,7 @@ export type Database = {
         Update: {
           cancel_token?: string
           cancelled_at?: string | null
+          client_timezone?: string | null
           created_at?: string
           date_str?: string
           duration_minutes?: number

@@ -675,6 +675,12 @@ function BookingForm() {
     }
     setSubmitting(true);
     try {
+      let clientTimezone: string | undefined;
+      try {
+        clientTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone || undefined;
+      } catch {
+        clientTimezone = undefined;
+      }
       const res = await fetch("/api/public/booking-notify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -682,6 +688,7 @@ function BookingForm() {
           ...result.data,
           locale: i18n.language,
           estimator: estimator ?? undefined,
+          clientTimezone,
         }),
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);

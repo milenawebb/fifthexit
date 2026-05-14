@@ -4,6 +4,7 @@ import { z } from 'zod'
 import { enqueueTransactional } from '@/lib/email-enqueue'
 import { generateToken, localToUtc } from '@/lib/timezone'
 import { googleCalendarUrl } from '@/lib/calendar-links'
+import { formatForClient, formatForDev } from '@/lib/format-datetime'
 
 const SITE_URL = 'https://hype-street.com'
 
@@ -14,6 +15,7 @@ const BookingSchema = z.object({
   time: z.string().trim().regex(/^\d{1,2}:\d{2}$/),
   message: z.string().trim().min(1).max(2000),
   locale: z.string().trim().min(1).max(10).optional(),
+  clientTimezone: z.string().trim().min(1).max(80).optional(),
   estimator: z
     .object({
       projectType: z.string().trim().max(100),
@@ -73,6 +75,7 @@ export const Route = createFileRoute('/api/public/booking-notify')({
             time_str: payload.time,
             starts_at: startsAt.toISOString(),
             locale: payload.locale,
+            client_timezone: payload.clientTimezone ?? null,
             estimator: payload.estimator ?? null,
             cancel_token: cancelToken,
             reschedule_token: rescheduleToken,
@@ -91,11 +94,20 @@ export const Route = createFileRoute('/api/public/booking-notify')({
         const cancelUrl = `${SITE_URL}/cancel/${cancelToken}`
         const icsUrl = `${SITE_URL}/api/public/booking-ics/${cancelToken}`
 
+        const devWhen = formatForDev(payload.date, payload.time)
+        const clientWhen = formatForClient(
+          payload.date,
+          payload.time,
+          payload.clientTimezone,
+          payload.locale,
+        )
+
         // Internal notification email
         await enqueueTransactional(supabase, {
           templateName: 'booking-notification',
           props: {
             ...payload,
+            formattedDateTime: devWhen,
             googleCalendarUrl: gcalUrl,
             icsUrl,
           },
@@ -108,6 +120,7 @@ export const Route = createFileRoute('/api/public/booking-notify')({
             name: payload.name,
             date: payload.date,
             time: payload.time,
+            formattedDateTime: clientWhen,
             locale: payload.locale,
             rescheduleUrl,
             cancelUrl,

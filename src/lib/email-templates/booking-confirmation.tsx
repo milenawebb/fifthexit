@@ -20,6 +20,7 @@ interface BookingConfirmationProps {
   name?: string
   date?: string
   time?: string
+  formattedDateTime?: string
   locale?: string
   rescheduleUrl?: string
   cancelUrl?: string
@@ -33,6 +34,7 @@ const BookingConfirmationEmail = ({
   name,
   date,
   time,
+  formattedDateTime,
   locale,
   rescheduleUrl,
   cancelUrl,
@@ -42,6 +44,7 @@ const BookingConfirmationEmail = ({
   const bg = isBg(locale)
   const addToCalendarLabel = bg ? 'Добави в календара' : 'Add to Calendar'
   const icsLabel = bg ? 'Изтегли .ics (Apple/Outlook)' : 'Download .ics (Apple / Outlook)'
+  const whenLine = formattedDateTime || [date, time].filter(Boolean).join(bg ? ' в ' : ' at ')
   return (
     <Html lang={bg ? 'bg' : 'en'} dir="ltr">
       <Head />
@@ -57,8 +60,7 @@ const BookingConfirmationEmail = ({
               <Heading style={h1}>Здравейте{name ? `, ${name}` : ''},</Heading>
               <Text style={lead}>
                 Вашият безплатен разговор с {SITE_NAME} е потвърден
-                {date ? ` за ${date}` : ''}
-                {time ? ` в ${time}` : ''}.
+                {whenLine ? ` — ${whenLine}` : ''}.
               </Text>
               <Section style={card}>
                 <Text style={body}>
@@ -98,8 +100,7 @@ const BookingConfirmationEmail = ({
               <Heading style={h1}>{name ? `Thanks, ${name}!` : 'Thanks for booking!'}</Heading>
               <Text style={lead}>Your consult with {SITE_NAME} is confirmed.</Text>
               <Section style={card}>
-                {date ? <Text style={body}><strong>Date:</strong> {date}</Text> : null}
-                {time ? <Text style={body}><strong>Time:</strong> {time}</Text> : null}
+                {whenLine ? <Text style={body}><strong>When:</strong> {whenLine}</Text> : null}
                 <Text style={body}>
                   <strong>Join the call here:</strong>{' '}
                   <Link href={VIDEO_CALL_URL} style={link}>{VIDEO_CALL_URL}</Link>

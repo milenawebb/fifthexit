@@ -8,6 +8,7 @@ import { z } from 'zod'
 import { enqueueTransactional } from '@/lib/email-enqueue'
 import { googleCalendarUrl } from '@/lib/calendar-links'
 import { localToUtc } from '@/lib/timezone'
+import { formatForClient, formatForDev } from '@/lib/format-datetime'
 
 const SITE_URL = 'https://hype-street.com'
 const DEV_EMAIL = 'dev@hype-street.com'
@@ -102,6 +103,7 @@ export const Route = createFileRoute('/api/public/booking-action/$token')({
               email: booking.email,
               date: booking.date_str,
               time: booking.time_str,
+              formattedDateTime: formatForDev(booking.date_str, booking.time_str),
             },
           })
           return Response.json({ success: true })
@@ -149,6 +151,12 @@ export const Route = createFileRoute('/api/public/booking-action/$token')({
             name: booking.name,
             date: parsed.date,
             time: parsed.time,
+            formattedDateTime: formatForClient(
+              parsed.date,
+              parsed.time,
+              booking.client_timezone,
+              booking.locale,
+            ),
             locale: booking.locale,
             rescheduleUrl: `${SITE_URL}/reschedule/${booking.reschedule_token}`,
             cancelUrl: `${SITE_URL}/cancel/${booking.cancel_token}`,
@@ -167,6 +175,8 @@ export const Route = createFileRoute('/api/public/booking-action/$token')({
             oldTime,
             newDate: parsed.date,
             newTime: parsed.time,
+            oldFormatted: formatForDev(oldDate, oldTime),
+            newFormatted: formatForDev(parsed.date, parsed.time),
           },
         })
 
