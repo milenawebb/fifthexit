@@ -55,6 +55,31 @@ export const Route = createFileRoute('/api/public/booking-notify')({
         const subject =
           typeof template.subject === 'function' ? template.subject(payload) : template.subject
 
+        // Get-or-create unsubscribe token for the fixed recipient
+        const normalizedEmail = recipient.toLowerCase()
+        let unsubscribeToken: string | undefined
+        const { data: existing } = await supabase
+          .from('email_unsubscribe_tokens')
+          .select('token, used_at')
+          .eq('email', normalizedEmail)
+          .maybeSingle()
+        if (existing?.token && !existing.used_at) {
+          unsubscribeToken = existing.token
+        } else if (!existing) {
+          const bytes = new Uint8Array(32)
+          crypto.getRandomValues(bytes)
+          const newToken = Array.from(bytes).map((b) => b.toString(16).padStart(2, '0')).join('')
+          await supabase
+            .from('email_unsubscribe_tokens')
+            .upsert({ token: newToken, email: normalizedEmail }, { onConflict: 'email', ignoreDuplicates: true })
+          const { data: stored } = await supabase
+            .from('email_unsubscribe_tokens')
+            .select('token')
+            .eq('email', normalizedEmail)
+            .maybeSingle()
+          unsubscribeToken = stored?.token ?? newToken
+        }
+
         await supabase.from('email_send_log').insert({
           message_id: messageId,
           template_name: TEMPLATE_NAME,
@@ -75,6 +100,7 @@ export const Route = createFileRoute('/api/public/booking-notify')({
             purpose: 'transactional',
             label: TEMPLATE_NAME,
             idempotency_key: messageId,
+            unsubscribe_token: unsubscribeToken,
             reply_to: payload.email,
             queued_at: new Date().toISOString(),
           },
