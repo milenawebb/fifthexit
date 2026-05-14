@@ -4,6 +4,7 @@ import { z } from 'zod'
 import { enqueueTransactional } from '@/lib/email-enqueue'
 import { generateToken, localToUtc } from '@/lib/timezone'
 import { googleCalendarUrl } from '@/lib/calendar-links'
+import { formatForClient, formatForDev } from '@/lib/format-datetime'
 
 const SITE_URL = 'https://hype-street.com'
 
@@ -14,6 +15,7 @@ const BookingSchema = z.object({
   time: z.string().trim().regex(/^\d{1,2}:\d{2}$/),
   message: z.string().trim().min(1).max(2000),
   locale: z.string().trim().min(1).max(10).optional(),
+  clientTimezone: z.string().trim().min(1).max(80).optional(),
   estimator: z
     .object({
       projectType: z.string().trim().max(100),
