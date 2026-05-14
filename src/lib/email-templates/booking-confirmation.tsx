@@ -12,6 +12,7 @@ import {
 import type { TemplateEntry } from './registry'
 
 const SITE_NAME = 'hype/street'
+const SITE_URL = 'www.hype-street.com'
 const VIDEO_CALL_URL =
   'https://hypestreet.whereby.com/hype-street0c1316cb-680e-4731-b13f-3ec46f6e34f0'
 
@@ -19,44 +20,79 @@ interface BookingConfirmationProps {
   name?: string
   date?: string
   time?: string
+  locale?: string
 }
 
-const BookingConfirmationEmail = ({ name, date, time }: BookingConfirmationProps) => (
-  <Html lang="en" dir="ltr">
-    <Head />
-    <Preview>Your consult with {SITE_NAME} is booked</Preview>
-    <Body style={main}>
-      <Container style={container}>
-        <Heading style={h1}>
-          {name ? `Thanks, ${name}!` : 'Thanks for booking!'}
-        </Heading>
-        <Text style={lead}>
-          Your consult with {SITE_NAME} is booked. We'll confirm within 2 hours.
-        </Text>
+const isBg = (locale?: string) => (locale ?? '').toLowerCase().startsWith('bg')
 
-        <Section style={card}>
-          {date ? <Text style={body}><strong>Date:</strong> {date}</Text> : null}
-          {time ? <Text style={body}><strong>Time:</strong> {time}</Text> : null}
-          <Text style={body}>
-            <strong>Join the call here:</strong>{' '}
-            <Link href={VIDEO_CALL_URL} style={link}>{VIDEO_CALL_URL}</Link>
-          </Text>
-        </Section>
-
-        <Text style={footer}>— The {SITE_NAME} team</Text>
-      </Container>
-    </Body>
-  </Html>
-)
+const BookingConfirmationEmail = ({ name, date, time, locale }: BookingConfirmationProps) => {
+  const bg = isBg(locale)
+  return (
+    <Html lang={bg ? 'bg' : 'en'} dir="ltr">
+      <Head />
+      <Preview>
+        {bg
+          ? `Вашата консултация с ${SITE_NAME} е потвърдена`
+          : `Your consult with ${SITE_NAME} is booked`}
+      </Preview>
+      <Body style={main}>
+        <Container style={container}>
+          {bg ? (
+            <>
+              <Heading style={h1}>Здравейте{name ? `, ${name}` : ''},</Heading>
+              <Text style={lead}>
+                Вашият безплатен разговор с {SITE_NAME} е потвърден
+                {date ? ` за ${date}` : ''}
+                {time ? ` в ${time}` : ''}.
+              </Text>
+              <Section style={card}>
+                <Text style={body}>
+                  <strong>Присъединете се към разговора тук:</strong>{' '}
+                  <Link href={VIDEO_CALL_URL} style={link}>{VIDEO_CALL_URL}</Link>
+                </Text>
+              </Section>
+              <Text style={lead}>Ще се свържем с вас скоро за потвърждение.</Text>
+              <Text style={footer}>
+                Поздрави,<br />
+                Екипът на {SITE_NAME}<br />
+                <Link href={`https://${SITE_URL}`} style={link}>{SITE_URL}</Link>
+              </Text>
+            </>
+          ) : (
+            <>
+              <Heading style={h1}>{name ? `Thanks, ${name}!` : 'Thanks for booking!'}</Heading>
+              <Text style={lead}>
+                Your consult with {SITE_NAME} is booked. We'll confirm within 2 hours.
+              </Text>
+              <Section style={card}>
+                {date ? <Text style={body}><strong>Date:</strong> {date}</Text> : null}
+                {time ? <Text style={body}><strong>Time:</strong> {time}</Text> : null}
+                <Text style={body}>
+                  <strong>Join the call here:</strong>{' '}
+                  <Link href={VIDEO_CALL_URL} style={link}>{VIDEO_CALL_URL}</Link>
+                </Text>
+              </Section>
+              <Text style={footer}>— The {SITE_NAME} team</Text>
+            </>
+          )}
+        </Container>
+      </Body>
+    </Html>
+  )
+}
 
 export const template = {
   component: BookingConfirmationEmail,
-  subject: `Your consult with ${SITE_NAME} is booked`,
+  subject: (data: Record<string, any>) =>
+    isBg(data?.locale)
+      ? `Вашата консултация с ${SITE_NAME} е потвърдена`
+      : `Your consult with ${SITE_NAME} is booked`,
   displayName: 'Booking confirmation (client)',
   previewData: {
     name: 'Alex',
     date: 'Mon, Jan 15',
     time: '14:00',
+    locale: 'en',
   },
 } satisfies TemplateEntry
 
@@ -72,4 +108,4 @@ const card = {
 }
 const body = { fontSize: '14px', color: '#0d0b1a', margin: '0 0 8px', lineHeight: '1.5' }
 const link = { color: '#7b78f5', textDecoration: 'underline', wordBreak: 'break-all' as const }
-const footer = { fontSize: '12px', color: '#999', margin: '24px 0 0' }
+const footer = { fontSize: '12px', color: '#999', margin: '24px 0 0', lineHeight: '1.6' }
