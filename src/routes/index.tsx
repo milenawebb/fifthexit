@@ -657,6 +657,7 @@ function BookingForm() {
   const estimator = useEstimatorSelections();
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
+  const [takenSlots, setTakenSlots] = useState<Set<string>>(new Set());
   const days = getNextDays(7);
   const [form, setForm] = useState({
     name: "",
@@ -665,6 +666,22 @@ function BookingForm() {
     time: "",
     message: "",
   });
+
+  useEffect(() => {
+    let cancelled = false;
+    const load = () => {
+      fetch("/api/public/booking-taken-slots")
+        .then((r) => (r.ok ? r.json() : { taken: [] }))
+        .then((d) => {
+          if (!cancelled) setTakenSlots(new Set(d.taken ?? []));
+        })
+        .catch(() => {});
+    };
+    load();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -691,6 +708,16 @@ function BookingForm() {
           clientTimezone,
         }),
       });
+      if (res.status === 409) {
+        setTakenSlots((prev) => new Set(prev).add(`${result.data.date}|${result.data.time}`));
+        setForm((f) => ({ ...f, time: "" }));
+        toast.error(
+          i18n.language === "bg"
+            ? "Този час вече е зает. Моля, изберете друг."
+            : "That time is already booked. Please pick another slot.",
+        );
+        return;
+      }
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       setDone(true);
       setEstimatorSelections(null);
@@ -749,12 +776,20 @@ function BookingForm() {
           <div className="flex flex-wrap gap-2">
             {slotsForDate(form.date).map((slot) => {
               const selected = form.time === slot;
+              const taken = takenSlots.has(`${form.date}|${slot}`);
               return (
                 <button
                   type="button"
                   key={slot}
-                  onClick={() => setForm({ ...form, time: slot })}
-                  className={`${pillBase} ${selected ? pillSelected : pillIdle}`}
+                  disabled={taken}
+                  onClick={() => !taken && setForm({ ...form, time: slot })}
+                  className={`${pillBase} ${
+                    taken
+                      ? "border-border/30 text-muted-foreground/40 line-through cursor-not-allowed"
+                      : selected
+                      ? pillSelected
+                      : pillIdle
+                  }`}
                 >
                   {formatSlot(slot, i18n.language)}
                 </button>
