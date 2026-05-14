@@ -703,7 +703,7 @@ function BookingForm() {
           <Check className="h-8 w-8 text-primary-foreground" />
         </div>
         <h3 className="text-2xl font-bold mb-2">You're on the list 🚀</h3>
-        <p className="text-muted-foreground">We'll confirm your consult within 2 hours.</p>
+        <p className="text-muted-foreground">Your consult is confirmed.</p>
       </div>
     );
   }
