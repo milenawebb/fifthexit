@@ -149,6 +149,8 @@ export const template = {
     locale: 'en',
     rescheduleUrl: 'https://hype-street.com/reschedule/abc123',
     cancelUrl: 'https://hype-street.com/cancel/abc123',
+    googleCalendarUrl: 'https://calendar.google.com/calendar/render?action=TEMPLATE',
+    icsUrl: 'https://hype-street.com/api/public/booking-ics/abc123',
   },
 } satisfies TemplateEntry
 
