@@ -20,6 +20,7 @@ import { Route as BgTermsRouteImport } from './routes/bg/terms'
 import { Route as BgPrivacyRouteImport } from './routes/bg/privacy'
 import { Route as BgCookiesRouteImport } from './routes/bg/cookies'
 import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
+import { Route as ApiPublicBookingRemindersRouteImport } from './routes/api/public/booking-reminders'
 import { Route as ApiPublicBookingNotifyRouteImport } from './routes/api/public/booking-notify'
 import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
@@ -80,6 +81,12 @@ const LovableEmailSuppressionRoute = LovableEmailSuppressionRouteImport.update({
   path: '/lovable/email/suppression',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicBookingRemindersRoute =
+  ApiPublicBookingRemindersRouteImport.update({
+    id: '/api/public/booking-reminders',
+    path: '/api/public/booking-reminders',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiPublicBookingNotifyRoute = ApiPublicBookingNotifyRouteImport.update({
   id: '/api/public/booking-notify',
   path: '/api/public/booking-notify',
@@ -116,6 +123,7 @@ export interface FileRoutesByFullPath {
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/bg/': typeof BgIndexRoute
   '/api/public/booking-notify': typeof ApiPublicBookingNotifyRoute
+  '/api/public/booking-reminders': typeof ApiPublicBookingRemindersRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -133,6 +141,7 @@ export interface FileRoutesByTo {
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/bg': typeof BgIndexRoute
   '/api/public/booking-notify': typeof ApiPublicBookingNotifyRoute
+  '/api/public/booking-reminders': typeof ApiPublicBookingRemindersRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -151,6 +160,7 @@ export interface FileRoutesById {
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/bg/': typeof BgIndexRoute
   '/api/public/booking-notify': typeof ApiPublicBookingNotifyRoute
+  '/api/public/booking-reminders': typeof ApiPublicBookingRemindersRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -170,6 +180,7 @@ export interface FileRouteTypes {
     | '/email/unsubscribe'
     | '/bg/'
     | '/api/public/booking-notify'
+    | '/api/public/booking-reminders'
     | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
     | '/lovable/email/transactional/preview'
@@ -187,6 +198,7 @@ export interface FileRouteTypes {
     | '/email/unsubscribe'
     | '/bg'
     | '/api/public/booking-notify'
+    | '/api/public/booking-reminders'
     | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
     | '/lovable/email/transactional/preview'
@@ -204,6 +216,7 @@ export interface FileRouteTypes {
     | '/email/unsubscribe'
     | '/bg/'
     | '/api/public/booking-notify'
+    | '/api/public/booking-reminders'
     | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
     | '/lovable/email/transactional/preview'
@@ -222,6 +235,7 @@ export interface RootRouteChildren {
   EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
   BgIndexRoute: typeof BgIndexRoute
   ApiPublicBookingNotifyRoute: typeof ApiPublicBookingNotifyRoute
+  ApiPublicBookingRemindersRoute: typeof ApiPublicBookingRemindersRoute
   LovableEmailSuppressionRoute: typeof LovableEmailSuppressionRoute
   LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
   LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
@@ -307,6 +321,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LovableEmailSuppressionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/booking-reminders': {
+      id: '/api/public/booking-reminders'
+      path: '/api/public/booking-reminders'
+      fullPath: '/api/public/booking-reminders'
+      preLoaderRoute: typeof ApiPublicBookingRemindersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/booking-notify': {
       id: '/api/public/booking-notify'
       path: '/api/public/booking-notify'
@@ -350,6 +371,7 @@ const rootRouteChildren: RootRouteChildren = {
   EmailUnsubscribeRoute: EmailUnsubscribeRoute,
   BgIndexRoute: BgIndexRoute,
   ApiPublicBookingNotifyRoute: ApiPublicBookingNotifyRoute,
+  ApiPublicBookingRemindersRoute: ApiPublicBookingRemindersRoute,
   LovableEmailSuppressionRoute: LovableEmailSuppressionRoute,
   LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,
   LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
