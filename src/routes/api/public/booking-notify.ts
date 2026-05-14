@@ -17,6 +17,15 @@ const BookingSchema = z.object({
   time: z.string().trim().min(1).max(20),
   message: z.string().trim().min(1).max(2000),
   locale: z.string().trim().min(1).max(10).optional(),
+  estimator: z
+    .object({
+      projectType: z.string().trim().max(100),
+      design: z.string().trim().max(100),
+      features: z.array(z.string().trim().max(100)).max(20),
+      timeline: z.string().trim().max(100),
+      estimatedPrice: z.string().trim().max(40),
+    })
+    .optional(),
 })
 
 export const Route = createFileRoute('/api/public/booking-notify')({

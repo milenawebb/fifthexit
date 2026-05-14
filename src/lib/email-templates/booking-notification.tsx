@@ -12,6 +12,14 @@ import type { TemplateEntry } from './registry'
 
 const SITE_NAME = 'hype/street'
 
+interface EstimatorSelections {
+  projectType?: string
+  design?: string
+  features?: string[]
+  timeline?: string
+  estimatedPrice?: string
+}
+
 interface BookingNotificationProps {
   name?: string
   email?: string
@@ -19,6 +27,7 @@ interface BookingNotificationProps {
   time?: string
   message?: string
   locale?: string
+  estimator?: EstimatorSelections
 }
 
 const BookingNotificationEmail = ({
@@ -28,6 +37,7 @@ const BookingNotificationEmail = ({
   time,
   message,
   locale,
+  estimator,
 }: BookingNotificationProps) => (
   <Html lang="en" dir="ltr">
     <Head />
@@ -51,6 +61,24 @@ const BookingNotificationEmail = ({
           <Section style={card}>
             <Text style={label}>Project details</Text>
             <Text style={body}>{message}</Text>
+          </Section>
+        ) : null}
+
+        {estimator ? (
+          <Section style={card}>
+            <Text style={sectionHeading}>Estimator Selections</Text>
+            <Row label="Project type" value={estimator.projectType} />
+            <Row label="Design" value={estimator.design} />
+            <Row
+              label="Features"
+              value={
+                estimator.features && estimator.features.length > 0
+                  ? estimator.features.join(', ')
+                  : 'None selected'
+              }
+            />
+            <Row label="Timeline" value={estimator.timeline} />
+            <Row label="Estimated starting price" value={estimator.estimatedPrice} />
           </Section>
         ) : null}
 
@@ -104,3 +132,10 @@ const label = {
 }
 const body = { fontSize: '14px', color: '#0d0b1a', margin: 0, lineHeight: '1.5' }
 const footer = { fontSize: '12px', color: '#999', margin: '24px 0 0' }
+const sectionHeading = {
+  fontSize: '13px',
+  fontWeight: 700,
+  color: '#0d0b1a',
+  margin: '0 0 10px',
+  letterSpacing: '0.02em',
+}

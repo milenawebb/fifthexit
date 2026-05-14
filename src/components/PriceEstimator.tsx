@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { setEstimatorSelections } from "@/lib/estimator-store";
 
 const MonitorIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: "block" }}>
@@ -363,12 +364,19 @@ export default function PriceEstimator() {
 
             <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
               <button style={btnPrimary} onClick={() => {
+                setEstimatorSelections({
+                  projectType: PROJECT_TYPES.find(p => p.id === projectType)?.label || "",
+                  design: DESIGN_OPTIONS.find(d => d.id === design)?.label || "",
+                  features: features.map(fid => FEATURES.find(f => f.id === fid)?.label || "").filter(Boolean),
+                  timeline: TIMELINE_OPTIONS.find(tl => tl.id === timeline)?.label || "",
+                  estimatedPrice: formatPrice(calcPrice()),
+                });
                 const el = document.getElementById("book");
                 if (el) el.scrollIntoView({ behavior: "smooth" });
               }}>
                 {t("estimator.bookConsult")}
               </button>
-              <button className="est-btn-ghost" style={btnGhost} onClick={() => { setShowResult(false); setStep(0); setProjectType(null); setDesign(null); setFeatures([]); setTimeline("standard"); setSupport("none"); }}>
+              <button className="est-btn-ghost" style={btnGhost} onClick={() => { setEstimatorSelections(null); setShowResult(false); setStep(0); setProjectType(null); setDesign(null); setFeatures([]); setTimeline("standard"); setSupport("none"); }}>
                 {t("estimator.startOver")}
               </button>
             </div>

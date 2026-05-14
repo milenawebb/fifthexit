@@ -31,6 +31,7 @@ import rinPreview from "@/assets/rin-preview.png";
 import bellhousePreview from "@/assets/bellhouse-preview.png";
 import eliteRidePreview from "@/assets/elite-ride-preview.png";
 import PriceEstimator from "@/components/PriceEstimator";
+import { useEstimatorSelections, setEstimatorSelections } from "@/lib/estimator-store";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -653,6 +654,7 @@ function formatDayLabel(d: Date, locale: string) {
 
 function BookingForm() {
   const { t, i18n } = useTranslation();
+  const estimator = useEstimatorSelections();
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const days = getNextDays(7);
@@ -679,10 +681,12 @@ function BookingForm() {
         body: JSON.stringify({
           ...result.data,
           locale: i18n.language,
+          estimator: estimator ?? undefined,
         }),
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       setDone(true);
+      setEstimatorSelections(null);
       toast.success("Consult booked! We'll confirm within 2 hours.");
     } catch (err) {
       console.error("Booking submit failed", err);
