@@ -21,11 +21,20 @@ interface BookingConfirmationProps {
   date?: string
   time?: string
   locale?: string
+  rescheduleUrl?: string
+  cancelUrl?: string
 }
 
 const isBg = (locale?: string) => (locale ?? '').toLowerCase().startsWith('bg')
 
-const BookingConfirmationEmail = ({ name, date, time, locale }: BookingConfirmationProps) => {
+const BookingConfirmationEmail = ({
+  name,
+  date,
+  time,
+  locale,
+  rescheduleUrl,
+  cancelUrl,
+}: BookingConfirmationProps) => {
   const bg = isBg(locale)
   return (
     <Html lang={bg ? 'bg' : 'en'} dir="ltr">
@@ -51,6 +60,17 @@ const BookingConfirmationEmail = ({ name, date, time, locale }: BookingConfirmat
                   <Link href={VIDEO_CALL_URL} style={link}>{VIDEO_CALL_URL}</Link>
                 </Text>
               </Section>
+              {(rescheduleUrl || cancelUrl) && (
+                <Text style={actions}>
+                  {rescheduleUrl ? (
+                    <Link href={rescheduleUrl} style={link}>Промяна на часа</Link>
+                  ) : null}
+                  {rescheduleUrl && cancelUrl ? <span style={sep}> · </span> : null}
+                  {cancelUrl ? (
+                    <Link href={cancelUrl} style={link}>Отказ на резервацията</Link>
+                  ) : null}
+                </Text>
+              )}
               <Text style={lead}>Ще се свържем с вас скоро за потвърждение.</Text>
               <Text style={footer}>
                 Поздрави,<br />
@@ -72,6 +92,17 @@ const BookingConfirmationEmail = ({ name, date, time, locale }: BookingConfirmat
                   <Link href={VIDEO_CALL_URL} style={link}>{VIDEO_CALL_URL}</Link>
                 </Text>
               </Section>
+              {(rescheduleUrl || cancelUrl) && (
+                <Text style={actions}>
+                  {rescheduleUrl ? (
+                    <Link href={rescheduleUrl} style={link}>Reschedule</Link>
+                  ) : null}
+                  {rescheduleUrl && cancelUrl ? <span style={sep}> · </span> : null}
+                  {cancelUrl ? (
+                    <Link href={cancelUrl} style={link}>Cancel this booking</Link>
+                  ) : null}
+                </Text>
+              )}
               <Text style={footer}>— The {SITE_NAME} team</Text>
             </>
           )}
@@ -93,6 +124,8 @@ export const template = {
     date: 'Mon, Jan 15',
     time: '14:00',
     locale: 'en',
+    rescheduleUrl: 'https://hype-street.com/reschedule/abc123',
+    cancelUrl: 'https://hype-street.com/cancel/abc123',
   },
 } satisfies TemplateEntry
 
@@ -108,4 +141,6 @@ const card = {
 }
 const body = { fontSize: '14px', color: '#0d0b1a', margin: '0 0 8px', lineHeight: '1.5' }
 const link = { color: '#7b78f5', textDecoration: 'underline', wordBreak: 'break-all' as const }
+const actions = { fontSize: '13px', color: '#55575d', margin: '0 0 20px', lineHeight: '1.5' }
+const sep = { color: '#999' }
 const footer = { fontSize: '12px', color: '#999', margin: '24px 0 0', lineHeight: '1.6' }
