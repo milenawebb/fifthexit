@@ -4,6 +4,7 @@ import {
   Head,
   Heading,
   Html,
+  Link,
   Preview,
   Section,
   Text,
@@ -11,6 +12,8 @@ import {
 import type { TemplateEntry } from './registry'
 
 const SITE_NAME = 'hype/street'
+const WHEREBY_URL =
+  'https://hypestreet.whereby.com/hype-street0c1316cb-680e-4731-b13f-3ec46f6e34f0'
 
 interface EstimatorSelections {
   projectType?: string
@@ -26,8 +29,9 @@ interface BookingNotificationProps {
   date?: string
   time?: string
   message?: string
-  locale?: string
   estimator?: EstimatorSelections
+  googleCalendarUrl?: string
+  icsUrl?: string
 }
 
 const BookingNotificationEmail = ({
@@ -36,8 +40,9 @@ const BookingNotificationEmail = ({
   date,
   time,
   message,
-  locale,
   estimator,
+  googleCalendarUrl,
+  icsUrl,
 }: BookingNotificationProps) => (
   <Html lang="en" dir="ltr">
     <Head />
@@ -54,7 +59,6 @@ const BookingNotificationEmail = ({
           <Row label="Email" value={email} />
           <Row label="Date" value={date} />
           <Row label="Time" value={time} />
-          {locale ? <Row label="Locale" value={locale} /> : null}
         </Section>
 
         {message ? (
@@ -82,6 +86,23 @@ const BookingNotificationEmail = ({
           </Section>
         ) : null}
 
+        <Section style={card}>
+          <Text style={label}>Join call</Text>
+          <Text style={body}>
+            <Link href={WHEREBY_URL} style={link}>{WHEREBY_URL}</Link>
+          </Text>
+          {googleCalendarUrl ? (
+            <Section style={{ textAlign: 'center', margin: '14px 0 4px' }}>
+              <Link href={googleCalendarUrl} style={ctaButton}>Add to Calendar</Link>
+            </Section>
+          ) : null}
+          {icsUrl ? (
+            <Text style={icsLine}>
+              <Link href={icsUrl} style={link}>Download .ics (Apple / Outlook)</Link>
+            </Text>
+          ) : null}
+        </Section>
+
         <Text style={footer}>Sent automatically by {SITE_NAME}.</Text>
       </Container>
     </Body>
@@ -107,7 +128,8 @@ export const template = {
     date: 'Mon, Jan 15',
     time: '14:00',
     message: 'We need a new marketing site with booking + Stripe.',
-    locale: 'en',
+    googleCalendarUrl: 'https://calendar.google.com/calendar/render?action=TEMPLATE',
+    icsUrl: 'https://hype-street.com/api/public/booking-ics/abc123',
   },
 } satisfies TemplateEntry
 
@@ -139,3 +161,15 @@ const sectionHeading = {
   margin: '0 0 10px',
   letterSpacing: '0.02em',
 }
+const link = { color: '#7b78f5', textDecoration: 'underline', wordBreak: 'break-all' as const }
+const ctaButton = {
+  display: 'inline-block',
+  background: '#7b78f5',
+  color: '#ffffff',
+  padding: '11px 22px',
+  borderRadius: '8px',
+  fontSize: '14px',
+  fontWeight: 'bold',
+  textDecoration: 'none',
+}
+const icsLine = { fontSize: '12px', color: '#55575d', textAlign: 'center' as const, margin: '8px 0 0' }
