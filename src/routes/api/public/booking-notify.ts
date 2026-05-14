@@ -1,20 +1,17 @@
-import * as React from 'react'
-import { render as renderAsync } from '@react-email/components'
 import { createClient } from '@supabase/supabase-js'
 import { createFileRoute } from '@tanstack/react-router'
 import { z } from 'zod'
-import { TEMPLATES } from '@/lib/email-templates/registry'
+import { enqueueTransactional } from '@/lib/email-enqueue'
+import { createCalendarEvent } from '@/lib/google-calendar'
+import { generateToken, localToUtc } from '@/lib/timezone'
 
-const SITE_NAME = 'hype/street'
-const SENDER_DOMAIN = 'notify.hype-street.com'
-const FROM_DOMAIN = 'notify.hype-street.com'
-const TEMPLATE_NAME = 'booking-notification'
+const SITE_URL = 'https://hype-street.com'
 
 const BookingSchema = z.object({
   name: z.string().trim().min(1).max(80),
   email: z.string().trim().email().max(160),
-  date: z.string().trim().min(1).max(40),
-  time: z.string().trim().min(1).max(20),
+  date: z.string().trim().regex(/^\d{4}-\d{2}-\d{2}$/),
+  time: z.string().trim().regex(/^\d{1,2}:\d{2}$/),
   message: z.string().trim().min(1).max(2000),
   locale: z.string().trim().min(1).max(10).optional(),
   estimator: z
@@ -40,8 +37,7 @@ export const Route = createFileRoute('/api/public/booking-notify')({
 
         let payload: z.infer<typeof BookingSchema>
         try {
-          const body = await request.json()
-          payload = BookingSchema.parse(body)
+          payload = BookingSchema.parse(await request.json())
         } catch (err) {
           return Response.json(
             { error: 'Invalid request', details: err instanceof Error ? err.message : 'parse error' },
@@ -49,164 +45,84 @@ export const Route = createFileRoute('/api/public/booking-notify')({
           )
         }
 
-        const template = TEMPLATES[TEMPLATE_NAME]
-        if (!template?.to) {
-          return Response.json({ error: 'Template misconfigured' }, { status: 500 })
-        }
-
-        const recipient = template.to
         const supabase = createClient(supabaseUrl, supabaseServiceKey)
-        const messageId = crypto.randomUUID()
 
-        const element = React.createElement(template.component, payload)
-        const html = await renderAsync(element)
-        const text = await renderAsync(element, { plainText: true })
-        const subject =
-          typeof template.subject === 'function' ? template.subject(payload) : template.subject
-
-        // Get-or-create unsubscribe token for the fixed recipient
-        const normalizedEmail = recipient.toLowerCase()
-        let unsubscribeToken: string | undefined
-        const { data: existing } = await supabase
-          .from('email_unsubscribe_tokens')
-          .select('token, used_at')
-          .eq('email', normalizedEmail)
+        // Reject double-booked slots (status='confirmed' for same date+time)
+        const { data: clash } = await supabase
+          .from('bookings')
+          .select('id')
+          .eq('date_str', payload.date)
+          .eq('time_str', payload.time)
+          .eq('status', 'confirmed')
           .maybeSingle()
-        if (existing?.token && !existing.used_at) {
-          unsubscribeToken = existing.token
-        } else if (!existing) {
-          const bytes = new Uint8Array(32)
-          crypto.getRandomValues(bytes)
-          const newToken = Array.from(bytes).map((b) => b.toString(16).padStart(2, '0')).join('')
-          await supabase
-            .from('email_unsubscribe_tokens')
-            .upsert({ token: newToken, email: normalizedEmail }, { onConflict: 'email', ignoreDuplicates: true })
-          const { data: stored } = await supabase
-            .from('email_unsubscribe_tokens')
-            .select('token')
-            .eq('email', normalizedEmail)
-            .maybeSingle()
-          unsubscribeToken = stored?.token ?? newToken
+        if (clash) {
+          return Response.json({ error: 'Slot no longer available' }, { status: 409 })
         }
 
-        await supabase.from('email_send_log').insert({
-          message_id: messageId,
-          template_name: TEMPLATE_NAME,
-          recipient_email: recipient,
-          status: 'pending',
+        const cancelToken = generateToken()
+        const rescheduleToken = generateToken()
+        const startsAt = localToUtc(payload.date, payload.time)
+
+        const { data: booking, error: insertErr } = await supabase
+          .from('bookings')
+          .insert({
+            name: payload.name,
+            email: payload.email,
+            message: payload.message,
+            date_str: payload.date,
+            time_str: payload.time,
+            starts_at: startsAt.toISOString(),
+            locale: payload.locale,
+            estimator: payload.estimator ?? null,
+            cancel_token: cancelToken,
+            reschedule_token: rescheduleToken,
+          })
+          .select('id')
+          .single()
+
+        if (insertErr || !booking) {
+          console.error('Failed to insert booking', insertErr)
+          return Response.json({ error: 'Failed to record booking' }, { status: 500 })
+        }
+
+        // Create Google Calendar event (best-effort, non-blocking)
+        const eventId = await createCalendarEvent({
+          name: payload.name,
+          email: payload.email,
+          message: payload.message,
+          date: payload.date,
+          time: payload.time,
+          durationMinutes: 30,
+        })
+        if (eventId) {
+          await supabase
+            .from('bookings')
+            .update({ google_event_id: eventId })
+            .eq('id', booking.id)
+        }
+
+        // Internal notification email
+        await enqueueTransactional(supabase, {
+          templateName: 'booking-notification',
+          props: payload,
+          replyTo: payload.email,
         })
 
-        const { error: enqueueError } = await supabase.rpc('enqueue_email', {
-          queue_name: 'transactional_emails',
-          payload: {
-            message_id: messageId,
-            to: recipient,
-            from: `${SITE_NAME} <noreply@${FROM_DOMAIN}>`,
-            sender_domain: SENDER_DOMAIN,
-            subject,
-            html,
-            text,
-            purpose: 'transactional',
-            label: TEMPLATE_NAME,
-            idempotency_key: messageId,
-            unsubscribe_token: unsubscribeToken,
-            reply_to: payload.email,
-            queued_at: new Date().toISOString(),
+        // Client confirmation email with reschedule/cancel links
+        const rescheduleUrl = `${SITE_URL}/reschedule/${rescheduleToken}`
+        const cancelUrl = `${SITE_URL}/cancel/${cancelToken}`
+        await enqueueTransactional(supabase, {
+          templateName: 'booking-confirmation',
+          to: payload.email,
+          props: {
+            name: payload.name,
+            date: payload.date,
+            time: payload.time,
+            locale: payload.locale,
+            rescheduleUrl,
+            cancelUrl,
           },
         })
-
-        if (enqueueError) {
-          console.error('Failed to enqueue booking notification', enqueueError)
-          await supabase.from('email_send_log').insert({
-            message_id: messageId,
-            template_name: TEMPLATE_NAME,
-            recipient_email: recipient,
-            status: 'failed',
-            error_message: 'Failed to enqueue email',
-          })
-          return Response.json({ error: 'Failed to enqueue email' }, { status: 500 })
-        }
-
-        // Send confirmation email to the client (best-effort, don't fail the request)
-        try {
-          const confirmTemplate = TEMPLATES['booking-confirmation']
-          if (confirmTemplate) {
-            const clientEmail = payload.email
-            const normalizedClientEmail = clientEmail.toLowerCase()
-            const clientProps = { name: payload.name, date: payload.date, time: payload.time, locale: payload.locale }
-            const clientElement = React.createElement(confirmTemplate.component, clientProps)
-            const clientHtml = await renderAsync(clientElement)
-            const clientText = await renderAsync(clientElement, { plainText: true })
-            const clientSubject =
-              typeof confirmTemplate.subject === 'function'
-                ? confirmTemplate.subject(clientProps)
-                : confirmTemplate.subject
-            const clientMessageId = crypto.randomUUID()
-
-            // Get-or-create unsubscribe token for the client
-            let clientUnsubscribeToken: string | undefined
-            const { data: existingClient } = await supabase
-              .from('email_unsubscribe_tokens')
-              .select('token, used_at')
-              .eq('email', normalizedClientEmail)
-              .maybeSingle()
-            if (existingClient?.token && !existingClient.used_at) {
-              clientUnsubscribeToken = existingClient.token
-            } else if (!existingClient) {
-              const bytes = new Uint8Array(32)
-              crypto.getRandomValues(bytes)
-              const newToken = Array.from(bytes).map((b) => b.toString(16).padStart(2, '0')).join('')
-              await supabase
-                .from('email_unsubscribe_tokens')
-                .upsert({ token: newToken, email: normalizedClientEmail }, { onConflict: 'email', ignoreDuplicates: true })
-              const { data: stored } = await supabase
-                .from('email_unsubscribe_tokens')
-                .select('token')
-                .eq('email', normalizedClientEmail)
-                .maybeSingle()
-              clientUnsubscribeToken = stored?.token ?? newToken
-            }
-
-            await supabase.from('email_send_log').insert({
-              message_id: clientMessageId,
-              template_name: 'booking-confirmation',
-              recipient_email: clientEmail,
-              status: 'pending',
-            })
-
-            const { error: clientEnqueueError } = await supabase.rpc('enqueue_email', {
-              queue_name: 'transactional_emails',
-              payload: {
-                message_id: clientMessageId,
-                to: clientEmail,
-                from: `${SITE_NAME} <noreply@${FROM_DOMAIN}>`,
-                sender_domain: SENDER_DOMAIN,
-                subject: clientSubject,
-                html: clientHtml,
-                text: clientText,
-                purpose: 'transactional',
-                label: 'booking-confirmation',
-                idempotency_key: clientMessageId,
-                unsubscribe_token: clientUnsubscribeToken,
-                reply_to: recipient,
-                queued_at: new Date().toISOString(),
-              },
-            })
-
-            if (clientEnqueueError) {
-              console.error('Failed to enqueue client confirmation', clientEnqueueError)
-              await supabase.from('email_send_log').insert({
-                message_id: clientMessageId,
-                template_name: 'booking-confirmation',
-                recipient_email: clientEmail,
-                status: 'failed',
-                error_message: 'Failed to enqueue email',
-              })
-            }
-          }
-        } catch (err) {
-          console.error('Client confirmation email failed', err)
-        }
 
         return Response.json({ success: true })
       },
