@@ -15,15 +15,19 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BgIndexRouteImport } from './routes/bg/index'
+import { Route as RescheduleTokenRouteImport } from './routes/reschedule.$token'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
+import { Route as CancelTokenRouteImport } from './routes/cancel.$token'
 import { Route as BgTermsRouteImport } from './routes/bg/terms'
 import { Route as BgPrivacyRouteImport } from './routes/bg/privacy'
 import { Route as BgCookiesRouteImport } from './routes/bg/cookies'
 import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
+import { Route as ApiPublicBookingRemindersRouteImport } from './routes/api/public/booking-reminders'
 import { Route as ApiPublicBookingNotifyRouteImport } from './routes/api/public/booking-notify'
 import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
+import { Route as ApiPublicBookingActionTokenRouteImport } from './routes/api/public/booking-action.$token'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -55,9 +59,19 @@ const BgIndexRoute = BgIndexRouteImport.update({
   path: '/bg/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RescheduleTokenRoute = RescheduleTokenRouteImport.update({
+  id: '/reschedule/$token',
+  path: '/reschedule/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EmailUnsubscribeRoute = EmailUnsubscribeRouteImport.update({
   id: '/email/unsubscribe',
   path: '/email/unsubscribe',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CancelTokenRoute = CancelTokenRouteImport.update({
+  id: '/cancel/$token',
+  path: '/cancel/$token',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BgTermsRoute = BgTermsRouteImport.update({
@@ -80,6 +94,12 @@ const LovableEmailSuppressionRoute = LovableEmailSuppressionRouteImport.update({
   path: '/lovable/email/suppression',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicBookingRemindersRoute =
+  ApiPublicBookingRemindersRouteImport.update({
+    id: '/api/public/booking-reminders',
+    path: '/api/public/booking-reminders',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiPublicBookingNotifyRoute = ApiPublicBookingNotifyRouteImport.update({
   id: '/api/public/booking-notify',
   path: '/api/public/booking-notify',
@@ -103,6 +123,12 @@ const LovableEmailQueueProcessRoute =
     path: '/lovable/email/queue/process',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ApiPublicBookingActionTokenRoute =
+  ApiPublicBookingActionTokenRouteImport.update({
+    id: '/api/public/booking-action/$token',
+    path: '/api/public/booking-action/$token',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -113,10 +139,14 @@ export interface FileRoutesByFullPath {
   '/bg/cookies': typeof BgCookiesRoute
   '/bg/privacy': typeof BgPrivacyRoute
   '/bg/terms': typeof BgTermsRoute
+  '/cancel/$token': typeof CancelTokenRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/reschedule/$token': typeof RescheduleTokenRoute
   '/bg/': typeof BgIndexRoute
   '/api/public/booking-notify': typeof ApiPublicBookingNotifyRoute
+  '/api/public/booking-reminders': typeof ApiPublicBookingRemindersRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
+  '/api/public/booking-action/$token': typeof ApiPublicBookingActionTokenRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
   '/lovable/email/transactional/send': typeof LovableEmailTransactionalSendRoute
@@ -130,10 +160,14 @@ export interface FileRoutesByTo {
   '/bg/cookies': typeof BgCookiesRoute
   '/bg/privacy': typeof BgPrivacyRoute
   '/bg/terms': typeof BgTermsRoute
+  '/cancel/$token': typeof CancelTokenRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/reschedule/$token': typeof RescheduleTokenRoute
   '/bg': typeof BgIndexRoute
   '/api/public/booking-notify': typeof ApiPublicBookingNotifyRoute
+  '/api/public/booking-reminders': typeof ApiPublicBookingRemindersRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
+  '/api/public/booking-action/$token': typeof ApiPublicBookingActionTokenRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
   '/lovable/email/transactional/send': typeof LovableEmailTransactionalSendRoute
@@ -148,10 +182,14 @@ export interface FileRoutesById {
   '/bg/cookies': typeof BgCookiesRoute
   '/bg/privacy': typeof BgPrivacyRoute
   '/bg/terms': typeof BgTermsRoute
+  '/cancel/$token': typeof CancelTokenRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/reschedule/$token': typeof RescheduleTokenRoute
   '/bg/': typeof BgIndexRoute
   '/api/public/booking-notify': typeof ApiPublicBookingNotifyRoute
+  '/api/public/booking-reminders': typeof ApiPublicBookingRemindersRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
+  '/api/public/booking-action/$token': typeof ApiPublicBookingActionTokenRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
   '/lovable/email/transactional/send': typeof LovableEmailTransactionalSendRoute
@@ -167,10 +205,14 @@ export interface FileRouteTypes {
     | '/bg/cookies'
     | '/bg/privacy'
     | '/bg/terms'
+    | '/cancel/$token'
     | '/email/unsubscribe'
+    | '/reschedule/$token'
     | '/bg/'
     | '/api/public/booking-notify'
+    | '/api/public/booking-reminders'
     | '/lovable/email/suppression'
+    | '/api/public/booking-action/$token'
     | '/lovable/email/queue/process'
     | '/lovable/email/transactional/preview'
     | '/lovable/email/transactional/send'
@@ -184,10 +226,14 @@ export interface FileRouteTypes {
     | '/bg/cookies'
     | '/bg/privacy'
     | '/bg/terms'
+    | '/cancel/$token'
     | '/email/unsubscribe'
+    | '/reschedule/$token'
     | '/bg'
     | '/api/public/booking-notify'
+    | '/api/public/booking-reminders'
     | '/lovable/email/suppression'
+    | '/api/public/booking-action/$token'
     | '/lovable/email/queue/process'
     | '/lovable/email/transactional/preview'
     | '/lovable/email/transactional/send'
@@ -201,10 +247,14 @@ export interface FileRouteTypes {
     | '/bg/cookies'
     | '/bg/privacy'
     | '/bg/terms'
+    | '/cancel/$token'
     | '/email/unsubscribe'
+    | '/reschedule/$token'
     | '/bg/'
     | '/api/public/booking-notify'
+    | '/api/public/booking-reminders'
     | '/lovable/email/suppression'
+    | '/api/public/booking-action/$token'
     | '/lovable/email/queue/process'
     | '/lovable/email/transactional/preview'
     | '/lovable/email/transactional/send'
@@ -219,10 +269,14 @@ export interface RootRouteChildren {
   BgCookiesRoute: typeof BgCookiesRoute
   BgPrivacyRoute: typeof BgPrivacyRoute
   BgTermsRoute: typeof BgTermsRoute
+  CancelTokenRoute: typeof CancelTokenRoute
   EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
+  RescheduleTokenRoute: typeof RescheduleTokenRoute
   BgIndexRoute: typeof BgIndexRoute
   ApiPublicBookingNotifyRoute: typeof ApiPublicBookingNotifyRoute
+  ApiPublicBookingRemindersRoute: typeof ApiPublicBookingRemindersRoute
   LovableEmailSuppressionRoute: typeof LovableEmailSuppressionRoute
+  ApiPublicBookingActionTokenRoute: typeof ApiPublicBookingActionTokenRoute
   LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
   LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
   LovableEmailTransactionalSendRoute: typeof LovableEmailTransactionalSendRoute
@@ -272,11 +326,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BgIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reschedule/$token': {
+      id: '/reschedule/$token'
+      path: '/reschedule/$token'
+      fullPath: '/reschedule/$token'
+      preLoaderRoute: typeof RescheduleTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/email/unsubscribe': {
       id: '/email/unsubscribe'
       path: '/email/unsubscribe'
       fullPath: '/email/unsubscribe'
       preLoaderRoute: typeof EmailUnsubscribeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cancel/$token': {
+      id: '/cancel/$token'
+      path: '/cancel/$token'
+      fullPath: '/cancel/$token'
+      preLoaderRoute: typeof CancelTokenRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/bg/terms': {
@@ -307,6 +375,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LovableEmailSuppressionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/booking-reminders': {
+      id: '/api/public/booking-reminders'
+      path: '/api/public/booking-reminders'
+      fullPath: '/api/public/booking-reminders'
+      preLoaderRoute: typeof ApiPublicBookingRemindersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/booking-notify': {
       id: '/api/public/booking-notify'
       path: '/api/public/booking-notify'
@@ -335,6 +410,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LovableEmailQueueProcessRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/booking-action/$token': {
+      id: '/api/public/booking-action/$token'
+      path: '/api/public/booking-action/$token'
+      fullPath: '/api/public/booking-action/$token'
+      preLoaderRoute: typeof ApiPublicBookingActionTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -347,10 +429,14 @@ const rootRouteChildren: RootRouteChildren = {
   BgCookiesRoute: BgCookiesRoute,
   BgPrivacyRoute: BgPrivacyRoute,
   BgTermsRoute: BgTermsRoute,
+  CancelTokenRoute: CancelTokenRoute,
   EmailUnsubscribeRoute: EmailUnsubscribeRoute,
+  RescheduleTokenRoute: RescheduleTokenRoute,
   BgIndexRoute: BgIndexRoute,
   ApiPublicBookingNotifyRoute: ApiPublicBookingNotifyRoute,
+  ApiPublicBookingRemindersRoute: ApiPublicBookingRemindersRoute,
   LovableEmailSuppressionRoute: LovableEmailSuppressionRoute,
+  ApiPublicBookingActionTokenRoute: ApiPublicBookingActionTokenRoute,
   LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,
   LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
   LovableEmailTransactionalSendRoute: LovableEmailTransactionalSendRoute,

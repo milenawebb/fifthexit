@@ -14,6 +14,78 @@ export type Database = {
   }
   public: {
     Tables: {
+      bookings: {
+        Row: {
+          cancel_token: string
+          cancelled_at: string | null
+          created_at: string
+          date_str: string
+          duration_minutes: number
+          email: string
+          estimator: Json | null
+          google_event_id: string | null
+          id: string
+          locale: string | null
+          message: string
+          name: string
+          reminder_1h_sent_at: string | null
+          reminder_24h_sent_at: string | null
+          reschedule_token: string
+          rescheduled_at: string | null
+          starts_at: string
+          status: string
+          time_str: string
+          timezone: string
+          updated_at: string
+        }
+        Insert: {
+          cancel_token: string
+          cancelled_at?: string | null
+          created_at?: string
+          date_str: string
+          duration_minutes?: number
+          email: string
+          estimator?: Json | null
+          google_event_id?: string | null
+          id?: string
+          locale?: string | null
+          message: string
+          name: string
+          reminder_1h_sent_at?: string | null
+          reminder_24h_sent_at?: string | null
+          reschedule_token: string
+          rescheduled_at?: string | null
+          starts_at: string
+          status?: string
+          time_str: string
+          timezone?: string
+          updated_at?: string
+        }
+        Update: {
+          cancel_token?: string
+          cancelled_at?: string | null
+          created_at?: string
+          date_str?: string
+          duration_minutes?: number
+          email?: string
+          estimator?: Json | null
+          google_event_id?: string | null
+          id?: string
+          locale?: string | null
+          message?: string
+          name?: string
+          reminder_1h_sent_at?: string | null
+          reminder_24h_sent_at?: string | null
+          reschedule_token?: string
+          rescheduled_at?: string | null
+          starts_at?: string
+          status?: string
+          time_str?: string
+          timezone?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       email_send_log: {
         Row: {
           created_at: string
