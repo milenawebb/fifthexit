@@ -156,7 +156,13 @@
     "projectPlaceholder": "Tell us about your goals, timeline, and any links to inspiration...",
     "confirmButton": "Confirm my consult →",
     "callInfo": "Free 30-minute discovery call · We respond within 2 hours to confirm",
-    "noSpam": "We respond within 48 hours. No spam, ever."
+    "noSpam": "We respond within 48 hours. No spam, ever.",
+    "tabBook": "Book a consult",
+    "tabQuestion": "Quick question",
+    "message": "Message",
+    "messagePlaceholder": "What's on your mind?",
+    "sendMessage": "Send message →",
+    "questionSuccess": "Got it! We'll get back to you within 24 hours."
   },
   "cookieBanner": {
     "title": "Cookie notice",
