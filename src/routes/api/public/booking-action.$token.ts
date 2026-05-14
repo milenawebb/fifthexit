@@ -87,15 +87,11 @@ export const Route = createFileRoute('/api/public/booking-action/$token')({
           if (params.token !== booking.cancel_token) {
             return Response.json({ error: 'Invalid token' }, { status: 403 })
           }
-          if (booking.google_event_id) {
-            await deleteCalendarEvent(booking.google_event_id)
-          }
           await supabase
             .from('bookings')
             .update({
               status: 'cancelled',
               cancelled_at: new Date().toISOString(),
-              google_event_id: null,
             })
             .eq('id', booking.id)
 
@@ -133,22 +129,6 @@ export const Route = createFileRoute('/api/public/booking-action/$token')({
         const oldTime = booking.time_str
         const newStarts = localToUtc(parsed.date, parsed.time)
 
-        const eventInput = {
-          name: booking.name,
-          email: booking.email,
-          message: booking.message,
-          date: parsed.date,
-          time: parsed.time,
-          durationMinutes: 30,
-        }
-        let eventId = booking.google_event_id as string | null
-        if (eventId) {
-          const ok = await updateCalendarEvent(eventId, eventInput)
-          if (!ok) eventId = await createCalendarEvent(eventInput)
-        } else {
-          eventId = await createCalendarEvent(eventInput)
-        }
-
         await supabase
           .from('bookings')
           .update({
@@ -158,7 +138,6 @@ export const Route = createFileRoute('/api/public/booking-action/$token')({
             rescheduled_at: new Date().toISOString(),
             reminder_24h_sent_at: null,
             reminder_1h_sent_at: null,
-            google_event_id: eventId,
           })
           .eq('id', booking.id)
 
@@ -173,6 +152,8 @@ export const Route = createFileRoute('/api/public/booking-action/$token')({
             locale: booking.locale,
             rescheduleUrl: `${SITE_URL}/reschedule/${booking.reschedule_token}`,
             cancelUrl: `${SITE_URL}/cancel/${booking.cancel_token}`,
+            googleCalendarUrl: googleCalendarUrl(parsed.date, parsed.time),
+            icsUrl: `${SITE_URL}/api/public/booking-ics/${booking.cancel_token}`,
           },
         })
 
