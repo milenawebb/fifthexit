@@ -60,8 +60,7 @@ const BookingConfirmationEmail = ({
               <Heading style={h1}>Здравейте{name ? `, ${name}` : ''},</Heading>
               <Text style={lead}>
                 Вашият безплатен разговор с {SITE_NAME} е потвърден
-                {date ? ` за ${date}` : ''}
-                {time ? ` в ${time}` : ''}.
+                {whenLine ? ` — ${whenLine}` : ''}.
               </Text>
               <Section style={card}>
                 <Text style={body}>
@@ -101,8 +100,7 @@ const BookingConfirmationEmail = ({
               <Heading style={h1}>{name ? `Thanks, ${name}!` : 'Thanks for booking!'}</Heading>
               <Text style={lead}>Your consult with {SITE_NAME} is confirmed.</Text>
               <Section style={card}>
-                {date ? <Text style={body}><strong>Date:</strong> {date}</Text> : null}
-                {time ? <Text style={body}><strong>Time:</strong> {time}</Text> : null}
+                {whenLine ? <Text style={body}><strong>When:</strong> {whenLine}</Text> : null}
                 <Text style={body}>
                   <strong>Join the call here:</strong>{' '}
                   <Link href={VIDEO_CALL_URL} style={link}>{VIDEO_CALL_URL}</Link>
