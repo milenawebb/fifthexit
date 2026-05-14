@@ -111,7 +111,7 @@ export const Route = createFileRoute('/api/public/booking-notify')({
             locale: payload.locale,
             rescheduleUrl,
             cancelUrl,
-            googleCalendarUrl: googleCalendarUrl(payload.date, payload.time),
+            googleCalendarUrl: gcalUrl,
             icsUrl,
           },
         })
