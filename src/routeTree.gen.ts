@@ -22,6 +22,7 @@ import { Route as BgTermsRouteImport } from './routes/bg/terms'
 import { Route as BgPrivacyRouteImport } from './routes/bg/privacy'
 import { Route as BgCookiesRouteImport } from './routes/bg/cookies'
 import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
+import { Route as ApiPublicQuickQuestionRouteImport } from './routes/api/public/quick-question'
 import { Route as ApiPublicBookingTakenSlotsRouteImport } from './routes/api/public/booking-taken-slots'
 import { Route as ApiPublicBookingRemindersRouteImport } from './routes/api/public/booking-reminders'
 import { Route as ApiPublicBookingNotifyRouteImport } from './routes/api/public/booking-notify'
@@ -96,6 +97,11 @@ const LovableEmailSuppressionRoute = LovableEmailSuppressionRouteImport.update({
   path: '/lovable/email/suppression',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicQuickQuestionRoute = ApiPublicQuickQuestionRouteImport.update({
+  id: '/api/public/quick-question',
+  path: '/api/public/quick-question',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicBookingTakenSlotsRoute =
   ApiPublicBookingTakenSlotsRouteImport.update({
     id: '/api/public/booking-taken-slots',
@@ -160,6 +166,7 @@ export interface FileRoutesByFullPath {
   '/api/public/booking-notify': typeof ApiPublicBookingNotifyRoute
   '/api/public/booking-reminders': typeof ApiPublicBookingRemindersRoute
   '/api/public/booking-taken-slots': typeof ApiPublicBookingTakenSlotsRoute
+  '/api/public/quick-question': typeof ApiPublicQuickQuestionRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/api/public/booking-action/$token': typeof ApiPublicBookingActionTokenRoute
   '/api/public/booking-ics/$token': typeof ApiPublicBookingIcsTokenRoute
@@ -183,6 +190,7 @@ export interface FileRoutesByTo {
   '/api/public/booking-notify': typeof ApiPublicBookingNotifyRoute
   '/api/public/booking-reminders': typeof ApiPublicBookingRemindersRoute
   '/api/public/booking-taken-slots': typeof ApiPublicBookingTakenSlotsRoute
+  '/api/public/quick-question': typeof ApiPublicQuickQuestionRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/api/public/booking-action/$token': typeof ApiPublicBookingActionTokenRoute
   '/api/public/booking-ics/$token': typeof ApiPublicBookingIcsTokenRoute
@@ -207,6 +215,7 @@ export interface FileRoutesById {
   '/api/public/booking-notify': typeof ApiPublicBookingNotifyRoute
   '/api/public/booking-reminders': typeof ApiPublicBookingRemindersRoute
   '/api/public/booking-taken-slots': typeof ApiPublicBookingTakenSlotsRoute
+  '/api/public/quick-question': typeof ApiPublicQuickQuestionRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/api/public/booking-action/$token': typeof ApiPublicBookingActionTokenRoute
   '/api/public/booking-ics/$token': typeof ApiPublicBookingIcsTokenRoute
@@ -232,6 +241,7 @@ export interface FileRouteTypes {
     | '/api/public/booking-notify'
     | '/api/public/booking-reminders'
     | '/api/public/booking-taken-slots'
+    | '/api/public/quick-question'
     | '/lovable/email/suppression'
     | '/api/public/booking-action/$token'
     | '/api/public/booking-ics/$token'
@@ -255,6 +265,7 @@ export interface FileRouteTypes {
     | '/api/public/booking-notify'
     | '/api/public/booking-reminders'
     | '/api/public/booking-taken-slots'
+    | '/api/public/quick-question'
     | '/lovable/email/suppression'
     | '/api/public/booking-action/$token'
     | '/api/public/booking-ics/$token'
@@ -278,6 +289,7 @@ export interface FileRouteTypes {
     | '/api/public/booking-notify'
     | '/api/public/booking-reminders'
     | '/api/public/booking-taken-slots'
+    | '/api/public/quick-question'
     | '/lovable/email/suppression'
     | '/api/public/booking-action/$token'
     | '/api/public/booking-ics/$token'
@@ -302,6 +314,7 @@ export interface RootRouteChildren {
   ApiPublicBookingNotifyRoute: typeof ApiPublicBookingNotifyRoute
   ApiPublicBookingRemindersRoute: typeof ApiPublicBookingRemindersRoute
   ApiPublicBookingTakenSlotsRoute: typeof ApiPublicBookingTakenSlotsRoute
+  ApiPublicQuickQuestionRoute: typeof ApiPublicQuickQuestionRoute
   LovableEmailSuppressionRoute: typeof LovableEmailSuppressionRoute
   ApiPublicBookingActionTokenRoute: typeof ApiPublicBookingActionTokenRoute
   ApiPublicBookingIcsTokenRoute: typeof ApiPublicBookingIcsTokenRoute
@@ -403,6 +416,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LovableEmailSuppressionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/quick-question': {
+      id: '/api/public/quick-question'
+      path: '/api/public/quick-question'
+      fullPath: '/api/public/quick-question'
+      preLoaderRoute: typeof ApiPublicQuickQuestionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/booking-taken-slots': {
       id: '/api/public/booking-taken-slots'
       path: '/api/public/booking-taken-slots'
@@ -478,6 +498,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiPublicBookingNotifyRoute: ApiPublicBookingNotifyRoute,
   ApiPublicBookingRemindersRoute: ApiPublicBookingRemindersRoute,
   ApiPublicBookingTakenSlotsRoute: ApiPublicBookingTakenSlotsRoute,
+  ApiPublicQuickQuestionRoute: ApiPublicQuickQuestionRoute,
   LovableEmailSuppressionRoute: LovableEmailSuppressionRoute,
   ApiPublicBookingActionTokenRoute: ApiPublicBookingActionTokenRoute,
   ApiPublicBookingIcsTokenRoute: ApiPublicBookingIcsTokenRoute,

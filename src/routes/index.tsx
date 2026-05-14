@@ -832,8 +832,86 @@ function BookingForm() {
   );
 }
 
+function QuickQuestionForm() {
+  const { t, i18n } = useTranslation();
+  const [submitting, setSubmitting] = useState(false);
+  const [done, setDone] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const schema = z.object({
+      name: z.string().trim().min(2).max(80),
+      email: z.string().trim().email().max(160),
+      message: z.string().trim().min(2).max(2000),
+    });
+    const result = schema.safeParse(form);
+    if (!result.success) {
+      toast.error(result.error.issues[0]?.message ?? "Please review the form");
+      return;
+    }
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/public/quick-question", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...result.data, locale: i18n.language }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      setDone(true);
+      toast.success(t("booking.questionSuccess"));
+    } catch (err) {
+      console.error("Quick question failed", err);
+      toast.error("Could not submit. Please try again or email us directly.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  if (done) {
+    return (
+      <div className="glass rounded-3xl p-12 text-center">
+        <div className="mx-auto h-16 w-16 rounded-full bg-gradient-hero flex items-center justify-center mb-6 shadow-glow">
+          <Check className="h-8 w-8 text-primary-foreground" />
+        </div>
+        <p className="text-muted-foreground">{t("booking.questionSuccess")}</p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={onSubmit} className="glass rounded-3xl p-6 md:p-10 space-y-6">
+      <div className="grid md:grid-cols-2 gap-5">
+        <div className="space-y-2">
+          <Label htmlFor="qq-name">{t("booking.name")} *</Label>
+          <Input id="qq-name" maxLength={80} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder={t("booking.namePlaceholder")} />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="qq-email">{t("booking.email")} *</Label>
+          <Input id="qq-email" type="email" maxLength={160} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="alex@brand.com" />
+        </div>
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="qq-message">{t("booking.message")} *</Label>
+        <Textarea
+          id="qq-message"
+          maxLength={2000}
+          rows={5}
+          value={form.message}
+          onChange={(e) => setForm({ ...form, message: e.target.value })}
+          placeholder={t("booking.messagePlaceholder")}
+        />
+      </div>
+      <Button type="submit" disabled={submitting} size="lg" className="w-full bg-gradient-hero text-primary-foreground hover:opacity-90 shadow-glow h-12 text-base">
+        {submitting ? "..." : t("booking.sendMessage")}
+      </Button>
+    </form>
+  );
+}
+
 function Booking() {
   const { t } = useTranslation();
+  const [tab, setTab] = useState<"book" | "question">("book");
   return (
     <section id="book" className="py-12 md:pt-16 md:pb-16 relative" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="absolute top-0 left-1/2 -translate-x-1/2 h-96 w-96 rounded-full bg-primary/20 blur-[120px] pointer-events-none" />
@@ -847,7 +925,42 @@ function Booking() {
             {t("booking.subheading")}
           </p>
         </div>
-        <BookingForm />
+
+        <div className="flex justify-center mb-6">
+          <div role="tablist" className="inline-flex items-center gap-1 p-1 rounded-full border border-border/60 bg-[#16142a]">
+            {([
+              { id: "book", label: t("booking.tabBook") },
+              { id: "question", label: t("booking.tabQuestion") },
+            ] as const).map((tb) => {
+              const active = tab === tb.id;
+              return (
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={active}
+                  key={tb.id}
+                  onClick={() => setTab(tb.id)}
+                  className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
+                    active
+                      ? "bg-gradient-hero text-primary-foreground shadow-glow"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {tb.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="relative">
+          <div
+            key={tab}
+            className="animate-in fade-in duration-300"
+          >
+            {tab === "book" ? <BookingForm /> : <QuickQuestionForm />}
+          </div>
+        </div>
       </div>
     </section>
   );

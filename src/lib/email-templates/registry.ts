@@ -15,6 +15,7 @@ import { template as bookingReminder24h } from './booking-reminder-24h'
 import { template as bookingReminder1h } from './booking-reminder-1h'
 import { template as bookingCancellation } from './booking-cancellation'
 import { template as bookingRescheduleNotify } from './booking-reschedule-notify'
+import { template as quickQuestion } from './quick-question'
 
 export const TEMPLATES: Record<string, TemplateEntry> = {
   'booking-notification': bookingNotification,
@@ -23,4 +24,5 @@ export const TEMPLATES: Record<string, TemplateEntry> = {
   'booking-reminder-1h': bookingReminder1h,
   'booking-cancellation': bookingCancellation,
   'booking-reschedule-notify': bookingRescheduleNotify,
+  'quick-question': quickQuestion,
 }
