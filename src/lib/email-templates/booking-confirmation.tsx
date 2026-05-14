@@ -23,6 +23,8 @@ interface BookingConfirmationProps {
   locale?: string
   rescheduleUrl?: string
   cancelUrl?: string
+  googleCalendarUrl?: string
+  icsUrl?: string
 }
 
 const isBg = (locale?: string) => (locale ?? '').toLowerCase().startsWith('bg')
