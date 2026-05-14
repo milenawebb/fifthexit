@@ -20,6 +20,7 @@ interface BookingConfirmationProps {
   name?: string
   date?: string
   time?: string
+  formattedDateTime?: string
   locale?: string
   rescheduleUrl?: string
   cancelUrl?: string
@@ -33,6 +34,7 @@ const BookingConfirmationEmail = ({
   name,
   date,
   time,
+  formattedDateTime,
   locale,
   rescheduleUrl,
   cancelUrl,
@@ -42,6 +44,7 @@ const BookingConfirmationEmail = ({
   const bg = isBg(locale)
   const addToCalendarLabel = bg ? 'Добави в календара' : 'Add to Calendar'
   const icsLabel = bg ? 'Изтегли .ics (Apple/Outlook)' : 'Download .ics (Apple / Outlook)'
+  const whenLine = formattedDateTime || [date, time].filter(Boolean).join(bg ? ' в ' : ' at ')
   return (
     <Html lang={bg ? 'bg' : 'en'} dir="ltr">
       <Head />
