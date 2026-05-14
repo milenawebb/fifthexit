@@ -85,17 +85,22 @@ export const Route = createFileRoute('/api/public/booking-notify')({
           return Response.json({ error: 'Failed to record booking' }, { status: 500 })
         }
 
-        // Internal notification email
-        await enqueueTransactional(supabase, {
-          templateName: 'booking-notification',
-          props: payload,
-          replyTo: payload.email,
-        })
-
-        // Client confirmation email with reschedule/cancel + add-to-calendar links
+        // Shared calendar links
+        const gcalUrl = googleCalendarUrl(payload.date, payload.time)
         const rescheduleUrl = `${SITE_URL}/reschedule/${rescheduleToken}`
         const cancelUrl = `${SITE_URL}/cancel/${cancelToken}`
         const icsUrl = `${SITE_URL}/api/public/booking-ics/${cancelToken}`
+
+        // Internal notification email
+        await enqueueTransactional(supabase, {
+          templateName: 'booking-notification',
+          props: {
+            ...payload,
+            googleCalendarUrl: gcalUrl,
+            icsUrl,
+          },
+          replyTo: payload.email,
+        })
         await enqueueTransactional(supabase, {
           templateName: 'booking-confirmation',
           to: payload.email,
