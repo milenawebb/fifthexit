@@ -8,48 +8,52 @@ const VIDEO_CALL_URL =
 interface Props {
   name?: string
   time?: string
+  formattedDateTime?: string
   forDev?: boolean
 }
 
-const Email = ({ name, time, forDev }: Props) => (
-  <Html lang="en" dir="ltr">
-    <Head />
-    <Preview>Your {SITE_NAME} call starts in 1 hour</Preview>
-    <Body style={main}>
-      <Container style={container}>
-        {forDev ? (
-          <>
-            <Heading style={h1}>Heads up — call in 1 hour</Heading>
-            <Text style={lead}>
-              Your call with {name || 'a client'} starts in 1 hour
-              {time ? ` at ${time}` : ''}.
-            </Text>
-            <Text style={lead}>
-              Join here: <Link href={VIDEO_CALL_URL} style={link}>{VIDEO_CALL_URL}</Link>
-            </Text>
-          </>
-        ) : (
-          <>
-            <Heading style={h1}>Hi{name ? ` ${name}` : ''},</Heading>
-            <Text style={lead}>
-              Your call with {SITE_NAME} starts in 1 hour{time ? ` at ${time}` : ''}.
-            </Text>
-            <Text style={lead}>
-              Click here to join: <Link href={VIDEO_CALL_URL} style={link}>{VIDEO_CALL_URL}</Link>
-            </Text>
-            <Text style={footer}>See you soon!<br />— The {SITE_NAME} team</Text>
-          </>
-        )}
-      </Container>
-    </Body>
-  </Html>
-)
+const Email = ({ name, time, formattedDateTime, forDev }: Props) => {
+  const when = formattedDateTime || time || ''
+  return (
+    <Html lang="en" dir="ltr">
+      <Head />
+      <Preview>Your {SITE_NAME} call starts in 1 hour</Preview>
+      <Body style={main}>
+        <Container style={container}>
+          {forDev ? (
+            <>
+              <Heading style={h1}>Heads up — call in 1 hour</Heading>
+              <Text style={lead}>
+                Your call with {name || 'a client'} starts in 1 hour
+                {when ? ` — ${when}` : ''}.
+              </Text>
+              <Text style={lead}>
+                Join here: <Link href={VIDEO_CALL_URL} style={link}>{VIDEO_CALL_URL}</Link>
+              </Text>
+            </>
+          ) : (
+            <>
+              <Heading style={h1}>Hi{name ? ` ${name}` : ''},</Heading>
+              <Text style={lead}>
+                Your call with {SITE_NAME} starts in 1 hour{when ? ` — ${when}` : ''}.
+              </Text>
+              <Text style={lead}>
+                Click here to join: <Link href={VIDEO_CALL_URL} style={link}>{VIDEO_CALL_URL}</Link>
+              </Text>
+              <Text style={footer}>See you soon!<br />— The {SITE_NAME} team</Text>
+            </>
+          )}
+        </Container>
+      </Body>
+    </Html>
+  )
+}
 
 export const template = {
   component: Email,
   subject: `Your ${SITE_NAME} call starts in 1 hour`,
   displayName: 'Booking reminder — 1 hour',
-  previewData: { name: 'Alex', time: '14:00', forDev: false },
+  previewData: { name: 'Alex', formattedDateTime: 'Friday, May 15, 2026 at 5:30 PM EEST (your local time)', forDev: false },
 } satisfies TemplateEntry
 
 const main = { backgroundColor: '#ffffff', fontFamily: 'Arial, sans-serif' }

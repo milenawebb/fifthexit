@@ -9,33 +9,37 @@ interface Props {
   name?: string
   date?: string
   time?: string
+  formattedDateTime?: string
 }
 
-const Email = ({ name, date, time }: Props) => (
-  <Html lang="en" dir="ltr">
-    <Head />
-    <Preview>Reminder: Your {SITE_NAME} call is tomorrow</Preview>
-    <Body style={main}>
-      <Container style={container}>
-        <Heading style={h1}>Hi{name ? ` ${name}` : ''},</Heading>
-        <Text style={lead}>
-          Just a reminder that your free discovery call with {SITE_NAME} is tomorrow,
-          {date ? ` ${date}` : ''}{time ? ` at ${time}` : ''}.
-        </Text>
-        <Text style={lead}>
-          Join here: <Link href={VIDEO_CALL_URL} style={link}>{VIDEO_CALL_URL}</Link>
-        </Text>
-        <Text style={footer}>See you then!<br />— The {SITE_NAME} team</Text>
-      </Container>
-    </Body>
-  </Html>
-)
+const Email = ({ name, date, time, formattedDateTime }: Props) => {
+  const when = formattedDateTime || [date, time].filter(Boolean).join(' at ')
+  return (
+    <Html lang="en" dir="ltr">
+      <Head />
+      <Preview>Reminder: Your {SITE_NAME} call is tomorrow</Preview>
+      <Body style={main}>
+        <Container style={container}>
+          <Heading style={h1}>Hi{name ? ` ${name}` : ''},</Heading>
+          <Text style={lead}>
+            Just a reminder that your free discovery call with {SITE_NAME} is tomorrow
+            {when ? ` — ${when}` : ''}.
+          </Text>
+          <Text style={lead}>
+            Join here: <Link href={VIDEO_CALL_URL} style={link}>{VIDEO_CALL_URL}</Link>
+          </Text>
+          <Text style={footer}>See you then!<br />— The {SITE_NAME} team</Text>
+        </Container>
+      </Body>
+    </Html>
+  )
+}
 
 export const template = {
   component: Email,
   subject: `Reminder: Your ${SITE_NAME} call is tomorrow`,
   displayName: 'Booking reminder — 24 hours',
-  previewData: { name: 'Alex', date: 'Mon, Jan 15', time: '14:00' },
+  previewData: { name: 'Alex', formattedDateTime: 'Friday, May 15, 2026 at 5:30 PM EEST (your local time)' },
 } satisfies TemplateEntry
 
 const main = { backgroundColor: '#ffffff', fontFamily: 'Arial, sans-serif' }
