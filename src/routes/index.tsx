@@ -31,6 +31,7 @@ import rinPreview from "@/assets/rin-preview.png";
 import bellhousePreview from "@/assets/bellhouse-preview.png";
 import eliteRidePreview from "@/assets/elite-ride-preview.png";
 import PriceEstimator from "@/components/PriceEstimator";
+import { useEstimatorSelections, setEstimatorSelections } from "@/lib/estimator-store";
 
 export const Route = createFileRoute("/")({
   head: () => ({
