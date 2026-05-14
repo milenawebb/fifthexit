@@ -2,8 +2,8 @@ import { createClient } from '@supabase/supabase-js'
 import { createFileRoute } from '@tanstack/react-router'
 import { z } from 'zod'
 import { enqueueTransactional } from '@/lib/email-enqueue'
-import { createCalendarEvent } from '@/lib/google-calendar'
 import { generateToken, localToUtc } from '@/lib/timezone'
+import { googleCalendarUrl } from '@/lib/calendar-links'
 
 const SITE_URL = 'https://hype-street.com'
 
