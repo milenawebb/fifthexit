@@ -167,3 +167,14 @@ const link = { color: '#7b78f5', textDecoration: 'underline', wordBreak: 'break-
 const actions = { fontSize: '13px', color: '#55575d', margin: '0 0 20px', lineHeight: '1.5' }
 const sep = { color: '#999' }
 const footer = { fontSize: '12px', color: '#999', margin: '24px 0 0', lineHeight: '1.6' }
+const ctaButton = {
+  display: 'inline-block',
+  background: '#7b78f5',
+  color: '#ffffff',
+  padding: '11px 22px',
+  borderRadius: '8px',
+  fontSize: '14px',
+  fontWeight: 'bold',
+  textDecoration: 'none',
+}
+const icsLine = { fontSize: '12px', color: '#55575d', textAlign: 'center' as const, margin: '8px 0 0' }
