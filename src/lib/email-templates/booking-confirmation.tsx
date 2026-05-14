@@ -36,8 +36,12 @@ const BookingConfirmationEmail = ({
   locale,
   rescheduleUrl,
   cancelUrl,
+  googleCalendarUrl,
+  icsUrl,
 }: BookingConfirmationProps) => {
   const bg = isBg(locale)
+  const addToCalendarLabel = bg ? 'Добави в календара' : 'Add to Calendar'
+  const icsLabel = bg ? 'Изтегли .ics (Apple/Outlook)' : 'Download .ics (Apple / Outlook)'
   return (
     <Html lang={bg ? 'bg' : 'en'} dir="ltr">
       <Head />
@@ -61,6 +65,16 @@ const BookingConfirmationEmail = ({
                   <strong>Присъединете се към разговора тук:</strong>{' '}
                   <Link href={VIDEO_CALL_URL} style={link}>{VIDEO_CALL_URL}</Link>
                 </Text>
+                {googleCalendarUrl ? (
+                  <Section style={{ textAlign: 'center', margin: '14px 0 4px' }}>
+                    <Link href={googleCalendarUrl} style={ctaButton}>{addToCalendarLabel}</Link>
+                  </Section>
+                ) : null}
+                {icsUrl ? (
+                  <Text style={icsLine}>
+                    <Link href={icsUrl} style={link}>{icsLabel}</Link>
+                  </Text>
+                ) : null}
               </Section>
               {(rescheduleUrl || cancelUrl) && (
                 <Text style={actions}>
@@ -73,7 +87,6 @@ const BookingConfirmationEmail = ({
                   ) : null}
                 </Text>
               )}
-              <Text style={lead}>Ще се свържем с вас скоро за потвърждение.</Text>
               <Text style={footer}>
                 Поздрави,<br />
                 Екипът на {SITE_NAME}<br />
@@ -83,9 +96,7 @@ const BookingConfirmationEmail = ({
           ) : (
             <>
               <Heading style={h1}>{name ? `Thanks, ${name}!` : 'Thanks for booking!'}</Heading>
-              <Text style={lead}>
-                Your consult with {SITE_NAME} is booked. We'll confirm within 2 hours.
-              </Text>
+              <Text style={lead}>Your consult with {SITE_NAME} is confirmed.</Text>
               <Section style={card}>
                 {date ? <Text style={body}><strong>Date:</strong> {date}</Text> : null}
                 {time ? <Text style={body}><strong>Time:</strong> {time}</Text> : null}
@@ -93,6 +104,16 @@ const BookingConfirmationEmail = ({
                   <strong>Join the call here:</strong>{' '}
                   <Link href={VIDEO_CALL_URL} style={link}>{VIDEO_CALL_URL}</Link>
                 </Text>
+                {googleCalendarUrl ? (
+                  <Section style={{ textAlign: 'center', margin: '14px 0 4px' }}>
+                    <Link href={googleCalendarUrl} style={ctaButton}>{addToCalendarLabel}</Link>
+                  </Section>
+                ) : null}
+                {icsUrl ? (
+                  <Text style={icsLine}>
+                    <Link href={icsUrl} style={link}>{icsLabel}</Link>
+                  </Text>
+                ) : null}
               </Section>
               {(rescheduleUrl || cancelUrl) && (
                 <Text style={actions}>
