@@ -15,7 +15,9 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BgIndexRouteImport } from './routes/bg/index'
+import { Route as RescheduleTokenRouteImport } from './routes/reschedule.$token'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
+import { Route as CancelTokenRouteImport } from './routes/cancel.$token'
 import { Route as BgTermsRouteImport } from './routes/bg/terms'
 import { Route as BgPrivacyRouteImport } from './routes/bg/privacy'
 import { Route as BgCookiesRouteImport } from './routes/bg/cookies'
@@ -57,9 +59,19 @@ const BgIndexRoute = BgIndexRouteImport.update({
   path: '/bg/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RescheduleTokenRoute = RescheduleTokenRouteImport.update({
+  id: '/reschedule/$token',
+  path: '/reschedule/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EmailUnsubscribeRoute = EmailUnsubscribeRouteImport.update({
   id: '/email/unsubscribe',
   path: '/email/unsubscribe',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CancelTokenRoute = CancelTokenRouteImport.update({
+  id: '/cancel/$token',
+  path: '/cancel/$token',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BgTermsRoute = BgTermsRouteImport.update({
@@ -127,7 +139,9 @@ export interface FileRoutesByFullPath {
   '/bg/cookies': typeof BgCookiesRoute
   '/bg/privacy': typeof BgPrivacyRoute
   '/bg/terms': typeof BgTermsRoute
+  '/cancel/$token': typeof CancelTokenRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/reschedule/$token': typeof RescheduleTokenRoute
   '/bg/': typeof BgIndexRoute
   '/api/public/booking-notify': typeof ApiPublicBookingNotifyRoute
   '/api/public/booking-reminders': typeof ApiPublicBookingRemindersRoute
@@ -146,7 +160,9 @@ export interface FileRoutesByTo {
   '/bg/cookies': typeof BgCookiesRoute
   '/bg/privacy': typeof BgPrivacyRoute
   '/bg/terms': typeof BgTermsRoute
+  '/cancel/$token': typeof CancelTokenRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/reschedule/$token': typeof RescheduleTokenRoute
   '/bg': typeof BgIndexRoute
   '/api/public/booking-notify': typeof ApiPublicBookingNotifyRoute
   '/api/public/booking-reminders': typeof ApiPublicBookingRemindersRoute
@@ -166,7 +182,9 @@ export interface FileRoutesById {
   '/bg/cookies': typeof BgCookiesRoute
   '/bg/privacy': typeof BgPrivacyRoute
   '/bg/terms': typeof BgTermsRoute
+  '/cancel/$token': typeof CancelTokenRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/reschedule/$token': typeof RescheduleTokenRoute
   '/bg/': typeof BgIndexRoute
   '/api/public/booking-notify': typeof ApiPublicBookingNotifyRoute
   '/api/public/booking-reminders': typeof ApiPublicBookingRemindersRoute
@@ -187,7 +205,9 @@ export interface FileRouteTypes {
     | '/bg/cookies'
     | '/bg/privacy'
     | '/bg/terms'
+    | '/cancel/$token'
     | '/email/unsubscribe'
+    | '/reschedule/$token'
     | '/bg/'
     | '/api/public/booking-notify'
     | '/api/public/booking-reminders'
@@ -206,7 +226,9 @@ export interface FileRouteTypes {
     | '/bg/cookies'
     | '/bg/privacy'
     | '/bg/terms'
+    | '/cancel/$token'
     | '/email/unsubscribe'
+    | '/reschedule/$token'
     | '/bg'
     | '/api/public/booking-notify'
     | '/api/public/booking-reminders'
@@ -225,7 +247,9 @@ export interface FileRouteTypes {
     | '/bg/cookies'
     | '/bg/privacy'
     | '/bg/terms'
+    | '/cancel/$token'
     | '/email/unsubscribe'
+    | '/reschedule/$token'
     | '/bg/'
     | '/api/public/booking-notify'
     | '/api/public/booking-reminders'
@@ -245,7 +269,9 @@ export interface RootRouteChildren {
   BgCookiesRoute: typeof BgCookiesRoute
   BgPrivacyRoute: typeof BgPrivacyRoute
   BgTermsRoute: typeof BgTermsRoute
+  CancelTokenRoute: typeof CancelTokenRoute
   EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
+  RescheduleTokenRoute: typeof RescheduleTokenRoute
   BgIndexRoute: typeof BgIndexRoute
   ApiPublicBookingNotifyRoute: typeof ApiPublicBookingNotifyRoute
   ApiPublicBookingRemindersRoute: typeof ApiPublicBookingRemindersRoute
@@ -300,11 +326,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BgIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reschedule/$token': {
+      id: '/reschedule/$token'
+      path: '/reschedule/$token'
+      fullPath: '/reschedule/$token'
+      preLoaderRoute: typeof RescheduleTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/email/unsubscribe': {
       id: '/email/unsubscribe'
       path: '/email/unsubscribe'
       fullPath: '/email/unsubscribe'
       preLoaderRoute: typeof EmailUnsubscribeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cancel/$token': {
+      id: '/cancel/$token'
+      path: '/cancel/$token'
+      fullPath: '/cancel/$token'
+      preLoaderRoute: typeof CancelTokenRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/bg/terms': {
@@ -389,7 +429,9 @@ const rootRouteChildren: RootRouteChildren = {
   BgCookiesRoute: BgCookiesRoute,
   BgPrivacyRoute: BgPrivacyRoute,
   BgTermsRoute: BgTermsRoute,
+  CancelTokenRoute: CancelTokenRoute,
   EmailUnsubscribeRoute: EmailUnsubscribeRoute,
+  RescheduleTokenRoute: RescheduleTokenRoute,
   BgIndexRoute: BgIndexRoute,
   ApiPublicBookingNotifyRoute: ApiPublicBookingNotifyRoute,
   ApiPublicBookingRemindersRoute: ApiPublicBookingRemindersRoute,
