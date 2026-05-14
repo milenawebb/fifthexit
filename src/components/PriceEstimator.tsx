@@ -307,23 +307,26 @@ export default function PriceEstimator() {
             )}
 
             {/* Nav buttons */}
-            <div style={{ display: "flex", justifyContent: "space-between", marginTop: "2.5rem", alignItems: "center" }}>
-              {step > 0 ? (
-                <button className="est-btn-ghost" style={btnGhost} onClick={() => setStep(step - 1)}>← {t("estimator.back")}</button>
-              ) : <div />}
-              {step < steps.length - 1 ? (
-                step > 0 ? (
-                  <button style={{ ...btnPrimary, opacity: canNext[step] ? 1 : 0.4, cursor: canNext[step] ? "pointer" : "not-allowed" }}
-                    onClick={() => canNext[step] && setStep(step + 1)}>
+            {step > 0 && (
+              <div style={{ display: "flex", justifyContent: "space-between", marginTop: "2.5rem", alignItems: "center", gap: "1rem" }}>
+                <button className="est-btn-ghost" style={btnGhost} onClick={() => setStep(step - 1)}>
+                  ← {t("estimator.back")}
+                </button>
+                {step < steps.length - 1 ? (
+                  <button
+                    style={{ ...btnPrimary, opacity: canNext[step] ? 1 : 0.4, cursor: canNext[step] ? "pointer" : "not-allowed" }}
+                    disabled={!canNext[step]}
+                    onClick={() => canNext[step] && setStep(step + 1)}
+                  >
                     {t("estimator.continue")} →
                   </button>
-                ) : <div />
-              ) : (
-                <button style={btnPrimary} onClick={() => setShowResult(true)}>
-                  {t("estimator.seeEstimate")} →
-                </button>
-              )}
-            </div>
+                ) : (
+                  <button style={btnPrimary} onClick={() => setShowResult(true)}>
+                    {t("estimator.seeEstimate")} →
+                  </button>
+                )}
+              </div>
+            )}
           </>
         ) : (
           /* Result screen */
