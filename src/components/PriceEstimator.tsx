@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { setEstimatorSelections } from "@/lib/estimator-store";
 
 const MonitorIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: "block" }}>
