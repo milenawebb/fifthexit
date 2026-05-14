@@ -15,9 +15,14 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BgIndexRouteImport } from './routes/bg/index'
+import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
 import { Route as BgTermsRouteImport } from './routes/bg/terms'
 import { Route as BgPrivacyRouteImport } from './routes/bg/privacy'
 import { Route as BgCookiesRouteImport } from './routes/bg/cookies'
+import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
+import { Route as ApiPublicBookingNotifyRouteImport } from './routes/api/public/booking-notify'
+import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
+import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
 
 const TermsRoute = TermsRouteImport.update({
@@ -50,6 +55,11 @@ const BgIndexRoute = BgIndexRouteImport.update({
   path: '/bg/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EmailUnsubscribeRoute = EmailUnsubscribeRouteImport.update({
+  id: '/email/unsubscribe',
+  path: '/email/unsubscribe',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BgTermsRoute = BgTermsRouteImport.update({
   id: '/bg/terms',
   path: '/bg/terms',
@@ -65,6 +75,28 @@ const BgCookiesRoute = BgCookiesRouteImport.update({
   path: '/bg/cookies',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LovableEmailSuppressionRoute = LovableEmailSuppressionRouteImport.update({
+  id: '/lovable/email/suppression',
+  path: '/lovable/email/suppression',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicBookingNotifyRoute = ApiPublicBookingNotifyRouteImport.update({
+  id: '/api/public/booking-notify',
+  path: '/api/public/booking-notify',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LovableEmailTransactionalSendRoute =
+  LovableEmailTransactionalSendRouteImport.update({
+    id: '/lovable/email/transactional/send',
+    path: '/lovable/email/transactional/send',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LovableEmailTransactionalPreviewRoute =
+  LovableEmailTransactionalPreviewRouteImport.update({
+    id: '/lovable/email/transactional/preview',
+    path: '/lovable/email/transactional/preview',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const LovableEmailQueueProcessRoute =
   LovableEmailQueueProcessRouteImport.update({
     id: '/lovable/email/queue/process',
@@ -81,8 +113,13 @@ export interface FileRoutesByFullPath {
   '/bg/cookies': typeof BgCookiesRoute
   '/bg/privacy': typeof BgPrivacyRoute
   '/bg/terms': typeof BgTermsRoute
+  '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/bg/': typeof BgIndexRoute
+  '/api/public/booking-notify': typeof ApiPublicBookingNotifyRoute
+  '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
+  '/lovable/email/transactional/send': typeof LovableEmailTransactionalSendRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -93,8 +130,13 @@ export interface FileRoutesByTo {
   '/bg/cookies': typeof BgCookiesRoute
   '/bg/privacy': typeof BgPrivacyRoute
   '/bg/terms': typeof BgTermsRoute
+  '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/bg': typeof BgIndexRoute
+  '/api/public/booking-notify': typeof ApiPublicBookingNotifyRoute
+  '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
+  '/lovable/email/transactional/send': typeof LovableEmailTransactionalSendRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -106,8 +148,13 @@ export interface FileRoutesById {
   '/bg/cookies': typeof BgCookiesRoute
   '/bg/privacy': typeof BgPrivacyRoute
   '/bg/terms': typeof BgTermsRoute
+  '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/bg/': typeof BgIndexRoute
+  '/api/public/booking-notify': typeof ApiPublicBookingNotifyRoute
+  '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
+  '/lovable/email/transactional/send': typeof LovableEmailTransactionalSendRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -120,8 +167,13 @@ export interface FileRouteTypes {
     | '/bg/cookies'
     | '/bg/privacy'
     | '/bg/terms'
+    | '/email/unsubscribe'
     | '/bg/'
+    | '/api/public/booking-notify'
+    | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
+    | '/lovable/email/transactional/preview'
+    | '/lovable/email/transactional/send'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -132,8 +184,13 @@ export interface FileRouteTypes {
     | '/bg/cookies'
     | '/bg/privacy'
     | '/bg/terms'
+    | '/email/unsubscribe'
     | '/bg'
+    | '/api/public/booking-notify'
+    | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
+    | '/lovable/email/transactional/preview'
+    | '/lovable/email/transactional/send'
   id:
     | '__root__'
     | '/'
@@ -144,8 +201,13 @@ export interface FileRouteTypes {
     | '/bg/cookies'
     | '/bg/privacy'
     | '/bg/terms'
+    | '/email/unsubscribe'
     | '/bg/'
+    | '/api/public/booking-notify'
+    | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
+    | '/lovable/email/transactional/preview'
+    | '/lovable/email/transactional/send'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -157,8 +219,13 @@ export interface RootRouteChildren {
   BgCookiesRoute: typeof BgCookiesRoute
   BgPrivacyRoute: typeof BgPrivacyRoute
   BgTermsRoute: typeof BgTermsRoute
+  EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
   BgIndexRoute: typeof BgIndexRoute
+  ApiPublicBookingNotifyRoute: typeof ApiPublicBookingNotifyRoute
+  LovableEmailSuppressionRoute: typeof LovableEmailSuppressionRoute
   LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
+  LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
+  LovableEmailTransactionalSendRoute: typeof LovableEmailTransactionalSendRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -205,6 +272,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BgIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/email/unsubscribe': {
+      id: '/email/unsubscribe'
+      path: '/email/unsubscribe'
+      fullPath: '/email/unsubscribe'
+      preLoaderRoute: typeof EmailUnsubscribeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/bg/terms': {
       id: '/bg/terms'
       path: '/bg/terms'
@@ -226,6 +300,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BgCookiesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lovable/email/suppression': {
+      id: '/lovable/email/suppression'
+      path: '/lovable/email/suppression'
+      fullPath: '/lovable/email/suppression'
+      preLoaderRoute: typeof LovableEmailSuppressionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/booking-notify': {
+      id: '/api/public/booking-notify'
+      path: '/api/public/booking-notify'
+      fullPath: '/api/public/booking-notify'
+      preLoaderRoute: typeof ApiPublicBookingNotifyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lovable/email/transactional/send': {
+      id: '/lovable/email/transactional/send'
+      path: '/lovable/email/transactional/send'
+      fullPath: '/lovable/email/transactional/send'
+      preLoaderRoute: typeof LovableEmailTransactionalSendRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lovable/email/transactional/preview': {
+      id: '/lovable/email/transactional/preview'
+      path: '/lovable/email/transactional/preview'
+      fullPath: '/lovable/email/transactional/preview'
+      preLoaderRoute: typeof LovableEmailTransactionalPreviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lovable/email/queue/process': {
       id: '/lovable/email/queue/process'
       path: '/lovable/email/queue/process'
@@ -245,8 +347,13 @@ const rootRouteChildren: RootRouteChildren = {
   BgCookiesRoute: BgCookiesRoute,
   BgPrivacyRoute: BgPrivacyRoute,
   BgTermsRoute: BgTermsRoute,
+  EmailUnsubscribeRoute: EmailUnsubscribeRoute,
   BgIndexRoute: BgIndexRoute,
+  ApiPublicBookingNotifyRoute: ApiPublicBookingNotifyRoute,
+  LovableEmailSuppressionRoute: LovableEmailSuppressionRoute,
   LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,
+  LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
+  LovableEmailTransactionalSendRoute: LovableEmailTransactionalSendRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
