@@ -32,7 +32,7 @@ function getSupabase() {
   return createClient(url, key)
 }
 
-async function findBooking(supabase: ReturnType<typeof createClient>, token: string) {
+async function findBooking(supabase: any, token: string): Promise<any> {
   const { data } = await supabase
     .from('bookings')
     .select('*')
