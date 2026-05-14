@@ -132,3 +132,10 @@ const label = {
 }
 const body = { fontSize: '14px', color: '#0d0b1a', margin: 0, lineHeight: '1.5' }
 const footer = { fontSize: '12px', color: '#999', margin: '24px 0 0' }
+const sectionHeading = {
+  fontSize: '13px',
+  fontWeight: 700,
+  color: '#0d0b1a',
+  margin: '0 0 10px',
+  letterSpacing: '0.02em',
+}
