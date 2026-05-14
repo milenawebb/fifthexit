@@ -664,7 +664,7 @@ function BookingForm() {
     message: "",
   });
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const result = bookingSchema.safeParse(form);
     if (!result.success) {
@@ -672,11 +672,24 @@ function BookingForm() {
       return;
     }
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
+    try {
+      const res = await fetch("/api/public/booking-notify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...result.data,
+          locale: i18n.language,
+        }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       setDone(true);
       toast.success("Consult booked! We'll confirm within 2 hours.");
-    }, 800);
+    } catch (err) {
+      console.error("Booking submit failed", err);
+      toast.error("Could not submit. Please try again or email us directly.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (done) {
