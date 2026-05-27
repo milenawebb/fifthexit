@@ -346,13 +346,15 @@ function Work() {
       moved = false;
       startX = e.clientX;
       startScroll = el.scrollLeft;
-      el.setPointerCapture(e.pointerId);
     };
     const onMove = (e: PointerEvent) => {
       if (!isDown) return;
       const dx = e.clientX - startX;
-      if (Math.abs(dx) > 4) moved = true;
-      el.scrollLeft = startScroll - dx;
+      if (!moved && Math.abs(dx) > 5) {
+        moved = true;
+        try { el.setPointerCapture(e.pointerId); } catch {}
+      }
+      if (moved) el.scrollLeft = startScroll - dx;
     };
     const onUp = (e: PointerEvent) => {
       if (!isDown) return;
