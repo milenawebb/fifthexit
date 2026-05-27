@@ -428,18 +428,18 @@ function Work() {
             {projects.map((p) => {
               const domain = p.href.replace(/^https?:\/\//, "").replace(/\/$/, "");
               return (
-                <div
+                <a
                   key={p.name}
+                  href={p.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  draggable={false}
                   data-card
-                  className="snap-start shrink-0 flex flex-col gap-4 w-[85%] sm:w-[calc((100%-1.5rem)/2)] md:w-[calc((100%-3rem)/3)]"
+                  className="snap-start shrink-0 flex flex-col gap-4 w-[85%] sm:w-[calc((100%-1.5rem)/2)] md:w-[calc((100%-3rem)/3)] group cursor-pointer"
                   style={{ scrollSnapAlign: "start", flexShrink: 0 }}
                 >
-                  <a
-                    href={p.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    draggable={false}
-                    className="work-card group relative block overflow-hidden cursor-pointer border border-border/60 md:transition-all md:duration-300 md:hover:border-transparent"
+                  <div
+                    className="work-card relative block overflow-hidden border border-border/60 md:transition-all md:duration-300 md:group-hover:border-transparent"
                     style={{ borderRadius: "8px", background: "#1a1a2e" }}
                   >
                     <div className="flex items-center gap-2 px-3 py-2 border-b border-white/10 bg-[#1a1a2e]">
@@ -472,22 +472,17 @@ function Work() {
                         </span>
                       </div>
                     </div>
-                  </a>
+                  </div>
 
                   <div className="px-1">
                     <div className="text-xs uppercase tracking-widest text-accent mb-1">{p.tag}</div>
-                    <div className="text-xl font-bold font-display mb-2">{p.name}</div>
+                    <div className="text-xl font-bold font-display mb-2 text-foreground">{p.name}</div>
                     <p className="text-sm text-muted-foreground mb-2 md:hidden">{p.desc}</p>
-                    <a
-                      href={p.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition"
-                    >
+                    <span className="inline-flex items-center gap-1 text-sm text-muted-foreground group-hover:text-foreground transition">
                       {t("work.viewProject")} <ArrowRight className="h-4 w-4" />
-                    </a>
+                    </span>
                   </div>
-                </div>
+                </a>
               );
             })}
           </div>
