@@ -996,6 +996,95 @@ function BackToTop() {
   );
 }
 
+const mvpSteps = [
+  {
+    icon: Lightbulb,
+    label: "Free MVP Blueprint",
+    desc: "Before a single line of code, we map out your core features, user flows, and tech stack. You walk away with a clear plan and a realistic scope — even if you decide not to build with us.",
+  },
+  {
+    icon: Palette,
+    label: "UI/UX Design",
+    desc: "We design every screen your users will touch — mobile-first, brand-aligned, and built on a scalable component system so the product looks sharp from day one.",
+  },
+  {
+    icon: FileText,
+    label: "User Stories & Spec",
+    desc: "We translate your design into a detailed development spec with prioritized user stories and technical requirements. No ambiguity, no misaligned expectations.",
+  },
+  {
+    icon: Rocket,
+    label: "Build & Launch",
+    desc: "We develop and deploy on a modern, scalable stack. Custom back-end, clean front-end, ready for real users. We stay on after launch to make sure everything holds.",
+  },
+];
+
+function MvpStepCard({ step, index }: { step: typeof mvpSteps[number]; index: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  const Icon = step.icon;
+  return (
+    <div
+      ref={ref}
+      className="transition-all duration-500 ease-out"
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(20px)",
+        transitionDelay: `${index * 100}ms`,
+      }}
+    >
+      <div
+        className="rounded-2xl p-6 border border-border/60 h-full"
+        style={{ backgroundColor: "#1a1530" }}
+      >
+        <div className="h-11 w-11 rounded-xl bg-gradient-hero flex items-center justify-center mb-5 shadow-glow">
+          <Icon className="h-5 w-5 text-primary-foreground" />
+        </div>
+        <h3 className="text-xl font-bold mb-2 text-gradient inline-block">{step.label}</h3>
+        <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+      </div>
+    </div>
+  );
+}
+
+function MvpJourney() {
+  return (
+    <section id="mvp-journey" className="py-12 md:pt-16 md:pb-16 relative" style={{ backgroundColor: "#0d0b1a" }}>
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="max-w-2xl mx-auto text-center mb-10">
+          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">FROM IDEA TO LAUNCH</div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Your MVP, built <span className="text-gradient">the right way.</span>
+          </h2>
+          <p className="text-muted-foreground text-lg">
+            We take your idea from napkin sketch to live product with a clear 4-step process — no tech overwhelm, no surprise scope creep. Just fast, focused execution.
+          </p>
+        </div>
+        <div className="grid md:grid-cols-2 gap-5">
+          {mvpSteps.map((s, i) => (
+            <MvpStepCard key={s.label} step={s} index={i} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Index() {
   return (
     <div className="dark min-h-screen" style={{ backgroundColor: "#0d0b1a" }}>
