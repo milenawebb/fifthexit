@@ -1093,6 +1093,7 @@ function Index() {
       <main style={{ backgroundColor: "#0d0b1a" }}>
         <Hero />
         <Services />
+        <MvpJourney />
         <TechStack />
         <Work />
         <Process />
