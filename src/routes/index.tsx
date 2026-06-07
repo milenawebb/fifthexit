@@ -22,6 +22,10 @@ import {
   ChevronLeft,
   ChevronRight,
   ArrowUp,
+  Lightbulb,
+  Palette,
+  FileText,
+  Rocket,
 } from "lucide-react";
 import { z } from "zod";
 import { useTranslation } from "react-i18next";
