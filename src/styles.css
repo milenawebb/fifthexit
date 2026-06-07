@@ -190,7 +190,14 @@
 @layer utilities {
   @keyframes process-float {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
+    50% { transform: translateY(-6px); }
+  }
+  .mvp-step-card:hover {
+    border-color: oklch(0.72 0.25 330 / 0.5);
+    box-shadow: 0 0 24px rgba(123, 120, 245, 0.4);
+  }
+  .mvp-step-card:hover .mvp-icon-badge {
+    transform: scale(1.1);
   }
 }
 
