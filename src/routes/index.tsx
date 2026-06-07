@@ -1004,6 +1004,7 @@ const mvpSteps = [
 ];
 
 function MvpStepCard({ step, index }: { step: typeof mvpSteps[number]; index: number }) {
+  const { t } = useTranslation();
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
@@ -1044,28 +1045,27 @@ function MvpStepCard({ step, index }: { step: typeof mvpSteps[number]; index: nu
       >
         <Icon className="h-5 w-5 text-primary-foreground" />
       </div>
-      <h3 className="text-xl font-bold mb-2 text-gradient inline-block">{step.label}</h3>
-      <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+      <h3 className="text-xl font-bold mb-2 text-gradient inline-block">{t(step.titleKey)}</h3>
+      <p className="text-sm text-muted-foreground leading-relaxed">{t(step.descKey)}</p>
     </div>
   );
 }
 
 function MvpJourney() {
+  const { t } = useTranslation();
   return (
     <section id="mvp-journey" className="py-12 md:pt-16 md:pb-16 relative" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="mx-auto max-w-6xl px-6">
         <div className="max-w-2xl mx-auto text-center mb-10">
-          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">FROM IDEA TO LAUNCH</div>
+          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">{t("mvp.label")}</div>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Your MVP, built <span className="text-gradient">the right way.</span>
+            {t("mvp.heading1")} <span className="text-gradient">{t("mvp.heading2")}</span>
           </h2>
-          <p className="text-muted-foreground text-lg">
-            We take your idea from napkin sketch to live product with a clear 4-step process — no tech overwhelm, no surprise scope creep. Just fast, focused execution.
-          </p>
+          <p className="text-muted-foreground text-lg">{t("mvp.subheading")}</p>
         </div>
         <div className="grid md:grid-cols-2 gap-5">
           {mvpSteps.map((s, i) => (
-            <MvpStepCard key={s.label} step={s} index={i} />
+            <MvpStepCard key={s.titleKey} step={s} index={i} />
           ))}
         </div>
       </div>
