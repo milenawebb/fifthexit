@@ -1041,23 +1041,27 @@ function MvpStepCard({ step, index }: { step: typeof mvpSteps[number]; index: nu
   return (
     <div
       ref={ref}
-      className="transition-all duration-500 ease-out"
+      className="mvp-step-card rounded-2xl p-6 border border-border/60 h-full"
       style={{
+        backgroundColor: "#1a1530",
         opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(20px)",
-        transitionDelay: `${index * 100}ms`,
+        transform: visible ? "translateY(0)" : "translateY(30px)",
+        transition:
+          "opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease",
+        transitionDelay: `${index * 150}ms`,
       }}
     >
       <div
-        className="rounded-2xl p-6 border border-border/60 h-full"
-        style={{ backgroundColor: "#1a1530" }}
+        className="mvp-icon-badge h-11 w-11 rounded-xl bg-gradient-hero flex items-center justify-center mb-5 shadow-glow"
+        style={{
+          animation: `process-float 3s ease-in-out ${index * 0.4}s infinite`,
+          transition: "transform 0.3s ease",
+        }}
       >
-        <div className="h-11 w-11 rounded-xl bg-gradient-hero flex items-center justify-center mb-5 shadow-glow">
-          <Icon className="h-5 w-5 text-primary-foreground" />
-        </div>
-        <h3 className="text-xl font-bold mb-2 text-gradient inline-block">{step.label}</h3>
-        <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+        <Icon className="h-5 w-5 text-primary-foreground" />
       </div>
+      <h3 className="text-xl font-bold mb-2 text-gradient inline-block">{step.label}</h3>
+      <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
     </div>
   );
 }
