@@ -997,26 +997,10 @@ function BackToTop() {
 }
 
 const mvpSteps = [
-  {
-    icon: Lightbulb,
-    label: "Free MVP Blueprint",
-    desc: "Before a single line of code, we map out your core features, user flows, and tech stack. You walk away with a clear plan and a realistic scope — even if you decide not to build with us.",
-  },
-  {
-    icon: Palette,
-    label: "UI/UX Design",
-    desc: "We design every screen your users will touch — mobile-first, brand-aligned, and built on a scalable component system so the product looks sharp from day one.",
-  },
-  {
-    icon: FileText,
-    label: "User Stories & Spec",
-    desc: "We translate your design into a detailed development spec with prioritized user stories and technical requirements. No ambiguity, no misaligned expectations.",
-  },
-  {
-    icon: Rocket,
-    label: "Build & Launch",
-    desc: "We develop and deploy on a modern, scalable stack. Custom back-end, clean front-end, ready for real users. We stay on after launch to make sure everything holds.",
-  },
+  { icon: Lightbulb, titleKey: "mvp.step1Title", descKey: "mvp.step1Desc" },
+  { icon: Palette, titleKey: "mvp.step2Title", descKey: "mvp.step2Desc" },
+  { icon: FileText, titleKey: "mvp.step3Title", descKey: "mvp.step3Desc" },
+  { icon: Rocket, titleKey: "mvp.step4Title", descKey: "mvp.step4Desc" },
 ];
 
 function MvpStepCard({ step, index }: { step: typeof mvpSteps[number]; index: number }) {
