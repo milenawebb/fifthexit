@@ -196,8 +196,11 @@
     border-color: oklch(0.72 0.25 330 / 0.5);
     box-shadow: 0 0 24px rgba(123, 120, 245, 0.4);
   }
+  .mvp-icon-badge {
+    transition: scale 0.3s ease;
+  }
   .mvp-step-card:hover .mvp-icon-badge {
-    transform: scale(1.1);
+    scale: 1.1;
   }
 }
 
