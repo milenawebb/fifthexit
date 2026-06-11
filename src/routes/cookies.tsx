@@ -35,11 +35,11 @@ function CookiesPage() {
   return (
     <LegalLayout
       title="Cookie Policy"
-      effectiveDate="Effective date: May 12, 2026 · MW Global LLC (DBA: Hype Street)"
+      effectiveDate="Effective date: May 12, 2026 · MW Global LLC / DBA Hype Street Productions LLC (DBA: Hype Street)"
       toc={toc}
     >
       <p className="mb-10 text-foreground/70">
-        This Cookie Policy explains how Hype Street (MW Global LLC) uses cookies and similar
+        This Cookie Policy explains how Hype Street (MW Global LLC / DBA Hype Street Productions LLC) uses cookies and similar
         tracking technologies on hype-street.com. It should be read alongside our Privacy Policy.
       </p>
 
@@ -185,7 +185,7 @@ function CookiesPage() {
 
       <LegalSection id="contact" title="8. Contact Us">
         <p>
-          MW Global LLC (DBA: Hype Street)
+          MW Global LLC / DBA Hype Street Productions LLC (DBA: Hype Street)
           <br />
           Email:{" "}
           <a href="mailto:info@hype-street.com" className="text-primary hover:underline">

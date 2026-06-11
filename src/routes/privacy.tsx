@@ -4,7 +4,7 @@ import { LegalLayout, LegalSection, type TocItem } from "@/components/legal-layo
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { name: "description", content: "How hype/street (MW Global LLC) collects, uses, and protects your personal information." },
+      { name: "description", content: "How hype/street (MW Global LLC / DBA Hype Street Productions LLC) collects, uses, and protects your personal information." },
       { property: "og:description", content: "hype/street's Privacy Policy." },
     ],
   }),
@@ -29,18 +29,18 @@ function PrivacyPage() {
   return (
     <LegalLayout
       title="Privacy Policy"
-      effectiveDate="Effective date: May 12, 2026 · MW Global LLC (DBA: Hype Street)"
+      effectiveDate="Effective date: May 12, 2026 · MW Global LLC / DBA Hype Street Productions LLC (DBA: Hype Street)"
       toc={toc}
     >
       <p className="mb-10 text-foreground/70">
-        Your privacy matters to us. This Privacy Policy explains how MW Global LLC (DBA: Hype
+        Your privacy matters to us. This Privacy Policy explains how MW Global LLC / DBA Hype Street Productions LLC (DBA: Hype
         Street) collects, uses, and protects information when you visit our website or engage our
         services.
       </p>
 
       <LegalSection id="introduction" title="1. Introduction">
         <p>
-          MW Global LLC, doing business as Hype Street, operates the website at hype-street.com.
+          MW Global LLC / DBA Hype Street Productions LLC, doing business as Hype Street, operates the website at hype-street.com.
           This policy describes our practices for collecting, using, disclosing, and protecting
           personal information. This policy is intended to comply with applicable privacy laws,
           including the Florida Information Protection Act (FIPA).
@@ -212,7 +212,7 @@ function PrivacyPage() {
 
       <LegalSection id="contact" title="11. Contact Us">
         <p>
-          MW Global LLC (DBA: Hype Street)
+          MW Global LLC / DBA Hype Street Productions LLC (DBA: Hype Street)
           <br />
           Privacy Contact:{" "}
           <a href="mailto:info@hype-street.com" className="text-primary hover:underline">

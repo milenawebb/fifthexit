@@ -5,7 +5,7 @@ export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
       { name: "description", content: "The Terms of Service governing your use of hype/street's web and app development services." },
-      { property: "og:description", content: "Read the Terms of Service for hype/street (MW Global LLC)." },
+      { property: "og:description", content: "Read the Terms of Service for hype/street (MW Global LLC / DBA Hype Street Productions LLC)." },
     ],
   }),
   component: TermsPage,
@@ -32,19 +32,19 @@ function TermsPage() {
   return (
     <LegalLayout
       title="Terms of Service"
-      effectiveDate="Effective date: May 12, 2026 · MW Global LLC (DBA: Hype Street)"
+      effectiveDate="Effective date: May 12, 2026 · MW Global LLC / DBA Hype Street Productions LLC (DBA: Hype Street)"
       toc={toc}
     >
       <p className="mb-10 text-foreground/70">
         Please read these Terms carefully. By accessing or using any service provided by Hype Street
-        (MW Global LLC), you agree to be bound by these Terms of Service. If you do not agree, do not
+        (MW Global LLC / DBA Hype Street Productions LLC), you agree to be bound by these Terms of Service. If you do not agree, do not
         use our services.
       </p>
 
       <LegalSection id="agreement" title="1. Agreement to Terms">
         <p>
           These Terms of Service ("Terms") constitute a legally binding agreement between you
-          ("Client," "you," or "your") and MW Global LLC, doing business as Hype Street ("Hype
+          ("Client," "you," or "your") and MW Global LLC / DBA Hype Street Productions LLC, doing business as Hype Street ("Hype
           Street," "we," "us," or "our"). These Terms govern your access to and use of our website
           at hype-street.com and all services we provide.
         </p>
@@ -198,7 +198,7 @@ function TermsPage() {
 
       <LegalSection id="indemnification" title="10. Indemnification">
         <p>
-          You agree to indemnify, defend, and hold harmless Hype Street, MW Global LLC, and their
+          You agree to indemnify, defend, and hold harmless Hype Street, MW Global LLC / DBA Hype Street Productions LLC, and their
           respective members, employees, and contractors from and against any claims, liabilities,
           damages, judgments, and expenses arising out of your breach of these Terms, your use of
           the Services, your provided materials, or your violation of any third-party rights or
@@ -245,7 +245,7 @@ function TermsPage() {
 
       <LegalSection id="contact" title="14. Contact">
         <p>
-          MW Global LLC (DBA: Hype Street)
+          MW Global LLC / DBA Hype Street Productions LLC (DBA: Hype Street)
           <br />
           Email:{" "}
           <a href="mailto:info@hype-street.com" className="text-primary hover:underline">
