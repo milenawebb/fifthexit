@@ -313,6 +313,13 @@ function Work() {
             href: "https://siteclub.eu",
             image: siteclubPreview,
           },
+          {
+            name: t("work.project6Name"),
+            tag: t("work.project6Category"),
+            desc: t("work.project6Desc"),
+            href: "https://proservice.bg",
+            image: proservicePreview,
+          },
         ]
       : []),
   ];
