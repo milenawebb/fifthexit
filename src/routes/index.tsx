@@ -283,6 +283,24 @@ function Work() {
       href: "https://notaryclosingnetwork.com/",
       image: notaryPreview,
     },
+    ...(i18n.language.startsWith("bg")
+      ? [
+          {
+            name: t("work.project5Name"),
+            tag: t("work.project5Category"),
+            desc: t("work.project5Desc"),
+            href: "https://siteclub.eu",
+            image: siteclubPreview,
+          },
+          {
+            name: t("work.project6Name"),
+            tag: t("work.project6Category"),
+            desc: t("work.project6Desc"),
+            href: "https://proservice.bg",
+            image: proservicePreview,
+          },
+        ]
+      : []),
     {
       name: t("work.project3Name"),
       tag: t("work.project3Category"),
@@ -304,24 +322,6 @@ function Work() {
       href: "https://eliteridesolutions.com/",
       image: eliteRidePreview,
     },
-    ...(i18n.language.startsWith("bg")
-      ? [
-          {
-            name: t("work.project5Name"),
-            tag: t("work.project5Category"),
-            desc: t("work.project5Desc"),
-            href: "https://siteclub.eu",
-            image: siteclubPreview,
-          },
-          {
-            name: t("work.project6Name"),
-            tag: t("work.project6Category"),
-            desc: t("work.project6Desc"),
-            href: "https://proservice.bg",
-            image: proservicePreview,
-          },
-        ]
-      : []),
   ];
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
