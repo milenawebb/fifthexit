@@ -34,6 +34,7 @@ import notaryPreview from "@/assets/notary-preview.png";
 import rinPreview from "@/assets/rin-preview.png";
 import bellhousePreview from "@/assets/bellhouse-preview.png";
 import eliteRidePreview from "@/assets/elite-ride-preview.png";
+import siteclubPreview from "@/assets/siteclub-preview.png";
 import PriceEstimator from "@/components/PriceEstimator";
 import { useEstimatorSelections, setEstimatorSelections } from "@/lib/estimator-store";
 
@@ -265,7 +266,7 @@ function TechStack() {
 }
 
 function Work() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const projects = [
     {
       name: t("work.project1Name"),
@@ -302,7 +303,18 @@ function Work() {
       href: "https://eliteridesolutions.com/",
       image: eliteRidePreview,
     },
-  ] as const;
+    ...(i18n.language.startsWith("bg")
+      ? [
+          {
+            name: t("work.project5Name"),
+            tag: t("work.project5Category"),
+            desc: t("work.project5Desc"),
+            href: "https://siteclub.eu",
+            image: siteclubPreview,
+          },
+        ]
+      : []),
+  ];
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
