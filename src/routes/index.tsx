@@ -35,6 +35,7 @@ import rinPreview from "@/assets/rin-preview.png";
 import bellhousePreview from "@/assets/bellhouse-preview.png";
 import eliteRidePreview from "@/assets/elite-ride-preview.png";
 import siteclubPreview from "@/assets/siteclub-preview.png";
+import proservicePreview from "@/assets/proservice-preview.png";
 import PriceEstimator from "@/components/PriceEstimator";
 import { useEstimatorSelections, setEstimatorSelections } from "@/lib/estimator-store";
 
@@ -311,6 +312,13 @@ function Work() {
             desc: t("work.project5Desc"),
             href: "https://siteclub.eu",
             image: siteclubPreview,
+          },
+          {
+            name: t("work.project6Name"),
+            tag: t("work.project6Category"),
+            desc: t("work.project6Desc"),
+            href: "https://proservice.bg",
+            image: proservicePreview,
           },
         ]
       : []),
