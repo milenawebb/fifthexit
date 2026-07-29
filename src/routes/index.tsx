@@ -36,6 +36,8 @@ import bellhousePreview from "@/assets/bellhouse-preview.png";
 import eliteRidePreview from "@/assets/elite-ride-preview.png";
 import siteclubPreview from "@/assets/siteclub-preview.png";
 import proservicePreview from "@/assets/proservice-preview.png";
+import clubtreePreview from "@/assets/clubtree-preview.png";
+import rotaryCvillePreview from "@/assets/rotary-cville-preview.png";
 import PriceEstimator from "@/components/PriceEstimator";
 import { useEstimatorSelections, setEstimatorSelections } from "@/lib/estimator-store";
 
@@ -282,6 +284,20 @@ function Work() {
       desc: t("work.project2Desc"),
       href: "https://notaryclosingnetwork.com/",
       image: notaryPreview,
+    },
+    {
+      name: t("work.project_ct_name"),
+      tag: t("work.project_ct_category"),
+      desc: t("work.project_ct_desc"),
+      href: "https://clubtree.app",
+      image: clubtreePreview,
+    },
+    {
+      name: t("work.project_rc_name"),
+      tag: t("work.project_rc_category"),
+      desc: t("work.project_rc_desc"),
+      href: "https://charlottesvillerotary.org",
+      image: rotaryCvillePreview,
     },
     ...(i18n.language.startsWith("bg")
       ? [

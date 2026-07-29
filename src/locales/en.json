@@ -58,7 +58,13 @@
     "project3Desc": "Luxury site for a cosmetic studio.",
     "project4Category": "REAL ESTATE WEBSITE",
     "project4Name": "Bellhouse Real Estate Group",
-    "project4Desc": "Full-service real estate website for a Charlottesville, VA agency — property listings, team profiles, and lead capture."
+    "project4Desc": "Full-service real estate website for a Charlottesville, VA agency — property listings, team profiles, and lead capture.",
+    "project_ct_category": "CLUB MANAGEMENT SAAS",
+    "project_ct_name": "ClubTree",
+    "project_ct_desc": "Modern club management platform for Rotary and Lions clubs — website, members, programs, attendance, and dues in one place.",
+    "project_rc_category": "NONPROFIT WEBSITE",
+    "project_rc_name": "Rotary Club of Charlottesville",
+    "project_rc_desc": "Public club website for a 100-year-old Rotary chapter — powered by ClubTree with events, service projects, membership, and donations."
   },
   "process": {
     "label": "HOW WE ROLL",
