@@ -285,6 +285,20 @@ function Work() {
       href: "https://notaryclosingnetwork.com/",
       image: notaryPreview,
     },
+    {
+      name: t("work.project_ct_name"),
+      tag: t("work.project_ct_category"),
+      desc: t("work.project_ct_desc"),
+      href: "https://clubtree.app",
+      image: clubtreePreview,
+    },
+    {
+      name: t("work.project_rc_name"),
+      tag: t("work.project_rc_category"),
+      desc: t("work.project_rc_desc"),
+      href: "https://charlottesvillerotary.org",
+      image: rotaryCvillePreview,
+    },
     ...(i18n.language.startsWith("bg")
       ? [
           {
