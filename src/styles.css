@@ -34,6 +34,8 @@
 
   --font-display: "Space Grotesk", system-ui, sans-serif;
   --font-sans: "Inter", system-ui, sans-serif;
+  --font-display-bg: "DM Sans", system-ui, sans-serif;
+  --font-sans-bg: "DM Sans", system-ui, sans-serif;
 
   --animate-float: float 6s ease-in-out infinite;
   --animate-glow: glow 3s ease-in-out infinite;
