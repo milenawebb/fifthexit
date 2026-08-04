@@ -5,6 +5,9 @@ import { I18nextProvider } from "react-i18next";
 import appCss from "../styles.css?url";
 import i18n, { languageForHost } from "../i18n";
 import CookieBanner from "../components/CookieBanner";
+import { getHost } from "../lib/host.functions";
+import { siteMetaForHost } from "../lib/site-meta";
+
 
 function NotFoundComponent() {
   return (
@@ -29,71 +32,81 @@ function NotFoundComponent() {
 }
 
 export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { name: "color-scheme", content: "dark" },
-      { name: "supported-color-schemes", content: "dark" },
-      { name: "theme-color", content: "#0d0b1a" },
-      { title: "fifthexit — Web & app dev built with speed." },
-      { name: "description", content: "fifthexit builds vibrant, high-performance web and mobile apps for brands ready to stand out. Book a project consultation today." },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "fifthexit — Web & app dev built with speed." },
-      { property: "og:description", content: "fifthexit builds vibrant, high-performance web and mobile apps for brands ready to stand out. Book a project consultation today." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "fifthexit — Web & app dev built with speed." },
-      { name: "twitter:description", content: "fifthexit builds vibrant, high-performance web and mobile apps for brands ready to stand out. Book a project consultation today." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/acc297bc-8b62-4993-b9bd-6fbc9cddc29d" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/acc297bc-8b62-4993-b9bd-6fbc9cddc29d" },
-    ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "Organization",
-              name: "fifthexit",
-              url: "https://fifthexit.com",
-              logo: "https://fifthexit.com/favicon.png",
-            },
-            {
-              "@type": "WebSite",
-              name: "fifthexit",
-              url: "https://fifthexit.com",
-            },
-            {
-              "@type": "ProfessionalService",
-              name: "fifthexit",
-              url: "https://fifthexit.com",
-              image: "https://fifthexit.com/favicon.png",
-              description:
-                "Web & app development studio building blazing-fast websites, slick mobile apps, and digital products.",
-            },
-          ],
-        }),
-      },
-    ],
-    links: [
-      { rel: "stylesheet", href: appCss },
-      { rel: "canonical", href: "https://fifthexit.com" },
-      { rel: "icon", type: "image/png", href: "/favicon.png" },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap",
-      },
-    ],
-  }),
+  loader: async () => {
+    const host =
+      typeof window === "undefined" ? await getHost() : window.location.host;
+    return { site: siteMetaForHost(host) };
+  },
+  head: ({ loaderData }) => {
+    const site = loaderData?.site ?? siteMetaForHost(null);
+    return {
+      meta: [
+        { charSet: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        { name: "color-scheme", content: "dark" },
+        { name: "supported-color-schemes", content: "dark" },
+        { name: "theme-color", content: "#0d0b1a" },
+        { title: site.title },
+        { name: "description", content: site.description },
+        { name: "author", content: "fifthexit" },
+        { property: "og:site_name", content: "fifthexit" },
+        { property: "og:locale", content: site.lang === "bg" ? "bg_BG" : "en_US" },
+        { property: "og:title", content: site.ogTitle },
+        { property: "og:description", content: site.description },
+        { property: "og:type", content: "website" },
+        { property: "og:url", content: site.origin },
+        { property: "og:image", content: site.image },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: site.ogTitle },
+        { name: "twitter:description", content: site.description },
+        { name: "twitter:image", content: site.image },
+      ],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Organization",
+                name: "fifthexit",
+                url: site.origin,
+                logo: `${site.origin}/favicon.png`,
+              },
+              {
+                "@type": "WebSite",
+                name: "fifthexit",
+                url: site.origin,
+              },
+              {
+                "@type": "ProfessionalService",
+                name: "fifthexit",
+                url: site.origin,
+                image: `${site.origin}/favicon.png`,
+                description: site.description,
+              },
+            ],
+          }),
+        },
+      ],
+      links: [
+        { rel: "stylesheet", href: appCss },
+        { rel: "canonical", href: site.origin },
+        { rel: "icon", type: "image/png", href: "/favicon.png" },
+        { rel: "preconnect", href: "https://fonts.googleapis.com" },
+        { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap",
+        },
+      ],
+    };
+  },
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
 });
+
 
 function RootShell({ children }: { children: React.ReactNode }) {
   const [lang, setLang] = useState<string>(i18n.language || "en");

@@ -40,23 +40,35 @@ import clubtreePreview from "@/assets/clubtree-preview.png";
 import rotaryCvillePreview from "@/assets/rotary-cville-preview.png";
 import PriceEstimator from "@/components/PriceEstimator";
 import { useEstimatorSelections, setEstimatorSelections } from "@/lib/estimator-store";
+import { getHost } from "@/lib/host.functions";
+import { siteMetaForHost } from "@/lib/site-meta";
+
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      {
-        name: "description",
-        content:
-          "fifthexit builds vibrant, high-performance web and mobile apps for brands ready to stand out. Book a project consultation today.",
-      },
-      {
-        property: "og:description",
-        content: "fifthexit builds vibrant, high-performance web and mobile apps for brands ready to stand out. Book a project consultation today.",
-      },
-    ],
-  }),
+  loader: async () => {
+    const host = typeof window === "undefined" ? await getHost() : window.location.host;
+    return { site: siteMetaForHost(host) };
+  },
+  head: ({ loaderData }) => {
+    const site = loaderData?.site ?? siteMetaForHost(null);
+    return {
+      meta: [
+        { title: site.title },
+        { name: "description", content: site.description },
+        { property: "og:title", content: site.ogTitle },
+        { property: "og:description", content: site.description },
+        { property: "og:url", content: site.origin },
+        { property: "og:image", content: site.image },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: site.ogTitle },
+        { name: "twitter:description", content: site.description },
+        { name: "twitter:image", content: site.image },
+      ],
+    };
+  },
   component: Index,
 });
+
 
 const services = [
   {
