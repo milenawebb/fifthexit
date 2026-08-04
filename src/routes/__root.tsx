@@ -113,6 +113,7 @@ function RootComponent() {
   useEffect(() => {
     const lng = languageForHost(window.location.hostname);
     if (i18n.language !== lng) i18n.changeLanguage(lng);
+    document.documentElement.lang = lng;
   }, []);
   return (
     <I18nextProvider i18n={i18n}>
