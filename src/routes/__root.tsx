@@ -5,6 +5,9 @@ import { I18nextProvider } from "react-i18next";
 import appCss from "../styles.css?url";
 import i18n, { languageForHost } from "../i18n";
 import CookieBanner from "../components/CookieBanner";
+import { getHost } from "../lib/host.functions";
+import { siteMetaForHost } from "../lib/site-meta";
+
 
 function NotFoundComponent() {
   return (
