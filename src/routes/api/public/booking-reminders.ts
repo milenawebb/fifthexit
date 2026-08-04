@@ -5,8 +5,8 @@ import { createClient } from '@supabase/supabase-js'
 import { createFileRoute } from '@tanstack/react-router'
 import { enqueueTransactional } from '@/lib/email-enqueue'
 import { formatForClient, formatForDev } from '@/lib/format-datetime'
+import { devEmailForLocale } from '@/lib/notify-recipient'
 
-const DEV_EMAIL = 'dev@fifthexit.com'
 
 export const Route = createFileRoute('/api/public/booking-reminders')({
   server: {
@@ -74,7 +74,7 @@ export const Route = createFileRoute('/api/public/booking-reminders')({
           })
           await enqueueTransactional(supabase, {
             templateName: 'booking-reminder-1h',
-            to: DEV_EMAIL,
+            to: devEmailForLocale(b.locale),
             props: { name: b.name, time: b.time_str, formattedDateTime: devWhen, forDev: true },
           })
           if (clientR.ok) {

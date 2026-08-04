@@ -5,6 +5,7 @@ import { enqueueTransactional } from '@/lib/email-enqueue'
 import { generateToken, localToUtc } from '@/lib/timezone'
 import { googleCalendarUrl } from '@/lib/calendar-links'
 import { formatForClient, formatForDev } from '@/lib/format-datetime'
+import { devEmailForLocale } from '@/lib/notify-recipient'
 
 const SITE_URL = 'https://fifthexit.com'
 
@@ -105,6 +106,7 @@ export const Route = createFileRoute('/api/public/booking-notify')({
         // Internal notification email
         await enqueueTransactional(supabase, {
           templateName: 'booking-notification',
+          to: devEmailForLocale(payload.locale),
           props: {
             ...payload,
             formattedDateTime: devWhen,

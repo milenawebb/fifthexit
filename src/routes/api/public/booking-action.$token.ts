@@ -9,9 +9,9 @@ import { enqueueTransactional } from '@/lib/email-enqueue'
 import { googleCalendarUrl } from '@/lib/calendar-links'
 import { localToUtc } from '@/lib/timezone'
 import { formatForClient, formatForDev } from '@/lib/format-datetime'
+import { devEmailForLocale } from '@/lib/notify-recipient'
 
 const SITE_URL = 'https://fifthexit.com'
-const DEV_EMAIL = 'dev@fifthexit.com'
 
 const ActionSchema = z.discriminatedUnion('action', [
   z.object({ action: z.literal('cancel') }),
@@ -98,6 +98,7 @@ export const Route = createFileRoute('/api/public/booking-action/$token')({
 
           await enqueueTransactional(supabase, {
             templateName: 'booking-cancellation',
+            to: devEmailForLocale(booking.locale),
             props: {
               name: booking.name,
               email: booking.email,
@@ -168,6 +169,7 @@ export const Route = createFileRoute('/api/public/booking-action/$token')({
         // Internal notification
         await enqueueTransactional(supabase, {
           templateName: 'booking-reschedule-notify',
+          to: devEmailForLocale(booking.locale),
           props: {
             name: booking.name,
             email: booking.email,
@@ -179,9 +181,6 @@ export const Route = createFileRoute('/api/public/booking-action/$token')({
             newFormatted: formatForDev(parsed.date, parsed.time),
           },
         })
-
-        // Avoid unused-var lint for DEV_EMAIL (kept for future use)
-        void DEV_EMAIL
 
         return Response.json({ success: true })
       },
