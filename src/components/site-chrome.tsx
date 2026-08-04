@@ -22,20 +22,19 @@ export function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
-        <a href="/#top" className="flex items-center" onClick={() => { persistLanguage(); close(); }}>
+        <a href="/#top" className="flex items-center" onClick={close}>
           <img src={logo} alt="Hype Street" className="h-8 w-auto" />
         </a>
         <nav className="hidden lg:flex items-center gap-8 text-sm text-muted-foreground">
           {navLinks.map((l) => (
-            <a key={l.href} href={l.href} onClick={persistLanguage} className="hover:text-foreground transition">
+            <a key={l.href} href={l.href} className="hover:text-foreground transition">
               {t(l.key)}
             </a>
           ))}
         </nav>
         <div className="hidden lg:flex items-center gap-5">
-          <LanguageToggle />
           <Button asChild size="sm" className="bg-gradient-hero text-primary-foreground hover:opacity-90 shadow-glow">
-            <a href="/#book" onClick={persistLanguage}>{t("nav.bookCall")}</a>
+            <a href="/#book">{t("nav.bookCall")}</a>
           </Button>
         </div>
         <button
@@ -56,19 +55,18 @@ export function Header() {
               <a
                 key={l.href}
                 href={l.href}
-                onClick={() => { persistLanguage(); close(); }}
+                onClick={close}
                 className="px-2 py-3 text-base text-muted-foreground hover:text-foreground transition text-center"
               >
                 {t(l.key)}
               </a>
             ))}
-            <LanguageToggle className="mt-3" />
             <Button
               asChild
               size="sm"
               className="mt-2 w-full bg-gradient-hero text-primary-foreground hover:opacity-90 shadow-glow"
             >
-              <a href="/#book" onClick={() => { persistLanguage(); close(); }}>{t("nav.bookCall")}</a>
+              <a href="/#book" onClick={close}>{t("nav.bookCall")}</a>
             </Button>
           </nav>
         </div>
@@ -78,11 +76,12 @@ export function Header() {
 }
 
 export function Footer() {
-  const { t, i18n } = useTranslation();
-  const isBg = i18n.language?.startsWith("bg");
-  const termsHref = isBg ? "/bg/terms" : "/terms";
-  const privacyHref = isBg ? "/bg/privacy" : "/privacy";
-  const cookiesHref = isBg ? "/bg/cookies" : "/cookies";
+  const { t } = useTranslation();
+  const termsHref = "/terms";
+  const privacyHref = "/privacy";
+  const cookiesHref = "/cookies";
+  const email = t("contact.email");
+  const phone = t("contact.phone");
   return (
     <footer className="border-t border-border py-12" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="mx-auto max-w-7xl px-6 flex flex-col gap-6">
@@ -97,7 +96,10 @@ export function Footer() {
           </a>
           <p className="text-sm text-muted-foreground text-center lg:text-left">{t("footer.copyright")} {t("footer.builtWith")}</p>
           <div className="flex items-center gap-5 text-sm text-muted-foreground">
-            <a href="mailto:dev@hype-street.com" className="hover:text-foreground transition">dev@hype-street.com</a>
+            <a href={`mailto:${email}`} className="hover:text-foreground transition">{email}</a>
+            {phone && (
+              <a href={`tel:${phone.replace(/[^+\d]/g, "")}`} className="hover:text-foreground transition">{phone}</a>
+            )}
           </div>
         </div>
       </div>
