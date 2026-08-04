@@ -40,6 +40,9 @@ import clubtreePreview from "@/assets/clubtree-preview.png";
 import rotaryCvillePreview from "@/assets/rotary-cville-preview.png";
 import PriceEstimator from "@/components/PriceEstimator";
 import { useEstimatorSelections, setEstimatorSelections } from "@/lib/estimator-store";
+import { getHost } from "@/lib/host.functions";
+import { siteMetaForHost } from "@/lib/site-meta";
+
 
 export const Route = createFileRoute("/")({
   loader: async () => {
