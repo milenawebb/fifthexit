@@ -13,52 +13,11 @@ const navLinks = [
   { href: "/#book", key: "nav.contact" },
 ];
 
-function LanguageToggle({ className = "" }: { className?: string }) {
-  const { i18n } = useTranslation();
-  const current = i18n.language?.startsWith("bg") ? "bg" : "en";
-  const setLang = (lng: "en" | "bg") => {
-    localStorage.setItem("hs_lang", lng);
-    localStorage.setItem("hs_lang_manual", "true");
-    i18n.changeLanguage(lng);
-    if (typeof window !== "undefined") {
-      const path = window.location.pathname;
-      const onLegal = /^\/(bg\/)?(terms|privacy|cookies)$/.test(path);
-      if (!onLegal) {
-        window.history.replaceState({}, "", lng === "bg" ? "/bg" : "/");
-      }
-    }
-  };
-  return (
-    <div className={`flex items-center gap-1 text-sm ${className}`}>
-      <button
-        type="button"
-        onClick={() => setLang("en")}
-        className={`transition ${current === "en" ? "text-foreground" : "text-muted-foreground hover:text-foreground"}`}
-        aria-pressed={current === "en"}
-      >
-        EN
-      </button>
-      <span className="text-muted-foreground">/</span>
-      <button
-        type="button"
-        onClick={() => setLang("bg")}
-        className={`transition ${current === "bg" ? "text-foreground" : "text-muted-foreground hover:text-foreground"}`}
-        aria-pressed={current === "bg"}
-      >
-        BG
-      </button>
-    </div>
-  );
-}
-
 export function Header() {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
-  const { t, i18n } = useTranslation();
-  const persistLanguage = () => {
-    const isBgRoute = window.location.pathname.startsWith("/bg/");
-    localStorage.setItem("hs_lang", isBgRoute || i18n.language?.startsWith("bg") ? "bg" : "en");
-  };
+  const { t } = useTranslation();
+
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass" style={{ backgroundColor: "#0d0b1a" }}>
