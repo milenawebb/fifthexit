@@ -98,7 +98,7 @@ export function Footer() {
           <a href="/#top" className="flex items-center">
             <img src={logo} alt="fifthexit" className="h-7 w-auto" />
           </a>
-          <p className="text-sm text-muted-foreground text-center lg:text-left">{t("footer.copyright")} {t("footer.builtWith")}</p>
+          <p className="text-sm text-muted-foreground text-center lg:text-left">{t("footer.copyright")}</p>
           <div className="flex items-center gap-5 text-sm text-muted-foreground">
             <a href={`mailto:${email}`} className="hover:text-foreground transition">{email}</a>
             {phone && (
