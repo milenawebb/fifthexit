@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { I18nextProvider } from "react-i18next";
 
@@ -96,8 +96,19 @@ export const Route = createRootRoute({
 });
 
 function RootShell({ children }: { children: React.ReactNode }) {
+  const [lang, setLang] = useState<string>(i18n.language || "en");
+
+  useEffect(() => {
+    const host = languageForHost(window.location.hostname);
+    if (i18n.language !== host) i18n.changeLanguage(host);
+    setLang(host);
+    const onChange = (lng: string) => setLang(lng);
+    i18n.on("languageChanged", onChange);
+    return () => i18n.off("languageChanged", onChange);
+  }, []);
+
   return (
-    <html lang="en" className="dark" style={{ backgroundColor: "#0d0b1a" }}>
+    <html lang={lang} suppressHydrationWarning className="dark" style={{ backgroundColor: "#0d0b1a" }}>
       <head>
         <HeadContent />
       </head>
@@ -110,11 +121,6 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  useEffect(() => {
-    const lng = languageForHost(window.location.hostname);
-    if (i18n.language !== lng) i18n.changeLanguage(lng);
-    document.documentElement.lang = lng;
-  }, []);
   return (
     <I18nextProvider i18n={i18n}>
       <Outlet />
