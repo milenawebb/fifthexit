@@ -22,8 +22,12 @@ export function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
-        <a href="/#top" className="flex items-center" onClick={close}>
-          <img src={logo} alt="Hype Street" className="h-6 w-auto md:h-7 block" />
+        <a href="/#top" className="flex items-center shrink-0" onClick={close}>
+          <img
+            src={logo}
+            alt="fifthexit"
+            className="block h-6 md:h-7 w-auto max-w-none object-contain"
+          />
         </a>
         <nav className="hidden lg:flex items-center gap-8 text-sm text-muted-foreground">
           {navLinks.map((l) => (
