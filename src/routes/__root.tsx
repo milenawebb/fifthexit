@@ -3,7 +3,7 @@ import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/r
 import { I18nextProvider } from "react-i18next";
 
 import appCss from "../styles.css?url";
-import i18n from "../i18n";
+import i18n, { languageForHost } from "../i18n";
 import CookieBanner from "../components/CookieBanner";
 
 function NotFoundComponent() {
