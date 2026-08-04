@@ -6,7 +6,7 @@ import { generateToken, localToUtc } from '@/lib/timezone'
 import { googleCalendarUrl } from '@/lib/calendar-links'
 import { formatForClient, formatForDev } from '@/lib/format-datetime'
 
-const SITE_URL = 'https://hype-street.com'
+const SITE_URL = 'https://fifthexit.com'
 
 const BookingSchema = z.object({
   name: z.string().trim().min(1).max(80),

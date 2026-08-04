@@ -47,7 +47,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "hype/street builds vibrant, high-performance web and mobile apps for brands ready to stand out. Book a project consultation today.",
+          "fifthexit builds vibrant, high-performance web and mobile apps for brands ready to stand out. Book a project consultation today.",
       },
       {
         property: "og:description",

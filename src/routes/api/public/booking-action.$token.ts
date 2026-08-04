@@ -10,7 +10,7 @@ import { googleCalendarUrl } from '@/lib/calendar-links'
 import { localToUtc } from '@/lib/timezone'
 import { formatForClient, formatForDev } from '@/lib/format-datetime'
 
-const SITE_URL = 'https://hype-street.com'
+const SITE_URL = 'https://fifthexit.com'
 const DEV_EMAIL = 'dev@hype-street.com'
 
 const ActionSchema = z.discriminatedUnion('action', [

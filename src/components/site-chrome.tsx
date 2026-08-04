@@ -96,7 +96,7 @@ export function Footer() {
         </nav>
         <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
           <a href="/#top" className="flex items-center">
-            <img src={logo} alt="Hype Street" className="h-7 w-auto" />
+            <img src={logo} alt="fifthexit" className="h-7 w-auto" />
           </a>
           <p className="text-sm text-muted-foreground text-center lg:text-left">{t("footer.copyright")} {t("footer.builtWith")}</p>
           <div className="flex items-center gap-5 text-sm text-muted-foreground">
