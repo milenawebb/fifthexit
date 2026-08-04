@@ -11,7 +11,7 @@ import { localToUtc } from '@/lib/timezone'
 import { formatForClient, formatForDev } from '@/lib/format-datetime'
 
 const SITE_URL = 'https://fifthexit.com'
-const DEV_EMAIL = 'dev@hype-street.com'
+const DEV_EMAIL = 'dev@fifthexit.com'
 
 const ActionSchema = z.discriminatedUnion('action', [
   z.object({ action: z.literal('cancel') }),
