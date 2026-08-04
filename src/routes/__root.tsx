@@ -46,8 +46,8 @@ export const Route = createRootRoute({
       { name: "twitter:site", content: "@Lovable" },
       { name: "twitter:title", content: "fifthexit — Web & app dev built with speed." },
       { name: "twitter:description", content: "fifthexit builds vibrant, high-performance web and mobile apps for brands ready to stand out. Book a project consultation today." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/825d9382-cf12-437f-9411-1fe48398e456/id-preview-261bc88d--1bc49ac9-eacd-4499-bd7a-e95875986f3f.lovable.app-1785861843417.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/825d9382-cf12-437f-9411-1fe48398e456/id-preview-261bc88d--1bc49ac9-eacd-4499-bd7a-e95875986f3f.lovable.app-1785861843417.png" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/acc297bc-8b62-4993-b9bd-6fbc9cddc29d" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/acc297bc-8b62-4993-b9bd-6fbc9cddc29d" },
     ],
     scripts: [
       {
