@@ -4,9 +4,9 @@ import { localToUtc, addMinutesToTime } from './timezone'
 const WHEREBY_URL =
   'https://hypestreet.whereby.com/hype-street0c1316cb-680e-4731-b13f-3ec46f6e34f0'
 
-export const EVENT_TITLE = 'Discovery Call with hype/street'
+export const EVENT_TITLE = 'Discovery Call with fifthexit'
 export const EVENT_LOCATION = WHEREBY_URL
-export const EVENT_DESCRIPTION = `Your free discovery call with hype/street. Join here: ${WHEREBY_URL}`
+export const EVENT_DESCRIPTION = `Your free discovery call with fifthexit. Join here: ${WHEREBY_URL}`
 export const EVENT_DURATION_MIN = 30
 
 function toUtcStamp(d: Date): string {
@@ -46,7 +46,7 @@ export function buildIcs(date: string, time: string, uid: string): string {
   return [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
-    'PRODID:-//hype-street//Booking//EN',
+    'PRODID:-//fifthexit//Booking//EN',
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
     'BEGIN:VEVENT',

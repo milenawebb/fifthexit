@@ -11,7 +11,7 @@ import {
 } from '@react-email/components'
 import type { TemplateEntry } from './registry'
 
-const SITE_NAME = 'hype/street'
+const SITE_NAME = 'fifthexit'
 const WHEREBY_URL =
   'https://hypestreet.whereby.com/hype-street0c1316cb-680e-4731-b13f-3ec46f6e34f0'
 
@@ -130,7 +130,7 @@ export const template = {
     time: '14:00',
     message: 'We need a new marketing site with booking + Stripe.',
     googleCalendarUrl: 'https://calendar.google.com/calendar/render?action=TEMPLATE',
-    icsUrl: 'https://hype-street.com/api/public/booking-ics/abc123',
+    icsUrl: 'https://fifthexit.com/api/public/booking-ics/abc123',
   },
 } satisfies TemplateEntry
 

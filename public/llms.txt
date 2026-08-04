@@ -1,8 +1,8 @@
-# Hype Street
+# fifthexit
 
 > Web & app development studio. We build blazing-fast websites, slick mobile apps, and digital products.
 
-Hype Street (MW Global LLC) is a development studio focused on modern, performant web and mobile products. We pick the right stack for the job — battle-tested, scalable, accessible by default.
+fifthexit (MW Global LLC) is a development studio focused on modern, performant web and mobile products. We pick the right stack for the job — battle-tested, scalable, accessible by default.
 
 ## Pages
 

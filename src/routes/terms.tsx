@@ -7,8 +7,8 @@ import { LegalLayout, LegalSection, type TocItem } from "@/components/legal-layo
 export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
-      { name: "description", content: "The Terms of Service governing your use of hype/street's web and app development services." },
-      { property: "og:description", content: "Read the Terms of Service for hype/street (MW Global LLC / DBA Hype Street Productions LLC)." },
+      { name: "description", content: "The Terms of Service governing your use of fifthexit's web and app development services." },
+      { property: "og:description", content: "Read the Terms of Service for fifthexit (MW Global LLC / DBA Hype Street Productions LLC)." },
     ],
   }),
   component: LocalizedPage,
@@ -35,11 +35,11 @@ function TermsPageEn() {
   return (
     <LegalLayout
       title="Terms of Service"
-      effectiveDate="Effective date: May 12, 2026 · MW Global LLC / DBA Hype Street Productions LLC (DBA: Hype Street)"
+      effectiveDate="Effective date: May 12, 2026 · MW Global LLC / DBA Hype Street Productions LLC (DBA: fifthexit)"
       toc={toc}
     >
       <p className="mb-10 text-foreground/70">
-        Please read these Terms carefully. By accessing or using any service provided by Hype Street
+        Please read these Terms carefully. By accessing or using any service provided by fifthexit
         (MW Global LLC / DBA Hype Street Productions LLC), you agree to be bound by these Terms of Service. If you do not agree, do not
         use our services.
       </p>
@@ -47,9 +47,9 @@ function TermsPageEn() {
       <LegalSection id="agreement" title="1. Agreement to Terms">
         <p>
           These Terms of Service ("Terms") constitute a legally binding agreement between you
-          ("Client," "you," or "your") and MW Global LLC / DBA Hype Street Productions LLC, doing business as Hype Street ("Hype
+          ("Client," "you," or "your") and MW Global LLC / DBA Hype Street Productions LLC, doing business as fifthexit ("Hype
           Street," "we," "us," or "our"). These Terms govern your access to and use of our website
-          at hype-street.com and all services we provide.
+          at fifthexit.com and all services we provide.
         </p>
         <p>
           By submitting an inquiry, signing a project agreement, or engaging any of our services,
@@ -60,7 +60,7 @@ function TermsPageEn() {
 
       <LegalSection id="services" title="2. Our Services">
         <p>
-          Hype Street provides web development, mobile application development, brand and UI design,
+          fifthexit provides web development, mobile application development, brand and UI design,
           and digital product launch services. The specific deliverables, timeline, and pricing for
           your project will be outlined in a separate Statement of Work (SOW) or project agreement.
         </p>
@@ -92,7 +92,7 @@ function TermsPageEn() {
         <ul className="list-disc pl-6 space-y-2">
           <li>
             <strong className="text-foreground">Deposits:</strong> Most projects require a deposit
-            (typically 50%) before work begins. Deposits are non-refundable unless Hype Street fails
+            (typically 50%) before work begins. Deposits are non-refundable unless fifthexit fails
             to commence work within the agreed timeframe.
           </li>
           <li>
@@ -124,11 +124,11 @@ function TermsPageEn() {
           </li>
           <li>
             <strong className="text-foreground">Deliverables:</strong> Upon receipt of full payment,
-            Hype Street assigns to you all ownership rights in the final delivered project files
+            fifthexit assigns to you all ownership rights in the final delivered project files
             and code, except as noted below.
           </li>
           <li>
-            <strong className="text-foreground">Retained Rights:</strong> Hype Street retains
+            <strong className="text-foreground">Retained Rights:</strong> fifthexit retains
             ownership of all tools, frameworks, libraries, processes, methodologies, and
             pre-existing intellectual property used to build your project. We grant you a perpetual,
             non-exclusive license to use this Background IP solely as incorporated in your
@@ -179,7 +179,7 @@ function TermsPageEn() {
 
       <LegalSection id="warranties" title="8. Warranties & Disclaimers">
         <p>
-          Hype Street warrants that Services will be performed in a professional and workmanlike
+          fifthexit warrants that Services will be performed in a professional and workmanlike
           manner consistent with industry standards. We do not warrant that deliverables will be
           error-free or uninterrupted after handoff.
         </p>
@@ -192,7 +192,7 @@ function TermsPageEn() {
 
       <LegalSection id="liability" title="9. Limitation of Liability">
         <p>
-          To the maximum extent permitted by applicable law, Hype Street shall not be liable for
+          To the maximum extent permitted by applicable law, fifthexit shall not be liable for
           any indirect, incidental, special, consequential, or punitive damages. Our total
           cumulative liability for any claims shall not exceed the total fees paid by you to Hype
           Street in the three (3) months preceding the claim.
@@ -201,7 +201,7 @@ function TermsPageEn() {
 
       <LegalSection id="indemnification" title="10. Indemnification">
         <p>
-          You agree to indemnify, defend, and hold harmless Hype Street, MW Global LLC / DBA Hype Street Productions LLC, and their
+          You agree to indemnify, defend, and hold harmless fifthexit, MW Global LLC / DBA Hype Street Productions LLC, and their
           respective members, employees, and contractors from and against any claims, liabilities,
           damages, judgments, and expenses arising out of your breach of these Terms, your use of
           the Services, your provided materials, or your violation of any third-party rights or
@@ -241,21 +241,21 @@ function TermsPageEn() {
       <LegalSection id="changes" title="13. Changes to Terms">
         <p>
           We reserve the right to update these Terms at any time. We will post the revised Terms at
-          hype-street.com/terms with an updated effective date. Continued use of our services after
+          fifthexit.com/terms with an updated effective date. Continued use of our services after
           changes are posted constitutes acceptance.
         </p>
       </LegalSection>
 
       <LegalSection id="contact" title="14. Contact">
         <p>
-          MW Global LLC / DBA Hype Street Productions LLC (DBA: Hype Street)
+          MW Global LLC / DBA Hype Street Productions LLC (DBA: fifthexit)
           <br />
           Email:{" "}
           <a href="mailto:info@hype-street.com" className="text-primary hover:underline">
             info@hype-street.com
           </a>
           <br />
-          Website: hype-street.com
+          Website: fifthexit.com
         </p>
       </LegalSection>
     </LegalLayout>

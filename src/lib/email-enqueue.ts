@@ -6,7 +6,7 @@ import { render as renderAsync } from '@react-email/components'
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { TEMPLATES } from './email-templates/registry'
 
-const SITE_NAME = 'hype/street'
+const SITE_NAME = 'fifthexit'
 const FROM_DOMAIN = 'notify.hype-street.com'
 const SENDER_DOMAIN = 'notify.hype-street.com'
 

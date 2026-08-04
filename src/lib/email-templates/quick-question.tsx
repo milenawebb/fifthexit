@@ -10,7 +10,7 @@ import {
 } from '@react-email/components'
 import type { TemplateEntry } from './registry'
 
-const SITE_NAME = 'hype/street'
+const SITE_NAME = 'fifthexit'
 
 interface QuickQuestionProps {
   name?: string

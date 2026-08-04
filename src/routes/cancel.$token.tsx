@@ -87,7 +87,7 @@ function CancelPage() {
               </div>
               <h1 className="text-2xl font-bold mb-2">Booking cancelled</h1>
               <p className="text-muted-foreground">
-                Sorry to miss you. You can book a new time anytime at hype-street.com.
+                Sorry to miss you. You can book a new time anytime at fifthexit.com.
               </p>
             </div>
           ) : (

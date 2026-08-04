@@ -24,7 +24,7 @@ export const Route = createFileRoute('/api/public/booking-ics/$token')({
           status: 200,
           headers: {
             'Content-Type': 'text/calendar; charset=utf-8',
-            'Content-Disposition': 'attachment; filename="hype-street-consult.ics"',
+            'Content-Disposition': 'attachment; filename="fifthexit-consult.ics"',
             'Cache-Control': 'no-store',
           },
         })

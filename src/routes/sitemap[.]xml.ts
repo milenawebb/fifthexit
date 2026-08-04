@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 
-const BASE_URL = "https://hype-street.com";
+const BASE_URL = "https://fifthexit.com";
 
 interface SitemapEntry {
   path: string;

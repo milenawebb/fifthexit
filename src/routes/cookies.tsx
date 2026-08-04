@@ -7,8 +7,8 @@ import { LegalLayout, LegalSection, type TocItem } from "@/components/legal-layo
 export const Route = createFileRoute("/cookies")({
   head: () => ({
     meta: [
-      { name: "description", content: "How hype/street uses cookies and similar tracking technologies on hype-street.com." },
-      { property: "og:description", content: "hype/street's Cookie Policy." },
+      { name: "description", content: "How fifthexit uses cookies and similar tracking technologies on fifthexit.com." },
+      { property: "og:description", content: "fifthexit's Cookie Policy." },
     ],
   }),
   component: LocalizedPage,
@@ -26,8 +26,8 @@ const toc: TocItem[] = [
 ];
 
 const cookies = [
-  { name: "_hs_session", provider: "Hype Street", type: "Essential", purpose: "Maintains session state for visitors", duration: "Session" },
-  { name: "_hs_cookie_consent", provider: "Hype Street", type: "Essential", purpose: "Stores your cookie consent preferences", duration: "12 months" },
+  { name: "_hs_session", provider: "fifthexit", type: "Essential", purpose: "Maintains session state for visitors", duration: "Session" },
+  { name: "_hs_cookie_consent", provider: "fifthexit", type: "Essential", purpose: "Stores your cookie consent preferences", duration: "12 months" },
   { name: "_ga", provider: "Google Analytics", type: "Analytics", purpose: "Distinguishes unique visitors; calculates visitor, session, and campaign data", duration: "2 years" },
   { name: "_ga_[ID]", provider: "Google Analytics", type: "Analytics", purpose: "Persists session state for Google Analytics 4", duration: "2 years" },
   { name: "_gid", provider: "Google Analytics", type: "Analytics", purpose: "Distinguishes users; stores page usage information", duration: "24 hours" },
@@ -38,12 +38,12 @@ function CookiesPageEn() {
   return (
     <LegalLayout
       title="Cookie Policy"
-      effectiveDate="Effective date: May 12, 2026 · MW Global LLC / DBA Hype Street Productions LLC (DBA: Hype Street)"
+      effectiveDate="Effective date: May 12, 2026 · MW Global LLC / DBA Hype Street Productions LLC (DBA: fifthexit)"
       toc={toc}
     >
       <p className="mb-10 text-foreground/70">
-        This Cookie Policy explains how Hype Street (MW Global LLC / DBA Hype Street Productions LLC) uses cookies and similar
-        tracking technologies on hype-street.com. It should be read alongside our Privacy Policy.
+        This Cookie Policy explains how fifthexit (MW Global LLC / DBA Hype Street Productions LLC) uses cookies and similar
+        tracking technologies on fifthexit.com. It should be read alongside our Privacy Policy.
       </p>
 
       <LegalSection id="what-are-cookies" title="1. What Are Cookies?">
@@ -182,20 +182,20 @@ function CookiesPageEn() {
       <LegalSection id="updates" title="7. Updates to This Policy">
         <p>
           We may update this Cookie Policy from time to time. We will post updates at
-          hype-street.com/cookies with a revised effective date.
+          fifthexit.com/cookies with a revised effective date.
         </p>
       </LegalSection>
 
       <LegalSection id="contact" title="8. Contact Us">
         <p>
-          MW Global LLC / DBA Hype Street Productions LLC (DBA: Hype Street)
+          MW Global LLC / DBA Hype Street Productions LLC (DBA: fifthexit)
           <br />
           Email:{" "}
           <a href="mailto:info@hype-street.com" className="text-primary hover:underline">
             info@hype-street.com
           </a>
           <br />
-          Website: hype-street.com
+          Website: fifthexit.com
         </p>
       </LegalSection>
     </LegalLayout>

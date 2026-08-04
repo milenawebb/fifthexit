@@ -11,8 +11,8 @@ import {
 } from '@react-email/components'
 import type { TemplateEntry } from './registry'
 
-const SITE_NAME = 'hype/street'
-const SITE_URL = 'www.hype-street.com'
+const SITE_NAME = 'fifthexit'
+const SITE_URL = 'www.fifthexit.com'
 const VIDEO_CALL_URL =
   'https://hypestreet.whereby.com/hype-street0c1316cb-680e-4731-b13f-3ec46f6e34f0'
 
@@ -148,10 +148,10 @@ export const template = {
     date: 'Mon, Jan 15',
     time: '14:00',
     locale: 'en',
-    rescheduleUrl: 'https://hype-street.com/reschedule/abc123',
-    cancelUrl: 'https://hype-street.com/cancel/abc123',
+    rescheduleUrl: 'https://fifthexit.com/reschedule/abc123',
+    cancelUrl: 'https://fifthexit.com/cancel/abc123',
     googleCalendarUrl: 'https://calendar.google.com/calendar/render?action=TEMPLATE',
-    icsUrl: 'https://hype-street.com/api/public/booking-ics/abc123',
+    icsUrl: 'https://fifthexit.com/api/public/booking-ics/abc123',
   },
 } satisfies TemplateEntry
 
