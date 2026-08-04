@@ -42,7 +42,7 @@ export function LegalLayout({
         <div className="mx-auto max-w-7xl px-6">
           <h1
             className="text-gradient text-4xl md:text-6xl font-bold tracking-tight"
-            style={{ fontFamily: "Syne, sans-serif" }}
+            style={{ fontFamily: "Space Grotesk, sans-serif" }}
           >
             {title}
           </h1>
@@ -59,7 +59,7 @@ export function LegalLayout({
             <nav aria-label="Table of contents">
               <p
                 className="text-xs uppercase tracking-widest text-muted-foreground mb-4"
-                style={{ fontFamily: "Syne, sans-serif" }}
+                style={{ fontFamily: "Space Grotesk, sans-serif" }}
               >
                 On this page
               </p>
@@ -109,7 +109,7 @@ export function LegalSection({
     <section id={id} className="scroll-mt-24 mb-12">
       <h2
         className="text-2xl md:text-3xl font-bold mb-4 text-gradient"
-        style={{ fontFamily: "Syne, sans-serif" }}
+        style={{ fontFamily: "Space Grotesk, sans-serif" }}
       >
         {title}
       </h2>
