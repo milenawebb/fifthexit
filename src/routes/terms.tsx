@@ -1,3 +1,6 @@
+import { useTranslation } from "react-i18next";
+import { Header, Footer } from "@/components/site-chrome";
+import { BgTermsContent } from "@/components/legal-bg/terms";
 import { createFileRoute } from "@tanstack/react-router";
 import { LegalLayout, LegalSection, type TocItem } from "@/components/legal-layout";
 
@@ -8,7 +11,7 @@ export const Route = createFileRoute("/terms")({
       { property: "og:description", content: "Read the Terms of Service for hype/street (MW Global LLC / DBA Hype Street Productions LLC)." },
     ],
   }),
-  component: TermsPage,
+  component: LocalizedPage,
 });
 
 const toc: TocItem[] = [
@@ -28,7 +31,7 @@ const toc: TocItem[] = [
   { id: "contact", label: "14. Contact" },
 ];
 
-function TermsPage() {
+function TermsPageEn() {
   return (
     <LegalLayout
       title="Terms of Service"
@@ -257,4 +260,18 @@ function TermsPage() {
       </LegalSection>
     </LegalLayout>
   );
+}
+
+function LocalizedPage() {
+  const { i18n } = useTranslation();
+  if (i18n.language?.startsWith("bg")) {
+    return (
+      <>
+        <Header />
+        <BgTermsContent />
+        <Footer />
+      </>
+    );
+  }
+  return <TermsPageEn />;
 }
