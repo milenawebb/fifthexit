@@ -57,7 +57,7 @@ export async function enqueueTransactional(
 ): Promise<{ ok: boolean; error?: string }> {
   const template = TEMPLATES[templateName]
   if (!template) return { ok: false, error: `Unknown template: ${templateName}` }
-  const recipient = template.to ?? to
+  const recipient = to ?? template.to
   if (!recipient) return { ok: false, error: 'No recipient' }
 
   const element = React.createElement(template.component, props)
