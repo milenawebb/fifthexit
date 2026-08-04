@@ -3,18 +3,16 @@ import { initReactI18next } from 'react-i18next'
 import en from './locales/en.json'
 import bg from './locales/bg.json'
 
-const STORAGE_KEY = 'hs_lang'
-const MANUAL_KEY = 'hs_lang_manual'
+export function languageForHost(host?: string | null): 'en' | 'bg' {
+  if (!host) return 'en'
+  const h = host.toLowerCase().split(':')[0]
+  if (h === 'fifthexit.eu' || h.endsWith('.fifthexit.eu')) return 'bg'
+  return 'en'
+}
 
 function initialLang() {
-  if (typeof localStorage === 'undefined') return 'en'
-  try {
-    const manual = localStorage.getItem(MANUAL_KEY) === 'true'
-    if (!manual) return 'en'
-    return localStorage.getItem(STORAGE_KEY) || 'en'
-  } catch {
-    return 'en'
-  }
+  if (typeof window === 'undefined') return 'en'
+  return languageForHost(window.location.hostname)
 }
 
 i18n.use(initReactI18next).init({
@@ -26,13 +24,5 @@ i18n.use(initReactI18next).init({
   fallbackLng: 'en',
   interpolation: { escapeValue: false }
 })
-
-if (typeof window !== 'undefined') {
-  i18n.on('languageChanged', (lng) => {
-    try {
-      localStorage.setItem(STORAGE_KEY, lng.startsWith('bg') ? 'bg' : 'en')
-    } catch {}
-  })
-}
 
 export default i18n

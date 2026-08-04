@@ -203,5 +203,9 @@
     "terms": "Общи условия",
     "privacy": "Поверителност",
     "cookies": "Бисквитки"
+  },
+  "contact": {
+    "email": "dev@hype-street.com",
+    "phone": ""
   }
 }

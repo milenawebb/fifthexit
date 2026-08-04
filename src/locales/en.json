@@ -197,5 +197,9 @@
     "terms": "Terms",
     "privacy": "Privacy",
     "cookies": "Cookies"
+  },
+  "contact": {
+    "email": "dev@hype-street.com",
+    "phone": ""
   }
 }

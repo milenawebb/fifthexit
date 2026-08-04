@@ -1,3 +1,6 @@
+import { useTranslation } from "react-i18next";
+import { Header, Footer } from "@/components/site-chrome";
+import { BgCookiesContent } from "@/components/legal-bg/cookies";
 import { createFileRoute } from "@tanstack/react-router";
 import { LegalLayout, LegalSection, type TocItem } from "@/components/legal-layout";
 
@@ -8,7 +11,7 @@ export const Route = createFileRoute("/cookies")({
       { property: "og:description", content: "hype/street's Cookie Policy." },
     ],
   }),
-  component: CookiesPage,
+  component: LocalizedPage,
 });
 
 const toc: TocItem[] = [
@@ -31,7 +34,7 @@ const cookies = [
   { name: "_gat", provider: "Google Analytics", type: "Analytics", purpose: "Throttles request rate to Google Analytics", duration: "1 minute" },
 ];
 
-function CookiesPage() {
+function CookiesPageEn() {
   return (
     <LegalLayout
       title="Cookie Policy"
@@ -197,4 +200,18 @@ function CookiesPage() {
       </LegalSection>
     </LegalLayout>
   );
+}
+
+function LocalizedPage() {
+  const { i18n } = useTranslation();
+  if (i18n.language?.startsWith("bg")) {
+    return (
+      <>
+        <Header />
+        <BgCookiesContent />
+        <Footer />
+      </>
+    );
+  }
+  return <CookiesPageEn />;
 }

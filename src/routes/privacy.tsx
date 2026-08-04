@@ -1,3 +1,6 @@
+import { useTranslation } from "react-i18next";
+import { Header, Footer } from "@/components/site-chrome";
+import { BgPrivacyContent } from "@/components/legal-bg/privacy";
 import { createFileRoute } from "@tanstack/react-router";
 import { LegalLayout, LegalSection, type TocItem } from "@/components/legal-layout";
 
@@ -8,7 +11,7 @@ export const Route = createFileRoute("/privacy")({
       { property: "og:description", content: "hype/street's Privacy Policy." },
     ],
   }),
-  component: PrivacyPage,
+  component: LocalizedPage,
 });
 
 const toc: TocItem[] = [
@@ -25,7 +28,7 @@ const toc: TocItem[] = [
   { id: "contact", label: "11. Contact Us" },
 ];
 
-function PrivacyPage() {
+function PrivacyPageEn() {
   return (
     <LegalLayout
       title="Privacy Policy"
@@ -224,4 +227,18 @@ function PrivacyPage() {
       </LegalSection>
     </LegalLayout>
   );
+}
+
+function LocalizedPage() {
+  const { i18n } = useTranslation();
+  if (i18n.language?.startsWith("bg")) {
+    return (
+      <>
+        <Header />
+        <BgPrivacyContent />
+        <Footer />
+      </>
+    );
+  }
+  return <PrivacyPageEn />;
 }
