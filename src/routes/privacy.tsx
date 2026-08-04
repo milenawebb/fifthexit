@@ -7,7 +7,7 @@ import { LegalLayout, LegalSection, type TocItem } from "@/components/legal-layo
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { name: "description", content: "How fifthexit (MW Global LLC / DBA Hype Street Productions LLC) collects, uses, and protects your personal information." },
+      { name: "description", content: "How fifthexit (MW Global LLC / DBA Fifth Exit) collects, uses, and protects your personal information." },
       { property: "og:description", content: "fifthexit's Privacy Policy." },
     ],
   }),
@@ -32,18 +32,18 @@ function PrivacyPageEn() {
   return (
     <LegalLayout
       title="Privacy Policy"
-      effectiveDate="Effective date: May 12, 2026 · MW Global LLC / DBA Hype Street Productions LLC (DBA: fifthexit)"
+      effectiveDate="Effective date: May 12, 2026 · MW Global LLC / DBA Fifth Exit (DBA: fifthexit)"
       toc={toc}
     >
       <p className="mb-10 text-foreground/70">
-        Your privacy matters to us. This Privacy Policy explains how MW Global LLC / DBA Hype Street Productions LLC (DBA: Hype
+        Your privacy matters to us. This Privacy Policy explains how MW Global LLC / DBA Fifth Exit (DBA: Hype
         Street) collects, uses, and protects information when you visit our website or engage our
         services.
       </p>
 
       <LegalSection id="introduction" title="1. Introduction">
         <p>
-          MW Global LLC / DBA Hype Street Productions LLC, doing business as fifthexit, operates the website at fifthexit.com.
+          MW Global LLC / DBA Fifth Exit, doing business as fifthexit, operates the website at fifthexit.com.
           This policy describes our practices for collecting, using, disclosing, and protecting
           personal information. This policy is intended to comply with applicable privacy laws,
           including the Florida Information Protection Act (FIPA).
@@ -160,8 +160,8 @@ function PrivacyPageEn() {
         <p>
           No transmission or storage system is 100% secure. If you believe your information has been
           compromised, contact us at{" "}
-          <a href="mailto:info@hype-street.com" className="text-primary hover:underline">
-            info@hype-street.com
+          <a href="mailto:info@fifthexit.com" className="text-primary hover:underline">
+            info@fifthexit.com
           </a>
           .
         </p>
@@ -180,8 +180,8 @@ function PrivacyPageEn() {
         </ul>
         <p>
           To exercise these rights, contact us at{" "}
-          <a href="mailto:info@hype-street.com" className="text-primary hover:underline">
-            info@hype-street.com
+          <a href="mailto:info@fifthexit.com" className="text-primary hover:underline">
+            info@fifthexit.com
           </a>
           . We will respond within 30 days.
         </p>
@@ -191,8 +191,8 @@ function PrivacyPageEn() {
         <p>
           Our website and services are not directed to individuals under the age of 13. We do not
           knowingly collect personal information from children under 13. Contact us at{" "}
-          <a href="mailto:info@hype-street.com" className="text-primary hover:underline">
-            info@hype-street.com
+          <a href="mailto:info@fifthexit.com" className="text-primary hover:underline">
+            info@fifthexit.com
           </a>{" "}
           if you believe we have inadvertently collected such information.
         </p>
@@ -215,11 +215,11 @@ function PrivacyPageEn() {
 
       <LegalSection id="contact" title="11. Contact Us">
         <p>
-          MW Global LLC / DBA Hype Street Productions LLC (DBA: fifthexit)
+          MW Global LLC / DBA Fifth Exit (DBA: fifthexit)
           <br />
           Privacy Contact:{" "}
-          <a href="mailto:info@hype-street.com" className="text-primary hover:underline">
-            info@hype-street.com
+          <a href="mailto:info@fifthexit.com" className="text-primary hover:underline">
+            info@fifthexit.com
           </a>
           <br />
           Website: fifthexit.com

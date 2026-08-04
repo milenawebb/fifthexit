@@ -39,7 +39,7 @@ export const template = {
   subject: (data: Record<string, any>) =>
     `Booking rescheduled — ${data?.name || 'client'}`,
   displayName: 'Booking reschedule (internal)',
-  to: 'dev@hype-street.com',
+  to: 'dev@fifthexit.com',
   previewData: {
     name: 'Alex',
     email: 'alex@brand.com',

@@ -50,7 +50,7 @@ export function buildIcs(date: string, time: string, uid: string): string {
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
     'BEGIN:VEVENT',
-    `UID:${uid}@hype-street.com`,
+    `UID:${uid}@fifthexit.com`,
     `DTSTAMP:${stamp}`,
     `DTSTART:${toUtcStamp(start)}`,
     `DTEND:${toUtcStamp(end)}`,

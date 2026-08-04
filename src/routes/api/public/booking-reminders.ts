@@ -6,7 +6,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { enqueueTransactional } from '@/lib/email-enqueue'
 import { formatForClient, formatForDev } from '@/lib/format-datetime'
 
-const DEV_EMAIL = 'dev@hype-street.com'
+const DEV_EMAIL = 'dev@fifthexit.com'
 
 export const Route = createFileRoute('/api/public/booking-reminders')({
   server: {

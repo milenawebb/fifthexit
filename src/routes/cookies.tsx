@@ -38,11 +38,11 @@ function CookiesPageEn() {
   return (
     <LegalLayout
       title="Cookie Policy"
-      effectiveDate="Effective date: May 12, 2026 · MW Global LLC / DBA Hype Street Productions LLC (DBA: fifthexit)"
+      effectiveDate="Effective date: May 12, 2026 · MW Global LLC / DBA Fifth Exit (DBA: fifthexit)"
       toc={toc}
     >
       <p className="mb-10 text-foreground/70">
-        This Cookie Policy explains how fifthexit (MW Global LLC / DBA Hype Street Productions LLC) uses cookies and similar
+        This Cookie Policy explains how fifthexit (MW Global LLC / DBA Fifth Exit) uses cookies and similar
         tracking technologies on fifthexit.com. It should be read alongside our Privacy Policy.
       </p>
 
@@ -163,8 +163,8 @@ function CookiesPageEn() {
             our site, you will be presented with a cookie consent banner where you can accept or
             decline optional cookies. You can update your preferences at any time by clearing your
             browser cookies and revisiting our site, or by contacting us at{" "}
-            <a href="mailto:info@hype-street.com" className="text-primary hover:underline">
-              info@hype-street.com
+            <a href="mailto:info@fifthexit.com" className="text-primary hover:underline">
+              info@fifthexit.com
             </a>
             .
           </li>
@@ -188,11 +188,11 @@ function CookiesPageEn() {
 
       <LegalSection id="contact" title="8. Contact Us">
         <p>
-          MW Global LLC / DBA Hype Street Productions LLC (DBA: fifthexit)
+          MW Global LLC / DBA Fifth Exit (DBA: fifthexit)
           <br />
           Email:{" "}
-          <a href="mailto:info@hype-street.com" className="text-primary hover:underline">
-            info@hype-street.com
+          <a href="mailto:info@fifthexit.com" className="text-primary hover:underline">
+            info@fifthexit.com
           </a>
           <br />
           Website: fifthexit.com
