@@ -51,7 +51,7 @@ export const Route = createFileRoute("/")({
       },
       {
         property: "og:description",
-        content: "Sleek, vibrant web & app development. Book your project today.",
+        content: "fifthexit builds vibrant, high-performance web and mobile apps for brands ready to stand out. Book a project consultation today.",
       },
     ],
   }),
