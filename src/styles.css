@@ -130,6 +130,17 @@
     background-attachment: fixed;
   }
   h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
+
+  /* Bulgarian locale: Space Grotesk/Inter lack Cyrillic — use DM Sans everywhere */
+  html[lang="bg"] body,
+  html[lang="bg"] input,
+  html[lang="bg"] textarea,
+  html[lang="bg"] select,
+  html[lang="bg"] button { font-family: var(--font-sans-bg); }
+  html[lang="bg"] h1,
+  html[lang="bg"] h2,
+  html[lang="bg"] h3,
+  html[lang="bg"] h4 { font-family: var(--font-display-bg); }
 }
 
 @layer utilities {
