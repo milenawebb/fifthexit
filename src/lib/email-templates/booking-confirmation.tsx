@@ -1,17 +1,6 @@
-import {
-  Body,
-  Container,
-  Head,
-  Heading,
-  Html,
-  Link,
-  Preview,
-  Section,
-  Text,
-} from '@react-email/components'
+import { Heading, Link, Section, Text } from '@react-email/components'
 import type { TemplateEntry } from './registry'
-
-const SITE_NAME = 'fifthexit'
+import { EmailShell, SITE_NAME, isBgLocale, styles } from './branding'
 import { WHEREBY_URL as VIDEO_CALL_URL } from '@/lib/site-url'
 
 interface BookingConfirmationProps {
@@ -27,8 +16,6 @@ interface BookingConfirmationProps {
   siteUrl?: string
 }
 
-const isBg = (locale?: string) => (locale ?? '').toLowerCase().startsWith('bg')
-
 const BookingConfirmationEmail = ({
   name,
   date,
@@ -39,111 +26,85 @@ const BookingConfirmationEmail = ({
   cancelUrl,
   googleCalendarUrl,
   icsUrl,
-  siteUrl = 'https://fifthexit.com',
+  siteUrl,
 }: BookingConfirmationProps) => {
-  const bg = isBg(locale)
-  const siteHost = siteUrl.replace(/^https?:\/\//, '')
+  const bg = isBgLocale(locale) || (siteUrl ?? '').includes('fifthexit.eu')
   const addToCalendarLabel = bg ? 'Добави в календара' : 'Add to Calendar'
   const icsLabel = bg ? 'Изтегли .ics (Apple/Outlook)' : 'Download .ics (Apple / Outlook)'
   const whenLine = formattedDateTime || [date, time].filter(Boolean).join(bg ? ' в ' : ' at ')
   return (
-    <Html lang={bg ? 'bg' : 'en'} dir="ltr">
-      <Head />
-      <Preview>
-        {bg
+    <EmailShell
+      preview={
+        bg
           ? `Вашата консултация с ${SITE_NAME} е потвърдена`
-          : `Your consult with ${SITE_NAME} is booked`}
-      </Preview>
-      <Body style={main}>
-        <Container style={container}>
-          {bg ? (
-            <>
-              <Heading style={h1}>Здравейте{name ? `, ${name}` : ''},</Heading>
-              <Text style={lead}>
-                Вашият безплатен разговор с {SITE_NAME} е потвърден
-                {whenLine ? ` — ${whenLine}` : ''}.
-              </Text>
-              <Section style={card}>
-                <Text style={body}>
-                  <strong>Присъединете се към разговора тук:</strong>{' '}
-                  <Link href={VIDEO_CALL_URL} style={link}>{VIDEO_CALL_URL}</Link>
-                </Text>
-                {googleCalendarUrl ? (
-                  <Section style={{ textAlign: 'center', margin: '14px 0 4px' }}>
-                    <Link href={googleCalendarUrl} style={ctaButton}>{addToCalendarLabel}</Link>
-                  </Section>
-                ) : null}
-                {icsUrl ? (
-                  <Text style={icsLine}>
-                    <Link href={icsUrl} style={link}>{icsLabel}</Link>
-                  </Text>
-                ) : null}
-              </Section>
-              {(rescheduleUrl || cancelUrl) && (
-                <Text style={actions}>
-                  {rescheduleUrl ? (
-                    <Link href={rescheduleUrl} style={link}>Промяна на часа</Link>
-                  ) : null}
-                  {rescheduleUrl && cancelUrl ? <span style={sep}> · </span> : null}
-                  {cancelUrl ? (
-                    <Link href={cancelUrl} style={link}>Отказ на резервацията</Link>
-                  ) : null}
-                </Text>
-              )}
-              <Text style={footer}>
-                Поздрави,<br />
-                Екипът на {SITE_NAME}<br />
-                <Link href={siteUrl} style={link}>{siteHost}</Link>
-              </Text>
-            </>
-          ) : (
-            <>
-              <Heading style={h1}>{name ? `Thanks, ${name}!` : 'Thanks for booking!'}</Heading>
-              <Text style={lead}>Your consult with {SITE_NAME} is confirmed.</Text>
-              <Section style={card}>
-                {whenLine ? <Text style={body}><strong>When:</strong> {whenLine}</Text> : null}
-                <Text style={body}>
-                  <strong>Join the call here:</strong>{' '}
-                  <Link href={VIDEO_CALL_URL} style={link}>{VIDEO_CALL_URL}</Link>
-                </Text>
-                {googleCalendarUrl ? (
-                  <Section style={{ textAlign: 'center', margin: '14px 0 4px' }}>
-                    <Link href={googleCalendarUrl} style={ctaButton}>{addToCalendarLabel}</Link>
-                  </Section>
-                ) : null}
-                {icsUrl ? (
-                  <Text style={icsLine}>
-                    <Link href={icsUrl} style={link}>{icsLabel}</Link>
-                  </Text>
-                ) : null}
-              </Section>
-              {(rescheduleUrl || cancelUrl) && (
-                <Text style={actions}>
-                  {rescheduleUrl ? (
-                    <Link href={rescheduleUrl} style={link}>Reschedule</Link>
-                  ) : null}
-                  {rescheduleUrl && cancelUrl ? <span style={sep}> · </span> : null}
-                  {cancelUrl ? (
-                    <Link href={cancelUrl} style={link}>Cancel this booking</Link>
-                  ) : null}
-                </Text>
-              )}
-              <Text style={footer}>
-                — The {SITE_NAME} team<br />
-                <Link href={siteUrl} style={link}>{siteHost}</Link>
-              </Text>
-            </>
-          )}
-        </Container>
-      </Body>
-    </Html>
+          : `Your consult with ${SITE_NAME} is booked`
+      }
+      locale={locale}
+      siteUrl={siteUrl}
+      signOff={bg ? `Поздрави, екипът на ${SITE_NAME}` : `— The ${SITE_NAME} team`}
+    >
+      <Heading style={styles.h1}>
+        {bg
+          ? `Здравейте${name ? `, ${name}` : ''},`
+          : name
+            ? `Thanks, ${name}!`
+            : 'Thanks for booking!'}
+      </Heading>
+      <Text style={styles.lead}>
+        {bg
+          ? `Вашият безплатен разговор с ${SITE_NAME} е потвърден${whenLine ? ` — ${whenLine}` : ''}.`
+          : `Your consult with ${SITE_NAME} is confirmed.`}
+      </Text>
+      <Section style={styles.card}>
+        {!bg && whenLine ? (
+          <Text style={styles.body}>
+            <strong>When:</strong> {whenLine}
+          </Text>
+        ) : null}
+        <Text style={styles.body}>
+          <strong>{bg ? 'Присъединете се към разговора тук:' : 'Join the call here:'}</strong>{' '}
+          <Link href={VIDEO_CALL_URL} style={styles.link}>
+            {VIDEO_CALL_URL}
+          </Link>
+        </Text>
+        {googleCalendarUrl ? (
+          <Section style={{ textAlign: 'center', margin: '16px 0 4px' }}>
+            <Link href={googleCalendarUrl} style={styles.ctaButton}>
+              {addToCalendarLabel}
+            </Link>
+          </Section>
+        ) : null}
+        {icsUrl ? (
+          <Text style={styles.small}>
+            <Link href={icsUrl} style={styles.link}>
+              {icsLabel}
+            </Link>
+          </Text>
+        ) : null}
+      </Section>
+      {rescheduleUrl || cancelUrl ? (
+        <Text style={styles.actions}>
+          {rescheduleUrl ? (
+            <Link href={rescheduleUrl} style={styles.link}>
+              {bg ? 'Промяна на часа' : 'Reschedule'}
+            </Link>
+          ) : null}
+          {rescheduleUrl && cancelUrl ? <span style={styles.sep}> · </span> : null}
+          {cancelUrl ? (
+            <Link href={cancelUrl} style={styles.link}>
+              {bg ? 'Отказ на резервацията' : 'Cancel this booking'}
+            </Link>
+          ) : null}
+        </Text>
+      ) : null}
+    </EmailShell>
   )
 }
 
 export const template = {
   component: BookingConfirmationEmail,
   subject: (data: Record<string, any>) =>
-    isBg(data?.locale)
+    isBgLocale(data?.locale)
       ? `Вашата консултация с ${SITE_NAME} е потвърдена`
       : `Your consult with ${SITE_NAME} is booked`,
   displayName: 'Booking confirmation (client)',
@@ -159,30 +120,3 @@ export const template = {
     siteUrl: 'https://fifthexit.com',
   },
 } satisfies TemplateEntry
-
-const main = { backgroundColor: '#ffffff', fontFamily: 'Arial, sans-serif' }
-const container = { padding: '24px 28px', maxWidth: '560px' }
-const h1 = { fontSize: '22px', fontWeight: 'bold', color: '#0d0b1a', margin: '0 0 12px' }
-const lead = { fontSize: '14px', color: '#55575d', lineHeight: '1.5', margin: '0 0 20px' }
-const card = {
-  background: '#f7f7fb',
-  borderRadius: '12px',
-  padding: '16px 18px',
-  margin: '0 0 16px',
-}
-const body = { fontSize: '14px', color: '#0d0b1a', margin: '0 0 8px', lineHeight: '1.5' }
-const link = { color: '#7b78f5', textDecoration: 'underline', wordBreak: 'break-all' as const }
-const actions = { fontSize: '13px', color: '#55575d', margin: '0 0 20px', lineHeight: '1.5' }
-const sep = { color: '#999' }
-const footer = { fontSize: '12px', color: '#999', margin: '24px 0 0', lineHeight: '1.6' }
-const ctaButton = {
-  display: 'inline-block',
-  background: '#7b78f5',
-  color: '#ffffff',
-  padding: '11px 22px',
-  borderRadius: '8px',
-  fontSize: '14px',
-  fontWeight: 'bold',
-  textDecoration: 'none',
-}
-const icsLine = { fontSize: '12px', color: '#55575d', textAlign: 'center' as const, margin: '8px 0 0' }
