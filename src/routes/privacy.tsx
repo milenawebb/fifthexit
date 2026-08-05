@@ -36,8 +36,7 @@ function PrivacyPageEn() {
       toc={toc}
     >
       <p className="mb-10 text-foreground/70">
-        Your privacy matters to us. This Privacy Policy explains how MW Global LLC / DBA Fifth Exit (DBA: Hype
-        Street) collects, uses, and protects information when you visit our website or engage our
+        Your privacy matters to us. This Privacy Policy explains how MW Global LLC / DBA Fifth Exit (DBA: fifthexit) collects, uses, and protects information when you visit our website or engage our
         services.
       </p>
 

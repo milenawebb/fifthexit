@@ -47,8 +47,7 @@ function TermsPageEn() {
       <LegalSection id="agreement" title="1. Agreement to Terms">
         <p>
           These Terms of Service ("Terms") constitute a legally binding agreement between you
-          ("Client," "you," or "your") and MW Global LLC / DBA Fifth Exit, doing business as fifthexit ("Hype
-          Street," "we," "us," or "our"). These Terms govern your access to and use of our website
+          ("Client," "you," or "your") and MW Global LLC / DBA Fifth Exit, doing business as fifthexit ("fifthexit," "we," "us," or "our"). These Terms govern your access to and use of our website
           at fifthexit.com and all services we provide.
         </p>
         <p>
@@ -194,8 +193,7 @@ function TermsPageEn() {
         <p>
           To the maximum extent permitted by applicable law, fifthexit shall not be liable for
           any indirect, incidental, special, consequential, or punitive damages. Our total
-          cumulative liability for any claims shall not exceed the total fees paid by you to Hype
-          Street in the three (3) months preceding the claim.
+          cumulative liability for any claims shall not exceed the total fees paid by you to fifthexit in the three (3) months preceding the claim.
         </p>
       </LegalSection>
 
