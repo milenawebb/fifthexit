@@ -1,8 +1,6 @@
 import bgOgImage from "../assets/fifthexit-eu-og.png.asset.json";
+import enOgImage from "../assets/fifthexit-com-og.png.asset.json";
 import { languageForHost } from "../i18n";
-
-const EN_OG_IMAGE =
-  "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/acc297bc-8b62-4993-b9bd-6fbc9cddc29d";
 
 export interface SiteMeta {
   lang: "en" | "bg";
