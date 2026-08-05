@@ -13,8 +13,7 @@ import type { TemplateEntry } from './registry'
 
 const SITE_NAME = 'fifthexit'
 const SITE_URL = 'www.fifthexit.com'
-const VIDEO_CALL_URL =
-  'https://hypestreet.whereby.com/hype-street0c1316cb-680e-4731-b13f-3ec46f6e34f0'
+import { WHEREBY_URL as VIDEO_CALL_URL } from '@/lib/site-url'
 
 interface BookingConfirmationProps {
   name?: string

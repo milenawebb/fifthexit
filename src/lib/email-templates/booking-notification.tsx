@@ -12,8 +12,7 @@ import {
 import type { TemplateEntry } from './registry'
 
 const SITE_NAME = 'fifthexit'
-const WHEREBY_URL =
-  'https://hypestreet.whereby.com/hype-street0c1316cb-680e-4731-b13f-3ec46f6e34f0'
+import { WHEREBY_URL } from '@/lib/site-url'
 
 interface EstimatorSelections {
   projectType?: string
