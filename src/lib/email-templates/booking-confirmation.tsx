@@ -12,7 +12,6 @@ import {
 import type { TemplateEntry } from './registry'
 
 const SITE_NAME = 'fifthexit'
-const SITE_URL = 'www.fifthexit.com'
 import { WHEREBY_URL as VIDEO_CALL_URL } from '@/lib/site-url'
 
 interface BookingConfirmationProps {
@@ -25,6 +24,7 @@ interface BookingConfirmationProps {
   cancelUrl?: string
   googleCalendarUrl?: string
   icsUrl?: string
+  siteUrl?: string
 }
 
 const isBg = (locale?: string) => (locale ?? '').toLowerCase().startsWith('bg')
@@ -39,8 +39,10 @@ const BookingConfirmationEmail = ({
   cancelUrl,
   googleCalendarUrl,
   icsUrl,
+  siteUrl = 'https://fifthexit.com',
 }: BookingConfirmationProps) => {
   const bg = isBg(locale)
+  const siteHost = siteUrl.replace(/^https?:\/\//, '')
   const addToCalendarLabel = bg ? 'Добави в календара' : 'Add to Calendar'
   const icsLabel = bg ? 'Изтегли .ics (Apple/Outlook)' : 'Download .ics (Apple / Outlook)'
   const whenLine = formattedDateTime || [date, time].filter(Boolean).join(bg ? ' в ' : ' at ')
@@ -91,7 +93,7 @@ const BookingConfirmationEmail = ({
               <Text style={footer}>
                 Поздрави,<br />
                 Екипът на {SITE_NAME}<br />
-                <Link href={`https://${SITE_URL}`} style={link}>{SITE_URL}</Link>
+                <Link href={siteUrl} style={link}>{siteHost}</Link>
               </Text>
             </>
           ) : (
@@ -126,7 +128,10 @@ const BookingConfirmationEmail = ({
                   ) : null}
                 </Text>
               )}
-              <Text style={footer}>— The {SITE_NAME} team</Text>
+              <Text style={footer}>
+                — The {SITE_NAME} team<br />
+                <Link href={siteUrl} style={link}>{siteHost}</Link>
+              </Text>
             </>
           )}
         </Container>
@@ -151,6 +156,7 @@ export const template = {
     cancelUrl: 'https://fifthexit.com/cancel/abc123',
     googleCalendarUrl: 'https://calendar.google.com/calendar/render?action=TEMPLATE',
     icsUrl: 'https://fifthexit.com/api/public/booking-ics/abc123',
+    siteUrl: 'https://fifthexit.com',
   },
 } satisfies TemplateEntry
 

@@ -6,8 +6,7 @@ import { generateToken, localToUtc } from '@/lib/timezone'
 import { googleCalendarUrl } from '@/lib/calendar-links'
 import { formatForClient, formatForDev } from '@/lib/format-datetime'
 import { devEmailForLocale } from '@/lib/notify-recipient'
-
-const SITE_URL = 'https://fifthexit.com'
+import { siteUrlForRequest } from '@/lib/site-url'
 
 const BookingSchema = z.object({
   name: z.string().trim().min(1).max(80),
@@ -32,6 +31,9 @@ export const Route = createFileRoute('/api/public/booking-notify')({
   server: {
     handlers: {
       POST: async ({ request }) => {
+        const SITE_URL = siteUrlForRequest(
+          request.headers.get('host') ?? new URL(request.url).host,
+        )
         const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
         const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
         if (!supabaseUrl || !supabaseServiceKey) {
@@ -128,6 +130,7 @@ export const Route = createFileRoute('/api/public/booking-notify')({
             cancelUrl,
             googleCalendarUrl: gcalUrl,
             icsUrl,
+            siteUrl: SITE_URL,
           },
         })
 

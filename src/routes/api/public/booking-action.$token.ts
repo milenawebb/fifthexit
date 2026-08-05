@@ -10,8 +10,7 @@ import { googleCalendarUrl } from '@/lib/calendar-links'
 import { localToUtc } from '@/lib/timezone'
 import { formatForClient, formatForDev } from '@/lib/format-datetime'
 import { devEmailForLocale } from '@/lib/notify-recipient'
-
-const SITE_URL = 'https://fifthexit.com'
+import { siteUrlForLocale } from '@/lib/site-url'
 
 const ActionSchema = z.discriminatedUnion('action', [
   z.object({ action: z.literal('cancel') }),
@@ -128,6 +127,7 @@ export const Route = createFileRoute('/api/public/booking-action/$token')({
           return Response.json({ error: 'Slot no longer available' }, { status: 409 })
         }
 
+        const SITE_URL = siteUrlForLocale(booking.locale)
         const oldDate = booking.date_str
         const oldTime = booking.time_str
         const newStarts = localToUtc(parsed.date, parsed.time)
@@ -163,6 +163,7 @@ export const Route = createFileRoute('/api/public/booking-action/$token')({
             cancelUrl: `${SITE_URL}/cancel/${booking.cancel_token}`,
             googleCalendarUrl: googleCalendarUrl(parsed.date, parsed.time),
             icsUrl: `${SITE_URL}/api/public/booking-ics/${booking.cancel_token}`,
+            siteUrl: SITE_URL,
           },
         })
 

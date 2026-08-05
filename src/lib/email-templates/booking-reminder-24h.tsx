@@ -9,9 +9,10 @@ interface Props {
   date?: string
   time?: string
   formattedDateTime?: string
+  siteUrl?: string
 }
 
-const Email = ({ name, date, time, formattedDateTime }: Props) => {
+const Email = ({ name, date, time, formattedDateTime, siteUrl = 'https://fifthexit.com' }: Props) => {
   const when = formattedDateTime || [date, time].filter(Boolean).join(' at ')
   return (
     <Html lang="en" dir="ltr">
@@ -27,7 +28,7 @@ const Email = ({ name, date, time, formattedDateTime }: Props) => {
           <Text style={lead}>
             Join here: <Link href={VIDEO_CALL_URL} style={link}>{VIDEO_CALL_URL}</Link>
           </Text>
-          <Text style={footer}>See you then!<br />— The {SITE_NAME} team</Text>
+          <Text style={footer}>See you then!<br />— The {SITE_NAME} team<br /><Link href={siteUrl} style={link}>{siteUrl.replace(/^https?:\/\//, '')}</Link></Text>
         </Container>
       </Body>
     </Html>
