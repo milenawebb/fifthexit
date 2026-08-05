@@ -168,7 +168,9 @@
     "message": "Message",
     "messagePlaceholder": "What's on your mind?",
     "sendMessage": "Send message →",
-    "questionSuccess": "Got it! We'll get back to you within 24 hours."
+    "questionSuccess": "Got it! We'll get back to you within 24 hours.",
+    "successHeading": "You're on the list 🚀",
+    "successSubtext": "Your consult is confirmed."
   },
   "cookieBanner": {
     "title": "Cookie notice",
