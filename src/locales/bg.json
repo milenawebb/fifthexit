@@ -174,7 +174,9 @@
     "message": "Съобщение",
     "messagePlaceholder": "Какво те интересува?",
     "sendMessage": "Изпрати →",
-    "questionSuccess": "Получихме го! Ще се свържем с теб до 24 часа."
+    "questionSuccess": "Получихме го! Ще се свържем с теб до 24 часа.",
+    "successHeading": "Вие сте в списъка 🚀",
+    "successSubtext": "Вашата консултация е потвърдена."
   },
   "cookieBanner": {
     "title": "Бисквитки",
