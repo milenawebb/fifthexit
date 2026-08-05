@@ -31,9 +31,6 @@ export const Route = createFileRoute('/api/public/booking-notify')({
   server: {
     handlers: {
       POST: async ({ request }) => {
-        const SITE_URL = siteUrlForRequest(
-          request.headers.get('host') ?? new URL(request.url).host,
-        )
         const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
         const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
         if (!supabaseUrl || !supabaseServiceKey) {
@@ -49,6 +46,11 @@ export const Route = createFileRoute('/api/public/booking-notify')({
             { status: 400 },
           )
         }
+
+        const SITE_URL = siteUrlForRequest(
+          request.headers.get('host') ?? new URL(request.url).host,
+          payload.locale,
+        )
 
         const supabase = createClient(supabaseUrl, supabaseServiceKey)
 
