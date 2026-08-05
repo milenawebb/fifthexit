@@ -1,0 +1,1 @@
+delete from public.bookings where email in ('info@fifthexit.com','info@fifthexit.eu') and date_str = '2026-11-18';
