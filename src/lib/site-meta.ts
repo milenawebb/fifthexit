@@ -35,6 +35,6 @@ export function siteMetaForHost(host?: string | null): SiteMeta {
     ogTitle: "Web & app dev built with speed.",
     description:
       "fifthexit builds vibrant, high-performance web and mobile apps for brands ready to stand out. Book a project consultation today.",
-    image: EN_OG_IMAGE,
+    image: `${origin}${enOgImage.url}`,
   };
 }
