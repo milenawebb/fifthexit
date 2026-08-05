@@ -134,6 +134,10 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
+  const data = Route.useLoaderData();
+  const lang = data?.site?.lang ?? "en";
+  if (i18n.language !== lang) i18n.changeLanguage(lang);
+
   return (
     <I18nextProvider i18n={i18n}>
       <Outlet />
