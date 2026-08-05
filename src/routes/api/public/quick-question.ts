@@ -35,6 +35,7 @@ export const Route = createFileRoute('/api/public/quick-question')({
 
         const result = await sendTransactional(supabase, {
           templateName: 'quick-question',
+          locale: payload.locale,
           to: devEmailForLocale(payload.locale),
           props: {
             name: payload.name,

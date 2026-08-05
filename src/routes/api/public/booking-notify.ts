@@ -110,6 +110,7 @@ export const Route = createFileRoute('/api/public/booking-notify')({
         // Internal notification email
         await sendTransactional(supabase, {
           templateName: 'booking-notification',
+          locale: payload.locale,
           to: devEmailForLocale(payload.locale),
           props: {
             ...payload,
@@ -121,6 +122,7 @@ export const Route = createFileRoute('/api/public/booking-notify')({
         })
         await sendTransactional(supabase, {
           templateName: 'booking-confirmation',
+          locale: payload.locale,
           to: payload.email,
           props: {
             name: payload.name,

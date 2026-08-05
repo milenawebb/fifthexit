@@ -43,6 +43,7 @@ export const Route = createFileRoute('/api/public/booking-reminders')({
           const clientWhen = formatForClient(b.date_str, b.time_str, b.client_timezone, b.locale)
           const r = await sendTransactional(supabase, {
             templateName: 'booking-reminder-24h',
+            locale: b.locale,
             to: b.email,
             props: {
               name: b.name,
@@ -76,6 +77,7 @@ export const Route = createFileRoute('/api/public/booking-reminders')({
           const devWhen = formatForDev(b.date_str, b.time_str)
           const clientR = await sendTransactional(supabase, {
             templateName: 'booking-reminder-1h',
+            locale: b.locale,
             to: b.email,
             props: {
               name: b.name,
@@ -87,6 +89,7 @@ export const Route = createFileRoute('/api/public/booking-reminders')({
           })
           await sendTransactional(supabase, {
             templateName: 'booking-reminder-1h',
+            locale: b.locale,
             to: devEmailForLocale(b.locale),
             props: { name: b.name, time: b.time_str, formattedDateTime: devWhen, forDev: true },
           })

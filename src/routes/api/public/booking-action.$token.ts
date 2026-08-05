@@ -97,6 +97,7 @@ export const Route = createFileRoute('/api/public/booking-action/$token')({
 
           await sendTransactional(supabase, {
             templateName: 'booking-cancellation',
+            locale: booking.locale,
             to: devEmailForLocale(booking.locale),
             props: {
               name: booking.name,
@@ -147,6 +148,7 @@ export const Route = createFileRoute('/api/public/booking-action/$token')({
         // Updated client confirmation
         await sendTransactional(supabase, {
           templateName: 'booking-confirmation',
+          locale: booking.locale,
           to: booking.email,
           props: {
             name: booking.name,
@@ -170,6 +172,7 @@ export const Route = createFileRoute('/api/public/booking-action/$token')({
         // Internal notification
         await sendTransactional(supabase, {
           templateName: 'booking-reschedule-notify',
+          locale: booking.locale,
           to: devEmailForLocale(booking.locale),
           props: {
             name: booking.name,
