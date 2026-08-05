@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js'
 import { createFileRoute } from '@tanstack/react-router'
 import { z } from 'zod'
-import { enqueueTransactional } from '@/lib/email-enqueue'
+import { sendTransactional } from '@/lib/email-send'
 import { devEmailForLocale } from '@/lib/notify-recipient'
 
 const QuickQuestionSchema = z.object({
@@ -33,7 +33,7 @@ export const Route = createFileRoute('/api/public/quick-question')({
 
         const supabase = createClient(supabaseUrl, supabaseServiceKey)
 
-        const result = await enqueueTransactional(supabase, {
+        const result = await sendTransactional(supabase, {
           templateName: 'quick-question',
           to: devEmailForLocale(payload.locale),
           props: {
