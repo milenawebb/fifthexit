@@ -1,0 +1,1 @@
+DELETE FROM public.bookings WHERE name LIKE 'Infra Test%';
