@@ -107,6 +107,25 @@ export const Route = createFileRoute('/api/public/booking-action/$token')({
               formattedDateTime: formatForDev(booking.date_str, booking.time_str),
             },
           })
+          await sendTransactional(supabase, {
+            templateName: 'booking-cancellation-client',
+            locale: booking.locale,
+            to: booking.email,
+            props: {
+              name: booking.name,
+              date: booking.date_str,
+              time: booking.time_str,
+              formattedDateTime: formatForClient(
+                booking.date_str,
+                booking.time_str,
+                booking.client_timezone,
+                booking.locale,
+              ),
+              locale: booking.locale,
+              siteUrl: siteUrlForLocale(booking.locale),
+            },
+          })
+
           return Response.json({ success: true })
         }
 

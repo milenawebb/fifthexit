@@ -50,6 +50,7 @@ export const Route = createFileRoute('/api/public/booking-reminders')({
               date: b.date_str,
               time: b.time_str,
               formattedDateTime: clientWhen,
+              locale: b.locale,
               siteUrl: siteUrlForLocale(b.locale),
             },
           })
@@ -83,6 +84,7 @@ export const Route = createFileRoute('/api/public/booking-reminders')({
               name: b.name,
               time: b.time_str,
               formattedDateTime: clientWhen,
+              locale: b.locale,
               forDev: false,
               siteUrl: siteUrlForLocale(b.locale),
             },
@@ -91,7 +93,13 @@ export const Route = createFileRoute('/api/public/booking-reminders')({
             templateName: 'booking-reminder-1h',
             locale: b.locale,
             to: devEmailForLocale(b.locale),
-            props: { name: b.name, time: b.time_str, formattedDateTime: devWhen, forDev: true },
+            props: {
+              name: b.name,
+              time: b.time_str,
+              formattedDateTime: devWhen,
+              forDev: true,
+              siteUrl: siteUrlForLocale(b.locale),
+            },
           })
           if (clientR.ok) {
             await supabase
