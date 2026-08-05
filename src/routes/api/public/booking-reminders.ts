@@ -3,7 +3,7 @@
 
 import { createClient } from '@supabase/supabase-js'
 import { createFileRoute } from '@tanstack/react-router'
-import { enqueueTransactional } from '@/lib/email-enqueue'
+import { sendTransactional } from '@/lib/email-send'
 import { formatForClient, formatForDev } from '@/lib/format-datetime'
 import { devEmailForLocale } from '@/lib/notify-recipient'
 import { siteUrlForLocale } from '@/lib/site-url'
@@ -41,8 +41,9 @@ export const Route = createFileRoute('/api/public/booking-reminders')({
 
         for (const b of due24 ?? []) {
           const clientWhen = formatForClient(b.date_str, b.time_str, b.client_timezone, b.locale)
-          const r = await enqueueTransactional(supabase, {
+          const r = await sendTransactional(supabase, {
             templateName: 'booking-reminder-24h',
+            locale: b.locale,
             to: b.email,
             props: {
               name: b.name,
@@ -74,8 +75,9 @@ export const Route = createFileRoute('/api/public/booking-reminders')({
         for (const b of due1 ?? []) {
           const clientWhen = formatForClient(b.date_str, b.time_str, b.client_timezone, b.locale)
           const devWhen = formatForDev(b.date_str, b.time_str)
-          const clientR = await enqueueTransactional(supabase, {
+          const clientR = await sendTransactional(supabase, {
             templateName: 'booking-reminder-1h',
+            locale: b.locale,
             to: b.email,
             props: {
               name: b.name,
@@ -85,8 +87,9 @@ export const Route = createFileRoute('/api/public/booking-reminders')({
               siteUrl: siteUrlForLocale(b.locale),
             },
           })
-          await enqueueTransactional(supabase, {
+          await sendTransactional(supabase, {
             templateName: 'booking-reminder-1h',
+            locale: b.locale,
             to: devEmailForLocale(b.locale),
             props: { name: b.name, time: b.time_str, formattedDateTime: devWhen, forDev: true },
           })

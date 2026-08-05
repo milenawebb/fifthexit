@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js'
 import { createFileRoute } from '@tanstack/react-router'
 import { z } from 'zod'
-import { enqueueTransactional } from '@/lib/email-enqueue'
+import { sendTransactional } from '@/lib/email-send'
 import { generateToken, localToUtc } from '@/lib/timezone'
 import { googleCalendarUrl } from '@/lib/calendar-links'
 import { formatForClient, formatForDev } from '@/lib/format-datetime'
@@ -108,8 +108,9 @@ export const Route = createFileRoute('/api/public/booking-notify')({
         )
 
         // Internal notification email
-        await enqueueTransactional(supabase, {
+        await sendTransactional(supabase, {
           templateName: 'booking-notification',
+          locale: payload.locale,
           to: devEmailForLocale(payload.locale),
           props: {
             ...payload,
@@ -119,8 +120,9 @@ export const Route = createFileRoute('/api/public/booking-notify')({
           },
           replyTo: payload.email,
         })
-        await enqueueTransactional(supabase, {
+        await sendTransactional(supabase, {
           templateName: 'booking-confirmation',
+          locale: payload.locale,
           to: payload.email,
           props: {
             name: payload.name,

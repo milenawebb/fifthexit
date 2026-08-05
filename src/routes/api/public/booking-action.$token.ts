@@ -5,7 +5,7 @@
 import { createClient } from '@supabase/supabase-js'
 import { createFileRoute } from '@tanstack/react-router'
 import { z } from 'zod'
-import { enqueueTransactional } from '@/lib/email-enqueue'
+import { sendTransactional } from '@/lib/email-send'
 import { googleCalendarUrl } from '@/lib/calendar-links'
 import { localToUtc } from '@/lib/timezone'
 import { formatForClient, formatForDev } from '@/lib/format-datetime'
@@ -95,8 +95,9 @@ export const Route = createFileRoute('/api/public/booking-action/$token')({
             })
             .eq('id', booking.id)
 
-          await enqueueTransactional(supabase, {
+          await sendTransactional(supabase, {
             templateName: 'booking-cancellation',
+            locale: booking.locale,
             to: devEmailForLocale(booking.locale),
             props: {
               name: booking.name,
@@ -145,8 +146,9 @@ export const Route = createFileRoute('/api/public/booking-action/$token')({
           .eq('id', booking.id)
 
         // Updated client confirmation
-        await enqueueTransactional(supabase, {
+        await sendTransactional(supabase, {
           templateName: 'booking-confirmation',
+          locale: booking.locale,
           to: booking.email,
           props: {
             name: booking.name,
@@ -168,8 +170,9 @@ export const Route = createFileRoute('/api/public/booking-action/$token')({
         })
 
         // Internal notification
-        await enqueueTransactional(supabase, {
+        await sendTransactional(supabase, {
           templateName: 'booking-reschedule-notify',
+          locale: booking.locale,
           to: devEmailForLocale(booking.locale),
           props: {
             name: booking.name,
