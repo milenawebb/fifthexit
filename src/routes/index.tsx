@@ -770,7 +770,7 @@ function BookingForm() {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       setDone(true);
       setEstimatorSelections(null);
-      toast.success("Your consult is confirmed.");
+      toast.success(t("booking.successSubtext"));
     } catch (err) {
       console.error("Booking submit failed", err);
       toast.error("Could not submit. Please try again or email us directly.");
@@ -785,8 +785,8 @@ function BookingForm() {
         <div className="mx-auto h-16 w-16 rounded-full bg-gradient-hero flex items-center justify-center mb-6 shadow-glow">
           <Check className="h-8 w-8 text-primary-foreground" />
         </div>
-        <h3 className="text-2xl font-bold mb-2">You're on the list 🚀</h3>
-        <p className="text-muted-foreground">Your consult is confirmed.</p>
+        <h3 className="text-2xl font-bold mb-2">{t("booking.successHeading")}</h3>
+        <p className="text-muted-foreground">{t("booking.successSubtext")}</p>
       </div>
     );
   }
