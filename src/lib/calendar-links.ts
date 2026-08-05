@@ -1,8 +1,6 @@
 // Helpers for generating "Add to Calendar" links (Google web URL + .ics file).
 import { localToUtc, addMinutesToTime } from './timezone'
-
-const WHEREBY_URL =
-  'https://hypestreet.whereby.com/hype-street0c1316cb-680e-4731-b13f-3ec46f6e34f0'
+import { WHEREBY_URL } from './site-url'
 
 export const EVENT_TITLE = 'Discovery Call with fifthexit'
 export const EVENT_LOCATION = WHEREBY_URL

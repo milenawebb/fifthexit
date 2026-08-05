@@ -2,17 +2,17 @@ import { Body, Container, Head, Heading, Html, Link, Preview, Text } from '@reac
 import type { TemplateEntry } from './registry'
 
 const SITE_NAME = 'fifthexit'
-const VIDEO_CALL_URL =
-  'https://hypestreet.whereby.com/hype-street0c1316cb-680e-4731-b13f-3ec46f6e34f0'
+import { WHEREBY_URL as VIDEO_CALL_URL } from '@/lib/site-url'
 
 interface Props {
   name?: string
   time?: string
   formattedDateTime?: string
   forDev?: boolean
+  siteUrl?: string
 }
 
-const Email = ({ name, time, formattedDateTime, forDev }: Props) => {
+const Email = ({ name, time, formattedDateTime, forDev, siteUrl = 'https://fifthexit.com' }: Props) => {
   const when = formattedDateTime || time || ''
   return (
     <Html lang="en" dir="ltr">
@@ -40,7 +40,7 @@ const Email = ({ name, time, formattedDateTime, forDev }: Props) => {
               <Text style={lead}>
                 Click here to join: <Link href={VIDEO_CALL_URL} style={link}>{VIDEO_CALL_URL}</Link>
               </Text>
-              <Text style={footer}>See you soon!<br />— The {SITE_NAME} team</Text>
+              <Text style={footer}>See you soon!<br />— The {SITE_NAME} team<br /><Link href={siteUrl} style={link}>{siteUrl.replace(/^https?:\/\//, '')}</Link></Text>
             </>
           )}
         </Container>
