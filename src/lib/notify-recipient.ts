@@ -1,8 +1,8 @@
 // Internal notification recipient, resolved per market.
-// BG market (fifthexit.eu) → dev@fifthexit.eu; US market (fifthexit.com) → dev@fifthexit.com
-export const DEV_EMAIL_US = 'dev@fifthexit.com'
-export const DEV_EMAIL_BG = 'dev@fifthexit.eu'
+// BG market (fifthexit.eu) → info@fifthexit.eu; US market (fifthexit.com) → info@fifthexit.com
+export const INFO_EMAIL_US = 'info@fifthexit.com'
+export const INFO_EMAIL_BG = 'info@fifthexit.eu'
 
 export function devEmailForLocale(locale?: string | null): string {
-  return locale?.toLowerCase().startsWith('bg') ? DEV_EMAIL_BG : DEV_EMAIL_US
+  return locale?.toLowerCase().startsWith('bg') ? INFO_EMAIL_BG : INFO_EMAIL_US
 }

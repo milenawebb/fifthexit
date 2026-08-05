@@ -121,7 +121,7 @@ export const template = {
   subject: (data: Record<string, any>) =>
     `New booking: ${data?.name || 'visitor'}${data?.date ? ` — ${data.date}` : ''}`,
   displayName: 'Booking notification (internal)',
-  to: 'dev@fifthexit.com',
+  to: 'info@fifthexit.com',
   previewData: {
     name: 'Alex Doe',
     email: 'alex@brand.com',

@@ -60,7 +60,7 @@ export const template = {
   subject: (data: Record<string, any>) =>
     `Quick question from ${data?.name || 'visitor'}`,
   displayName: 'Quick question (internal)',
-  to: 'dev@fifthexit.com',
+  to: 'info@fifthexit.com',
   previewData: {
     name: 'Alex Doe',
     email: 'alex@brand.com',

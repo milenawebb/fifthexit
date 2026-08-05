@@ -36,7 +36,7 @@ export const template = {
   subject: (data: Record<string, any>) =>
     `Booking cancelled — ${data?.name || 'client'}${data?.date ? ` (${data.date})` : ''}`,
   displayName: 'Booking cancellation (internal)',
-  to: 'dev@fifthexit.com',
+  to: 'info@fifthexit.com',
   previewData: { name: 'Alex', email: 'alex@brand.com', date: 'Mon, Jan 15', time: '14:00' },
 } satisfies TemplateEntry
 
