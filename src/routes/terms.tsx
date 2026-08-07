@@ -8,7 +8,7 @@ export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
       { name: "description", content: "The Terms of Service governing your use of fifthexit's web and app development services." },
-      { property: "og:description", content: "Read the Terms of Service for fifthexit (MW Global LLC / DBA Fifth Exit)." },
+      { property: "og:description", content: "Read the Terms of Service for fifthexit (Webb Consulting LLC / DBA Fifth Exit)." },
     ],
   }),
   component: LocalizedPage,
@@ -35,19 +35,19 @@ function TermsPageEn() {
   return (
     <LegalLayout
       title="Terms of Service"
-      effectiveDate="Effective date: May 12, 2026 · MW Global LLC / DBA Fifth Exit (DBA: fifthexit)"
+      effectiveDate="Effective date: May 12, 2026 · Webb Consulting LLC / DBA Fifth Exit (DBA: fifthexit)"
       toc={toc}
     >
       <p className="mb-10 text-foreground/70">
         Please read these Terms carefully. By accessing or using any service provided by fifthexit
-        (MW Global LLC / DBA Fifth Exit), you agree to be bound by these Terms of Service. If you do not agree, do not
+        (Webb Consulting LLC / DBA Fifth Exit), you agree to be bound by these Terms of Service. If you do not agree, do not
         use our services.
       </p>
 
       <LegalSection id="agreement" title="1. Agreement to Terms">
         <p>
           These Terms of Service ("Terms") constitute a legally binding agreement between you
-          ("Client," "you," or "your") and MW Global LLC / DBA Fifth Exit, doing business as fifthexit ("fifthexit," "we," "us," or "our"). These Terms govern your access to and use of our website
+          ("Client," "you," or "your") and Webb Consulting LLC / DBA Fifth Exit, doing business as fifthexit ("fifthexit," "we," "us," or "our"). These Terms govern your access to and use of our website
           at fifthexit.com and all services we provide.
         </p>
         <p>
@@ -199,7 +199,7 @@ function TermsPageEn() {
 
       <LegalSection id="indemnification" title="10. Indemnification">
         <p>
-          You agree to indemnify, defend, and hold harmless fifthexit, MW Global LLC / DBA Fifth Exit, and their
+          You agree to indemnify, defend, and hold harmless fifthexit, Webb Consulting LLC / DBA Fifth Exit, and their
           respective members, employees, and contractors from and against any claims, liabilities,
           damages, judgments, and expenses arising out of your breach of these Terms, your use of
           the Services, your provided materials, or your violation of any third-party rights or
@@ -246,7 +246,7 @@ function TermsPageEn() {
 
       <LegalSection id="contact" title="14. Contact">
         <p>
-          MW Global LLC / DBA Fifth Exit (DBA: fifthexit)
+          Webb Consulting LLC / DBA Fifth Exit (DBA: fifthexit)
           <br />
           Email:{" "}
           <a href="mailto:info@fifthexit.com" className="text-primary hover:underline">
