@@ -38,11 +38,11 @@ function CookiesPageEn() {
   return (
     <LegalLayout
       title="Cookie Policy"
-      effectiveDate="Effective date: May 12, 2026 · MW Global LLC / DBA Fifth Exit (DBA: fifthexit)"
+      effectiveDate="Effective date: May 12, 2026 · Webb Consulting LLC / DBA Fifth Exit (DBA: fifthexit)"
       toc={toc}
     >
       <p className="mb-10 text-foreground/70">
-        This Cookie Policy explains how fifthexit (MW Global LLC / DBA Fifth Exit) uses cookies and similar
+        This Cookie Policy explains how fifthexit (Webb Consulting LLC / DBA Fifth Exit) uses cookies and similar
         tracking technologies on fifthexit.com. It should be read alongside our Privacy Policy.
       </p>
 
@@ -188,7 +188,7 @@ function CookiesPageEn() {
 
       <LegalSection id="contact" title="8. Contact Us">
         <p>
-          MW Global LLC / DBA Fifth Exit (DBA: fifthexit)
+          Webb Consulting LLC / DBA Fifth Exit (DBA: fifthexit)
           <br />
           Email:{" "}
           <a href="mailto:info@fifthexit.com" className="text-primary hover:underline">
