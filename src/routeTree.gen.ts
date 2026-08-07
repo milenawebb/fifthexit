@@ -9,42 +9,32 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TermsRouteImport } from './routes/terms'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as PrivacyRouteImport } from './routes/privacy'
-import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CookiesRouteImport } from './routes/cookies'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as BgIndexRouteImport } from './routes/bg.index'
-import { Route as RescheduleTokenRouteImport } from './routes/reschedule.$token'
-import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
-import { Route as CancelTokenRouteImport } from './routes/cancel.$token'
-import { Route as BgTermsRouteImport } from './routes/bg.terms'
-import { Route as BgPrivacyRouteImport } from './routes/bg.privacy'
 import { Route as BgCookiesRouteImport } from './routes/bg.cookies'
-import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
-import { Route as ApiPublicQuickQuestionRouteImport } from './routes/api/public/quick-question'
-import { Route as ApiPublicBookingTakenSlotsRouteImport } from './routes/api/public/booking-taken-slots'
-import { Route as ApiPublicBookingRemindersRouteImport } from './routes/api/public/booking-reminders'
+import { Route as BgPrivacyRouteImport } from './routes/bg.privacy'
+import { Route as BgTermsRouteImport } from './routes/bg.terms'
+import { Route as CancelTokenRouteImport } from './routes/cancel.$token'
+import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
+import { Route as RescheduleTokenRouteImport } from './routes/reschedule.$token'
 import { Route as ApiPublicBookingNotifyRouteImport } from './routes/api/public/booking-notify'
-import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
-import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
-import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
-import { Route as ApiPublicBookingIcsTokenRouteImport } from './routes/api/public/booking-ics.$token'
+import { Route as ApiPublicBookingRemindersRouteImport } from './routes/api/public/booking-reminders'
+import { Route as ApiPublicBookingTakenSlotsRouteImport } from './routes/api/public/booking-taken-slots'
+import { Route as ApiPublicQuickQuestionRouteImport } from './routes/api/public/quick-question'
+import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
 import { Route as ApiPublicBookingActionTokenRouteImport } from './routes/api/public/booking-action.$token'
+import { Route as ApiPublicBookingIcsTokenRouteImport } from './routes/api/public/booking-ics.$token'
+import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
+import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
+import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
 
-const TermsRoute = TermsRouteImport.update({
-  id: '/terms',
-  path: '/terms',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PrivacyRoute = PrivacyRouteImport.update({
-  id: '/privacy',
-  path: '/privacy',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CookiesRoute = CookiesRouteImport.update({
@@ -52,9 +42,19 @@ const CookiesRoute = CookiesRouteImport.update({
   path: '/cookies',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BgIndexRoute = BgIndexRouteImport.update({
@@ -62,24 +62,9 @@ const BgIndexRoute = BgIndexRouteImport.update({
   path: '/bg/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const RescheduleTokenRoute = RescheduleTokenRouteImport.update({
-  id: '/reschedule/$token',
-  path: '/reschedule/$token',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EmailUnsubscribeRoute = EmailUnsubscribeRouteImport.update({
-  id: '/email/unsubscribe',
-  path: '/email/unsubscribe',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CancelTokenRoute = CancelTokenRouteImport.update({
-  id: '/cancel/$token',
-  path: '/cancel/$token',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BgTermsRoute = BgTermsRouteImport.update({
-  id: '/bg/terms',
-  path: '/bg/terms',
+const BgCookiesRoute = BgCookiesRouteImport.update({
+  id: '/bg/cookies',
+  path: '/bg/cookies',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BgPrivacyRoute = BgPrivacyRouteImport.update({
@@ -87,9 +72,46 @@ const BgPrivacyRoute = BgPrivacyRouteImport.update({
   path: '/bg/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BgCookiesRoute = BgCookiesRouteImport.update({
-  id: '/bg/cookies',
-  path: '/bg/cookies',
+const BgTermsRoute = BgTermsRouteImport.update({
+  id: '/bg/terms',
+  path: '/bg/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CancelTokenRoute = CancelTokenRouteImport.update({
+  id: '/cancel/$token',
+  path: '/cancel/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EmailUnsubscribeRoute = EmailUnsubscribeRouteImport.update({
+  id: '/email/unsubscribe',
+  path: '/email/unsubscribe',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RescheduleTokenRoute = RescheduleTokenRouteImport.update({
+  id: '/reschedule/$token',
+  path: '/reschedule/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicBookingNotifyRoute = ApiPublicBookingNotifyRouteImport.update({
+  id: '/api/public/booking-notify',
+  path: '/api/public/booking-notify',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicBookingRemindersRoute =
+  ApiPublicBookingRemindersRouteImport.update({
+    id: '/api/public/booking-reminders',
+    path: '/api/public/booking-reminders',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicBookingTakenSlotsRoute =
+  ApiPublicBookingTakenSlotsRouteImport.update({
+    id: '/api/public/booking-taken-slots',
+    path: '/api/public/booking-taken-slots',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicQuickQuestionRoute = ApiPublicQuickQuestionRouteImport.update({
+  id: '/api/public/quick-question',
+  path: '/api/public/quick-question',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LovableEmailSuppressionRoute = LovableEmailSuppressionRouteImport.update({
@@ -97,44 +119,10 @@ const LovableEmailSuppressionRoute = LovableEmailSuppressionRouteImport.update({
   path: '/lovable/email/suppression',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiPublicQuickQuestionRoute = ApiPublicQuickQuestionRouteImport.update({
-  id: '/api/public/quick-question',
-  path: '/api/public/quick-question',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiPublicBookingTakenSlotsRoute =
-  ApiPublicBookingTakenSlotsRouteImport.update({
-    id: '/api/public/booking-taken-slots',
-    path: '/api/public/booking-taken-slots',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const ApiPublicBookingRemindersRoute =
-  ApiPublicBookingRemindersRouteImport.update({
-    id: '/api/public/booking-reminders',
-    path: '/api/public/booking-reminders',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const ApiPublicBookingNotifyRoute = ApiPublicBookingNotifyRouteImport.update({
-  id: '/api/public/booking-notify',
-  path: '/api/public/booking-notify',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LovableEmailTransactionalSendRoute =
-  LovableEmailTransactionalSendRouteImport.update({
-    id: '/lovable/email/transactional/send',
-    path: '/lovable/email/transactional/send',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const LovableEmailTransactionalPreviewRoute =
-  LovableEmailTransactionalPreviewRouteImport.update({
-    id: '/lovable/email/transactional/preview',
-    path: '/lovable/email/transactional/preview',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const LovableEmailQueueProcessRoute =
-  LovableEmailQueueProcessRouteImport.update({
-    id: '/lovable/email/queue/process',
-    path: '/lovable/email/queue/process',
+const ApiPublicBookingActionTokenRoute =
+  ApiPublicBookingActionTokenRouteImport.update({
+    id: '/api/public/booking-action/$token',
+    path: '/api/public/booking-action/$token',
     getParentRoute: () => rootRouteImport,
   } as any)
 const ApiPublicBookingIcsTokenRoute =
@@ -143,10 +131,22 @@ const ApiPublicBookingIcsTokenRoute =
     path: '/api/public/booking-ics/$token',
     getParentRoute: () => rootRouteImport,
   } as any)
-const ApiPublicBookingActionTokenRoute =
-  ApiPublicBookingActionTokenRouteImport.update({
-    id: '/api/public/booking-action/$token',
-    path: '/api/public/booking-action/$token',
+const LovableEmailQueueProcessRoute =
+  LovableEmailQueueProcessRouteImport.update({
+    id: '/lovable/email/queue/process',
+    path: '/lovable/email/queue/process',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LovableEmailTransactionalPreviewRoute =
+  LovableEmailTransactionalPreviewRouteImport.update({
+    id: '/lovable/email/transactional/preview',
+    path: '/lovable/email/transactional/preview',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LovableEmailTransactionalSendRoute =
+  LovableEmailTransactionalSendRouteImport.update({
+    id: '/lovable/email/transactional/send',
+    path: '/lovable/email/transactional/send',
     getParentRoute: () => rootRouteImport,
   } as any)
 
@@ -325,25 +325,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/terms': {
-      id: '/terms'
-      path: '/terms'
-      fullPath: '/terms'
-      preLoaderRoute: typeof TermsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/privacy': {
-      id: '/privacy'
-      path: '/privacy'
-      fullPath: '/privacy'
-      preLoaderRoute: typeof PrivacyRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cookies': {
@@ -353,11 +339,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CookiesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/bg/': {
@@ -367,32 +367,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BgIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/reschedule/$token': {
-      id: '/reschedule/$token'
-      path: '/reschedule/$token'
-      fullPath: '/reschedule/$token'
-      preLoaderRoute: typeof RescheduleTokenRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/email/unsubscribe': {
-      id: '/email/unsubscribe'
-      path: '/email/unsubscribe'
-      fullPath: '/email/unsubscribe'
-      preLoaderRoute: typeof EmailUnsubscribeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/cancel/$token': {
-      id: '/cancel/$token'
-      path: '/cancel/$token'
-      fullPath: '/cancel/$token'
-      preLoaderRoute: typeof CancelTokenRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/bg/terms': {
-      id: '/bg/terms'
-      path: '/bg/terms'
-      fullPath: '/bg/terms'
-      preLoaderRoute: typeof BgTermsRouteImport
+    '/bg/cookies': {
+      id: '/bg/cookies'
+      path: '/bg/cookies'
+      fullPath: '/bg/cookies'
+      preLoaderRoute: typeof BgCookiesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/bg/privacy': {
@@ -402,39 +381,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BgPrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/bg/cookies': {
-      id: '/bg/cookies'
-      path: '/bg/cookies'
-      fullPath: '/bg/cookies'
-      preLoaderRoute: typeof BgCookiesRouteImport
+    '/bg/terms': {
+      id: '/bg/terms'
+      path: '/bg/terms'
+      fullPath: '/bg/terms'
+      preLoaderRoute: typeof BgTermsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/lovable/email/suppression': {
-      id: '/lovable/email/suppression'
-      path: '/lovable/email/suppression'
-      fullPath: '/lovable/email/suppression'
-      preLoaderRoute: typeof LovableEmailSuppressionRouteImport
+    '/cancel/$token': {
+      id: '/cancel/$token'
+      path: '/cancel/$token'
+      fullPath: '/cancel/$token'
+      preLoaderRoute: typeof CancelTokenRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/public/quick-question': {
-      id: '/api/public/quick-question'
-      path: '/api/public/quick-question'
-      fullPath: '/api/public/quick-question'
-      preLoaderRoute: typeof ApiPublicQuickQuestionRouteImport
+    '/email/unsubscribe': {
+      id: '/email/unsubscribe'
+      path: '/email/unsubscribe'
+      fullPath: '/email/unsubscribe'
+      preLoaderRoute: typeof EmailUnsubscribeRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/public/booking-taken-slots': {
-      id: '/api/public/booking-taken-slots'
-      path: '/api/public/booking-taken-slots'
-      fullPath: '/api/public/booking-taken-slots'
-      preLoaderRoute: typeof ApiPublicBookingTakenSlotsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/public/booking-reminders': {
-      id: '/api/public/booking-reminders'
-      path: '/api/public/booking-reminders'
-      fullPath: '/api/public/booking-reminders'
-      preLoaderRoute: typeof ApiPublicBookingRemindersRouteImport
+    '/reschedule/$token': {
+      id: '/reschedule/$token'
+      path: '/reschedule/$token'
+      fullPath: '/reschedule/$token'
+      preLoaderRoute: typeof RescheduleTokenRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/public/booking-notify': {
@@ -444,25 +416,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicBookingNotifyRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/lovable/email/transactional/send': {
-      id: '/lovable/email/transactional/send'
-      path: '/lovable/email/transactional/send'
-      fullPath: '/lovable/email/transactional/send'
-      preLoaderRoute: typeof LovableEmailTransactionalSendRouteImport
+    '/api/public/booking-reminders': {
+      id: '/api/public/booking-reminders'
+      path: '/api/public/booking-reminders'
+      fullPath: '/api/public/booking-reminders'
+      preLoaderRoute: typeof ApiPublicBookingRemindersRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/lovable/email/transactional/preview': {
-      id: '/lovable/email/transactional/preview'
-      path: '/lovable/email/transactional/preview'
-      fullPath: '/lovable/email/transactional/preview'
-      preLoaderRoute: typeof LovableEmailTransactionalPreviewRouteImport
+    '/api/public/booking-taken-slots': {
+      id: '/api/public/booking-taken-slots'
+      path: '/api/public/booking-taken-slots'
+      fullPath: '/api/public/booking-taken-slots'
+      preLoaderRoute: typeof ApiPublicBookingTakenSlotsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/lovable/email/queue/process': {
-      id: '/lovable/email/queue/process'
-      path: '/lovable/email/queue/process'
-      fullPath: '/lovable/email/queue/process'
-      preLoaderRoute: typeof LovableEmailQueueProcessRouteImport
+    '/api/public/quick-question': {
+      id: '/api/public/quick-question'
+      path: '/api/public/quick-question'
+      fullPath: '/api/public/quick-question'
+      preLoaderRoute: typeof ApiPublicQuickQuestionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lovable/email/suppression': {
+      id: '/lovable/email/suppression'
+      path: '/lovable/email/suppression'
+      fullPath: '/lovable/email/suppression'
+      preLoaderRoute: typeof LovableEmailSuppressionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/booking-action/$token': {
+      id: '/api/public/booking-action/$token'
+      path: '/api/public/booking-action/$token'
+      fullPath: '/api/public/booking-action/$token'
+      preLoaderRoute: typeof ApiPublicBookingActionTokenRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/public/booking-ics/$token': {
@@ -472,11 +458,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicBookingIcsTokenRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/public/booking-action/$token': {
-      id: '/api/public/booking-action/$token'
-      path: '/api/public/booking-action/$token'
-      fullPath: '/api/public/booking-action/$token'
-      preLoaderRoute: typeof ApiPublicBookingActionTokenRouteImport
+    '/lovable/email/queue/process': {
+      id: '/lovable/email/queue/process'
+      path: '/lovable/email/queue/process'
+      fullPath: '/lovable/email/queue/process'
+      preLoaderRoute: typeof LovableEmailQueueProcessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lovable/email/transactional/preview': {
+      id: '/lovable/email/transactional/preview'
+      path: '/lovable/email/transactional/preview'
+      fullPath: '/lovable/email/transactional/preview'
+      preLoaderRoute: typeof LovableEmailTransactionalPreviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lovable/email/transactional/send': {
+      id: '/lovable/email/transactional/send'
+      path: '/lovable/email/transactional/send'
+      fullPath: '/lovable/email/transactional/send'
+      preLoaderRoute: typeof LovableEmailTransactionalSendRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
