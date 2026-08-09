@@ -67,7 +67,10 @@
     "project_rc_desc": "Public club website for a 100-year-old Rotary chapter — powered by ClubTree with events, service projects, membership, and donations.",
     "project_wc_category": "PLATFORM ENGINEERING",
     "project_wc_name": "Webb Consulting",
-    "project_wc_desc": "Senior engineering team building the platforms businesses actually run on."
+    "project_wc_desc": "Senior engineering team building the platforms businesses actually run on.",
+    "project_m5_category": "PLATFORM ENGINEERING",
+    "project_m5_name": "M5 Consult",
+    "project_m5_desc": "Senior engineering team building the platforms businesses actually run on."
   },
   "process": {
     "label": "HOW WE ROLL",
