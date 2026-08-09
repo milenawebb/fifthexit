@@ -38,6 +38,8 @@ import siteclubPreview from "@/assets/siteclub-preview.png";
 import proservicePreview from "@/assets/proservice-preview.png";
 import clubtreePreview from "@/assets/clubtree-preview.png";
 import rotaryCvillePreview from "@/assets/rotary-cville-preview.png";
+import webbConsultingPreview from "@/assets/webb-consulting-preview.png";
+
 import PriceEstimator from "@/components/PriceEstimator";
 import { useEstimatorSelections, setEstimatorSelections } from "@/lib/estimator-store";
 import { getHost } from "@/lib/host.functions";
@@ -311,6 +313,14 @@ function Work() {
       href: "https://charlottesvillerotary.org",
       image: rotaryCvillePreview,
     },
+    {
+      name: t("work.project_wc_name"),
+      tag: t("work.project_wc_category"),
+      desc: t("work.project_wc_desc"),
+      href: "https://webb-consulting.com",
+      image: webbConsultingPreview,
+    },
+
     ...(i18n.language.startsWith("bg")
       ? [
           {

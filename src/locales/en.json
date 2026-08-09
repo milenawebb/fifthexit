@@ -64,7 +64,10 @@
     "project_ct_desc": "Modern club management platform for Rotary and Lions clubs — website, members, programs, attendance, and dues in one place.",
     "project_rc_category": "NONPROFIT WEBSITE",
     "project_rc_name": "Rotary Club of Charlottesville",
-    "project_rc_desc": "Public club website for a 100-year-old Rotary chapter — powered by ClubTree with events, service projects, membership, and donations."
+    "project_rc_desc": "Public club website for a 100-year-old Rotary chapter — powered by ClubTree with events, service projects, membership, and donations.",
+    "project_wc_category": "PLATFORM ENGINEERING",
+    "project_wc_name": "Webb Consulting",
+    "project_wc_desc": "Senior engineering team building the platforms businesses actually run on."
   },
   "process": {
     "label": "HOW WE ROLL",
