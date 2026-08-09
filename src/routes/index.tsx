@@ -311,6 +311,14 @@ function Work() {
       href: "https://charlottesvillerotary.org",
       image: rotaryCvillePreview,
     },
+    {
+      name: t("work.project_wc_name"),
+      tag: t("work.project_wc_category"),
+      desc: t("work.project_wc_desc"),
+      href: "https://webb-consulting.com",
+      image: webbConsultingPreview,
+    },
+
     ...(i18n.language.startsWith("bg")
       ? [
           {
