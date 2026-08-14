@@ -109,9 +109,11 @@ export function Footer() {
         </div>
         {isCom && (
           <p className="text-center text-xs text-muted-foreground/70">
-            <a href="https://webb-consulting.net" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition">
-              fifthexit is a DBA of Webb Consulting LLC.
+            fifthexit is a DBA of{" "}
+            <a href="https://webb-consulting.net" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition underline underline-offset-2">
+              webb-consulting.net
             </a>
+            .
           </p>
         )}
       </div>
