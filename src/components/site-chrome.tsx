@@ -111,7 +111,7 @@ export function Footer() {
           <p className="text-center text-xs text-muted-foreground/70">
             fifthexit is a DBA of{" "}
             <a href="https://webb-consulting.net" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition underline underline-offset-2">
-              webb-consulting.net
+              Webb Consulting LLC
             </a>
             .
           </p>
