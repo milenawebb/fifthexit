@@ -80,12 +80,13 @@ export function Header() {
 }
 
 export function Footer() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const termsHref = "/terms";
   const privacyHref = "/privacy";
   const cookiesHref = "/cookies";
   const email = t("contact.email");
   const phone = t("contact.phone");
+  const isCom = i18n.language !== "bg";
   return (
     <footer className="border-t border-border py-12" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="mx-auto max-w-7xl px-6 flex flex-col gap-6">
@@ -106,6 +107,13 @@ export function Footer() {
             )}
           </div>
         </div>
+        {isCom && (
+          <p className="text-center text-xs text-muted-foreground/70">
+            <a href="https://webb-consulting.net" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition">
+              fifthexit is a DBA of Webb Consulting LLC.
+            </a>
+          </p>
+        )}
       </div>
     </footer>
   );
