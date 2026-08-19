@@ -330,7 +330,7 @@ function Work() {
             name: t("work.project_wc_name"),
             tag: t("work.project_wc_category"),
             desc: t("work.project_wc_desc"),
-            href: "https://webb-consulting.com",
+            href: "https://webb-consulting.net",
             image: webbConsultingPreview,
           },
         ]),
