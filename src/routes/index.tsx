@@ -336,6 +336,14 @@ function Work() {
           },
         ]),
 
+    {
+      name: t("work.project_tw_name"),
+      tag: t("work.project_tw_category"),
+      desc: t("work.project_tw_desc"),
+      href: "https://twillsy.com",
+      image: twillsyPreview,
+    },
+
 
     ...(i18n.language.startsWith("bg")
       ? [
