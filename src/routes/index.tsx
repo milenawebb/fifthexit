@@ -40,6 +40,7 @@ import clubtreePreview from "@/assets/clubtree-preview.png";
 import rotaryCvillePreview from "@/assets/rotary-cville-preview.png";
 import webbConsultingPreview from "@/assets/webb-consulting-preview.png";
 import m5ConsultPreview from "@/assets/m5-consult-preview.png";
+import twillsyPreview from "@/assets/twillsy-preview.png";
 
 
 import PriceEstimator from "@/components/PriceEstimator";
@@ -334,6 +335,14 @@ function Work() {
             image: webbConsultingPreview,
           },
         ]),
+
+    {
+      name: t("work.project_tw_name"),
+      tag: t("work.project_tw_category"),
+      desc: t("work.project_tw_desc"),
+      href: "https://twillsy.com",
+      image: twillsyPreview,
+    },
 
 
     ...(i18n.language.startsWith("bg")
