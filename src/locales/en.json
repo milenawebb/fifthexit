@@ -70,7 +70,10 @@
     "project_wc_desc": "Senior engineering team building the platforms businesses actually run on.",
     "project_m5_category": "PLATFORM ENGINEERING",
     "project_m5_name": "M5 Consult",
-    "project_m5_desc": "Senior engineering team building the platforms businesses actually run on."
+    "project_m5_desc": "Senior engineering team building the platforms businesses actually run on.",
+    "project_tw_category": "E-COMMERCE",
+    "project_tw_name": "Twillsy",
+    "project_tw_desc": "Custom embroidery e-commerce platform with group stores for teams, clubs, and schools."
   },
   "process": {
     "label": "HOW WE ROLL",
