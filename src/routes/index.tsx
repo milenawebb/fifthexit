@@ -40,6 +40,7 @@ import clubtreePreview from "@/assets/clubtree-preview.png";
 import rotaryCvillePreview from "@/assets/rotary-cville-preview.png";
 import webbConsultingPreview from "@/assets/webb-consulting-preview.png";
 import m5ConsultPreview from "@/assets/m5-consult-preview.png";
+import twillsyPreview from "@/assets/twillsy-preview.png";
 
 
 import PriceEstimator from "@/components/PriceEstimator";
