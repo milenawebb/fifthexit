@@ -51,7 +51,7 @@ export interface SendArgs {
   to?: string
   props: Record<string, any>
   replyTo?: string
-  /** Market selector — pass the booking locale, or a resolved market. */
+  /** Market selector: pass the booking locale, or a resolved market. */
   locale?: string | null
   market?: Market
 }
@@ -81,7 +81,7 @@ export async function sendTransactional(
     .eq('email', recipient.toLowerCase())
     .maybeSingle()
   if (suppressionError) {
-    console.error('Suppression check failed — refusing to send', suppressionError)
+    console.error('Suppression check failed, refusing to send', suppressionError)
     return { ok: false, error: 'Failed to verify suppression status' }
   }
   if (suppressed) {

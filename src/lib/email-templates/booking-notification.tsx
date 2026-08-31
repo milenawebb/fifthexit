@@ -112,14 +112,14 @@ const BookingNotificationEmail = ({
 const Row = ({ label: l, value }: { label: string; value?: string }) => (
   <div style={rowStyle}>
     <Text style={label}>{l}</Text>
-    <Text style={body}>{value || '—'}</Text>
+    <Text style={body}>{value || '-'}</Text>
   </div>
 )
 
 export const template = {
   component: BookingNotificationEmail,
   subject: (data: Record<string, any>) =>
-    `New booking: ${data?.name || 'visitor'}${data?.date ? ` — ${data.date}` : ''}`,
+    `New booking: ${data?.name || 'visitor'}${data?.date ? `, ${data.date}` : ''}`,
   displayName: 'Booking notification (internal)',
   to: 'info@fifthexit.com',
   previewData: {

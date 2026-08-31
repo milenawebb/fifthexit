@@ -21,15 +21,15 @@ const Email = ({ name, date, time, formattedDateTime, locale, siteUrl, bookingUr
       preview={bg ? 'Резервацията ви е отказана' : 'Your booking has been cancelled'}
       locale={locale}
       siteUrl={siteUrl}
-      signOff={bg ? `Поздрави, екипът на ${SITE_NAME}` : `— The ${SITE_NAME} team`}
+      signOff={bg ? `Поздрави, екипът на ${SITE_NAME}` : `The ${SITE_NAME} team`}
     >
       <Heading style={styles.h1}>
         {bg ? 'Резервацията ви е отказана' : 'Your booking is cancelled'}
       </Heading>
       <Text style={styles.lead}>
         {bg
-          ? `Здравейте${name ? `, ${name}` : ''} — разговорът ви с ${SITE_NAME}${when ? ` (${when})` : ''} беше отказан.`
-          : `Hi${name ? ` ${name}` : ''} — your call with ${SITE_NAME}${when ? ` (${when})` : ''} has been cancelled.`}
+          ? `Здравейте${name ? `, ${name}` : ''}, разговорът ви с ${SITE_NAME}${when ? ` (${when})` : ''} беше отказан.`
+          : `Hi${name ? ` ${name}` : ''}, your call with ${SITE_NAME}${when ? ` (${when})` : ''} has been cancelled.`}
       </Text>
       <Section style={styles.card}>
         <Text style={styles.body}>

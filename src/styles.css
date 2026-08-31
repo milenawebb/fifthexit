@@ -131,7 +131,7 @@
   }
   h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
 
-  /* Bulgarian locale: Space Grotesk/Inter lack Cyrillic — use DM Sans everywhere */
+  /* Bulgarian locale: Space Grotesk/Inter lack Cyrillic, so use DM Sans everywhere */
   html[lang="bg"] body,
   html[lang="bg"] input,
   html[lang="bg"] textarea,

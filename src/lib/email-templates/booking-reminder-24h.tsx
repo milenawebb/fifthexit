@@ -25,7 +25,7 @@ const Email = ({ name, date, time, formattedDateTime, locale, siteUrl }: Props) 
       locale={locale}
       siteUrl={siteUrl}
       signOff={
-        bg ? `До скоро! Екипът на ${SITE_NAME}` : `See you then! — The ${SITE_NAME} team`
+        bg ? `До скоро! Екипът на ${SITE_NAME}` : `See you then! The ${SITE_NAME} team`
       }
     >
       <Heading style={styles.h1}>
@@ -33,8 +33,8 @@ const Email = ({ name, date, time, formattedDateTime, locale, siteUrl }: Props) 
       </Heading>
       <Text style={styles.lead}>
         {bg
-          ? `Напомняме ви, че безплатният ви разговор с ${SITE_NAME} е утре${when ? ` — ${when}` : ''}.`
-          : `Just a reminder that your free discovery call with ${SITE_NAME} is tomorrow${when ? ` — ${when}` : ''}.`}
+          ? `Напомняме ви, че безплатният ви разговор с ${SITE_NAME} е утре${when ? `, ${when}` : ''}.`
+          : `Just a reminder that your free discovery call with ${SITE_NAME} is tomorrow${when ? `, ${when}` : ''}.`}
       </Text>
       <Section style={styles.card}>
         <Text style={styles.body}>
@@ -54,7 +54,7 @@ export const template = {
     isBgLocale(data?.locale)
       ? `Напомняне: разговорът ви с ${SITE_NAME} е утре`
       : `Reminder: Your ${SITE_NAME} call is tomorrow`,
-  displayName: 'Booking reminder — 24 hours',
+  displayName: 'Booking reminder: 24 hours',
   previewData: {
     name: 'Alex',
     locale: 'en',

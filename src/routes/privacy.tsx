@@ -51,39 +51,37 @@ function PrivacyPageEn() {
 
       <LegalSection id="info-we-collect" title="2. Information We Collect">
         <p>
-          <strong className="text-foreground">Information You Provide Directly:</strong>
-        </p>
+          <strong className="text-foreground">Information You Provide Directly:</strong> </p>
         <ul className="list-disc pl-6 space-y-1.5">
           <li>
-            <strong className="text-foreground">Contact & Inquiry Forms</strong> — name, email
+            <strong className="text-foreground">Contact & Inquiry Forms:</strong> name, email
             address, company name, project details, service interest, and budget range.
           </li>
           <li>
-            <strong className="text-foreground">Client Onboarding</strong> — business information,
+            <strong className="text-foreground">Client Onboarding:</strong> business information,
             billing address, and payment details (processed by third-party payment processors; we do
             not store card numbers).
           </li>
           <li>
-            <strong className="text-foreground">Communications</strong> — the content of emails and
+            <strong className="text-foreground">Communications:</strong> the content of emails and
             messages you send us.
           </li>
         </ul>
 
         <p>
-          <strong className="text-foreground">Information Collected Automatically:</strong>
-        </p>
+          <strong className="text-foreground">Information Collected Automatically:</strong> </p>
         <ul className="list-disc pl-6 space-y-1.5">
           <li>
-            <strong className="text-foreground">Usage Data</strong> — IP address, browser type and
+            <strong className="text-foreground">Usage Data:</strong> IP address, browser type and
             version, operating system, referring URL, pages visited, time spent on pages, and
             clickstream data.
           </li>
           <li>
-            <strong className="text-foreground">Cookies & Tracking Technologies</strong> — see our
+            <strong className="text-foreground">Cookies & Tracking Technologies:</strong> see our
             Cookie Policy for details.
           </li>
           <li>
-            <strong className="text-foreground">Analytics</strong> — aggregated data collected
+            <strong className="text-foreground">Analytics:</strong> aggregated data collected
             through tools such as Google Analytics.
           </li>
         </ul>
@@ -114,20 +112,20 @@ function PrivacyPageEn() {
         <p>We may share your information with:</p>
         <ul className="list-disc pl-6 space-y-2">
           <li>
-            <strong className="text-foreground">Service Providers</strong> — trusted third-party
+            <strong className="text-foreground">Service Providers:</strong> trusted third-party
             vendors who assist us in operating our business (payment processors, cloud hosting,
             email delivery, project management tools), bound contractually to protect your data.
           </li>
           <li>
-            <strong className="text-foreground">Professional Advisors</strong> — lawyers,
+            <strong className="text-foreground">Professional Advisors:</strong> lawyers,
             accountants, or other advisors under duties of confidentiality.
           </li>
           <li>
-            <strong className="text-foreground">Business Transfers</strong> — in the event of a
+            <strong className="text-foreground">Business Transfers:</strong> in the event of a
             merger, acquisition, or sale of assets.
           </li>
           <li>
-            <strong className="text-foreground">Legal Requirements</strong> — when required by law,
+            <strong className="text-foreground">Legal Requirements:</strong> when required by law,
             court order, or governmental authority.
           </li>
         </ul>
