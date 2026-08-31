@@ -31,8 +31,8 @@ export function siteMetaForHost(host?: string | null): SiteMeta {
   return {
     lang,
     origin,
-    title: "fifthexit: Web & app dev built with speed.",
-    ogTitle: "Web & app dev built with speed.",
+    title: "fifthexit: Web and app dev built with speed",
+    ogTitle: "Web and app dev built with speed",
     description:
       "fifthexit builds vibrant, high-performance web and mobile apps for brands ready to stand out. Book a project consultation today.",
     image: `${origin}${enOgImage.url}`,
