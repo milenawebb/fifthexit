@@ -112,7 +112,7 @@ const BookingNotificationEmail = ({
 const Row = ({ label: l, value }: { label: string; value?: string }) => (
   <div style={rowStyle}>
     <Text style={label}>{l}</Text>
-    <Text style={body}>{value || '—'}</Text>
+    <Text style={body}>{value || '-'}</Text>
   </div>
 )
 

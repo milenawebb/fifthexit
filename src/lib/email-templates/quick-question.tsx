@@ -31,11 +31,11 @@ const QuickQuestionEmail = ({ name, email, message, locale }: QuickQuestionProps
         <Section style={card}>
           <div style={rowStyle}>
             <Text style={label}>Name</Text>
-            <Text style={body}>{name || '—'}</Text>
+            <Text style={body}>{name || '-'}</Text>
           </div>
           <div style={rowStyle}>
             <Text style={label}>Email</Text>
-            <Text style={body}>{email || '—'}</Text>
+            <Text style={body}>{email || '-'}</Text>
           </div>
           {locale ? (
             <div style={rowStyle}>
@@ -45,7 +45,7 @@ const QuickQuestionEmail = ({ name, email, message, locale }: QuickQuestionProps
           ) : null}
           <div style={rowStyle}>
             <Text style={label}>Message</Text>
-            <Text style={body}>{message || '—'}</Text>
+            <Text style={body}>{message || '-'}</Text>
           </div>
         </Section>
 

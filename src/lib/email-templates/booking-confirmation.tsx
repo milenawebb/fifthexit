@@ -41,7 +41,7 @@ const BookingConfirmationEmail = ({
       }
       locale={locale}
       siteUrl={siteUrl}
-      signOff={bg ? `Поздрави, екипът на ${SITE_NAME}` : `— The ${SITE_NAME} team`}
+      signOff={bg ? `Поздрави, екипът на ${SITE_NAME}` : `The ${SITE_NAME} team`}
     >
       <Heading style={styles.h1}>
         {bg

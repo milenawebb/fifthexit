@@ -42,7 +42,7 @@ const Email = ({ name, time, formattedDateTime, forDev, locale, siteUrl }: Props
       }
       locale={locale}
       siteUrl={siteUrl}
-      signOff={bg ? `До скоро! Екипът на ${SITE_NAME}` : `See you soon! — The ${SITE_NAME} team`}
+      signOff={bg ? `До скоро! Екипът на ${SITE_NAME}` : `See you soon! The ${SITE_NAME} team`}
     >
       <Heading style={styles.h1}>
         {bg ? `Здравейте${name ? `, ${name}` : ''},` : `Hi${name ? ` ${name}` : ''},`}

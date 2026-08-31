@@ -21,7 +21,7 @@ const Email = ({ name, date, time, formattedDateTime, locale, siteUrl, bookingUr
       preview={bg ? 'Резервацията ви е отказана' : 'Your booking has been cancelled'}
       locale={locale}
       siteUrl={siteUrl}
-      signOff={bg ? `Поздрави, екипът на ${SITE_NAME}` : `— The ${SITE_NAME} team`}
+      signOff={bg ? `Поздрави, екипът на ${SITE_NAME}` : `The ${SITE_NAME} team`}
     >
       <Heading style={styles.h1}>
         {bg ? 'Резервацията ви е отказана' : 'Your booking is cancelled'}
