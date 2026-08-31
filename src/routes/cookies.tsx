@@ -54,15 +54,15 @@ function CookiesPageEn() {
         </p>
         <ul className="list-disc pl-6 space-y-1.5">
           <li>
-            <strong className="text-foreground">Web Beacons (Pixel Tags)</strong> — tiny transparent
+            <strong className="text-foreground">Web Beacons (Pixel Tags):</strong> tiny transparent
             images used to track whether content has been viewed.
           </li>
           <li>
-            <strong className="text-foreground">Local Storage</strong> — browser-based storage that
+            <strong className="text-foreground">Local Storage:</strong> browser-based storage that
             persists data without an expiration date.
           </li>
           <li>
-            <strong className="text-foreground">Session Storage</strong> — temporary storage cleared
+            <strong className="text-foreground">Session Storage:</strong> temporary storage cleared
             when the browser tab closes.
           </li>
         </ul>
@@ -123,14 +123,14 @@ function CookiesPageEn() {
         <p>Third parties that may set cookies include:</p>
         <ul className="list-disc pl-6 space-y-1.5">
           <li>
-            <strong className="text-foreground">Google Analytics</strong> — website analytics (
+            <strong className="text-foreground">Google Analytics:</strong> website analytics (
             <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
               policies.google.com/privacy
             </a>
             )
           </li>
           <li>
-            <strong className="text-foreground">Google Fonts</strong> — typography loading (
+            <strong className="text-foreground">Google Fonts:</strong> typography loading (
             <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
               policies.google.com/privacy
             </a>

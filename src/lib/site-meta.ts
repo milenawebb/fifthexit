@@ -19,7 +19,7 @@ export function siteMetaForHost(host?: string | null): SiteMeta {
     return {
       lang,
       origin,
-      title: "fifthexit — Уеб и приложения, изградени бързо.",
+      title: "fifthexit: Уеб и приложения, изградени бързо.",
       ogTitle: "Уеб и приложения, изградени бързо.",
       description:
         "fifthexit създава светкавично бързи уебсайтове, мобилни приложения и дигитални продукти, които оставят конкурентите на заден план.",
@@ -31,7 +31,7 @@ export function siteMetaForHost(host?: string | null): SiteMeta {
   return {
     lang,
     origin,
-    title: "fifthexit — Web & app dev built with speed.",
+    title: "fifthexit: Web & app dev built with speed.",
     ogTitle: "Web & app dev built with speed.",
     description:
       "fifthexit builds vibrant, high-performance web and mobile apps for brands ready to stand out. Book a project consultation today.",
