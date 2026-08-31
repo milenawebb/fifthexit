@@ -17,10 +17,10 @@ const Email = ({ name, time, formattedDateTime, forDev, locale, siteUrl }: Props
   const when = formattedDateTime || time || ''
   if (forDev) {
     return (
-      <EmailShell preview={`Call in 1 hour — ${name || 'client'}`} locale="en" siteUrl={siteUrl}>
-        <Heading style={styles.h1}>Heads up — call in 1 hour</Heading>
+      <EmailShell preview={`Call in 1 hour: ${name || 'client'}`} locale="en" siteUrl={siteUrl}>
+        <Heading style={styles.h1}>Heads up: call in 1 hour</Heading>
         <Text style={styles.lead}>
-          Your call with {name || 'a client'} starts in 1 hour{when ? ` — ${when}` : ''}.
+          Your call with {name || 'a client'} starts in 1 hour{when ? `, ${when}` : ''}.
         </Text>
         <Section style={styles.card}>
           <Text style={styles.body}>
@@ -49,8 +49,8 @@ const Email = ({ name, time, formattedDateTime, forDev, locale, siteUrl }: Props
       </Heading>
       <Text style={styles.lead}>
         {bg
-          ? `Разговорът ви с ${SITE_NAME} започва след 1 час${when ? ` — ${when}` : ''}.`
-          : `Your call with ${SITE_NAME} starts in 1 hour${when ? ` — ${when}` : ''}.`}
+          ? `Разговорът ви с ${SITE_NAME} започва след 1 час${when ? `, ${when}` : ''}.`
+          : `Your call with ${SITE_NAME} starts in 1 hour${when ? `, ${when}` : ''}.`}
       </Text>
       <Section style={styles.card}>
         <Text style={styles.body}>
@@ -70,7 +70,7 @@ export const template = {
     !data?.forDev && isBgLocale(data?.locale)
       ? `Разговорът ви с ${SITE_NAME} започва след 1 час`
       : `Your ${SITE_NAME} call starts in 1 hour`,
-  displayName: 'Booking reminder — 1 hour',
+  displayName: 'Booking reminder: 1 hour',
   previewData: {
     name: 'Alex',
     locale: 'en',

@@ -5,7 +5,7 @@ import { INFO_EMAIL_BG, INFO_EMAIL_US } from '@/lib/notify-recipient'
 
 export const SITE_NAME = 'fifthexit'
 
-/** Absolute logo URL — email clients cannot resolve relative paths. */
+/** Absolute logo URL, since email clients cannot resolve relative paths. */
 export const LOGO_URL_US = `${SITE_URL_US}/email/fifthexit-logo.png`
 export const LOGO_URL_BG = `${SITE_URL_BG}/email/fifthexit-logo.png`
 

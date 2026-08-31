@@ -28,8 +28,8 @@ const Email = ({ name, date, time, formattedDateTime, locale, siteUrl, bookingUr
       </Heading>
       <Text style={styles.lead}>
         {bg
-          ? `Здравейте${name ? `, ${name}` : ''} — разговорът ви с ${SITE_NAME}${when ? ` (${when})` : ''} беше отказан.`
-          : `Hi${name ? ` ${name}` : ''} — your call with ${SITE_NAME}${when ? ` (${when})` : ''} has been cancelled.`}
+          ? `Здравейте${name ? `, ${name}` : ''}, разговорът ви с ${SITE_NAME}${when ? ` (${when})` : ''} беше отказан.`
+          : `Hi${name ? ` ${name}` : ''}, your call with ${SITE_NAME}${when ? ` (${when})` : ''} has been cancelled.`}
       </Text>
       <Section style={styles.card}>
         <Text style={styles.body}>

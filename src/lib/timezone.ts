@@ -36,7 +36,7 @@ export function localToUtc(dateStr: string, timeStr: string, tz: string = BOOKIN
   return new Date(utcGuess.getTime() - offset)
 }
 
-// RFC3339 string with the offset for the given timezone — required by Google Calendar.
+// RFC3339 string with the offset for the given timezone, required by Google Calendar.
 export function localToRfc3339(dateStr: string, timeStr: string, tz: string = BOOKING_TZ): string {
   const utc = localToUtc(dateStr, timeStr, tz)
   // Determine offset for that instant in tz

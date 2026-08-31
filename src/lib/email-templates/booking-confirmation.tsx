@@ -52,7 +52,7 @@ const BookingConfirmationEmail = ({
       </Heading>
       <Text style={styles.lead}>
         {bg
-          ? `Вашият безплатен разговор с ${SITE_NAME} е потвърден${whenLine ? ` — ${whenLine}` : ''}.`
+          ? `Вашият безплатен разговор с ${SITE_NAME} е потвърден${whenLine ? `: ${whenLine}` : ''}.`
           : `Your consult with ${SITE_NAME} is confirmed.`}
       </Text>
       <Section style={styles.card}>

@@ -37,7 +37,7 @@ const Email = ({ name, email, oldDate, oldTime, newDate, newTime, oldFormatted, 
 export const template = {
   component: Email,
   subject: (data: Record<string, any>) =>
-    `Booking rescheduled — ${data?.name || 'client'}`,
+    `Booking rescheduled: ${data?.name || 'client'}`,
   displayName: 'Booking reschedule (internal)',
   to: 'info@fifthexit.com',
   previewData: {

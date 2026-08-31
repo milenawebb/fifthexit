@@ -34,7 +34,7 @@ const Email = ({ name, email, date, time, formattedDateTime }: Props) => {
 export const template = {
   component: Email,
   subject: (data: Record<string, any>) =>
-    `Booking cancelled — ${data?.name || 'client'}${data?.date ? ` (${data.date})` : ''}`,
+    `Booking cancelled: ${data?.name || 'client'}${data?.date ? ` (${data.date})` : ''}`,
   displayName: 'Booking cancellation (internal)',
   to: 'info@fifthexit.com',
   previewData: { name: 'Alex', email: 'alex@brand.com', date: 'Mon, Jan 15', time: '14:00' },
