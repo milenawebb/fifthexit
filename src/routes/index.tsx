@@ -34,13 +34,12 @@ import notaryPreview from "@/assets/notary-preview.png";
 import rinPreview from "@/assets/rin-preview.png";
 import bellhousePreview from "@/assets/bellhouse-preview.png";
 import eliteRidePreview from "@/assets/elite-ride-preview.png";
-import siteclubPreview from "@/assets/siteclub-preview.png";
-import proservicePreview from "@/assets/proservice-preview.png";
 import clubtreePreview from "@/assets/clubtree-preview.png";
 import rotaryCvillePreview from "@/assets/rotary-cville-preview.png";
 import webbConsultingPreview from "@/assets/webb-consulting-preview.png";
 import m5ConsultPreview from "@/assets/m5-consult-preview.png";
 import twillsyPreview from "@/assets/twillsy-preview.png";
+import revsiPreviewAsset from "@/assets/portfolio_revsi.png.asset.json";
 
 
 import PriceEstimator from "@/components/PriceEstimator";
@@ -296,11 +295,11 @@ function Work() {
       image: openSkedPreview,
     },
     {
-      name: t("work.project2Name"),
-      tag: t("work.project2Category"),
-      desc: t("work.project2Desc"),
-      href: "https://notaryclosingnetwork.com/",
-      image: notaryPreview,
+      name: t("work.project_revsi_name"),
+      tag: t("work.project_revsi_category"),
+      desc: t("work.project_revsi_desc"),
+      href: "https://revsi.app",
+      image: revsiPreviewAsset.url,
     },
     {
       name: t("work.project_ct_name"),
@@ -308,6 +307,13 @@ function Work() {
       desc: t("work.project_ct_desc"),
       href: "https://clubtree.app",
       image: clubtreePreview,
+    },
+    {
+      name: t("work.project2Name"),
+      tag: t("work.project2Category"),
+      desc: t("work.project2Desc"),
+      href: "https://notaryclosingnetwork.com/",
+      image: notaryPreview,
     },
     {
       name: t("work.project_rc_name"),
@@ -337,33 +343,6 @@ function Work() {
         ]),
 
     {
-      name: t("work.project_tw_name"),
-      tag: t("work.project_tw_category"),
-      desc: t("work.project_tw_desc"),
-      href: "https://twillsy.com",
-      image: twillsyPreview,
-    },
-
-
-    ...(i18n.language.startsWith("bg")
-      ? [
-          {
-            name: t("work.project5Name"),
-            tag: t("work.project5Category"),
-            desc: t("work.project5Desc"),
-            href: "https://siteclub.eu",
-            image: siteclubPreview,
-          },
-          {
-            name: t("work.project6Name"),
-            tag: t("work.project6Category"),
-            desc: t("work.project6Desc"),
-            href: "https://proservice.bg",
-            image: proservicePreview,
-          },
-        ]
-      : []),
-    {
       name: t("work.project3Name"),
       tag: t("work.project3Category"),
       desc: t("work.project3Desc"),
@@ -383,6 +362,13 @@ function Work() {
       desc: "Premium ride booking site for a custom transportation brand.",
       href: "https://eliteridesolutions.com/",
       image: eliteRidePreview,
+    },
+    {
+      name: t("work.project_tw_name"),
+      tag: t("work.project_tw_category"),
+      desc: t("work.project_tw_desc"),
+      href: "https://twillsy.com",
+      image: twillsyPreview,
     },
   ];
   const scrollerRef = useRef<HTMLDivElement>(null);
