@@ -40,7 +40,7 @@ import webbConsultingPreview from "@/assets/webb-consulting-preview.png";
 import m5ConsultPreview from "@/assets/m5-consult-preview.png";
 import twillsyPreview from "@/assets/twillsy-preview.png";
 import revsiPreviewAsset from "@/assets/portfolio_revsi.png.asset.json";
-import yayBooksPreviewAsset from "@/assets/portfolio_yaybooks.png.asset.json";
+import yayLogoPreviewAsset from "@/assets/portfolio_yaylogo.png.asset.json";
 
 
 import PriceEstimator from "@/components/PriceEstimator";
@@ -296,11 +296,11 @@ function Work() {
       image: openSkedPreview,
     },
     {
-      name: t("work.project_yaybooks_name"),
-      tag: t("work.project_yaybooks_category"),
-      desc: t("work.project_yaybooks_desc"),
-      href: "https://yaybooks.app",
-      image: yayBooksPreviewAsset.url,
+      name: t("work.project_yaylogo_name"),
+      tag: t("work.project_yaylogo_category"),
+      desc: t("work.project_yaylogo_desc"),
+      href: "https://yaylogo.com",
+      image: yayLogoPreviewAsset.url,
     },
     {
       name: t("work.project_revsi_name"),
