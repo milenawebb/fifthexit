@@ -31,7 +31,7 @@ import { z } from "zod";
 import { useTranslation } from "react-i18next";
 import openSkedPreview from "@/assets/opensked-preview.png";
 import notaryPreview from "@/assets/notary-preview.png";
-import rinPreview from "@/assets/rin-preview.png";
+import rinPreviewAsset from "@/assets/portfolio_rin_aesthetic.png.asset.json";
 import bellhousePreview from "@/assets/bellhouse-preview.png";
 import eliteRidePreview from "@/assets/elite-ride-preview.png";
 import clubtreePreview from "@/assets/clubtree-preview.png";
@@ -355,7 +355,7 @@ function Work() {
       tag: t("work.project3Category"),
       desc: t("work.project3Desc"),
       href: "https://rinaestheticsva.com/",
-      image: rinPreview,
+      image: rinPreviewAsset.url,
     },
     {
       name: t("work.project4Name"),
