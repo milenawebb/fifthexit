@@ -1168,7 +1168,7 @@ function Index() {
         <Process />
         <section id="estimator" className="py-12 md:pt-16 md:pb-16" style={{ backgroundColor: "#0d0b1a" }}>
           <div className="mx-auto max-w-5xl px-6">
-            <PriceEstimator />
+            <Suspense fallback={<div style={{ minHeight: 640 }} />}><PriceEstimator /></Suspense>
           </div>
         </section>
         <Booking />
