@@ -3,8 +3,9 @@ import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/r
 import { I18nextProvider } from "react-i18next";
 
 import appCss from "../styles.css?url";
-import i18n, { languageForHost } from "../i18n";
-import CookieBanner from "../components/CookieBanner";
+import { lazy, Suspense } from "react";
+import i18n, { languageForHost, loadMessages, ensureMessages } from "../i18n";
+const CookieBanner = lazy(() => import("../components/CookieBanner"));
 import { getHost } from "../lib/host.functions";
 import { siteMetaForHost } from "../lib/site-meta";
 
@@ -35,7 +36,12 @@ export const Route = createRootRoute({
   loader: async () => {
     const host =
       typeof window === "undefined" ? await getHost() : window.location.host;
-    return { site: siteMetaForHost(host) };
+    const site = siteMetaForHost(host);
+    const lang = site.lang === "bg" ? "bg" : "en";
+    const messages =
+      typeof window !== "undefined" && i18n.hasResourceBundle(lang, "translation") ? null : await loadMessages(lang);
+    ensureMessages(lang, messages);
+    return { site, messages };
   },
   head: ({ loaderData }) => {
     const site = loaderData?.site ?? siteMetaForHost(null);
@@ -108,7 +114,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const host = languageForHost(window.location.hostname);
-    if (i18n.language !== host) i18n.changeLanguage(host);
+    if (i18n.language !== host && i18n.hasResourceBundle(host, "translation")) i18n.changeLanguage(host);
     setLang(host);
     const onChange = (lng: string) => setLang(lng);
     i18n.on("languageChanged", onChange);
@@ -130,13 +136,20 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const data = Route.useLoaderData();
-  const lang = data?.site?.lang ?? "en";
+  const lang = data?.site?.lang === "bg" ? "bg" : "en";
+  ensureMessages(lang, data?.messages);
   if (i18n.language !== lang) i18n.changeLanguage(lang);
+  const [deferred, setDeferred] = useState(false);
+  useEffect(() => {
+    const w = window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number };
+    if (w.requestIdleCallback) w.requestIdleCallback(() => setDeferred(true), { timeout: 2000 });
+    else setTimeout(() => setDeferred(true), 1200);
+  }, []);
 
   return (
     <I18nextProvider i18n={i18n}>
       <Outlet />
-      <CookieBanner />
+      {deferred && <Suspense fallback={null}><CookieBanner /></Suspense>}
     </I18nextProvider>
   );
 }
