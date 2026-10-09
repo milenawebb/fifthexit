@@ -38,7 +38,8 @@ export const Route = createRootRoute({
       typeof window === "undefined" ? await getHost() : window.location.host;
     const site = siteMetaForHost(host);
     const lang = site.lang === "bg" ? "bg" : "en";
-    const messages = i18n.hasResourceBundle(lang, "translation") ? null : await loadMessages(lang);
+    const messages =
+      typeof window !== "undefined" && i18n.hasResourceBundle(lang, "translation") ? null : await loadMessages(lang);
     ensureMessages(lang, messages);
     return { site, messages };
   },
