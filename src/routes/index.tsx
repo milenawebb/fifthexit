@@ -43,7 +43,8 @@ import revsiPreviewAsset from "@/assets/portfolio_revsi.png.asset.json";
 import yayLogoPreviewAsset from "@/assets/portfolio_yaylogo.png.asset.json";
 
 
-import PriceEstimator from "@/components/PriceEstimator";
+import { lazy, Suspense } from "react";
+const PriceEstimator = lazy(() => import("@/components/PriceEstimator"));
 import { useEstimatorSelections, setEstimatorSelections } from "@/lib/estimator-store";
 import { getHost } from "@/lib/host.functions";
 import { siteMetaForHost } from "@/lib/site-meta";
@@ -570,19 +571,23 @@ function Work() {
           </div>
 
           {/* Dot indicators */}
-          <div className="flex justify-center gap-2 mt-4">
+          <div className="flex justify-center gap-1 mt-4">
             {projects.map((p, i) => (
               <button
                 key={p.name}
                 type="button"
                 aria-label={`Go to slide ${i + 1}`}
                 onClick={() => goTo(i)}
-                className={`h-2 rounded-full transition-all ${
-                  i === activeIndex
-                    ? "w-8 bg-gradient-hero"
-                    : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/60"
-                }`}
-              />
+                className="group inline-flex h-6 min-w-6 items-center justify-center px-1"
+              >
+                <span
+                  className={`block h-2 rounded-full transition-all ${
+                    i === activeIndex
+                      ? "w-8 bg-gradient-hero"
+                      : "w-2 bg-muted-foreground/30 group-hover:bg-muted-foreground/60"
+                  }`}
+                />
+              </button>
             ))}
           </div>
         </div>
@@ -1033,7 +1038,7 @@ function Booking() {
         <div className="relative">
           <div
             key={tab}
-            className="animate-in fade-in duration-300"
+            className="animate-fade-only duration-300"
           >
             {tab === "book" ? <BookingForm /> : <QuickQuestionForm />}
           </div>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import logo from "@/assets/fifthexit-logo.png";
+import logo from "@/assets/fifthexit-logo.webp";
 
 const navLinks = [
   { href: "/#services", key: "nav.services" },
@@ -26,6 +26,8 @@ export function Header() {
           <img
             src={logo}
             alt="fifthexit"
+            width={400}
+            height={86}
             className="block h-6 md:h-7 w-auto max-w-none object-contain"
           />
         </a>
@@ -97,7 +99,7 @@ export function Footer() {
         </nav>
         <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
           <a href="/#top" className="flex items-center">
-            <img src={logo} alt="fifthexit" className="h-7 w-auto" />
+            <img src={logo} alt="fifthexit" width={400} height={86} loading="lazy" className="h-7 w-auto" />
           </a>
           <p className="text-sm text-muted-foreground text-center lg:text-left">{t("footer.copyright")}</p>
           <div className="flex items-center gap-5 text-sm text-muted-foreground">
