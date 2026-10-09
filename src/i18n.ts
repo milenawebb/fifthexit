@@ -22,6 +22,7 @@ export async function loadMessages(lang: Lang): Promise<Record<string, unknown>>
 }
 
 export function ensureMessages(lang: Lang, messages?: Record<string, unknown> | null) {
+  console.log("ENSURE", lang, !!messages, i18n.hasResourceBundle(lang, "translation"))
   if (messages && !i18n.hasResourceBundle(lang, 'translation')) {
     i18n.addResourceBundle(lang, 'translation', messages, true, true)
   }
