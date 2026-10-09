@@ -11,7 +11,7 @@ export default function LazySection({ id, minHeight, children }: { id: string; m
     if (!el || !("IntersectionObserver" in window)) { setShow(true); return; }
     const io = new IntersectionObserver((e) => {
       if (e.some((x) => x.isIntersecting)) { setShow(true); io.disconnect(); }
-    }, { rootMargin: "600px 0px" });
+    }, { rootMargin: "300px 0px" });
     io.observe(el);
     const onHash = () => { if (window.location.hash === `#${id}`) setShow(true); };
     window.addEventListener("hashchange", onHash);
