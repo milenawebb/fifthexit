@@ -133,7 +133,7 @@ export default function PriceEstimator() {
     border: "1px solid rgba(255,255,255,0.15)",
     borderRadius: "999px",
     padding: "0.75rem 2rem",
-    color: "rgba(232,228,240,0.6)",
+    color: "rgba(232,228,240,0.75)",
     fontWeight: "500",
     fontSize: "0.95rem",
     cursor: "pointer",
@@ -164,7 +164,7 @@ export default function PriceEstimator() {
             {t("estimator.heading1")} <span style={gradText}>{t("estimator.heading2")}</span>
           </h2>
           <p
-            style={{ color: "rgba(232,228,240,0.55)", fontSize: "1rem", maxWidth: "480px", margin: "0 auto" }}
+            style={{ color: "rgba(232,228,240,0.75)", fontSize: "1rem", maxWidth: "480px", margin: "0 auto" }}
             dangerouslySetInnerHTML={{ __html: t("estimator.subheading") }}
           />
         </div>
@@ -181,11 +181,11 @@ export default function PriceEstimator() {
                     border: i <= step ? "none" : "1px solid rgba(255,255,255,0.1)",
                     display: "flex", alignItems: "center", justifyContent: "center",
                     fontSize: "0.75rem", fontWeight: "700",
-                    color: i <= step ? "#0d0b1a" : "rgba(232,228,240,0.3)",
+                    color: i <= step ? "#0d0b1a" : "rgba(232,228,240,0.75)",
                     transition: "all 0.3s",
                     flexShrink: 0,
                   }}>{i + 1}</div>
-                  <span className="est-step-label" style={{ fontSize: "0.8rem", color: i === step ? "#e8e4f0" : "rgba(232,228,240,0.35)" }}>{s}</span>
+                  <span className="est-step-label" style={{ fontSize: "0.8rem", color: i === step ? "#e8e4f0" : "rgba(232,228,240,0.75)" }}>{s}</span>
                   {i < steps.length - 1 && <div className="est-step-line" style={{ width: "24px", height: "1px", background: "rgba(255,255,255,0.1)" }} />}
                 </div>
               ))}
@@ -194,7 +194,7 @@ export default function PriceEstimator() {
             {/* Step 0: Project Type */}
             {step === 0 && (
               <div>
-                <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>{t("estimator.selectProjectType")}</p>
+                <p style={{ color: "rgba(232,228,240,0.75)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>{t("estimator.selectProjectType")}</p>
                 <div className="est-types-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "0.75rem" }}>
                   {PROJECT_TYPES.map((p) => (
                     <div key={p.id} className="est-card"
@@ -205,7 +205,7 @@ export default function PriceEstimator() {
                       }}>
                       <div style={{ fontSize: "1.5rem", marginBottom: "0.5rem", color: "#e8e4f0" }}>{p.icon}</div>
                       <div style={{ fontWeight: "600", color: "#e8e4f0", marginBottom: "0.25rem" }}>{p.label}</div>
-                      <div style={{ fontSize: "0.825rem", color: "rgba(232,228,240,0.5)" }}>{p.desc}</div>
+                      <div style={{ fontSize: "0.825rem", color: "rgba(232,228,240,0.75)" }}>{p.desc}</div>
                       <div style={{ fontSize: "0.8rem", color: "#7b78f5", marginTop: "0.5rem", fontWeight: "600" }}>{t("estimator.from")} {formatPrice(p.base)}</div>
                     </div>
                   ))}
@@ -216,7 +216,7 @@ export default function PriceEstimator() {
             {/* Step 1: Design */}
             {step === 1 && (
               <div>
-                <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>{t("estimator.chooseDesign")}</p>
+                <p style={{ color: "rgba(232,228,240,0.75)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>{t("estimator.chooseDesign")}</p>
                 <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
                   {DESIGN_OPTIONS.map((d) => (
                     <div key={d.id} className="est-card"
@@ -224,7 +224,7 @@ export default function PriceEstimator() {
                       onClick={() => setDesign(d.id)}>
                       <div>
                         <div style={{ fontWeight: "600", color: "#e8e4f0", marginBottom: "0.2rem" }}>{d.label}</div>
-                        <div style={{ fontSize: "0.825rem", color: "rgba(232,228,240,0.5)" }}>{d.desc}</div>
+                        <div style={{ fontSize: "0.825rem", color: "rgba(232,228,240,0.75)" }}>{d.desc}</div>
                       </div>
                       <div style={{ fontSize: "0.875rem", color: d.price === 0 ? "#22e4e4" : "#7b78f5", fontWeight: "700", flexShrink: 0, marginLeft: "1rem" }}>
                         {d.price === 0 ? t("estimator.included") : `+ ${formatPrice(d.price)}`}
@@ -238,7 +238,7 @@ export default function PriceEstimator() {
             {/* Step 2: Features */}
             {step === 2 && (
               <div>
-                <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>{t("estimator.selectFeatures")} <span style={{ color: "rgba(232,228,240,0.35)" }}>({t("estimator.optional")})</span></p>
+                <p style={{ color: "rgba(232,228,240,0.75)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>{t("estimator.selectFeatures")} <span style={{ color: "rgba(232,228,240,0.75)" }}>({t("estimator.optional")})</span></p>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "0.75rem" }}>
                   {FEATURES.map((f) => {
                     const selected = features.includes(f.id);
@@ -254,7 +254,7 @@ export default function PriceEstimator() {
                         <span style={{ fontSize: "1.2rem" }}>{f.icon}</span>
                         <div>
                           <div style={{ fontSize: "0.875rem", fontWeight: "600", color: "#e8e4f0" }}>{f.label}</div>
-                          <div style={{ fontSize: "0.775rem", color: selected ? "#22e4e4" : "rgba(232,228,240,0.45)" }}>+ {formatPrice(f.price)}</div>
+                          <div style={{ fontSize: "0.775rem", color: selected ? "#22e4e4" : "rgba(232,228,240,0.75)" }}>+ {formatPrice(f.price)}</div>
                         </div>
                         {selected && <div style={{ marginLeft: "auto", color: "#22e4e4", fontSize: "1rem" }}>✓</div>}
                       </div>
@@ -268,7 +268,7 @@ export default function PriceEstimator() {
             {step === 3 && (
               <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
                 <div>
-                  <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>{t("estimator.timeline")}</p>
+                  <p style={{ color: "rgba(232,228,240,0.75)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>{t("estimator.timeline")}</p>
                   <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
                     {TIMELINE_OPTIONS.map((tl) => (
                       <div key={tl.id} className="est-card"
@@ -276,7 +276,7 @@ export default function PriceEstimator() {
                         onClick={() => setTimeline(tl.id)}>
                         <div>
                           <div style={{ fontWeight: "600", color: "#e8e4f0", marginBottom: "0.2rem" }}>{tl.label}</div>
-                          <div style={{ fontSize: "0.825rem", color: "rgba(232,228,240,0.5)" }}>{tl.desc}</div>
+                          <div style={{ fontSize: "0.825rem", color: "rgba(232,228,240,0.75)" }}>{tl.desc}</div>
                         </div>
                         <div style={{ fontSize: "0.875rem", color: tl.multiplier === 1 ? "#22e4e4" : "#d96cf0", fontWeight: "700", flexShrink: 0, marginLeft: "1rem" }}>
                           {tl.multiplier === 1 ? t("estimator.standardRate") : `${Math.round((tl.multiplier - 1) * 100)}${t("estimator.rushFee")}`}
@@ -286,7 +286,7 @@ export default function PriceEstimator() {
                   </div>
                 </div>
                 <div>
-                  <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>{t("estimator.support")}</p>
+                  <p style={{ color: "rgba(232,228,240,0.75)", fontSize: "0.875rem", marginBottom: "1.25rem" }}>{t("estimator.support")}</p>
                   <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
                     {SUPPORT_OPTIONS.map((s) => (
                       <div key={s.id} className="est-card"
@@ -294,7 +294,7 @@ export default function PriceEstimator() {
                         onClick={() => setSupport(s.id)}>
                         <div>
                           <div style={{ fontWeight: "600", color: "#e8e4f0", marginBottom: "0.2rem" }}>{s.label}</div>
-                          <div style={{ fontSize: "0.825rem", color: "rgba(232,228,240,0.5)" }}>{s.desc}</div>
+                          <div style={{ fontSize: "0.825rem", color: "rgba(232,228,240,0.75)" }}>{s.desc}</div>
                         </div>
                         <div style={{ fontSize: "0.875rem", color: "#22e4e4", fontWeight: "700", flexShrink: 0, marginLeft: "1rem" }}>
                           {s.price === 0 ? t("estimator.included") : `+ ${formatPrice(s.price)}/mo`}
@@ -338,11 +338,11 @@ export default function PriceEstimator() {
               padding: "3rem 2rem",
               marginBottom: "2rem",
             }}>
-              <p style={{ color: "rgba(232,228,240,0.55)", fontSize: "0.875rem", marginBottom: "0.5rem", letterSpacing: "0.08em", textTransform: "uppercase" }}>{t("estimator.startsAt")}</p>
+              <p style={{ color: "rgba(232,228,240,0.75)", fontSize: "0.875rem", marginBottom: "0.5rem", letterSpacing: "0.08em", textTransform: "uppercase" }}>{t("estimator.startsAt")}</p>
               <div style={{ fontFamily: 'var(--font-display)', fontWeight: "800", fontSize: "clamp(3rem, 10vw, 5rem)", lineHeight: 1, ...gradText, marginBottom: "1rem" }}>
                 {formatPrice(calcPrice())}
               </div>
-              <p style={{ color: "rgba(232,228,240,0.5)", fontSize: "0.875rem", maxWidth: "380px", margin: "0 auto" }}>
+              <p style={{ color: "rgba(232,228,240,0.75)", fontSize: "0.875rem", maxWidth: "380px", margin: "0 auto" }}>
                 {t("estimator.estimateNote")}
               </p>
 
@@ -359,7 +359,7 @@ export default function PriceEstimator() {
                     {FEATURES.find(f => f.id === fid)?.label}
                   </span>
                 ))}
-                <span style={{ background: "rgba(255,255,255,0.06)", color: "rgba(232,228,240,0.6)", borderRadius: "999px", padding: "0.3rem 0.9rem", fontSize: "0.8rem" }}>
+                <span style={{ background: "rgba(255,255,255,0.06)", color: "rgba(232,228,240,0.75)", borderRadius: "999px", padding: "0.3rem 0.9rem", fontSize: "0.8rem" }}>
                   {TIMELINE_OPTIONS.find(tl => tl.id === timeline)?.label}
                 </span>
               </div>
@@ -384,7 +384,7 @@ export default function PriceEstimator() {
               </button>
             </div>
 
-            <p style={{ color: "rgba(232,228,240,0.3)", fontSize: "0.8rem", marginTop: "1.5rem" }}>
+            <p style={{ color: "rgba(232,228,240,0.75)", fontSize: "0.8rem", marginTop: "1.5rem" }}>
               {t("estimator.noSpam")}
             </p>
           </div>

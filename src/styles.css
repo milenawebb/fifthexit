@@ -1,6 +1,22 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
+@import "@fontsource/space-grotesk/400.css";
+@import "@fontsource/space-grotesk/500.css";
+@import "@fontsource/space-grotesk/600.css";
+@import "@fontsource/space-grotesk/700.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+@import "@fontsource/dm-sans/400.css";
+@import "@fontsource/dm-sans/500.css";
+@import "@fontsource/dm-sans/600.css";
+@import "@fontsource/dm-sans/700.css";
+
+@font-face { font-family: "Inter Fallback"; src: local("Arial"); size-adjust: 107%; ascent-override: 90%; descent-override: 22%; line-gap-override: 0%; }
+@font-face { font-family: "Space Grotesk Fallback"; src: local("Arial"); size-adjust: 104%; ascent-override: 94%; descent-override: 28%; line-gap-override: 0%; }
+@font-face { font-family: "DM Sans Fallback"; src: local("Arial"); size-adjust: 100%; ascent-override: 99%; descent-override: 31%; line-gap-override: 0%; }
 
 @custom-variant dark (&:is(.dark *));
 
@@ -32,10 +48,10 @@
   --color-neon: var(--neon);
   --color-electric: var(--electric);
 
-  --font-display: "Space Grotesk", system-ui, sans-serif;
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-display-bg: "DM Sans", system-ui, sans-serif;
-  --font-sans-bg: "DM Sans", system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Space Grotesk Fallback", system-ui, sans-serif;
+  --font-sans: "Inter", "Inter Fallback", system-ui, sans-serif;
+  --font-display-bg: "DM Sans", "DM Sans Fallback", system-ui, sans-serif;
+  --font-sans-bg: "DM Sans", "DM Sans Fallback", system-ui, sans-serif;
 
   --animate-float: float 6s ease-in-out infinite;
   --animate-glow: glow 3s ease-in-out infinite;
@@ -221,4 +237,9 @@
 html, body, #root {
   min-height: 100%;
   background-color: #0d0b1a !important;
+}
+
+@layer utilities {
+  @keyframes fade-only { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+  .animate-fade-only { animation: fade-only 0.3s ease-out; will-change: opacity, transform; }
 }
