@@ -108,7 +108,7 @@ export function Footer() {
           </div>
         </div>
         {isCom && (
-          <p className="text-center text-xs text-muted-foreground/70">
+          <p className="text-center text-xs text-muted-foreground">
             fifthexit is a DBA of{" "}
             <a href="https://webb-consulting.net" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition underline underline-offset-2">
               Webb Consulting LLC
