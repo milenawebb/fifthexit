@@ -34,7 +34,6 @@ i18n.use(initReactI18next).init({
   interpolation: { escapeValue: false },
   react: { useSuspense: false },
   initAsync: false,
-  initImmediate: false,
 })
 
 export default i18n
