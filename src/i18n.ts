@@ -22,7 +22,6 @@ export async function loadMessages(lang: Lang): Promise<Record<string, unknown>>
 }
 
 export function ensureMessages(lang: Lang, messages?: Record<string, unknown> | null) {
-  console.log("ENSURE", lang, !!messages, i18n.hasResourceBundle(lang, "translation"))
   if (messages && !i18n.hasResourceBundle(lang, 'translation')) {
     i18n.addResourceBundle(lang, 'translation', messages, true, true)
   }
@@ -34,6 +33,8 @@ i18n.use(initReactI18next).init({
   fallbackLng: false,
   interpolation: { escapeValue: false },
   react: { useSuspense: false },
+  initAsync: false,
+  initImmediate: false,
 })
 
 export default i18n
