@@ -7,6 +7,10 @@ import { LegalLayout, LegalSection, type TocItem } from "@/components/legal-layo
 export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
+      { title: "fifthexit: Terms of Service" },
+      { property: "og:title", content: "fifthexit: Terms of Service" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { name: "description", content: "The Terms of Service governing your use of fifthexit's web and app development services." },
       { property: "og:description", content: "Read the Terms of Service for fifthexit (Webb Consulting LLC / DBA Fifth Exit)." },
     ],

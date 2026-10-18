@@ -7,6 +7,10 @@ import { LegalLayout, LegalSection, type TocItem } from "@/components/legal-layo
 export const Route = createFileRoute("/cookies")({
   head: () => ({
     meta: [
+      { title: "fifthexit: Cookie Policy" },
+      { property: "og:title", content: "fifthexit: Cookie Policy" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { name: "description", content: "How fifthexit uses cookies and similar tracking technologies on fifthexit.com." },
       { property: "og:description", content: "fifthexit's Cookie Policy." },
     ],
