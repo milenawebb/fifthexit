@@ -1,7 +1,7 @@
 import { Suspense, useEffect, useRef, useState, type ReactNode } from "react";
 
 /** Mounts children only when near the viewport (or when its hash is targeted); reserves height meanwhile. */
-export default function LazySection({ id, minHeight, children }: { id: string; minHeight: number; children: ReactNode }) {
+export default function LazySection({ id, minHeight, children, className }: { id: string; minHeight: number; children: ReactNode; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const [show, setShow] = useState(false);
 
@@ -18,7 +18,7 @@ export default function LazySection({ id, minHeight, children }: { id: string; m
     return () => { io.disconnect(); window.removeEventListener("hashchange", onHash); };
   }, [id]);
 
-  const placeholder = <div id={id} ref={ref} style={{ minHeight }} aria-hidden="true" />;
+  const placeholder = <div className={className} id={id} ref={ref} style={{ minHeight }} aria-hidden="true" />;
   if (!show) return placeholder;
-  return <Suspense fallback={<div id={id} style={{ minHeight }} />}>{children}</Suspense>;
+  return <Suspense fallback={<div className={className} id={id} style={{ minHeight }} />}>{children}</Suspense>;
 }

@@ -387,7 +387,7 @@ export default function Booking() {
     <section id="book" className="py-12 md:pt-16 md:pb-16 relative" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="absolute top-0 left-1/2 -translate-x-1/2 h-96 w-96 rounded-full bg-primary/20 blur-[120px] pointer-events-none" />
       <div className="relative mx-auto max-w-5xl px-6">
-        <div className="text-center mb-8">
+        <div data-reveal className="text-center mb-8">
           <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">{t("booking.label")}</div>
           <h2 className="text-4xl md:text-6xl font-bold mb-4">
             {t("booking.heading1")} <span className="text-gradient">{t("booking.heading2")}</span>
@@ -424,7 +424,7 @@ export default function Booking() {
           </div>
         </div>
 
-        <div className="relative">
+        <div data-reveal className="relative">
           <div
             key={tab}
             className="animate-fade-only duration-300"
