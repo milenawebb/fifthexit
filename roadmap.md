@@ -1,2 +1,2 @@
-- [ ] Redesign Services and MVP rows with English and Bulgarian copy.
-- [ ] Check both languages at desktop and mobile widths, including text contrast.
+- [x] Redesign Services and MVP rows with English and Bulgarian copy.
+- [x] Check both languages at desktop and mobile widths, including text contrast.
