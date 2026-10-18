@@ -13,11 +13,19 @@ import {
 } from "@/components/ui/select";
 import { toast, Toaster } from "sonner";
 import {
+  Smartphone,
+  Sparkles,
+  Zap,
+  Globe,
   ArrowRight,
   Check,
   ChevronLeft,
   ChevronRight,
   ArrowUp,
+  Lightbulb,
+  Palette,
+  FileText,
+  Rocket,
 } from "lucide-react";
 import { z } from "zod";
 import { useTranslation } from "react-i18next";
@@ -40,7 +48,6 @@ const PriceEstimator = lazy(() => import("@/components/PriceEstimator"));
 const Work = lazy(() => import("@/components/home/Work"));
 const Booking = lazy(() => import("@/components/home/Booking"));
 import LazySection from "@/components/home/LazySection";
-import NumberedRows from "@/components/home/NumberedRows";
 import { useEstimatorSelections, setEstimatorSelections } from "@/lib/estimator-store";
 import { getHost } from "@/lib/host.functions";
 import { siteMetaForHost } from "@/lib/site-meta";
@@ -60,7 +67,6 @@ export const Route = createFileRoute("/")({
         { property: "og:title", content: site.ogTitle },
         { property: "og:description", content: site.description },
         { property: "og:url", content: site.origin },
-        { property: "og:type", content: "website" },
         { property: "og:image", content: site.image },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: site.ogTitle },
@@ -75,18 +81,22 @@ export const Route = createFileRoute("/")({
 
 const services = [
   {
+    icon: Globe,
     titleKey: "services.webDev",
     descKey: "services.webDevDesc",
   },
   {
+    icon: Smartphone,
     titleKey: "services.mobileApps",
     descKey: "services.mobileAppsDesc",
   },
   {
+    icon: Sparkles,
     titleKey: "services.brandUI",
     descKey: "services.brandUIDesc",
   },
   {
+    icon: Zap,
     titleKey: "services.launchScale",
     descKey: "services.launchScaleDesc",
   },
@@ -125,7 +135,37 @@ function Hero() {
 
 
 function Services() {
-  return <NumberedRows id="services" labelKey="services.label" headingKey="services.heading" introKey="services.subheading" rows={services} />;
+  const { t } = useTranslation();
+  return (
+    <section id="services" className="py-12 md:pt-16 md:pb-16 relative" style={{ backgroundColor: "#0d0b1a" }}>
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="max-w-2xl mx-auto text-center mb-8">
+          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">{t("services.label")}</div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            {t("services.heading1")} <span className="text-gradient">{t("services.heading2")}</span>
+          </h2>
+          <p className="text-muted-foreground text-lg">
+            {t("services.subheading")}
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          {services.map((s) => (
+            <div
+              key={s.titleKey}
+              className="group bg-gradient-card border border-border rounded-2xl p-6 hover:border-primary/50 transition-all hover:-translate-y-1 hover:shadow-glow text-center md:text-left flex flex-col items-center md:items-start"
+            >
+              <div className="h-12 w-12 rounded-xl bg-gradient-hero flex items-center justify-center mb-5 shadow-glow">
+                <s.icon className="h-6 w-6 text-primary-foreground" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">{t(s.titleKey)}</h3>
+              <p className="text-sm text-muted-foreground">{t(s.descKey)}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
 
 function TechStack() {
@@ -339,14 +379,80 @@ function BackToTop() {
 }
 
 const mvpSteps = [
-  { titleKey: "mvp.step1Title", descKey: "mvp.step1Desc" },
-  { titleKey: "mvp.step2Title", descKey: "mvp.step2Desc" },
-  { titleKey: "mvp.step3Title", descKey: "mvp.step3Desc" },
-  { titleKey: "mvp.step4Title", descKey: "mvp.step4Desc" },
+  { icon: Lightbulb, titleKey: "mvp.step1Title", descKey: "mvp.step1Desc" },
+  { icon: Palette, titleKey: "mvp.step2Title", descKey: "mvp.step2Desc" },
+  { icon: FileText, titleKey: "mvp.step3Title", descKey: "mvp.step3Desc" },
+  { icon: Rocket, titleKey: "mvp.step4Title", descKey: "mvp.step4Desc" },
 ];
 
+function MvpStepCard({ step, index }: { step: typeof mvpSteps[number]; index: number }) {
+  const { t } = useTranslation();
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  const Icon = step.icon;
+  return (
+    <div
+      ref={ref}
+      className="mvp-step-card rounded-2xl p-6 border border-border/60 h-full"
+      style={{
+        backgroundColor: "#1a1530",
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(30px)",
+        transition:
+          "opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease",
+        transitionDelay: `${index * 150}ms`,
+      }}
+    >
+      <div
+        className="mvp-icon-badge h-11 w-11 rounded-xl bg-gradient-hero flex items-center justify-center mb-5 shadow-glow"
+        style={{
+          animation: `process-float 3s ease-in-out ${index * 0.4}s infinite`,
+          transition: "transform 0.3s ease",
+        }}
+      >
+        <Icon className="h-5 w-5 text-primary-foreground" />
+      </div>
+      <h3 className="text-xl font-bold mb-2 text-gradient inline-block">{t(step.titleKey)}</h3>
+      <p className="text-sm text-muted-foreground leading-relaxed">{t(step.descKey)}</p>
+    </div>
+  );
+}
+
 function MvpJourney() {
-  return <NumberedRows id="mvp-journey" labelKey="mvp.label" headingKey="mvp.heading" introKey="mvp.subheading" rows={mvpSteps} />;
+  const { t } = useTranslation();
+  return (
+    <section id="mvp-journey" className="py-12 md:pt-16 md:pb-16 relative" style={{ backgroundColor: "#0d0b1a" }}>
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="max-w-2xl mx-auto text-center mb-10">
+          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">{t("mvp.label")}</div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            {t("mvp.heading1")} <span className="text-gradient">{t("mvp.heading2")}</span>
+          </h2>
+          <p className="text-muted-foreground text-lg">{t("mvp.subheading")}</p>
+        </div>
+        <div className="grid md:grid-cols-2 gap-5">
+          {mvpSteps.map((s, i) => (
+            <MvpStepCard key={s.titleKey} step={s} index={i} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
 
 function Index() {

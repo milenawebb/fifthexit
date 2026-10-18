@@ -11,22 +11,23 @@
   "hero": {
     "heading1": "Web & app dev",
     "heading2": "built with speed.",
-    "subheading": "fifthexit is a creative dev studio building blazing-fast websites, slick mobile apps, and digital products that make competitors sweat. ",
+    "subheading": "fifthexit is a creative dev studio building blazing-fast websites, slick mobile apps, and digital products that make competitors sweat.\u00a0",
     "ctaPrimary": "Start a project",
     "ctaSecondary": "See our work"
   },
   "services": {
-    "label": "SERVICES",
-    "heading": "Websites, apps, and the brand around them.",
-    "subheading": "A small team. You work directly with the people building it.",
-    "webDev": "Web development",
-    "webDevDesc": "Fast sites built to turn visitors into customers.",
-    "mobileApps": "Mobile apps",
-    "mobileAppsDesc": "iOS and Android apps people open every day.",
-    "brandUI": "Brand and UI",
-    "brandUIDesc": "Identity and interface design that look like one company.",
-    "launchScale": "Launch and scale",
-    "launchScaleDesc": "From MVP to real traffic. We ship, then keep improving."
+    "label": "WHAT WE DO",
+    "heading1": "Full-stack craft,",
+    "heading2": "zero compromise.",
+    "subheading": "From the first sketch to scaling on launch day, we handle every layer of your product.",
+    "webDev": "Web Development",
+    "webDevDesc": "Lightning-fast, conversion-driven websites built with modern stacks.",
+    "mobileApps": "Mobile Apps",
+    "mobileAppsDesc": "Native-feel iOS & Android apps that users actually open daily.",
+    "brandUI": "Brand & UI",
+    "brandUIDesc": "Bold visual identities and interfaces designed to turn heads.",
+    "launchScale": "Launch & Scale",
+    "launchScaleDesc": "From MVP to millions. We ship fast and iterate faster."
   },
   "stack": {
     "label": "WHAT WE BUILD WITH",
@@ -194,17 +195,18 @@
     "decline": "Decline"
   },
   "mvp": {
-    "label": "PROCESS",
-    "heading": "How an MVP gets built.",
-    "subheading": "Four steps, fixed scope, no surprises.",
-    "step1Title": "Free blueprint",
-    "step1Desc": "We map features, user flows, and tech stack before any code. You keep the plan even if you don't build with us.",
-    "step2Title": "UI/UX design",
-    "step2Desc": "Every screen, mobile first, on a component system that scales.",
-    "step3Title": "User stories and spec",
-    "step3Desc": "Prioritized stories and technical requirements, so nothing is ambiguous.",
-    "step4Title": "Build and launch",
-    "step4Desc": "Modern stack, custom back end, deployed and supported after launch."
+    "label": "FROM IDEA TO LAUNCH",
+    "heading1": "Your MVP, built",
+    "heading2": "the right way.",
+    "subheading": "We take your idea from napkin sketch to live product with a clear 4-step process: no tech overwhelm, no surprise scope creep. Just fast, focused execution.",
+    "step1Title": "Free MVP Blueprint",
+    "step1Desc": "Before a single line of code, we map out your core features, user flows, and tech stack. You walk away with a clear plan and a realistic scope, even if you decide not to build with us.",
+    "step2Title": "UI/UX Design",
+    "step2Desc": "We design every screen your users will touch: mobile-first, brand-aligned, and built on a scalable component system so the product looks sharp from day one.",
+    "step3Title": "User Stories & Spec",
+    "step3Desc": "We translate your design into a detailed development spec with prioritized user stories and technical requirements. No ambiguity, no misaligned expectations.",
+    "step4Title": "Build & Launch",
+    "step4Desc": "We develop and deploy on a modern, scalable stack. Custom back-end, clean front-end, ready for real users. We stay on after launch to make sure everything holds."
   },
   "footer": {
     "copyright": "© 2026 fifthexit. All rights reserved. Built with speed.",
