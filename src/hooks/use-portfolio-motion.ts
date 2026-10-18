@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { scrollProgress } from "./motion-math";
 
 export function usePortfolioMotion() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -24,7 +25,7 @@ export function usePortfolioMotion() {
       if (desktop.current) {
         const box = section.getBoundingClientRect();
         const distance = Math.max(1, section.offsetHeight - window.innerHeight);
-        offset = Math.max(0, Math.min(1, -box.top / distance)) * max;
+        offset = scrollProgress(-box.top, distance) * max;
         track.style.transform = `translate3d(${-offset}px,0,0)`;
       }
       const cards = Array.from(track.querySelectorAll<HTMLElement>("[data-card]"));

@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/fifthexit-logo.webp";
+import { compactNavigation } from "@/hooks/motion-math";
 
 const navLinks = [
   { href: "/#services", key: "nav.services" },
@@ -18,7 +19,7 @@ export function Header() {
   const [compact, setCompact] = useState(false);
   useEffect(() => {
     let frame = 0;
-    const update = () => { frame = 0; setCompact(window.scrollY > 80); };
+    const update = () => { frame = 0; setCompact(compactNavigation(window.scrollY)); };
     const scroll = () => { if (!frame) frame = requestAnimationFrame(update); };
     update();
     window.addEventListener("scroll", scroll, { passive: true });

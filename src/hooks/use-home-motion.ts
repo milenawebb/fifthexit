@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { mvpProgress, scrollProgress } from "./motion-math";
 
 /** One observer for eager and lazy content; the initial page remains visible until hydration. */
 export function useHomeMotion() {
@@ -43,7 +44,7 @@ export function useHomeMotion() {
       const update = () => {
         frame = 0;
         if (!hero || !near) return;
-        const progress = Math.min(1, Math.max(0, -hero.getBoundingClientRect().top / hero.offsetHeight));
+        const progress = scrollProgress(-hero.getBoundingClientRect().top, hero.offsetHeight);
         hero.style.setProperty("--hero-progress", String(progress));
       };
       const onScroll = () => { if (!frame && near) frame = requestAnimationFrame(update); };
@@ -90,7 +91,7 @@ export function useMvpFocus() {
         if (d < distance) { distance = d; best = i; }
       });
       cards.forEach((card, i) => card.classList.toggle("mvp-active", i === best));
-      section.style.setProperty("--mvp-progress", String((best + 1) / cards.length));
+      section.style.setProperty("--mvp-progress", String(mvpProgress(best)));
       section.dataset.activeStep = String(best + 1);
     };
     const schedule = () => { if (!frame && !reduced.matches) frame = requestAnimationFrame(update); };
