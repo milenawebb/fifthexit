@@ -7,6 +7,10 @@ import { LegalLayout, LegalSection, type TocItem } from "@/components/legal-layo
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
+      { title: "fifthexit: Privacy Policy" },
+      { property: "og:title", content: "fifthexit: Privacy Policy" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { name: "description", content: "How fifthexit (Webb Consulting LLC / DBA Fifth Exit) collects, uses, and protects your personal information." },
       { property: "og:description", content: "fifthexit's Privacy Policy." },
     ],

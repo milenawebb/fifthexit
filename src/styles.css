@@ -77,6 +77,10 @@
 }
 
 :root {
+  --nav-solid: #0d0b1a;
+  --nav-frosted: rgba(13, 11, 26, 0.72);
+  --nav-hairline: oklch(1 0 0 / 0.12);
+  --mvp-surface: #1a1530;
   --radius: 0.875rem;
 
   --background: oklch(0.12 0.03 280);
@@ -236,4 +240,70 @@ html, body, #root {
 @layer utilities {
   @keyframes fade-only { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
   .animate-fade-only { animation: fade-only 0.3s ease-out; will-change: opacity, transform; }
+}
+
+/* Additive motion: all reserved geometry is static and only composited properties animate. */
+.site-header { background: var(--nav-solid); border-bottom: 1px solid transparent; }
+.site-header::before { content: ""; position: absolute; inset: 0; background: var(--nav-frosted); border-bottom: 1px solid var(--nav-hairline); backdrop-filter: blur(20px); opacity: 0; transition: opacity 350ms ease, backdrop-filter 350ms ease; pointer-events: none; }
+.site-header.is-compact { background: transparent; }
+.site-header.is-compact::before { opacity: 1; }
+.nav-inner { position: relative; }
+.nav-inner, .nav-logo { transition: transform 350ms ease; transform-origin: center top; }
+.site-header.is-compact .nav-inner { transform: translateY(-4px); }
+.site-header.is-compact .nav-logo { transform: scale(0.9); transform-origin: left center; }
+.site-header.is-compact { transform: translateY(-4px); }
+.site-header { transition: transform 350ms ease; }
+.hero-depth { --hero-drift: -70px; --hero-progress: 0; }
+.hero-content { transform: translateY(calc(var(--hero-progress) * var(--hero-drift))); opacity: calc(1 - var(--hero-progress)); }
+.hero-glow { opacity: calc(1 - var(--hero-progress)); }
+@keyframes hero-depth { to { transform: translateY(var(--hero-drift)); opacity: 0; } }
+@keyframes hero-glow-out { to { opacity: 0; } }
+@supports (animation-timeline: scroll()) {
+  .hero-content { animation: hero-depth linear both; animation-timeline: scroll(root block); animation-range: 0px 500px; }
+  .hero-glow { animation: hero-glow-out linear both; animation-timeline: scroll(root block); animation-range: 0px 500px; }
+}
+[data-reveal] { transition: opacity 650ms ease, transform 650ms cubic-bezier(0.16,1,0.3,1); transition-delay: var(--reveal-delay, 0ms); }
+[data-reveal].reveal-pending { opacity: 0; transform: translateY(22px); }
+.mvp-step-card { background: var(--mvp-surface); opacity: 1; transition: opacity 350ms ease; }
+.mvp-step-card:not(.mvp-active) h3 { opacity: 0.75; }
+.mvp-step-card.mvp-active { opacity: 1; }
+.mvp-step-card { position: relative; }
+.mvp-step-card::after { content: ""; position: absolute; inset: 0; border-radius: inherit; border: 1px solid var(--primary); box-shadow: var(--shadow-glow); opacity: 0; pointer-events: none; transition: opacity 350ms ease; }
+.mvp-step-card.mvp-active::after { opacity: 0.4; }
+.mvp-progress { height: 2px; margin-top: 28px; background: var(--border); overflow: hidden; }
+.mvp-progress span { display: block; height: 100%; background: var(--gradient-hero); transform: scaleX(var(--mvp-progress, 0.25)); transform-origin: left; transition: transform 350ms ease; }
+.mvp-steps > div { min-width: 0; }
+.portfolio-scroller { overflow-x: auto; scroll-snap-type: x mandatory; touch-action: pan-x pan-y; }
+.portfolio-track { position: relative; }
+.portfolio-track [data-card] { scroll-snap-align: start; }
+.homepage-motion .work-card { animation: none !important; }
+.homepage-motion .tech-pill { transition-property: transform, opacity; }
+.homepage-motion #services [data-reveal] { transition-property: transform, opacity; }
+@media (min-width: 861px) {
+  .mvp-layout { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 72px; align-items: start; }
+  .mvp-intro { position: sticky; top: 120px; text-align: left; margin-bottom: 0; }
+  .mvp-steps { gap: 80px; padding-block: 60px 120px; }
+  .mvp-step-card { min-height: 180px; }
+  .portfolio-section, .portfolio-reservation { min-height: 300svh !important; }
+  .portfolio-section { padding-block: 0; }
+  .portfolio-desktop .portfolio-pin { position: sticky; top: 0; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding-block: 80px 40px; }
+  .portfolio-desktop .portfolio-scroller { overflow: hidden; scroll-snap-type: none; }
+  .portfolio-desktop .portfolio-track { will-change: transform; }
+}
+@media (max-width: 860px) {
+  .hero-depth { --hero-drift: -35px; }
+  .mvp-step-card { min-height: 150px; }
+  .portfolio-track [data-card] { width: 85%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  [data-reveal], [data-reveal].reveal-pending, .hero-content, .hero-glow, .mvp-step-card { opacity: 1 !important; transform: none !important; }
+  .mvp-step-card::after { opacity: 0 !important; }
+  .mvp-progress span { transform: scaleX(1); }
+  .portfolio-section, .portfolio-reservation { min-height: 900px !important; }
+  .portfolio-pin { position: static !important; min-height: 0 !important; }
+  .portfolio-track { transform: none !important; }
+  .mvp-intro { position: static; }
+  .mvp-step-card:not(.mvp-active) h3 { opacity: 1; }
 }

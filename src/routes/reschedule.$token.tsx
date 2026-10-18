@@ -14,7 +14,7 @@ import {
 } from '@/lib/booking-slots'
 
 export const Route = createFileRoute('/reschedule/$token')({
-  head: () => ({ meta: [{ name: 'robots', content: 'noindex' }] }),
+  head: () => ({ meta: [{ title: 'fifthexit: Reschedule your consult' }, { name: 'description', content: 'Choose a new date and time for your fifthexit consultation.' }, { property: 'og:title', content: 'fifthexit: Reschedule your consult' }, { property: 'og:description', content: 'Choose a new date and time for your fifthexit consultation.' }, { property: 'og:type', content: 'website' }, { name: 'twitter:card', content: 'summary' }, { name: 'robots', content: 'noindex' }] }),
   component: ReschedulePage,
 })
 

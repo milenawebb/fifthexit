@@ -6,7 +6,7 @@ import { Toaster, toast } from 'sonner'
 import { Check, X } from 'lucide-react'
 
 export const Route = createFileRoute('/cancel/$token')({
-  head: () => ({ meta: [{ name: 'robots', content: 'noindex' }] }),
+  head: () => ({ meta: [{ title: 'fifthexit: Cancel your consult' }, { name: 'description', content: 'Manage the cancellation of your fifthexit consultation.' }, { property: 'og:title', content: 'fifthexit: Cancel your consult' }, { property: 'og:description', content: 'Manage the cancellation of your fifthexit consultation.' }, { property: 'og:type', content: 'website' }, { name: 'twitter:card', content: 'summary' }, { name: 'robots', content: 'noindex' }] }),
   component: CancelPage,
 })
 

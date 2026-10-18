@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
+import { useHomeMotion, useMvpFocus } from "@/hooks/use-home-motion";
+import StatCounter from "@/components/home/StatCounter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -51,6 +53,7 @@ export const Route = createFileRoute("/")({
         { title: site.title },
         { name: "description", content: site.description },
         { property: "og:title", content: site.ogTitle },
+        { property: "og:type", content: "website" },
         { property: "og:description", content: site.description },
         { property: "og:url", content: site.origin },
         { property: "og:image", content: site.image },
@@ -89,12 +92,12 @@ import { Header, Footer } from "@/components/site-chrome";
 function Hero() {
   const { t } = useTranslation();
   return (
-    <section id="top" className="relative pt-24 pb-10 md:pt-28 md:pb-16 overflow-hidden" style={{ backgroundColor: "#0d0b1a" }}>
+    <section id="top" className="hero-depth relative pt-24 pb-10 md:pt-28 md:pb-16 overflow-hidden" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="absolute inset-0 grid-bg opacity-40 pointer-events-none" />
-      <div className="absolute -top-32 left-1/2 -translate-x-1/2 h-[600px] w-[600px] rounded-full bg-primary/30 blur-[120px] pointer-events-none" />
-      <div className="absolute top-40 right-10 h-72 w-72 rounded-full bg-accent/30 blur-[100px] pointer-events-none animate-float" />
+      <div className="hero-glow absolute -top-32 left-1/2 -translate-x-1/2 h-[600px] w-[600px] rounded-full bg-primary/30 blur-[120px] pointer-events-none" />
+      <div className="hero-glow absolute top-40 right-10 h-72 w-72 rounded-full bg-accent/30 blur-[100px] pointer-events-none animate-float" />
 
-      <div className="relative mx-auto max-w-7xl px-6 text-center">
+      <div className="hero-content relative mx-auto max-w-7xl px-6 text-center">
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.05] mb-6">
           {t("hero.heading1")} <br />
           <span className="text-gradient">{t("hero.heading2")}</span>
@@ -121,7 +124,7 @@ function Services() {
   return (
     <section id="services" className="py-12 md:pt-16 md:pb-16 relative" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="mx-auto max-w-7xl px-6">
-        <div className="max-w-2xl mx-auto text-center mb-8">
+        <div data-reveal className="max-w-2xl mx-auto text-center mb-8">
           <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">{t("services.label")}</div>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             {t("services.heading1")} <span className="text-gradient">{t("services.heading2")}</span>
@@ -132,9 +135,10 @@ function Services() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-          {services.map((s) => (
+          {services.map((s, i) => (
             <div
               key={s.titleKey}
+              data-reveal style={{ "--reveal-delay": `${i * 80}ms` } as React.CSSProperties}
               className="group bg-gradient-card border border-border rounded-2xl p-6 hover:border-primary/50 transition-all hover:-translate-y-1 hover:shadow-glow text-center md:text-left flex flex-col items-center md:items-start"
             >
               <h3 className="text-xl font-bold mb-2">{t(s.titleKey)}</h3>
@@ -186,7 +190,7 @@ function TechStack() {
   );
 
   const Marquee = ({ items, reverse = false }: { items: { name: string; icon: string }[]; reverse?: boolean }) => (
-    <div className={`marquee${reverse ? " reverse" : ""} group relative`}>
+    <div tabIndex={0} aria-label={items.map(item => item.name).join(", ")} className={`marquee${reverse ? " reverse" : ""} group relative`}>
       <div className="flex gap-3 w-max">
         {[...items, ...items].map((p, i) => (
           <Pill key={`${p.name}-${i}`} p={p} />
@@ -209,7 +213,8 @@ function TechStack() {
         .marquee.reverse > div {
           animation-direction: reverse;
         }
-        .marquee:hover > div { animation-play-state: paused !important; }
+        .marquee:hover > div, .marquee:focus-within > div { animation-play-state: paused !important; }
+        @media (prefers-reduced-motion: reduce) { .marquee > div { animation: none; } }
         .tech-pill { position: relative; }
         .tech-pill::before {
           content: "";
@@ -229,7 +234,7 @@ function TechStack() {
         .tech-pill:hover { box-shadow: 0 0 20px -4px oklch(0.72 0.25 330 / 0.5); }
       `}</style>
       <div className="mx-auto max-w-7xl px-6">
-        <div className="max-w-2xl mx-auto text-center mb-8">
+        <div data-reveal className="max-w-2xl mx-auto text-center mb-8">
           <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">{t("stack.label")}</div>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             {t("stack.heading1")} <span className="text-gradient">{t("stack.heading2")}</span>
@@ -245,12 +250,13 @@ function TechStack() {
         </div>
 
         <div className="flex flex-row gap-3 md:gap-5">
-          {stats.map((s) => (
+          {stats.map((s, i) => (
             <div
               key={s.v}
+              data-reveal style={{ "--reveal-delay": `${i * 80}ms` } as React.CSSProperties}
               className="flex-1 basis-0 min-w-0 bg-gradient-card border border-border rounded-2xl p-3 md:p-6 text-center"
             >
-              <div className="text-[2rem] md:text-5xl font-bold font-display text-gradient mb-2 leading-none">{s.v}</div>
+              <div className="text-[2rem] md:text-5xl font-bold font-display text-gradient mb-2 leading-none"><StatCounter value={s.v} index={i} /></div>
               <p className="text-xs md:text-sm text-muted-foreground">{s.d}</p>
             </div>
           ))}
@@ -314,7 +320,7 @@ function Process() {
   return (
     <section id="process" className="py-12 md:pt-16 md:pb-16 relative" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="mx-auto max-w-7xl px-6">
-        <div className="text-center max-w-2xl mx-auto mb-8">
+        <div data-reveal className="text-center max-w-2xl mx-auto mb-8">
           <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">{t("process.label")}</div>
           <h2 className="text-4xl md:text-5xl font-bold">{t("process.heading1")} <span className="text-gradient">{t("process.heading2")}</span></h2>
         </div>
@@ -366,55 +372,31 @@ const mvpSteps = [
 
 function MvpStepCard({ step, index }: { step: typeof mvpSteps[number]; index: number }) {
   const { t } = useTranslation();
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          obs.disconnect();
-        }
-      },
-      { threshold: 0.15 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
   return (
-    <div
-      ref={ref}
-      className="mvp-step-card rounded-2xl p-6 border border-border/60 h-full"
-      style={{
-        backgroundColor: "#1a1530",
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(30px)",
-        transition:
-          "opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease",
-        transitionDelay: `${index * 150}ms`,
-      }}
-    >
-      <h3 className="text-xl font-bold mb-2 text-gradient inline-block">{t(step.titleKey)}</h3>
-      <p className="text-sm text-muted-foreground leading-relaxed">{t(step.descKey)}</p>
+    <div data-reveal style={{ "--reveal-delay": `${index * 80}ms` } as React.CSSProperties}>
+      <div data-mvp-step className={`mvp-step-card rounded-2xl p-6 border border-border/60 h-full${index === 0 ? " mvp-active" : ""}`}>
+        <h3 className="text-xl font-bold mb-2 text-gradient inline-block">{t(step.titleKey)}</h3>
+        <p className="text-sm text-muted-foreground leading-relaxed">{t(step.descKey)}</p>
+      </div>
     </div>
   );
 }
 
 function MvpJourney() {
   const { t } = useTranslation();
+  const ref = useMvpFocus();
   return (
-    <section id="mvp-journey" className="py-12 md:pt-16 md:pb-16 relative" style={{ backgroundColor: "#0d0b1a" }}>
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="max-w-2xl mx-auto text-center mb-10">
+    <section ref={ref} id="mvp-journey" className="py-12 md:pt-16 md:pb-16 relative" style={{ backgroundColor: "#0d0b1a" }}>
+      <div className="mvp-layout mx-auto max-w-6xl px-6">
+        <div data-reveal className="mvp-intro max-w-2xl mx-auto text-center mb-10">
           <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">{t("mvp.label")}</div>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             {t("mvp.heading1")} <span className="text-gradient">{t("mvp.heading2")}</span>
           </h2>
           <p className="text-muted-foreground text-lg">{t("mvp.subheading")}</p>
+          <div className="mvp-progress" aria-hidden="true"><span /></div>
         </div>
-        <div className="grid md:grid-cols-2 gap-5">
+        <div className="mvp-steps grid gap-5">
           {mvpSteps.map((s, i) => (
             <MvpStepCard key={s.titleKey} step={s} index={i} />
           ))}
@@ -425,8 +407,9 @@ function MvpJourney() {
 }
 
 function Index() {
+  const motionRef = useHomeMotion();
   return (
-    <div className="dark min-h-screen" style={{ backgroundColor: "#0d0b1a" }}>
+    <div ref={motionRef} className="homepage-motion dark min-h-screen" style={{ backgroundColor: "#0d0b1a" }}>
       <Toaster theme="dark" position="top-center" />
       <Header />
       <main style={{ backgroundColor: "#0d0b1a" }}>
@@ -434,10 +417,10 @@ function Index() {
         <Services />
         <MvpJourney />
         <TechStack />
-        <LazySection id="work" minHeight={900}><Work /></LazySection>
+        <LazySection id="work" minHeight={900} className="portfolio-reservation"><Work /></LazySection>
         <Process />
         <section id="estimator" className="py-12 md:pt-16 md:pb-16" style={{ backgroundColor: "#0d0b1a" }}>
-          <div className="mx-auto max-w-5xl px-6">
+          <div data-reveal className="mx-auto max-w-5xl px-6">
             <LazySection id="estimator-inner" minHeight={640}><PriceEstimator /></LazySection>
           </div>
         </section>

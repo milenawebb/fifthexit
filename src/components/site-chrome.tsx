@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/fifthexit-logo.webp";
+import { compactNavigation } from "@/hooks/motion-math";
 
 const navLinks = [
   { href: "/#services", key: "nav.services" },
@@ -15,20 +16,29 @@ const navLinks = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [compact, setCompact] = useState(false);
+  useEffect(() => {
+    let frame = 0;
+    const update = () => { frame = 0; setCompact(compactNavigation(window.scrollY)); };
+    const scroll = () => { if (!frame) frame = requestAnimationFrame(update); };
+    update();
+    window.addEventListener("scroll", scroll, { passive: true });
+    return () => { window.removeEventListener("scroll", scroll); cancelAnimationFrame(frame); };
+  }, []);
   const close = () => setOpen(false);
   const { t } = useTranslation();
 
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 glass" style={{ backgroundColor: "#0d0b1a" }}>
-      <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
+    <header data-compact={compact} className={`site-header fixed top-0 left-0 right-0 z-50${compact ? " is-compact" : ""}`}>
+      <div className="nav-inner mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
         <a href="/#top" className="flex items-center shrink-0" onClick={close}>
           <img
             src={logo}
             alt="fifthexit"
             width={400}
             height={86}
-            className="block h-6 md:h-7 w-auto max-w-none object-contain"
+            className="nav-logo block h-6 md:h-7 w-auto max-w-none object-contain"
           />
         </a>
         <nav className="hidden lg:flex items-center gap-8 text-sm text-muted-foreground">

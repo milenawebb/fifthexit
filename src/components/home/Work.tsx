@@ -1,3 +1,4 @@
+import { usePortfolioMotion } from "@/hooks/use-portfolio-motion";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -137,97 +138,13 @@ export default function Work() {
       image: twillsyPreview,
     },
   ];
-  const scrollerRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const scrollByCard = (dir: 1 | -1) => {
-    const el = scrollerRef.current;
-    if (!el) return;
-    const card = el.querySelector<HTMLElement>("[data-card]");
-    const step = card ? card.offsetWidth + 24 : el.clientWidth * 0.85;
-    el.scrollBy({ left: dir * step, behavior: "smooth" });
-  };
-
-  useEffect(() => {
-    const el = scrollerRef.current;
-    if (!el) return;
-    const onScroll = () => {
-      const cards = el.querySelectorAll<HTMLElement>("[data-card]");
-      const center = el.scrollLeft + el.clientWidth / 2;
-      let best = 0;
-      let bestDist = Infinity;
-      cards.forEach((c, i) => {
-        const cCenter = c.offsetLeft + c.offsetWidth / 2;
-        const d = Math.abs(cCenter - center);
-        if (d < bestDist) {
-          bestDist = d;
-          best = i;
-        }
-      });
-      setActiveIndex(best);
-    };
-    el.addEventListener("scroll", onScroll, { passive: true });
-    return () => el.removeEventListener("scroll", onScroll);
-  }, []);
-
-  // Click & drag (desktop)
-  useEffect(() => {
-    const el = scrollerRef.current;
-    if (!el) return;
-    let isDown = false;
-    let startX = 0;
-    let startScroll = 0;
-    let moved = false;
-    const onDown = (e: PointerEvent) => {
-      if (e.pointerType !== "mouse") return;
-      isDown = true;
-      moved = false;
-      startX = e.clientX;
-      startScroll = el.scrollLeft;
-    };
-    const onMove = (e: PointerEvent) => {
-      if (!isDown) return;
-      const dx = e.clientX - startX;
-      if (!moved && Math.abs(dx) > 5) {
-        moved = true;
-        try { el.setPointerCapture(e.pointerId); } catch {}
-      }
-      if (moved) el.scrollLeft = startScroll - dx;
-    };
-    const onUp = (e: PointerEvent) => {
-      if (!isDown) return;
-      isDown = false;
-      try { el.releasePointerCapture(e.pointerId); } catch {}
-      if (moved) {
-        const prevent = (ev: Event) => { ev.preventDefault(); ev.stopPropagation(); el.removeEventListener("click", prevent, true); };
-        el.addEventListener("click", prevent, true);
-      }
-    };
-    el.addEventListener("pointerdown", onDown);
-    el.addEventListener("pointermove", onMove);
-    el.addEventListener("pointerup", onUp);
-    el.addEventListener("pointercancel", onUp);
-    return () => {
-      el.removeEventListener("pointerdown", onDown);
-      el.removeEventListener("pointermove", onMove);
-      el.removeEventListener("pointerup", onUp);
-      el.removeEventListener("pointercancel", onUp);
-    };
-  }, []);
-
-  const goTo = (i: number) => {
-    const el = scrollerRef.current;
-    if (!el) return;
-    const cards = el.querySelectorAll<HTMLElement>("[data-card]");
-    const target = cards[i];
-    if (!target) return;
-    el.scrollTo({ left: target.offsetLeft - (el.clientWidth - target.offsetWidth) / 2, behavior: "smooth" });
-  };
+  const { sectionRef, scrollerRef, trackRef, activeIndex, goTo } = usePortfolioMotion();
+  const scrollByCard = (dir: 1 | -1) => goTo(activeIndex + dir);
 
   return (
-    <section id="work" className="py-12 md:pt-16 md:pb-16" style={{ backgroundColor: "#0d0b1a" }}>
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="text-center mb-8">
+    <section ref={sectionRef} id="work" className="portfolio-section py-12 md:pt-16 md:pb-16" style={{ backgroundColor: "#0d0b1a" }}>
+      <div className="portfolio-pin mx-auto max-w-7xl px-6">
+        <div data-reveal className="text-center mb-8">
           <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">{t("work.label")}</div>
           <h2 className="text-4xl md:text-5xl font-bold">{t("work.heading1")} <span className="text-gradient">{t("work.heading2")}</span></h2>
           <a href="#book" className="mt-3 inline-flex text-sm text-muted-foreground hover:text-foreground transition items-center gap-1">
@@ -237,34 +154,28 @@ export default function Work() {
 
         <div className="relative">
           {/* Arrows */}
-          <button
+          <Button variant="ghost"
             type="button"
             aria-label="Previous"
             onClick={() => scrollByCard(-1)}
             className="hidden md:flex absolute -left-4 top-1/2 -translate-y-1/2 z-10 h-10 w-10 items-center justify-center rounded-full glass border border-border/60 hover:border-primary/50 transition"
           >
             <ChevronLeft className="h-5 w-5" />
-          </button>
-          <button
+          </Button>
+          <Button variant="ghost"
             type="button"
             aria-label="Next"
             onClick={() => scrollByCard(1)}
             className="hidden md:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 h-10 w-10 items-center justify-center rounded-full glass border border-border/60 hover:border-primary/50 transition"
           >
             <ChevronRight className="h-5 w-5" />
-          </button>
+          </Button>
 
           <div
             ref={scrollerRef}
-            className="flex gap-6 snap-x snap-mandatory scroll-smooth pb-4 -mx-6 px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden select-none"
-            style={{
-              cursor: "grab",
-              overflowX: "scroll",
-              WebkitOverflowScrolling: "touch",
-              scrollSnapType: "x mandatory",
-              touchAction: "pan-x",
-            }}
+            className="portfolio-scroller relative pb-4 -mx-6 px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
+            <div ref={trackRef} className="portfolio-track flex gap-6">
             {projects.map((p) => {
               const domain = p.href.replace(/^https?:\/\//, "").replace(/\/$/, "");
               return (
@@ -325,26 +236,28 @@ export default function Work() {
                 </a>
               );
             })}
+            </div>
           </div>
 
           {/* Dot indicators */}
-          <div className="flex justify-center gap-1 mt-4">
+          <div className="flex flex-wrap justify-center gap-1 mt-4">
             {projects.map((p, i) => (
-              <button
+              <Button variant="ghost"
                 key={p.name}
                 type="button"
                 aria-label={`Go to slide ${i + 1}`}
+                aria-current={i === activeIndex ? "true" : undefined}
                 onClick={() => goTo(i)}
-                className="group inline-flex h-6 min-w-6 items-center justify-center px-1"
+                className="group inline-flex h-6 min-w-6 shrink-0 items-center justify-center px-1"
               >
                 <span
-                  className={`block h-2 rounded-full transition-all ${
+                  className={`block h-2 rounded-full transition-opacity ${
                     i === activeIndex
-                      ? "w-8 bg-gradient-hero"
+                      ? "w-2 bg-gradient-hero"
                       : "w-2 bg-muted-foreground/30 group-hover:bg-muted-foreground/60"
                   }`}
                 />
-              </button>
+              </Button>
             ))}
           </div>
         </div>
