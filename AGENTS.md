@@ -1,2 +1,3 @@
 - Translations: only the current domain's locale is loaded, returned from the root loader and added to i18next (initAsync: false); never statically import both locale JSONs. Why: keeps the unused language out of the page bundle.
 - Below-the-fold homepage sections (portfolio, estimator, booking) are lazy chunks mounted by `LazySection` with reserved min-height; nav anchors target its placeholder id. Why: PageSpeed main-thread and unused-JS savings without layout shift.
+- Services and MVP share the browser-safe NumberedRows presentation component and locale keys. Why: keeps their editorial layout consistent across markets without adding animation dependencies.
