@@ -12,21 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast, Toaster } from "sonner";
-import {
-  Smartphone,
-  Sparkles,
-  Zap,
-  Globe,
-  ArrowRight,
-  Check,
-  ChevronLeft,
-  ChevronRight,
-  ArrowUp,
-  Lightbulb,
-  Palette,
-  FileText,
-  Rocket,
-} from "lucide-react";
+import { ArrowRight, Check, ChevronLeft, ChevronRight, ArrowUp } from "lucide-react";
 import { z } from "zod";
 import { useTranslation } from "react-i18next";
 import openSkedPreview from "@/assets/opensked-preview.png";
@@ -81,22 +67,18 @@ export const Route = createFileRoute("/")({
 
 const services = [
   {
-    icon: Globe,
     titleKey: "services.webDev",
     descKey: "services.webDevDesc",
   },
   {
-    icon: Smartphone,
     titleKey: "services.mobileApps",
     descKey: "services.mobileAppsDesc",
   },
   {
-    icon: Sparkles,
     titleKey: "services.brandUI",
     descKey: "services.brandUIDesc",
   },
   {
-    icon: Zap,
     titleKey: "services.launchScale",
     descKey: "services.launchScaleDesc",
   },
@@ -155,9 +137,6 @@ function Services() {
               key={s.titleKey}
               className="group bg-gradient-card border border-border rounded-2xl p-6 hover:border-primary/50 transition-all hover:-translate-y-1 hover:shadow-glow text-center md:text-left flex flex-col items-center md:items-start"
             >
-              <div className="h-12 w-12 rounded-xl bg-gradient-hero flex items-center justify-center mb-5 shadow-glow">
-                <s.icon className="h-6 w-6 text-primary-foreground" />
-              </div>
               <h3 className="text-xl font-bold mb-2">{t(s.titleKey)}</h3>
               <p className="text-sm text-muted-foreground">{t(s.descKey)}</p>
             </div>
@@ -379,10 +358,10 @@ function BackToTop() {
 }
 
 const mvpSteps = [
-  { icon: Lightbulb, titleKey: "mvp.step1Title", descKey: "mvp.step1Desc" },
-  { icon: Palette, titleKey: "mvp.step2Title", descKey: "mvp.step2Desc" },
-  { icon: FileText, titleKey: "mvp.step3Title", descKey: "mvp.step3Desc" },
-  { icon: Rocket, titleKey: "mvp.step4Title", descKey: "mvp.step4Desc" },
+  { titleKey: "mvp.step1Title", descKey: "mvp.step1Desc" },
+  { titleKey: "mvp.step2Title", descKey: "mvp.step2Desc" },
+  { titleKey: "mvp.step3Title", descKey: "mvp.step3Desc" },
+  { titleKey: "mvp.step4Title", descKey: "mvp.step4Desc" },
 ];
 
 function MvpStepCard({ step, index }: { step: typeof mvpSteps[number]; index: number }) {
@@ -404,7 +383,6 @@ function MvpStepCard({ step, index }: { step: typeof mvpSteps[number]; index: nu
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
-  const Icon = step.icon;
   return (
     <div
       ref={ref}
@@ -418,15 +396,6 @@ function MvpStepCard({ step, index }: { step: typeof mvpSteps[number]; index: nu
         transitionDelay: `${index * 150}ms`,
       }}
     >
-      <div
-        className="mvp-icon-badge h-11 w-11 rounded-xl bg-gradient-hero flex items-center justify-center mb-5 shadow-glow"
-        style={{
-          animation: `process-float 3s ease-in-out ${index * 0.4}s infinite`,
-          transition: "transform 0.3s ease",
-        }}
-      >
-        <Icon className="h-5 w-5 text-primary-foreground" />
-      </div>
       <h3 className="text-xl font-bold mb-2 text-gradient inline-block">{t(step.titleKey)}</h3>
       <p className="text-sm text-muted-foreground leading-relaxed">{t(step.descKey)}</p>
     </div>
