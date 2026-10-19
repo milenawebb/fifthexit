@@ -3,6 +3,9 @@ import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/r
 import { I18nextProvider } from "react-i18next";
 
 import appCss from "../styles.css?url";
+import sgBold from "@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff2?url";
+import interReg from "@fontsource/inter/files/inter-latin-400-normal.woff2?url";
+import dmReg from "@fontsource/dm-sans/files/dm-sans-cyrillic-ext-400-normal.woff2?url";
 import { lazy, Suspense } from "react";
 import i18n, { languageForHost, loadMessages, ensureMessages } from "../i18n";
 const CookieBanner = lazy(() => import("../components/CookieBanner"));
@@ -96,6 +99,12 @@ export const Route = createRootRoute({
         },
       ],
       links: [
+        ...(site.lang === "bg"
+          ? [{ rel: "preload", as: "font", type: "font/woff2", href: dmReg, crossOrigin: "anonymous" as const }]
+          : [
+              { rel: "preload", as: "font", type: "font/woff2", href: sgBold, crossOrigin: "anonymous" as const },
+              { rel: "preload", as: "font", type: "font/woff2", href: interReg, crossOrigin: "anonymous" as const },
+            ]),
         { rel: "preload", as: "style", href: appCss },
         { rel: "stylesheet", href: appCss },
         { rel: "canonical", href: site.origin },
