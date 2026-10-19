@@ -52,6 +52,17 @@ export function Header() {
               {t(l.key)}
             </a>
           ))}
+          {showInstagram && (
+            <a
+              href={instagramHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="fifthexit on Instagram"
+              className="inline-flex h-6 w-6 shrink-0 items-center justify-center text-muted-foreground hover:text-foreground transition"
+            >
+              <Instagram size={20} aria-hidden="true" />
+            </a>
+          )}
         </nav>
         <div className="hidden lg:flex items-center gap-5">
           <Button asChild size="sm" className="bg-gradient-hero text-primary-foreground hover:opacity-90 shadow-glow">
@@ -82,6 +93,18 @@ export function Header() {
                 {t(l.key)}
               </a>
             ))}
+            {showInstagram && (
+              <a
+                href={instagramHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="fifthexit on Instagram"
+                onClick={close}
+                className="inline-flex h-8 w-8 items-center justify-center text-muted-foreground hover:text-foreground transition"
+              >
+                <Instagram size={20} aria-hidden="true" />
+              </a>
+            )}
             <Button
               asChild
               size="sm"
