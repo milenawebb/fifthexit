@@ -190,7 +190,7 @@ function TechStack() {
   );
 
   const Marquee = ({ items, reverse = false }: { items: { name: string; icon: string }[]; reverse?: boolean }) => (
-    <div tabIndex={0} aria-label={items.map(item => item.name).join(", ")} className={`marquee${reverse ? " reverse" : ""} group relative`}>
+    <div role="region" tabIndex={0} aria-label={items.map(item => item.name).join(", ")} className={`marquee${reverse ? " reverse" : ""} group relative`}>
       <div className="flex gap-3 w-max">
         {[...items, ...items].map((p, i) => (
           <Pill key={`${p.name}-${i}`} p={p} />

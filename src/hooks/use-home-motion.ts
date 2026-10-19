@@ -64,9 +64,11 @@ export function useHomeMotion() {
         window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll);
       };
     };
-    start();
+    // Defer observer setup until after first paint to keep the load task short.
+    const w = window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number; cancelIdleCallback?: (id: number) => void };
+    const idle = w.requestIdleCallback ? w.requestIdleCallback(start, { timeout: 1500 }) : window.setTimeout(start, 200);
     reduced.addEventListener("change", start);
-    return () => { cleanup(); reduced.removeEventListener("change", start); };
+    return () => { if (w.cancelIdleCallback) w.cancelIdleCallback(idle); else clearTimeout(idle); cleanup(); reduced.removeEventListener("change", start); };
   }, []);
   return ref;
 }
