@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Instagram, Menu, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/fifthexit-logo.webp";
@@ -13,6 +13,8 @@ const navLinks = [
   { href: "/#estimator", key: "nav.estimate" },
   { href: "/#book", key: "nav.contact" },
 ];
+
+const instagramHref = "https://www.instagram.com/fifth_exit";
 
 export function Header() {
   const [open, setOpen] = useState(false);
