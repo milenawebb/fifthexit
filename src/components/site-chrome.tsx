@@ -28,7 +28,10 @@ export function Header() {
     return () => { window.removeEventListener("scroll", scroll); cancelAnimationFrame(frame); };
   }, []);
   const close = () => setOpen(false);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const showInstagram = i18n.language !== "bg";
+
+
 
 
   return (
