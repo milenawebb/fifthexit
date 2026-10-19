@@ -25,5 +25,5 @@ export default function StatCounter({ value, index }: { value: string; index: nu
     io.observe(el);
     return () => { io.disconnect(); cancelAnimationFrame(frame); };
   }, [value, index]);
-  return <span ref={ref} aria-label={value}><span aria-hidden="true">{display}</span></span>;
+  return <span ref={ref}><span className="sr-only">{value}</span><span aria-hidden="true">{display}</span></span>;
 }
