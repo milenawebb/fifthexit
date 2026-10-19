@@ -5,7 +5,7 @@ import { I18nextProvider } from "react-i18next";
 import appCss from "../styles.css?url";
 import sgBold from "@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff2?url";
 import interReg from "@fontsource/inter/files/inter-latin-400-normal.woff2?url";
-import dmReg from "@fontsource/dm-sans/files/dm-sans-cyrillic-ext-400-normal.woff2?url";
+import dmReg from "@fontsource/dm-sans/files/dm-sans-latin-400-normal.woff2?url";
 import { lazy, Suspense } from "react";
 import i18n, { languageForHost, loadMessages, ensureMessages } from "../i18n";
 const CookieBanner = lazy(() => import("../components/CookieBanner"));
