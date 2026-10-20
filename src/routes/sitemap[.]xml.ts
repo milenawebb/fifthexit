@@ -1,49 +1,33 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
-
-const BASE_URL = "https://fifthexit.com";
-
-interface SitemapEntry {
-  path: string;
-  changefreq?: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
-  priority?: string;
-}
+import { ORIGIN_BG, ORIGIN_EN, SITEMAP_PAGES, originForHost } from "../lib/seo-hosts";
 
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
-      GET: async () => {
-        const entries: SitemapEntry[] = [
-          { path: "/", changefreq: "weekly", priority: "1.0" },
-          { path: "/privacy", changefreq: "yearly", priority: "0.3" },
-          { path: "/cookies", changefreq: "yearly", priority: "0.3" },
-          { path: "/terms", changefreq: "yearly", priority: "0.3" },
-        ];
-
-        const urls = entries.map((e) =>
+      GET: async ({ request }) => {
+        const base = originForHost(request.headers.get("host") ?? new URL(request.url).host);
+        const urls = SITEMAP_PAGES.map((e) =>
           [
             `  <url>`,
-            `    <loc>${BASE_URL}${e.path}</loc>`,
-            e.changefreq ? `    <changefreq>${e.changefreq}</changefreq>` : null,
-            e.priority ? `    <priority>${e.priority}</priority>` : null,
+            `    <loc>${base}${e.path}</loc>`,
+            `    <lastmod>${e.lastmod}</lastmod>`,
+            `    <changefreq>${e.changefreq}</changefreq>`,
+            `    <priority>${e.priority}</priority>`,
+            `    <xhtml:link rel="alternate" hreflang="en" href="${ORIGIN_EN}${e.path}"/>`,
+            `    <xhtml:link rel="alternate" hreflang="bg" href="${ORIGIN_BG}${e.path}"/>`,
+            `    <xhtml:link rel="alternate" hreflang="x-default" href="${ORIGIN_EN}${e.path}"/>`,
             `  </url>`,
-          ]
-            .filter(Boolean)
-            .join("\n"),
+          ].join("\n"),
         );
-
         const xml = [
           `<?xml version="1.0" encoding="UTF-8"?>`,
-          `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`,
+          `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">`,
           ...urls,
           `</urlset>`,
         ].join("\n");
-
         return new Response(xml, {
-          headers: {
-            "Content-Type": "application/xml",
-            "Cache-Control": "public, max-age=3600",
-          },
+          headers: { "Content-Type": "application/xml", "Cache-Control": "public, max-age=3600", Vary: "Host" },
         });
       },
     },
