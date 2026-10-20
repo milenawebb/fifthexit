@@ -215,6 +215,50 @@
     "privacy": "Privacy",
     "cookies": "Cookies"
   },
+  "rinCaseStudy": {
+    "metaTitle": "RIN Aesthetic Practice website: case study | fifthexit",
+    "metaDescription": "A case study of the RIN Aesthetic Practice website in Charlottesville: brand-aligned design, treatment pages, online booking, and fast, accessible performance.",
+    "eyebrow": "CASE STUDY",
+    "title": "RIN Aesthetic Practice",
+    "subhead": "A calm, fast website for a medical aesthetics studio in Charlottesville, built to turn first-time visitors into booked consultations.",
+    "meta": [
+      { "label": "Client", "value": "RIN Aesthetic Practice" },
+      { "label": "Location", "value": "Charlottesville, VA" },
+      { "label": "Industry", "value": "Medical aesthetics" },
+      { "label": "Services", "value": "Brand-aligned UI, web development, booking integration" },
+      { "label": "Year", "value": "2026" }
+    ],
+    "overviewTitle": "Overview",
+    "overview": [
+      "RIN Aesthetic Practice offers medical aesthetics treatments in Charlottesville, Virginia. The practice needed a website that matched its refined, intentional, natural positioning, made its treatments easy to understand, and let prospective clients book a consultation without a phone call.",
+      "We designed and built the site from the ground up: brand-aligned interface, treatment and concern pages, a results gallery, a small shop, and online booking, all tuned for speed and accessibility."
+    ],
+    "builtTitle": "What we built",
+    "built": [
+      { "label": "Treatment and concern pages", "text": "Content organized by what a visitor is trying to solve, not only by procedure name." },
+      { "label": "Online booking", "text": "Consultation requests flow straight to the practice, with no third-party widget." },
+      { "label": "Results gallery", "text": "A lightweight gallery that loads fast on mobile, where most visitors browse." },
+      { "label": "Shop", "text": "A simple product section for the skincare the practice carries." },
+      { "label": "Brand-aligned UI", "text": "Gold on dark walnut, matching the physical space, with large photography and generous spacing." }
+    ],
+    "designTitle": "Design notes",
+    "design": "The practice's interior sets the tone: dark walnut slats, warm lighting, and a gold logotype. We carried that into the site with a near-black palette, gold accents reserved for actions, and serif display type for headings. Everything else stays quiet so the photography and the booking buttons do the work.",
+    "imageAlt": "RIN Aesthetic Practice website with warm photography and gold accents on a dark background",
+    "imagePlaceholder": "Additional RIN screenshots coming soon",
+    "resultsTitle": "Results",
+    "results": [
+      { "value": "100", "label": "Desktop performance, Lighthouse" },
+      { "value": "96", "label": "Mobile performance, Lighthouse" },
+      { "value": "100", "label": "Accessibility, Best Practices, SEO" }
+    ],
+    "source": "PageSpeed Insights, October 2026.",
+    "stackTitle": "Stack",
+    "visit": "Visit the live site",
+    "previous": "Previous project",
+    "next": "Next project",
+    "cta": "Planning a site for your practice?",
+    "book": "Book a free consult"
+  },
   "contact": {
     "email": "info@fifthexit.com",
     "phone": ""
