@@ -6,7 +6,7 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async ({ request }) => {
-        const base = originForHost(request.headers.get("host") ?? new URL(request.url).host);
+        const base = originForHost(request.headers.get("x-forwarded-host") ?? request.headers.get("host") ?? new URL(request.url).host);
         const urls = SITEMAP_PAGES.map((e) =>
           [
             `  <url>`,

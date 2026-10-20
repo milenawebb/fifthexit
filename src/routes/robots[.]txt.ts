@@ -6,7 +6,7 @@ export const Route = createFileRoute("/robots.txt")({
   server: {
     handlers: {
       GET: async ({ request }) => {
-        const base = originForHost(request.headers.get("host") ?? new URL(request.url).host);
+        const base = originForHost(request.headers.get("x-forwarded-host") ?? request.headers.get("host") ?? new URL(request.url).host);
         return new Response(`User-agent: *\nAllow: /\n\nSitemap: ${base}/sitemap.xml\n`, {
           headers: { "Content-Type": "text/plain", "Cache-Control": "public, max-age=3600", Vary: "Host" },
         });
