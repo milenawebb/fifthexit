@@ -11,6 +11,7 @@ import i18n, { languageForHost, loadMessages, ensureMessages } from "../i18n";
 const CookieBanner = lazy(() => import("../components/CookieBanner"));
 import { getHost } from "../lib/host.functions";
 import { siteMetaForHost } from "../lib/site-meta";
+import { hreflangLinks } from "../lib/seo-hosts";
 
 
 function NotFoundComponent() {
@@ -36,7 +37,8 @@ function NotFoundComponent() {
 }
 
 export const Route = createRootRoute({
-  loader: async () => {
+  loader: async ({ location }) => {
+    const path = location.pathname.replace(/\/+$/, "") || "/";
     const host =
       typeof window === "undefined" ? await getHost() : window.location.host;
     const site = siteMetaForHost(host);
@@ -44,10 +46,12 @@ export const Route = createRootRoute({
     const messages =
       typeof window !== "undefined" && i18n.hasResourceBundle(lang, "translation") ? null : await loadMessages(lang);
     ensureMessages(lang, messages);
-    return { site, messages };
+    return { site, messages, path };
   },
   head: ({ loaderData }) => {
     const site = loaderData?.site ?? siteMetaForHost(null);
+    const path = loaderData?.path ?? "/";
+    const pageUrl = path === "/" ? `${site.origin}/` : `${site.origin}${path}`;
     return {
       meta: [
         { charSet: "utf-8" },
@@ -63,7 +67,7 @@ export const Route = createRootRoute({
         { property: "og:title", content: site.ogTitle },
         { property: "og:description", content: site.description },
         { property: "og:type", content: "website" },
-        { property: "og:url", content: site.origin },
+        { property: "og:url", content: pageUrl },
         { property: "og:image", content: site.image },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: site.ogTitle },
@@ -107,7 +111,8 @@ export const Route = createRootRoute({
             ]),
         { rel: "preload", as: "style", href: appCss },
         { rel: "stylesheet", href: appCss },
-        { rel: "canonical", href: site.origin },
+        { rel: "canonical", href: pageUrl },
+        ...hreflangLinks(path),
         { rel: "icon", type: "image/png", href: "/favicon.png" },
       ],
     };
