@@ -1,7 +1,7 @@
 # RIN case study
 - [x] Create shared bilingual case-study layout and supplied RIN content.
 - [x] Link the RIN card internally and add domain-aware metadata and sitemap entry.
-- [x] Check both languages locally at 390px and 1280px, navigation and both host sitemaps; local English Lighthouse Accessibility 100, Performance 59, CLS 0 (development code).
+- [x] Check both languages locally at 390px and 1280px, navigation and both host sitemaps; final local English Lighthouse Accessibility 100, Performance 87, CLS 0 (development code).
 - [ ] Verify real-domain localized source and 95+ Performance / 100 Accessibility on both markets: blocked until publishing, since the new page currently returns 404 on both live domains.
 
 # Homepage scroll motion
