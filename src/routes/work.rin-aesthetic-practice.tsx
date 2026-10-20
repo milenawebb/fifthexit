@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { CaseStudy, type CaseStudyCopy } from "@/components/work/CaseStudy";
 import rinImage from "@/assets/rin-case-study.webp.asset.json";
 import shareImage from "@/assets/rin-case-study-share.jpg.asset.json";
-import concernsImage from "@/assets/rin-concerns.webp.asset.json";
+import concernsImage from "@/assets/rin-concerns-v2.webp.asset.json";
 import treatmentsImage from "@/assets/rin-treatments.webp.asset.json";
 import { getHost } from "@/lib/host.functions";
 import { siteMetaForHost } from "@/lib/site-meta";
