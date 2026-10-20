@@ -1,4 +1,9 @@
 # Homepage scroll motion
+# RIN case study
+- [ ] Create shared bilingual case-study layout and supplied RIN content.
+- [ ] Link the RIN card internally and add domain-aware metadata and sitemap entry.
+- [ ] Check both languages at 390px and 1280px, navigation, sitemaps and Lighthouse.
+
 - [x] Add compact navigation, hero depth, one-time reveals and counters.
 - [x] Add MVP focus/progress and desktop/mobile portfolio scrolling.
 - [x] Preserve lazy loading, translations, accessibility and reduced motion.
