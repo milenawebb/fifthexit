@@ -279,6 +279,7 @@ html, body, #root {
 .homepage-motion .work-card { animation: none !important; }
 .homepage-motion .tech-pill { transition-property: transform, opacity; }
 .homepage-motion #services [data-reveal] { transition-property: transform, opacity; }
+.case-study h1, .case-study h2, .case-study h3 { letter-spacing: 0; }
 @media (min-width: 861px) {
   .mvp-layout { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 72px; align-items: start; }
   .mvp-intro { position: sticky; top: 120px; text-align: left; margin-bottom: 0; }

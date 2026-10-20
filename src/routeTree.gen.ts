@@ -22,6 +22,7 @@ import { Route as BgTermsRouteImport } from './routes/bg.terms'
 import { Route as CancelTokenRouteImport } from './routes/cancel.$token'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
 import { Route as RescheduleTokenRouteImport } from './routes/reschedule.$token'
+import { Route as WorkRinAestheticPracticeRouteImport } from './routes/work.rin-aesthetic-practice'
 import { Route as ApiPublicBookingNotifyRouteImport } from './routes/api/public/booking-notify'
 import { Route as ApiPublicBookingRemindersRouteImport } from './routes/api/public/booking-reminders'
 import { Route as ApiPublicBookingTakenSlotsRouteImport } from './routes/api/public/booking-taken-slots'
@@ -98,6 +99,12 @@ const RescheduleTokenRoute = RescheduleTokenRouteImport.update({
   path: '/reschedule/$token',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WorkRinAestheticPracticeRoute =
+  WorkRinAestheticPracticeRouteImport.update({
+    id: '/work/rin-aesthetic-practice',
+    path: '/work/rin-aesthetic-practice',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiPublicBookingNotifyRoute = ApiPublicBookingNotifyRouteImport.update({
   id: '/api/public/booking-notify',
   path: '/api/public/booking-notify',
@@ -169,6 +176,7 @@ export interface FileRoutesByFullPath {
   '/cancel/$token': typeof CancelTokenRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/reschedule/$token': typeof RescheduleTokenRoute
+  '/work/rin-aesthetic-practice': typeof WorkRinAestheticPracticeRoute
   '/bg/': typeof BgIndexRoute
   '/api/public/booking-notify': typeof ApiPublicBookingNotifyRoute
   '/api/public/booking-reminders': typeof ApiPublicBookingRemindersRoute
@@ -194,6 +202,7 @@ export interface FileRoutesByTo {
   '/cancel/$token': typeof CancelTokenRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/reschedule/$token': typeof RescheduleTokenRoute
+  '/work/rin-aesthetic-practice': typeof WorkRinAestheticPracticeRoute
   '/bg': typeof BgIndexRoute
   '/api/public/booking-notify': typeof ApiPublicBookingNotifyRoute
   '/api/public/booking-reminders': typeof ApiPublicBookingRemindersRoute
@@ -220,6 +229,7 @@ export interface FileRoutesById {
   '/cancel/$token': typeof CancelTokenRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/reschedule/$token': typeof RescheduleTokenRoute
+  '/work/rin-aesthetic-practice': typeof WorkRinAestheticPracticeRoute
   '/bg/': typeof BgIndexRoute
   '/api/public/booking-notify': typeof ApiPublicBookingNotifyRoute
   '/api/public/booking-reminders': typeof ApiPublicBookingRemindersRoute
@@ -247,6 +257,7 @@ export interface FileRouteTypes {
     | '/cancel/$token'
     | '/email/unsubscribe'
     | '/reschedule/$token'
+    | '/work/rin-aesthetic-practice'
     | '/bg/'
     | '/api/public/booking-notify'
     | '/api/public/booking-reminders'
@@ -272,6 +283,7 @@ export interface FileRouteTypes {
     | '/cancel/$token'
     | '/email/unsubscribe'
     | '/reschedule/$token'
+    | '/work/rin-aesthetic-practice'
     | '/bg'
     | '/api/public/booking-notify'
     | '/api/public/booking-reminders'
@@ -297,6 +309,7 @@ export interface FileRouteTypes {
     | '/cancel/$token'
     | '/email/unsubscribe'
     | '/reschedule/$token'
+    | '/work/rin-aesthetic-practice'
     | '/bg/'
     | '/api/public/booking-notify'
     | '/api/public/booking-reminders'
@@ -323,6 +336,7 @@ export interface RootRouteChildren {
   CancelTokenRoute: typeof CancelTokenRoute
   EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
   RescheduleTokenRoute: typeof RescheduleTokenRoute
+  WorkRinAestheticPracticeRoute: typeof WorkRinAestheticPracticeRoute
   BgIndexRoute: typeof BgIndexRoute
   ApiPublicBookingNotifyRoute: typeof ApiPublicBookingNotifyRoute
   ApiPublicBookingRemindersRoute: typeof ApiPublicBookingRemindersRoute
@@ -429,6 +443,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RescheduleTokenRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/work/rin-aesthetic-practice': {
+      id: '/work/rin-aesthetic-practice'
+      path: '/work/rin-aesthetic-practice'
+      fullPath: '/work/rin-aesthetic-practice'
+      preLoaderRoute: typeof WorkRinAestheticPracticeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/booking-notify': {
       id: '/api/public/booking-notify'
       path: '/api/public/booking-notify'
@@ -515,6 +536,7 @@ const rootRouteChildren: RootRouteChildren = {
   CancelTokenRoute: CancelTokenRoute,
   EmailUnsubscribeRoute: EmailUnsubscribeRoute,
   RescheduleTokenRoute: RescheduleTokenRoute,
+  WorkRinAestheticPracticeRoute: WorkRinAestheticPracticeRoute,
   BgIndexRoute: BgIndexRoute,
   ApiPublicBookingNotifyRoute: ApiPublicBookingNotifyRoute,
   ApiPublicBookingRemindersRoute: ApiPublicBookingRemindersRoute,

@@ -1,4 +1,5 @@
 import { usePortfolioMotion } from "@/hooks/use-portfolio-motion";
+import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -178,17 +179,8 @@ export default function Work() {
             <div ref={trackRef} className="portfolio-track flex gap-6">
             {projects.map((p) => {
               const domain = p.href.replace(/^https?:\/\//, "").replace(/\/$/, "");
-              return (
-                <a
-                  key={p.name}
-                  href={p.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  draggable={false}
-                  data-card
-                  className="snap-start shrink-0 flex flex-col gap-4 w-[85%] sm:w-[calc((100%-1.5rem)/2)] md:w-[calc((100%-3rem)/3)] group cursor-pointer"
-                  style={{ scrollSnapAlign: "start", flexShrink: 0 }}
-                >
+              const content = (
+                <>
                   <div
                     className="work-card relative block overflow-hidden border border-border/60 md:transition-all md:duration-300 md:group-hover:border-transparent"
                     style={{ borderRadius: "8px", background: "#1a1a2e" }}
@@ -233,7 +225,13 @@ export default function Work() {
                       {t("work.viewProject")} <ArrowRight className="h-4 w-4" />
                     </span>
                   </div>
-                </a>
+                </>
+              );
+              const className = "snap-start shrink-0 flex flex-col gap-4 w-[85%] sm:w-[calc((100%-1.5rem)/2)] md:w-[calc((100%-3rem)/3)] group cursor-pointer";
+              return p.href === "https://rinaestheticsva.com/" ? (
+                <Link key={p.name} to="/work/rin-aesthetic-practice" draggable={false} data-card className={className}>{content}</Link>
+              ) : (
+                <a key={p.name} href={p.href} target="_blank" rel="noopener noreferrer" draggable={false} data-card className={className}>{content}</a>
               );
             })}
             </div>

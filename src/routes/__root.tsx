@@ -68,11 +68,9 @@ export const Route = createRootRoute({
         { property: "og:description", content: site.description },
         { property: "og:type", content: "website" },
         { property: "og:url", content: pageUrl },
-        { property: "og:image", content: site.image },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: site.ogTitle },
         { name: "twitter:description", content: site.description },
-        { name: "twitter:image", content: site.image },
       ],
       scripts: [
         {
@@ -111,8 +109,10 @@ export const Route = createRootRoute({
             ]),
         { rel: "preload", as: "style", href: appCss },
         { rel: "stylesheet", href: appCss },
-        { rel: "canonical", href: pageUrl },
-        ...hreflangLinks(path),
+        ...(path === "/work/rin-aesthetic-practice" ? [] : [
+          { rel: "canonical", href: pageUrl },
+          ...hreflangLinks(path),
+        ]),
         { rel: "icon", type: "image/png", href: "/favicon.png" },
       ],
     };
