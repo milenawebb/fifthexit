@@ -3,12 +3,15 @@ import { useTranslation } from "react-i18next";
 import { CaseStudy, type CaseStudyCopy } from "@/components/work/CaseStudy";
 import rinImage from "@/assets/rin-case-study.webp.asset.json";
 import shareImage from "@/assets/rin-case-study-share.jpg.asset.json";
+import concernsImage from "@/assets/rin-concerns.webp.asset.json";
+import treatmentsImage from "@/assets/rin-treatments.webp.asset.json";
 import { getHost } from "@/lib/host.functions";
 import { siteMetaForHost } from "@/lib/site-meta";
 import { hreflangLinks } from "@/lib/seo-hosts";
 import { loadMessages } from "@/i18n";
 
 const path = "/work/rin-aesthetic-practice";
+const galleryImages = [concernsImage.url, treatmentsImage.url];
 
 export const Route = createFileRoute("/work/rin-aesthetic-practice")({
   loader: async () => {
@@ -47,5 +50,8 @@ export const Route = createFileRoute("/work/rin-aesthetic-practice")({
 function RinCaseStudy() {
   const { t } = useTranslation();
   const copy = t("rinCaseStudy", { returnObjects: true }) as CaseStudyCopy;
-  return <CaseStudy copy={copy} image={rinImage.url} stack={["React", "Tailwind CSS", "Supabase"]} liveUrl="https://rinaestheticsva.com" previous={{ name: "Rotary Club of Charlottesville", href: "https://charlottesvillerotary.org" }} next={{ name: "Bellhouse Real Estate Group", href: "https://bellhouserealestate.com" }} />;
+  const gallery = (copy.gallery ?? [])
+    .map((item, index) => ({ ...item, image: galleryImages[index] ?? "" }))
+    .filter(item => item.image !== "");
+  return <CaseStudy copy={copy} image={rinImage.url} gallery={gallery} stack={["React", "Tailwind CSS", "Supabase"]} liveUrl="https://rinaestheticsva.com" previous={{ name: "Rotary Club of Charlottesville", href: "https://charlottesvillerotary.org" }} next={{ name: "Bellhouse Real Estate Group", href: "https://bellhouserealestate.com" }} />;
 }

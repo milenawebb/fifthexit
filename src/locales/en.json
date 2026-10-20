@@ -245,6 +245,16 @@
     "design": "The practice's interior sets the tone: dark walnut slats, warm lighting, and a gold logotype. We carried that into the site with a near-black palette, gold accents reserved for actions, and serif display type for headings. Everything else stays quiet so the photography and the booking buttons do the work.",
     "imageAlt": "RIN Aesthetic Practice website with warm photography and gold accents on a dark background",
     "imagePlaceholder": "Additional RIN screenshots coming soon",
+    "gallery": [
+      {
+        "alt": "Screenshot of the RIN Aesthetic Practice Concerns page: the heading \"Concerns\" sits above a two-column grid of skin concerns such as lines and wrinkles, pigmentation and sun damage, volume loss, and redness and visible vessels, each listing how many treatments address it and a starting price",
+        "caption": "Concerns page: visitors start from what they notice"
+      },
+      {
+        "alt": "Screenshot of the RIN Aesthetic Practice Treatments page: the heading \"Treatments\" sits above a table with columns Treatment, What it does, Price and Downtime, listing injectables such as neurotoxin and dermal fillers with prices from $95 and from $750",
+        "caption": "Treatments page: every price shown up front"
+      }
+    ],
     "resultsTitle": "Results",
     "results": [
       { "value": "100", "label": "Desktop performance, Lighthouse" },
