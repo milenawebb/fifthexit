@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { CaseStudy, type CaseStudyCopy } from "@/components/work/CaseStudy";
-import rinImage from "@/assets/portfolio_rin_aesthetic.png.asset.json";
+import rinImage from "@/assets/rin-case-study.webp.asset.json";
 import shareImage from "@/assets/rin-case-study-share.jpg.asset.json";
 import { getHost } from "@/lib/host.functions";
 import { siteMetaForHost } from "@/lib/site-meta";
