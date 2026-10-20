@@ -18,6 +18,7 @@ export interface CaseStudyCopy {
   design: string;
   imageAlt: string;
   imagePlaceholder: string;
+  gallery?: { alt: string; caption: string }[];
   resultsTitle: string;
   results: { value: string; label: string }[];
   source: string;
@@ -32,13 +33,14 @@ export interface CaseStudyCopy {
 interface CaseStudyProps {
   copy: CaseStudyCopy;
   image: string;
+  gallery?: { image: string; alt: string; caption: string }[];
   stack: string[];
   liveUrl: string;
   previous: { name: string; href: string };
   next: { name: string; href: string };
 }
 
-export function CaseStudy({ copy, image, stack, liveUrl, previous, next }: CaseStudyProps) {
+export function CaseStudy({ copy, image, gallery, stack, liveUrl, previous, next }: CaseStudyProps) {
   const motionRef = useHomeMotion();
   return (
     <div ref={motionRef} className="case-study bg-background text-foreground">
@@ -76,9 +78,20 @@ export function CaseStudy({ copy, image, stack, liveUrl, previous, next }: CaseS
               <h2 className="text-2xl font-bold md:text-3xl">{copy.designTitle}</h2>
               <p className="text-base leading-relaxed text-muted-foreground md:text-lg">{copy.design}</p>
             </div>
-            <div data-reveal role="img" aria-label={copy.imagePlaceholder} className="flex aspect-[16/10] w-full items-center justify-center rounded-lg border border-dashed border-border bg-card px-6">
-              <p aria-hidden="true" className="text-center font-mono text-sm text-muted-foreground">{copy.imagePlaceholder}</p>
-            </div>
+            {gallery?.length ? (
+              <div data-reveal className="grid gap-6 md:grid-cols-2 md:gap-8">
+                {gallery.map(item => (
+                  <figure key={item.caption} className="min-w-0">
+                    <img src={item.image} alt={item.alt} width={1600} height={1000} loading="lazy" decoding="async" className="block h-auto w-full rounded-lg border border-border" />
+                    <figcaption className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.caption}</figcaption>
+                  </figure>
+                ))}
+              </div>
+            ) : (
+              <div data-reveal role="img" aria-label={copy.imagePlaceholder} className="flex aspect-[16/10] w-full items-center justify-center rounded-lg border border-dashed border-border bg-card px-6">
+                <p aria-hidden="true" className="text-center font-mono text-sm text-muted-foreground">{copy.imagePlaceholder}</p>
+              </div>
+            )}
           </section>
           <section data-reveal className="border-t border-border py-16 md:py-24">
             <h2 className="mb-8 text-2xl font-bold md:text-3xl">{copy.resultsTitle}</h2>

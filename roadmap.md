@@ -1,3 +1,7 @@
+# RIN design-notes screenshots
+- [x] Replace the placeholder with the two uploaded page screenshots: side by side on desktop, stacked on mobile, captions, alt text, lazy loading and fixed width/height.
+- [x] Verify both languages at 1280px and 390px: layout, captions, alt, lazy flags, no overflow, no layout shift.
+
 # RIN case study
 - [x] Create shared bilingual case-study layout and supplied RIN content.
 - [x] Link the RIN card internally and add domain-aware metadata and sitemap entry.
