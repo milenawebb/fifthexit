@@ -53,5 +53,5 @@ function RinCaseStudy() {
   const gallery = (copy.gallery ?? [])
     .map((item, index) => ({ ...item, image: galleryImages[index] ?? "" }))
     .filter(item => item.image !== "");
-  return <CaseStudy copy={copy} image={rinImage.url} gallery={gallery} stack={["React", "Tailwind CSS", "Supabase"]} liveUrl="https://rinaestheticsva.com" previous={{ name: "Rotary Club of Charlottesville", href: "https://charlottesvillerotary.org" }} next={{ name: "Bellhouse Real Estate Group", href: "https://bellhouserealestate.com" }} />;
+  return <CaseStudy copy={copy} image={rinImage.url} gallery={gallery} stack={["React", "Tailwind CSS", "Supabase"]} liveUrl="https://rinaestheticsva.com" previous={{ name: "Rotary Club of Charlottesville", href: "https://charlottesvillerotary.org" }} next={{ name: "Bellhouse Real Estate Group", href: "/work/bellhouse-real-estate" }} />;
 }
