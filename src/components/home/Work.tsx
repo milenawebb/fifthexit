@@ -33,7 +33,7 @@ import { useTranslation } from "react-i18next";
 import openSkedPreview from "@/assets/opensked-preview.png";
 import notaryPreview from "@/assets/notary-preview.png";
 import rinPreviewAsset from "@/assets/portfolio_rin_aesthetic.png.asset.json";
-import bellhousePreview from "@/assets/bellhouse-preview.png";
+import bellhousePreviewAsset from "@/assets/portfolio_bellhouse_real_estate.png.asset.json";
 import eliteRidePreview from "@/assets/elite-ride-preview.png";
 import clubtreePreview from "@/assets/clubtree-preview.png";
 import rotaryCvillePreview from "@/assets/rotary-cville-preview.png";
@@ -122,7 +122,7 @@ export default function Work() {
       tag: t("work.project4Category"),
       desc: t("work.project4Desc"),
       href: "https://bellhouserealestate.com",
-      image: bellhousePreview,
+      image: bellhousePreviewAsset.url,
     },
     {
       name: "Elite Ride Solutions",
