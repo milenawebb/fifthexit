@@ -11,7 +11,7 @@
   "hero": {
     "heading1": "Web & app dev",
     "heading2": "built with speed.",
-    "subheading": "fifthexit is a creative dev studio building blazing-fast websites, slick mobile apps, and digital products that make competitors sweat.\u00a0",
+    "subheading": "fifthexit is a creative dev studio building blazing-fast websites, slick mobile apps, and digital products that make competitors sweat. ",
     "ctaPrimary": "Start a project",
     "ctaSecondary": "See our work"
   },
@@ -222,11 +222,26 @@
     "title": "RIN Aesthetic Practice",
     "subhead": "A calm, fast website for a medical aesthetics studio in Charlottesville, built to turn first-time visitors into booked consultations.",
     "meta": [
-      { "label": "Client", "value": "RIN Aesthetic Practice" },
-      { "label": "Location", "value": "Charlottesville, VA" },
-      { "label": "Industry", "value": "Medical aesthetics" },
-      { "label": "Services", "value": "Brand-aligned UI, web development, booking integration" },
-      { "label": "Year", "value": "2026" }
+      {
+        "label": "Client",
+        "value": "RIN Aesthetic Practice"
+      },
+      {
+        "label": "Location",
+        "value": "Charlottesville, VA"
+      },
+      {
+        "label": "Industry",
+        "value": "Medical aesthetics"
+      },
+      {
+        "label": "Services",
+        "value": "Brand-aligned UI, web development, booking integration"
+      },
+      {
+        "label": "Year",
+        "value": "2026"
+      }
     ],
     "overviewTitle": "Overview",
     "overview": [
@@ -235,11 +250,26 @@
     ],
     "builtTitle": "What we built",
     "built": [
-      { "label": "Treatment and concern pages", "text": "Content organized by what a visitor is trying to solve, not only by procedure name." },
-      { "label": "Online booking", "text": "Consultation requests flow straight to the practice, with no third-party widget." },
-      { "label": "Results gallery", "text": "A lightweight gallery that loads fast on mobile, where most visitors browse." },
-      { "label": "Shop", "text": "A simple product section for the skincare the practice carries." },
-      { "label": "Brand-aligned UI", "text": "Gold on dark walnut, matching the physical space, with large photography and generous spacing." }
+      {
+        "label": "Treatment and concern pages",
+        "text": "Content organized by what a visitor is trying to solve, not only by procedure name."
+      },
+      {
+        "label": "Online booking",
+        "text": "Consultation requests flow straight to the practice, with no third-party widget."
+      },
+      {
+        "label": "Results gallery",
+        "text": "A lightweight gallery that loads fast on mobile, where most visitors browse."
+      },
+      {
+        "label": "Shop",
+        "text": "A simple product section for the skincare the practice carries."
+      },
+      {
+        "label": "Brand-aligned UI",
+        "text": "Gold on dark walnut, matching the physical space, with large photography and generous spacing."
+      }
     ],
     "designTitle": "Design notes",
     "design": "The practice's interior sets the tone: dark walnut slats, warm lighting, and a gold logotype. We carried that into the site with a near-black palette, gold accents reserved for actions, and serif display type for headings. Everything else stays quiet so the photography and the booking buttons do the work.",
@@ -257,9 +287,18 @@
     ],
     "resultsTitle": "Results",
     "results": [
-      { "value": "100", "label": "Desktop performance, Lighthouse" },
-      { "value": "96", "label": "Mobile performance, Lighthouse" },
-      { "value": "100", "label": "Accessibility, Best Practices, SEO" }
+      {
+        "value": "100",
+        "label": "Desktop performance, Lighthouse"
+      },
+      {
+        "value": "96",
+        "label": "Mobile performance, Lighthouse"
+      },
+      {
+        "value": "100",
+        "label": "Accessibility, Best Practices, SEO"
+      }
     ],
     "source": "PageSpeed Insights, October 2026.",
     "stackTitle": "Stack",
@@ -272,5 +311,106 @@
   "contact": {
     "email": "info@fifthexit.com",
     "phone": ""
+  },
+  "bellhouseCaseStudy": {
+    "metaTitle": "Bellhouse Real Estate Group website: case study | fifthexit",
+    "metaDescription": "A case study of the Bellhouse Real Estate Group website in Charlottesville: team-managed listings, sold history, area guides, an interactive service map, and a home-value lead flow.",
+    "eyebrow": "CASE STUDY",
+    "title": "Bellhouse Real Estate Group",
+    "subhead": "A content-driven website for a three-agent Charlottesville real estate team: live listings, sold history, area guides, and a home-value lead flow, all managed by the team themselves.",
+    "meta": [
+      {
+        "label": "Client",
+        "value": "Bellhouse Real Estate Group, eXp Realty"
+      },
+      {
+        "label": "Location",
+        "value": "Charlottesville, VA"
+      },
+      {
+        "label": "Industry",
+        "value": "Real estate"
+      },
+      {
+        "label": "Services",
+        "value": "Web development, content system, MLS integration"
+      },
+      {
+        "label": "Year",
+        "value": "2026"
+      }
+    ],
+    "overviewTitle": "Overview",
+    "overview": [
+      "Bellhouse Real Estate Group is a three-agent team with eXp Realty serving Charlottesville and Central Virginia. Most agent sites are a brokerage template with a search box. Bellhouse wanted something closer to a local publication: their own listings and sales, guides to the counties they work in, notes from the agents, and a clear way for homeowners to request a valuation.",
+      "We built a custom site with a team login, so listings, sold records, area pages, and notes are updated by the agents without a developer. Search hands off to the brokerage's full MLS tool, while everything that makes the team distinctive lives on their own domain."
+    ],
+    "builtTitle": "What we built",
+    "built": [
+      {
+        "label": "Listings and sold history",
+        "text": "The team's own active listings with tour requests, and a sold table that totals the year automatically."
+      },
+      {
+        "label": "Area guides",
+        "text": "Pages for Charlottesville and eleven surrounding counties, each with local photography and the neighborhoods the team knows."
+      },
+      {
+        "label": "Interactive service map",
+        "text": "A hand-built SVG map of Charlottesville and the eleven counties the team covers, with hover states that link to each area guide. No map service, no tracking, loads instantly."
+      },
+      {
+        "label": "Team login",
+        "text": "A private admin where agents add listings, mark sales, and publish notes, with no CMS to learn."
+      },
+      {
+        "label": "Home-value lead flow",
+        "text": "A valuation request answered by an agent, positioned against automated estimates."
+      },
+      {
+        "label": "MLS handoff",
+        "text": "The search form passes location and filters straight into the brokerage MLS search."
+      },
+      {
+        "label": "Compliance",
+        "text": "Fair Housing statement, MLS attribution, accessibility page, and the agent license details required in Virginia."
+      }
+    ],
+    "designTitle": "Design notes",
+    "design": "Real estate sites tend to shout. This one uses a navy and white palette, a serif display face for headings, and large regional photography so the Blue Ridge and the city do the selling. Agent photos appear throughout, since people hire an agent, not a brand. Dense pages such as the sold table and the areas grid are built as real tables and lists so they stay readable on a phone and legible to screen readers.",
+    "imageAlt": "Bellhouse Real Estate Group website with a navy and white layout and regional photography",
+    "imagePlaceholder": "Additional Bellhouse screenshots coming soon",
+    "gallery": [
+      {
+        "alt": "Screenshot of the Bellhouse service-area page: a map of Charlottesville and the surrounding Central Virginia counties, each county outlined and labeled as a link to its area guide",
+        "caption": "Service-area map: every county links to its own guide"
+      },
+      {
+        "alt": "Screenshot of a Bellhouse listing page: property photos and details alongside a tour request form, a note from the listing agent, and a monthly payment estimate",
+        "caption": "Listing page: tour request, agent note, and payment estimate on one screen"
+      }
+    ],
+    "resultsTitle": "Results",
+    "results": [
+      {
+        "value": "97",
+        "label": "Mobile performance, Lighthouse"
+      },
+      {
+        "value": "97",
+        "label": "Desktop performance, Lighthouse"
+      },
+      {
+        "value": "100",
+        "label": "Accessibility, Best Practices, SEO"
+      }
+    ],
+    "source": "PageSpeed Insights, October 2026.",
+    "stackTitle": "Stack",
+    "visit": "Visit the live site",
+    "previous": "Previous project",
+    "next": "Next project",
+    "cta": "Need a site your team can run themselves?",
+    "book": "Book a free consult"
   }
 }

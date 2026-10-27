@@ -10,6 +10,7 @@ export const SITEMAP_PAGES: { path: string; lastmod: string; changefreq: string;
   { path: "/privacy", lastmod: "2026-10-18", changefreq: "yearly", priority: "0.3" },
   { path: "/cookies", lastmod: "2026-10-18", changefreq: "yearly", priority: "0.3" },
   { path: "/work/rin-aesthetic-practice", lastmod: "2026-10-20", changefreq: "monthly", priority: "0.7" },
+  { path: "/work/bellhouse-real-estate", lastmod: "2026-10-27", changefreq: "monthly", priority: "0.7" },
 ];
 
 export function originForHost(host?: string | null): string {

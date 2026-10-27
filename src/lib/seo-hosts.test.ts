@@ -25,3 +25,7 @@ test("RIN case study has English, Bulgarian and x-default alternates", () => {
     { rel: "alternate", hrefLang: "x-default", href: "https://fifthexit.com/work/rin-aesthetic-practice" },
   ]);
 });
+
+test("Bellhouse case study is in both domain sitemaps", () => {
+  assert.ok(SITEMAP_PAGES.some(p => p.path === "/work/bellhouse-real-estate"));
+});

@@ -23,3 +23,7 @@
 - [x] Add the unlabeled Instagram glyph after the last nav link (desktop) and at the end of the mobile menu list; English only.
 - [ ] Confirm the accessibility and touch-target audits stay at 100 on the published fifthexit.com: blocked until the change is published and audited.
 
+
+# Bellhouse case study
+- [x] Bilingual page at /work/bellhouse-real-estate with stats, service-map item, two screenshots; card, sitemap and RIN "Next" link updated.
+- [ ] Verify on live domains and Lighthouse 95+/100: blocked until publishing.

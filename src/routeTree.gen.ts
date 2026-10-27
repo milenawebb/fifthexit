@@ -22,6 +22,7 @@ import { Route as BgTermsRouteImport } from './routes/bg.terms'
 import { Route as CancelTokenRouteImport } from './routes/cancel.$token'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
 import { Route as RescheduleTokenRouteImport } from './routes/reschedule.$token'
+import { Route as WorkBellhouseRealEstateRouteImport } from './routes/work.bellhouse-real-estate'
 import { Route as WorkRinAestheticPracticeRouteImport } from './routes/work.rin-aesthetic-practice'
 import { Route as ApiPublicBookingNotifyRouteImport } from './routes/api/public/booking-notify'
 import { Route as ApiPublicBookingRemindersRouteImport } from './routes/api/public/booking-reminders'
@@ -97,6 +98,11 @@ const EmailUnsubscribeRoute = EmailUnsubscribeRouteImport.update({
 const RescheduleTokenRoute = RescheduleTokenRouteImport.update({
   id: '/reschedule/$token',
   path: '/reschedule/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkBellhouseRealEstateRoute = WorkBellhouseRealEstateRouteImport.update({
+  id: '/work/bellhouse-real-estate',
+  path: '/work/bellhouse-real-estate',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WorkRinAestheticPracticeRoute =
@@ -176,6 +182,7 @@ export interface FileRoutesByFullPath {
   '/cancel/$token': typeof CancelTokenRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/reschedule/$token': typeof RescheduleTokenRoute
+  '/work/bellhouse-real-estate': typeof WorkBellhouseRealEstateRoute
   '/work/rin-aesthetic-practice': typeof WorkRinAestheticPracticeRoute
   '/bg/': typeof BgIndexRoute
   '/api/public/booking-notify': typeof ApiPublicBookingNotifyRoute
@@ -202,6 +209,7 @@ export interface FileRoutesByTo {
   '/cancel/$token': typeof CancelTokenRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/reschedule/$token': typeof RescheduleTokenRoute
+  '/work/bellhouse-real-estate': typeof WorkBellhouseRealEstateRoute
   '/work/rin-aesthetic-practice': typeof WorkRinAestheticPracticeRoute
   '/bg': typeof BgIndexRoute
   '/api/public/booking-notify': typeof ApiPublicBookingNotifyRoute
@@ -229,6 +237,7 @@ export interface FileRoutesById {
   '/cancel/$token': typeof CancelTokenRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/reschedule/$token': typeof RescheduleTokenRoute
+  '/work/bellhouse-real-estate': typeof WorkBellhouseRealEstateRoute
   '/work/rin-aesthetic-practice': typeof WorkRinAestheticPracticeRoute
   '/bg/': typeof BgIndexRoute
   '/api/public/booking-notify': typeof ApiPublicBookingNotifyRoute
@@ -257,6 +266,7 @@ export interface FileRouteTypes {
     | '/cancel/$token'
     | '/email/unsubscribe'
     | '/reschedule/$token'
+    | '/work/bellhouse-real-estate'
     | '/work/rin-aesthetic-practice'
     | '/bg/'
     | '/api/public/booking-notify'
@@ -283,6 +293,7 @@ export interface FileRouteTypes {
     | '/cancel/$token'
     | '/email/unsubscribe'
     | '/reschedule/$token'
+    | '/work/bellhouse-real-estate'
     | '/work/rin-aesthetic-practice'
     | '/bg'
     | '/api/public/booking-notify'
@@ -309,6 +320,7 @@ export interface FileRouteTypes {
     | '/cancel/$token'
     | '/email/unsubscribe'
     | '/reschedule/$token'
+    | '/work/bellhouse-real-estate'
     | '/work/rin-aesthetic-practice'
     | '/bg/'
     | '/api/public/booking-notify'
@@ -336,6 +348,7 @@ export interface RootRouteChildren {
   CancelTokenRoute: typeof CancelTokenRoute
   EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
   RescheduleTokenRoute: typeof RescheduleTokenRoute
+  WorkBellhouseRealEstateRoute: typeof WorkBellhouseRealEstateRoute
   WorkRinAestheticPracticeRoute: typeof WorkRinAestheticPracticeRoute
   BgIndexRoute: typeof BgIndexRoute
   ApiPublicBookingNotifyRoute: typeof ApiPublicBookingNotifyRoute
@@ -443,6 +456,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RescheduleTokenRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/work/bellhouse-real-estate': {
+      id: '/work/bellhouse-real-estate'
+      path: '/work/bellhouse-real-estate'
+      fullPath: '/work/bellhouse-real-estate'
+      preLoaderRoute: typeof WorkBellhouseRealEstateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/work/rin-aesthetic-practice': {
       id: '/work/rin-aesthetic-practice'
       path: '/work/rin-aesthetic-practice'
@@ -536,6 +556,7 @@ const rootRouteChildren: RootRouteChildren = {
   CancelTokenRoute: CancelTokenRoute,
   EmailUnsubscribeRoute: EmailUnsubscribeRoute,
   RescheduleTokenRoute: RescheduleTokenRoute,
+  WorkBellhouseRealEstateRoute: WorkBellhouseRealEstateRoute,
   WorkRinAestheticPracticeRoute: WorkRinAestheticPracticeRoute,
   BgIndexRoute: BgIndexRoute,
   ApiPublicBookingNotifyRoute: ApiPublicBookingNotifyRoute,
