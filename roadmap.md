@@ -1,3 +1,7 @@
+# Bellhouse portfolio card update
+- [x] Swap in the uploaded preview and the new English/Bulgarian descriptions; title, tag, link and position unchanged.
+- [x] Verify both languages in a browser: image loads, text exact, card still 8th of 11 between RIN and Elite Ride.
+
 # RIN design-notes screenshots
 - [x] Replace the placeholder with the two uploaded page screenshots: side by side on desktop, stacked on mobile, captions, alt text, lazy loading and fixed width/height.
 - [x] Verify both languages at 1280px and 390px: layout, captions, alt, lazy flags, no overflow, no layout shift.
