@@ -33,6 +33,7 @@ export interface CaseStudyCopy {
 interface CaseStudyProps {
   copy: CaseStudyCopy;
   image: string;
+  imageSize?: { width: number; height: number };
   gallery?: { image: string; alt: string; caption: string }[];
   stack: string[];
   liveUrl: string;
@@ -40,7 +41,9 @@ interface CaseStudyProps {
   next: { name: string; href: string };
 }
 
-export function CaseStudy({ copy, image, gallery, stack, liveUrl, previous, next }: CaseStudyProps) {
+const ext = (href: string) => (href.startsWith("/") ? {} : { target: "_blank", rel: "noopener noreferrer" });
+
+export function CaseStudy({ copy, image, imageSize = { width: 1200, height: 718 }, gallery, stack, liveUrl, previous, next }: CaseStudyProps) {
   const motionRef = useHomeMotion();
   return (
     <div ref={motionRef} className="case-study bg-background text-foreground">
@@ -60,7 +63,7 @@ export function CaseStudy({ copy, image, gallery, stack, liveUrl, previous, next
               ))}
             </dl>
           </header>
-          <img src={image} alt={copy.imageAlt} width={1200} height={718} fetchPriority="high" className="block h-auto w-full rounded-lg" />
+          <img src={image} alt={copy.imageAlt} width={imageSize.width} height={imageSize.height} fetchPriority="high" className="block h-auto w-full rounded-lg" />
           <section data-reveal className="grid gap-6 border-b border-border py-16 md:grid-cols-[1fr_2fr] md:gap-16 md:py-24">
             <h2 className="text-2xl font-bold md:text-3xl">{copy.overviewTitle}</h2>
             <div className="space-y-6 text-base leading-relaxed text-muted-foreground md:text-lg">
@@ -105,8 +108,8 @@ export function CaseStudy({ copy, image, gallery, stack, liveUrl, previous, next
             <Button asChild className="bg-gradient-hero text-primary-foreground hover:opacity-90"><a href={liveUrl} target="_blank" rel="noopener noreferrer">{copy.visit}</a></Button>
           </section>
           <nav aria-label={copy.eyebrow} className="grid grid-cols-2 gap-6 py-10 md:py-14">
-            <a href={previous.href} target="_blank" rel="noopener noreferrer" className="min-w-0 py-2 transition hover:text-accent"><span className="mb-2 block text-xs font-mono uppercase text-muted-foreground">{copy.previous}</span><span className="text-sm font-semibold md:text-lg">{previous.name}</span></a>
-            <a href={next.href} target="_blank" rel="noopener noreferrer" className="min-w-0 py-2 text-right transition hover:text-accent"><span className="mb-2 block text-xs font-mono uppercase text-muted-foreground">{copy.next}</span><span className="text-sm font-semibold md:text-lg">{next.name}</span></a>
+            <a href={previous.href} {...ext(previous.href)} className="min-w-0 py-2 transition hover:text-accent"><span className="mb-2 block text-xs font-mono uppercase text-muted-foreground">{copy.previous}</span><span className="text-sm font-semibold md:text-lg">{previous.name}</span></a>
+            <a href={next.href} {...ext(next.href)} className="min-w-0 py-2 text-right transition hover:text-accent"><span className="mb-2 block text-xs font-mono uppercase text-muted-foreground">{copy.next}</span><span className="text-sm font-semibold md:text-lg">{next.name}</span></a>
           </nav>
         </article>
         <section data-reveal className="border-t border-border py-16 text-center md:py-24">

@@ -230,6 +230,8 @@ export default function Work() {
               const className = "snap-start shrink-0 flex flex-col gap-4 w-[85%] sm:w-[calc((100%-1.5rem)/2)] md:w-[calc((100%-3rem)/3)] group cursor-pointer";
               return p.href === "https://rinaestheticsva.com/" ? (
                 <Link key={p.name} to="/work/rin-aesthetic-practice" draggable={false} data-card className={className}>{content}</Link>
+              ) : p.href === "https://bellhouserealestate.com" ? (
+                <Link key={p.name} to="/work/bellhouse-real-estate" draggable={false} data-card className={className}>{content}</Link>
               ) : (
                 <a key={p.name} href={p.href} target="_blank" rel="noopener noreferrer" draggable={false} data-card className={className}>{content}</a>
               );
