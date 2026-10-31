@@ -24,6 +24,11 @@
 - [ ] Confirm the accessibility and touch-target audits stay at 100 on the published fifthexit.com: blocked until the change is published and audited.
 
 
+# Routing band to Webb Consulting
+- [x] Last section above the footer on the landing page, fifthexit.com only: label, heading, body and webb-consulting.net link (new tab); footer DBA sentence untouched; no other section changed.
+- [x] Verified in a browser at 1280px and 375px: copy exact, last section in main with the footer directly after, reveal fires, contrast body 7.2:1 / link 11.3:1, no overflow from the band; hidden when the language is Bulgarian. The homepage already scrolls 5px sideways at 375px from a decorative glow inside the contact section, left alone per the brief.
+- [ ] Live-domain check: blocked until publishing.
+
 # Bellhouse case study
 - [x] Bilingual page at /work/bellhouse-real-estate with stats, service-map item, two screenshots; card, sitemap and RIN "Next" link updated.
 - [ ] Verify on live domains and Lighthouse 95+/100: blocked until publishing.

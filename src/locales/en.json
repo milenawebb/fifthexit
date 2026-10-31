@@ -208,6 +208,13 @@
     "step4Title": "Build & Launch",
     "step4Desc": "We develop and deploy on a modern, scalable stack. Custom back-end, clean front-end, ready for real users. We stay on after launch to make sure everything holds."
   },
+  "routing": {
+    "label": "TWO PRACTICES, ONE SHOP",
+    "heading1": "Need something",
+    "heading2": "heavier?",
+    "body": "fifthexit is built for fixed scope and fast turnarounds. When a project runs for months, has to plug into systems you already have, or comes with compliance attached, that's Webb Consulting. Same team, different gear.",
+    "link": "webb-consulting.net →"
+  },
   "footer": {
     "copyright": "© 2026 fifthexit. All rights reserved. Built with speed.",
     "builtWith": "Built with speed.",
