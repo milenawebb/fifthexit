@@ -450,6 +450,7 @@ function Index() {
           </div>
         </section>
         <LazySection id="book" minHeight={1000}><Booking /></LazySection>
+        <Practices />
       </main>
       <Footer />
       <BackToTop />
