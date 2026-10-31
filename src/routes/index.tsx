@@ -405,6 +405,32 @@ function MvpJourney() {
   );
 }
 
+function Practices() {
+  const { t, i18n } = useTranslation();
+  if (i18n.language === "bg") return null;
+  return (
+    <section className="py-12 md:pt-16 md:pb-16 relative" style={{ backgroundColor: "#0d0b1a" }}>
+      <div className="mx-auto max-w-3xl px-6">
+        <div data-reveal className="max-w-2xl mx-auto text-center">
+          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">{t("routing.label")}</div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            {t("routing.heading1")} <span className="text-gradient">{t("routing.heading2")}</span>
+          </h2>
+          <p className="text-muted-foreground text-lg mb-6">{t("routing.body")}</p>
+          <a
+            href="https://webb-consulting.net"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center text-base md:text-lg font-medium text-accent underline underline-offset-4 hover:text-foreground transition"
+          >
+            {t("routing.link")}
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Index() {
   const motionRef = useHomeMotion();
   return (
