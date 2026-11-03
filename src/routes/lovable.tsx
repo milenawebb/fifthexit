@@ -27,7 +27,6 @@ interface LovableCopy {
   proofTitle: string;
   stats: { value: string; label: string }[];
   proofSource: string;
-  recentTitle: string;
   faqTitle: string;
   faq: { q: string; a: string }[];
   ctaTitle: string;
@@ -186,17 +185,6 @@ function LovablePage() {
               ))}
             </div>
             <p data-reveal className="text-xs text-muted-foreground text-center mb-10">{copy.proofSource}</p>
-            <div data-reveal className="text-center">
-              <h3 className="text-lg font-semibold mb-4">{copy.recentTitle}</h3>
-              <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
-                <Link to="/work/rin-aesthetic-practice" className="text-accent underline underline-offset-4 hover:text-foreground transition font-medium">
-                  RIN Aesthetic Practice
-                </Link>
-                <Link to="/work/bellhouse-real-estate" className="text-accent underline underline-offset-4 hover:text-foreground transition font-medium">
-                  Bellhouse Real Estate Group
-                </Link>
-              </div>
-            </div>
           </div>
         </section>
 
