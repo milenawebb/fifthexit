@@ -4,6 +4,7 @@
     "work": "Портфолио",
     "stack": "Технологии",
     "process": "Процес",
+    "lovable": "Lovable",
     "estimate": "Калкулатор",
     "contact": "Контакт",
     "bookCall": "Запази час"
@@ -124,6 +125,8 @@
     "mobileAppDesc": "iOS и Android с нативно усещане и бърза работа",
     "ecommerce": "Онлайн магазин",
     "ecommerceDesc": "Продуктови страници, количка и онлайн плащане",
+    "lovableSite": "Finish my Lovable site",
+    "lovableSiteDesc": "Polish, performance, email, SEO, launch",
     "chooseDesign": "Избери подход към дизайна",
     "templateBased": "На база шаблон",
     "templateDesc": "Изчистено и бързо",
