@@ -267,7 +267,7 @@
       { "q": "Do I have to host with you?", "a": "No. Lovable hosting, Vercel, or Cloudflare are all fine. We set it up either way." },
       { "q": "What does the free review cost?", "a": "Nothing. It's useful even if you fix things yourself." }
     ],
-    "ctaTitle": "Send us your Lovable link",
+    "ctaTitle": "Send us your wesbite link",
     "siteUrlLabel": "Your Lovable or live site URL",
     "siteUrlPlaceholder": "https://your-site.lovable.app"
   },
