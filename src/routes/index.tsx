@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { useHomeMotion, useMvpFocus } from "@/hooks/use-home-motion";
 import StatCounter from "@/components/home/StatCounter";
@@ -405,6 +405,25 @@ function MvpJourney() {
   );
 }
 
+function LovableOffer() {
+  const { t, i18n } = useTranslation();
+  if (i18n.language === "bg") return null;
+  return (
+    <section className="py-12 md:pt-16 md:pb-16 relative" style={{ backgroundColor: "#0d0b1a" }}>
+      <div className="mx-auto max-w-3xl px-6">
+        <div data-reveal className="max-w-2xl mx-auto text-center">
+          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">{t("lovableOffer.label")}</div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">{t("lovableOffer.heading")}</h2>
+          <p className="text-muted-foreground text-lg mb-6">{t("lovableOffer.line")}</p>
+          <Button asChild size="lg" className="bg-gradient-hero text-primary-foreground hover:opacity-90 shadow-glow">
+            <Link to="/lovable">{t("lovableOffer.cta")}</Link>
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Practices() {
   const { t, i18n } = useTranslation();
   if (i18n.language === "bg") return null;
@@ -441,6 +460,7 @@ function Index() {
         <Hero />
         <Services />
         <MvpJourney />
+        <LovableOffer />
         <TechStack />
         <LazySection id="work" minHeight={900} className="portfolio-reservation"><Work /></LazySection>
         <Process />
