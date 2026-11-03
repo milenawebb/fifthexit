@@ -4,6 +4,7 @@
     "work": "Work",
     "stack": "Stack",
     "process": "Process",
+    "lovable": "Lovable",
     "estimate": "Estimate",
     "contact": "Contact",
     "bookCall": "Book a call"
@@ -118,6 +119,8 @@
     "mobileAppDesc": "iOS & Android, native-feel",
     "ecommerce": "E-Commerce",
     "ecommerceDesc": "Product listings, cart, checkout",
+    "lovableSite": "Finish my Lovable site",
+    "lovableSiteDesc": "Polish, performance, email, SEO, launch",
     "chooseDesign": "Choose your design approach",
     "templateBased": "Template-Based",
     "templateDesc": "Clean & fast",
@@ -214,6 +217,57 @@
     "heading2": "heavier?",
     "body": "fifthexit is built for fixed scope and fast turnarounds. When a project runs for months, has to plug into systems you already have, or comes with compliance attached, that's Webb Consulting. Same team, different gear.",
     "link": "webb-consulting.net →"
+  },
+  "lovableOffer": {
+    "label": "ALREADY BUILT SOMETHING?",
+    "heading": "Built it in Lovable? We'll finish it.",
+    "line": "Fixed price, two weeks, launch-ready. Free review first.",
+    "cta": "See how it works"
+  },
+  "lovablePage": {
+    "metaTitle": "Finish my Lovable site: launch-ready in two weeks | fifthexit",
+    "metaDescription": "Fixed-price finish for Lovable and AI-built sites: design polish, 95+ mobile performance, email from your own domain, indexing, legal pages, and launch in two weeks.",
+    "eyebrow": "FOR LOVABLE AND AI-BUILT SITES",
+    "h1": "You built it in Lovable. We'll make it ready for customers.",
+    "subhead": "Fixed price. Two weeks. Your site comes back fast, indexed, accessible, sending email from your own domain, and looking like a real company.",
+    "ctaReview": "Book a free review",
+    "ctaIncluded": "See what's included",
+    "heroNote": "We build on Lovable ourselves. We know where the last 20% hides.",
+    "last20Title": "The last 20%",
+    "last20Intro": "Lovable gets most of a site done in an afternoon. The part that decides whether it works is the part a prompt can't finish.",
+    "items": [
+      { "label": "Design finish", "text": "Remove the template look, fix spacing, type, icons, and the sections that read as AI output." },
+      { "label": "Performance", "text": "Image, font, and script cleanup until Lighthouse reads 95 or better on mobile." },
+      { "label": "Email and forms", "text": "Contact forms, booking, and notifications sent from your own domain through a verified sender, not a placeholder." },
+      { "label": "Domain, DNS, and indexing", "text": "Cloudflare, redirects, sitemap, hreflang if you have two languages, Search Console, Business Profile." },
+      { "label": "Legal and accessibility", "text": "Real privacy, terms, and cookie pages for your jurisdiction, and WCAG fixes so the accessibility score is 100." },
+      { "label": "Launch", "text": "Custom domain, analytics, conversion tracking, and a written checklist of what we changed and why." }
+    ],
+    "howTitle": "How it works",
+    "steps": [
+      { "n": "01", "title": "Free review", "text": "Send us the Lovable link. Within two business days you get a written list of what's broken, what's generic, and what we'd change." },
+      { "n": "02", "title": "Fixed quote", "text": "One price, one scope, no hourly surprises. Most sites land between $1,500 and $3,500 depending on size and integrations." },
+      { "n": "03", "title": "Two weeks", "text": "We work directly in your Lovable project, so you keep full ownership and can keep editing after we're done." }
+    ],
+    "proofTitle": "Proof",
+    "stats": [
+      { "value": "100", "label": "Mobile performance, fifthexit.com" },
+      { "value": "100", "label": "Accessibility, Best Practices, SEO" },
+      { "value": "2", "label": "Languages, two domains, one codebase" }
+    ],
+    "proofSource": "PageSpeed Insights, October 2026. Built on Lovable.",
+    "recentTitle": "Recent launches",
+    "faqTitle": "Questions",
+    "faq": [
+      { "q": "Do I lose access to my Lovable project?", "a": "No. We work inside your project or a fork you own. You keep everything." },
+      { "q": "Can you do this for Bolt, v0, or Framer sites?", "a": "Yes. The checklist is the same; the tooling differs." },
+      { "q": "What if my site needs features, not fixes?", "a": "We quote that separately after the review. Many clients add booking or a CMS at the same time." },
+      { "q": "Do I have to host with you?", "a": "No. Lovable hosting, Vercel, or Cloudflare are all fine. We set it up either way." },
+      { "q": "What does the free review cost?", "a": "Nothing. It's useful even if you fix things yourself." }
+    ],
+    "ctaTitle": "Send us your Lovable link",
+    "siteUrlLabel": "Your Lovable or live site URL",
+    "siteUrlPlaceholder": "https://your-site.lovable.app"
   },
   "footer": {
     "copyright": "© 2026 fifthexit. All rights reserved. Built with speed.",
