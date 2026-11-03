@@ -30,6 +30,7 @@ export default function PriceEstimator() {
     { id: "webapp", label: t("estimator.webApp"), icon: "⚡", desc: t("estimator.webAppDesc"), base: 5000 },
     { id: "mobile", label: t("estimator.mobileApp"), icon: "📱", desc: t("estimator.mobileAppDesc"), base: 8000 },
     { id: "ecommerce", label: t("estimator.ecommerce"), icon: "🛒", desc: t("estimator.ecommerceDesc"), base: 3500 },
+    ...(i18n.language === "bg" ? [] : [{ id: "lovable", label: t("estimator.lovableSite"), icon: "🚀", desc: t("estimator.lovableSiteDesc"), base: 1500 }]),
   ];
 
   const DESIGN_OPTIONS = [
@@ -201,7 +202,7 @@ export default function PriceEstimator() {
                       style={projectType === p.id ? cardSelected : cardBase}
                       onClick={() => {
                         setProjectType(p.id);
-                        setTimeout(() => setStep(1), 300);
+                        setTimeout(() => setStep(p.id === "lovable" ? 2 : 1), 300);
                       }}>
                       <div style={{ fontSize: "1.5rem", marginBottom: "0.5rem", color: "#e8e4f0" }}>{p.icon}</div>
                       <div style={{ fontWeight: "600", color: "#e8e4f0", marginBottom: "0.25rem" }}>{p.label}</div>
@@ -309,7 +310,7 @@ export default function PriceEstimator() {
             {/* Nav buttons */}
             {step > 0 && (
               <div style={{ display: "flex", justifyContent: "space-between", marginTop: "2.5rem", alignItems: "center", gap: "1rem" }}>
-                <button className="est-btn-ghost" style={btnGhost} onClick={() => setStep(step - 1)}>
+                <button className="est-btn-ghost" style={btnGhost} onClick={() => setStep(step === 2 && projectType === "lovable" ? 0 : step - 1)}>
                   ← {t("estimator.back")}
                 </button>
                 {step < steps.length - 1 ? (

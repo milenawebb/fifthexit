@@ -10,6 +10,7 @@ const navLinks = [
   { href: "/#stack", key: "nav.stack" },
   { href: "/#work", key: "nav.work" },
   { href: "/#process", key: "nav.process" },
+  { href: "/lovable", key: "nav.lovable", enOnly: true },
   { href: "/#estimator", key: "nav.estimate" },
   { href: "/#book", key: "nav.contact" },
 ];
