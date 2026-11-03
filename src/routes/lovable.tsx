@@ -27,7 +27,6 @@ interface LovableCopy {
   proofTitle: string;
   stats: { value: string; label: string }[];
   proofSource: string;
-  recentTitle: string;
   faqTitle: string;
   faq: { q: string; a: string }[];
   ctaTitle: string;

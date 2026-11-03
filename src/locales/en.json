@@ -258,7 +258,6 @@
       { "value": "2", "label": "Languages, two domains, one codebase" }
     ],
     "proofSource": "PageSpeed Insights, October 2026.",
-    "recentTitle": "Recent launches",
     "faqTitle": "Questions",
     "faq": [
       { "q": "Do I lose access to my AI project?", "a": "No. We work inside your project or a fork you own. You keep everything." },
