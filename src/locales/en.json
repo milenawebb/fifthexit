@@ -261,7 +261,7 @@
     "recentTitle": "Recent launches",
     "faqTitle": "Questions",
     "faq": [
-      { "q": "Do I lose access to my Lovable project?", "a": "No. We work inside your project or a fork you own. You keep everything." },
+      { "q": "Do I lose access to my AI project?", "a": "No. We work inside your project or a fork you own. You keep everything." },
       { "q": "Can you do this for Bolt, v0, or Framer sites?", "a": "Yes. The checklist is the same; the tooling differs." },
       { "q": "What if my site needs features, not fixes?", "a": "We quote that separately after the review. Many clients add booking or a CMS at the same time." },
       { "q": "Do I have to host with you?", "a": "No. Lovable hosting, Vercel, or Cloudflare are all fine. We set it up either way." },
