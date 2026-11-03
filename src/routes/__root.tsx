@@ -109,7 +109,7 @@ export const Route = createRootRoute({
             ]),
         { rel: "preload", as: "style", href: appCss },
         { rel: "stylesheet", href: appCss },
-        ...(path.startsWith("/work/") ? [] : [
+        ...(path.startsWith("/work/") || path === "/lovable" ? [] : [
           { rel: "canonical", href: pageUrl },
           ...hreflangLinks(path),
         ]),

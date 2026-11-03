@@ -16,10 +16,11 @@ interface QuickQuestionProps {
   name?: string
   email?: string
   message?: string
+  siteUrl?: string
   locale?: string
 }
 
-const QuickQuestionEmail = ({ name, email, message, locale }: QuickQuestionProps) => (
+const QuickQuestionEmail = ({ name, email, message, siteUrl, locale }: QuickQuestionProps) => (
   <Html lang="en" dir="ltr">
     <Head />
     <Preview>Quick question from {name || 'visitor'}</Preview>
@@ -37,6 +38,12 @@ const QuickQuestionEmail = ({ name, email, message, locale }: QuickQuestionProps
             <Text style={label}>Email</Text>
             <Text style={body}>{email || '-'}</Text>
           </div>
+          {siteUrl ? (
+            <div style={rowStyle}>
+              <Text style={label}>Site URL</Text>
+              <Text style={body}>{siteUrl}</Text>
+            </div>
+          ) : null}
           {locale ? (
             <div style={rowStyle}>
               <Text style={label}>Locale</Text>

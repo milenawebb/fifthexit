@@ -7,7 +7,7 @@ export const Route = createFileRoute("/sitemap.xml")({
     handlers: {
       GET: async ({ request }) => {
         const base = originForHost(request.headers.get("x-forwarded-host") ?? request.headers.get("host") ?? new URL(request.url).host);
-        const urls = SITEMAP_PAGES.map((e) =>
+        const urls = SITEMAP_PAGES.filter((e) => !e.enOnly || base === ORIGIN_EN).map((e) =>
           [
             `  <url>`,
             `    <loc>${base}${e.path}</loc>`,
@@ -15,7 +15,7 @@ export const Route = createFileRoute("/sitemap.xml")({
             `    <changefreq>${e.changefreq}</changefreq>`,
             `    <priority>${e.priority}</priority>`,
             `    <xhtml:link rel="alternate" hreflang="en" href="${ORIGIN_EN}${e.path}"/>`,
-            `    <xhtml:link rel="alternate" hreflang="bg" href="${ORIGIN_BG}${e.path}"/>`,
+            ...(e.enOnly ? [] : [`    <xhtml:link rel="alternate" hreflang="bg" href="${ORIGIN_BG}${e.path}"/>`]),
             `    <xhtml:link rel="alternate" hreflang="x-default" href="${ORIGIN_EN}${e.path}"/>`,
             `  </url>`,
           ].join("\n"),

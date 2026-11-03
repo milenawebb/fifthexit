@@ -302,11 +302,11 @@ function BookingForm() {
   );
 }
 
-function QuickQuestionForm() {
+function QuickQuestionForm({ requireSiteUrl = false }: { requireSiteUrl?: boolean }) {
   const { t, i18n } = useTranslation();
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", message: "", siteUrl: "" });
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -314,6 +314,9 @@ function QuickQuestionForm() {
       name: z.string().trim().min(2).max(80),
       email: z.string().trim().email().max(160),
       message: z.string().trim().min(2).max(2000),
+      siteUrl: requireSiteUrl
+        ? z.string().trim().url("Enter a valid URL").max(300)
+        : z.string().trim().max(300).optional(),
     });
     const result = schema.safeParse(form);
     if (!result.success) {
@@ -361,6 +364,12 @@ function QuickQuestionForm() {
           <Input id="qq-email" type="email" maxLength={160} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="alex@brand.com" />
         </div>
       </div>
+      {requireSiteUrl && (
+        <div className="space-y-2">
+          <Label htmlFor="qq-site-url">{t("booking.siteUrl")} *</Label>
+          <Input id="qq-site-url" type="url" maxLength={300} value={form.siteUrl} onChange={(e) => setForm({ ...form, siteUrl: e.target.value })} placeholder={t("booking.siteUrlPlaceholder")} />
+        </div>
+      )}
       <div className="space-y-2">
         <Label htmlFor="qq-message">{t("booking.message")} *</Label>
         <Textarea
@@ -379,21 +388,27 @@ function QuickQuestionForm() {
   );
 }
 
-export default function Booking() {
+export default function Booking({ defaultTab = "book", requireSiteUrl = false, heading }: { defaultTab?: "book" | "question"; requireSiteUrl?: boolean; heading?: string }) {
   const { t } = useTranslation();
-  const [tab, setTab] = useState<"book" | "question">("book");
+  const [tab, setTab] = useState<"book" | "question">(defaultTab);
   return (
     <section id="book" className="py-12 md:pt-16 md:pb-16 relative" style={{ backgroundColor: "#0d0b1a" }}>
       <div className="absolute top-0 left-1/2 -translate-x-1/2 h-96 w-96 rounded-full bg-primary/20 blur-[120px] pointer-events-none" />
       <div className="relative mx-auto max-w-5xl px-6">
         <div data-reveal className="text-center mb-8">
-          <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">{t("booking.label")}</div>
-          <h2 className="text-4xl md:text-6xl font-bold mb-4">
-            {t("booking.heading1")} <span className="text-gradient">{t("booking.heading2")}</span>
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            {t("booking.subheading")}
-          </p>
+          {heading ? (
+            <h2 className="text-4xl md:text-6xl font-bold mb-4">{heading}</h2>
+          ) : (
+            <>
+              <div className="text-sm font-medium text-accent mb-3 uppercase tracking-widest">{t("booking.label")}</div>
+              <h2 className="text-4xl md:text-6xl font-bold mb-4">
+                {t("booking.heading1")} <span className="text-gradient">{t("booking.heading2")}</span>
+              </h2>
+              <p className="text-muted-foreground text-lg max-w-xl mx-auto">
+                {t("booking.subheading")}
+              </p>
+            </>
+          )}
         </div>
 
         <div className="flex justify-center mb-6">
@@ -428,7 +443,7 @@ export default function Booking() {
             key={tab}
             className="animate-fade-only duration-300"
           >
-            {tab === "book" ? <BookingForm /> : <QuickQuestionForm />}
+            {tab === "book" ? <BookingForm /> : <QuickQuestionForm requireSiteUrl={requireSiteUrl} />}
           </div>
         </div>
       </div>
