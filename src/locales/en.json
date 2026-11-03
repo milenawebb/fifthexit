@@ -185,6 +185,8 @@
     "tabQuestion": "Quick question",
     "message": "Message",
     "messagePlaceholder": "What's on your mind?",
+    "siteUrl": "Your Lovable or live site URL",
+    "siteUrlPlaceholder": "https://your-site.lovable.app",
     "sendMessage": "Send message →",
     "questionSuccess": "Got it! We'll get back to you within 24 hours.",
     "successHeading": "You're on the list 🚀",
