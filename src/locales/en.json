@@ -265,7 +265,7 @@
       { "q": "Can you do this for Bolt, v0, or Framer sites?", "a": "Yes. The checklist is the same; the tooling differs." },
       { "q": "What if my site needs features, not fixes?", "a": "We quote that separately after the review. Many clients add booking or a CMS at the same time." },
       { "q": "Do I have to host with you?", "a": "No. Lovable hosting, Vercel, or Cloudflare are all fine. We set it up either way." },
-      { "q": "What does the free review cost?", "a": "Nothing. It's useful even if you fix things yourself." }
+      { "q": "What does the review cost?", "a": "Nothing. It's useful even if you fix things yourself." }
     ],
     "ctaTitle": "Send us your wesbite link",
     "siteUrlLabel": "Your Lovable or live site URL",
