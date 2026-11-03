@@ -236,7 +236,7 @@
     "ctaIncluded": "See what's included",
     "heroNote": "We know where the last 20% hides.",
     "last20Title": "The last 20%",
-    "last20Intro": "Lovable gets most of a site done in an afternoon. The part that decides whether it works is the part a prompt can't finish.",
+    "last20Intro": "AI gets most of a site done in an afternoon. The part that decides whether it works is the part a prompt can't finish.",
     "items": [
       { "label": "Design finish", "text": "Remove the template look, fix spacing, type, icons, and the sections that read as AI output." },
       { "label": "Performance", "text": "Image, font, and script cleanup until Lighthouse reads 95 or better on mobile." },
