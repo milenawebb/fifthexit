@@ -32,3 +32,11 @@
 # Bellhouse case study
 - [x] Bilingual page at /work/bellhouse-real-estate with stats, service-map item, two screenshots; card, sitemap and RIN "Next" link updated.
 - [ ] Verify on live domains and Lighthouse 95+/100: blocked until publishing.
+
+# Finish my Lovable site offer (English only)
+- [x] New /lovable page: hero, last-20% checklist, how-it-works, proof stats, FAQ accordion, closing quick-question form with required site URL field.
+- [x] Homepage compact section after MVP journey, EN-only; nav "Lovable" link between Process and Estimate, EN-only.
+- [x] Estimator: "Finish my Lovable site" type (From $1,500), skips Design step, flows to booking email.
+- [x] Sitemap: /lovable EN-only entry; quick-question endpoint and email template accept siteUrl.
+- [ ] Verify at 390px/1280px, estimator flow, form submit, sitemap, Lighthouse: in progress this turn.
+- [ ] Live-domain check and published Lighthouse: blocked until publishing.

@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CookiesRouteImport } from './routes/cookies'
+import { Route as LovableRouteImport } from './routes/lovable'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -43,6 +44,11 @@ const IndexRoute = IndexRouteImport.update({
 const CookiesRoute = CookiesRouteImport.update({
   id: '/cookies',
   path: '/cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LovableRoute = LovableRouteImport.update({
+  id: '/lovable',
+  path: '/lovable',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -134,9 +140,9 @@ const ApiPublicQuickQuestionRoute = ApiPublicQuickQuestionRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const LovableEmailSuppressionRoute = LovableEmailSuppressionRouteImport.update({
-  id: '/lovable/email/suppression',
-  path: '/lovable/email/suppression',
-  getParentRoute: () => rootRouteImport,
+  id: '/email/suppression',
+  path: '/email/suppression',
+  getParentRoute: () => LovableRoute,
 } as any)
 const ApiPublicBookingActionTokenRoute =
   ApiPublicBookingActionTokenRouteImport.update({
@@ -152,26 +158,27 @@ const ApiPublicBookingIcsTokenRoute =
   } as any)
 const LovableEmailQueueProcessRoute =
   LovableEmailQueueProcessRouteImport.update({
-    id: '/lovable/email/queue/process',
-    path: '/lovable/email/queue/process',
-    getParentRoute: () => rootRouteImport,
+    id: '/email/queue/process',
+    path: '/email/queue/process',
+    getParentRoute: () => LovableRoute,
   } as any)
 const LovableEmailTransactionalPreviewRoute =
   LovableEmailTransactionalPreviewRouteImport.update({
-    id: '/lovable/email/transactional/preview',
-    path: '/lovable/email/transactional/preview',
-    getParentRoute: () => rootRouteImport,
+    id: '/email/transactional/preview',
+    path: '/email/transactional/preview',
+    getParentRoute: () => LovableRoute,
   } as any)
 const LovableEmailTransactionalSendRoute =
   LovableEmailTransactionalSendRouteImport.update({
-    id: '/lovable/email/transactional/send',
-    path: '/lovable/email/transactional/send',
-    getParentRoute: () => rootRouteImport,
+    id: '/email/transactional/send',
+    path: '/email/transactional/send',
+    getParentRoute: () => LovableRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/cookies': typeof CookiesRoute
+  '/lovable': typeof LovableRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -199,6 +206,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cookies': typeof CookiesRoute
+  '/lovable': typeof LovableRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -227,6 +235,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/cookies': typeof CookiesRoute
+  '/lovable': typeof LovableRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -256,6 +265,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/cookies'
+    | '/lovable'
     | '/privacy'
     | '/robots.txt'
     | '/sitemap.xml'
@@ -283,6 +293,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/cookies'
+    | '/lovable'
     | '/privacy'
     | '/robots.txt'
     | '/sitemap.xml'
@@ -310,6 +321,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/cookies'
+    | '/lovable'
     | '/privacy'
     | '/robots.txt'
     | '/sitemap.xml'
@@ -338,6 +350,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CookiesRoute: typeof CookiesRoute
+  LovableRoute: typeof LovableRouteWithChildren
   PrivacyRoute: typeof PrivacyRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -355,12 +368,8 @@ export interface RootRouteChildren {
   ApiPublicBookingRemindersRoute: typeof ApiPublicBookingRemindersRoute
   ApiPublicBookingTakenSlotsRoute: typeof ApiPublicBookingTakenSlotsRoute
   ApiPublicQuickQuestionRoute: typeof ApiPublicQuickQuestionRoute
-  LovableEmailSuppressionRoute: typeof LovableEmailSuppressionRoute
   ApiPublicBookingActionTokenRoute: typeof ApiPublicBookingActionTokenRoute
   ApiPublicBookingIcsTokenRoute: typeof ApiPublicBookingIcsTokenRoute
-  LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
-  LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
-  LovableEmailTransactionalSendRoute: typeof LovableEmailTransactionalSendRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -377,6 +386,13 @@ declare module '@tanstack/react-router' {
       path: '/cookies'
       fullPath: '/cookies'
       preLoaderRoute: typeof CookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lovable': {
+      id: '/lovable'
+      path: '/lovable'
+      fullPath: '/lovable'
+      preLoaderRoute: typeof LovableRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -500,10 +516,10 @@ declare module '@tanstack/react-router' {
     }
     '/lovable/email/suppression': {
       id: '/lovable/email/suppression'
-      path: '/lovable/email/suppression'
+      path: '/email/suppression'
       fullPath: '/lovable/email/suppression'
       preLoaderRoute: typeof LovableEmailSuppressionRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof LovableRoute
     }
     '/api/public/booking-action/$token': {
       id: '/api/public/booking-action/$token'
@@ -521,31 +537,49 @@ declare module '@tanstack/react-router' {
     }
     '/lovable/email/queue/process': {
       id: '/lovable/email/queue/process'
-      path: '/lovable/email/queue/process'
+      path: '/email/queue/process'
       fullPath: '/lovable/email/queue/process'
       preLoaderRoute: typeof LovableEmailQueueProcessRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof LovableRoute
     }
     '/lovable/email/transactional/preview': {
       id: '/lovable/email/transactional/preview'
-      path: '/lovable/email/transactional/preview'
+      path: '/email/transactional/preview'
       fullPath: '/lovable/email/transactional/preview'
       preLoaderRoute: typeof LovableEmailTransactionalPreviewRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof LovableRoute
     }
     '/lovable/email/transactional/send': {
       id: '/lovable/email/transactional/send'
-      path: '/lovable/email/transactional/send'
+      path: '/email/transactional/send'
       fullPath: '/lovable/email/transactional/send'
       preLoaderRoute: typeof LovableEmailTransactionalSendRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof LovableRoute
     }
   }
 }
 
+interface LovableRouteChildren {
+  LovableEmailSuppressionRoute: typeof LovableEmailSuppressionRoute
+  LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
+  LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
+  LovableEmailTransactionalSendRoute: typeof LovableEmailTransactionalSendRoute
+}
+
+const LovableRouteChildren: LovableRouteChildren = {
+  LovableEmailSuppressionRoute: LovableEmailSuppressionRoute,
+  LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,
+  LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
+  LovableEmailTransactionalSendRoute: LovableEmailTransactionalSendRoute,
+}
+
+const LovableRouteWithChildren =
+  LovableRoute._addFileChildren(LovableRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CookiesRoute: CookiesRoute,
+  LovableRoute: LovableRouteWithChildren,
   PrivacyRoute: PrivacyRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
@@ -563,12 +597,8 @@ const rootRouteChildren: RootRouteChildren = {
   ApiPublicBookingRemindersRoute: ApiPublicBookingRemindersRoute,
   ApiPublicBookingTakenSlotsRoute: ApiPublicBookingTakenSlotsRoute,
   ApiPublicQuickQuestionRoute: ApiPublicQuickQuestionRoute,
-  LovableEmailSuppressionRoute: LovableEmailSuppressionRoute,
   ApiPublicBookingActionTokenRoute: ApiPublicBookingActionTokenRoute,
   ApiPublicBookingIcsTokenRoute: ApiPublicBookingIcsTokenRoute,
-  LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,
-  LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
-  LovableEmailTransactionalSendRoute: LovableEmailTransactionalSendRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
