@@ -29,3 +29,9 @@ test("RIN case study has English, Bulgarian and x-default alternates", () => {
 test("Bellhouse case study is in both domain sitemaps", () => {
   assert.ok(SITEMAP_PAGES.some(p => p.path === "/work/bellhouse-real-estate"));
 });
+
+test("Lovable offer page is English-market only", () => {
+  const page = SITEMAP_PAGES.find(p => p.path === "/lovable");
+  assert.ok(page);
+  assert.equal(page.enOnly, true);
+});
