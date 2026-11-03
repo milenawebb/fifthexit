@@ -249,7 +249,7 @@
     "steps": [
       { "n": "01", "title": "Free review", "text": "Send us the website link. Within two business days you get a written list of what's broken, what's generic, and what we'd change." },
       { "n": "02", "title": "Fixed quote", "text": "One price, one scope, no hourly surprises. Most sites land between $500 and $1,500 depending on size and integrations." },
-      { "n": "03", "title": "Two weeks", "text": "We work directly in your Lovable project, so you keep full ownership and can keep editing after we're done." }
+      { "n": "03", "title": "A few days", "text": "We work directly in your Lovable project, so you keep full ownership and can keep editing after we're done." }
     ],
     "proofTitle": "Proof",
     "stats": [
