@@ -191,6 +191,8 @@
     "tabQuestion": "Бърз въпрос",
     "message": "Съобщение",
     "messagePlaceholder": "Какво те интересува?",
+    "siteUrl": "Вашият Lovable или жив сайт",
+    "siteUrlPlaceholder": "https://your-site.lovable.app",
     "sendMessage": "Изпрати →",
     "questionSuccess": "Получихме го! Ще се свържем с теб до 24 часа.",
     "successHeading": "Вие сте в списъка 🚀",

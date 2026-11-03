@@ -8,6 +8,7 @@ const QuickQuestionSchema = z.object({
   name: z.string().trim().min(1).max(80),
   email: z.string().trim().email().max(160),
   message: z.string().trim().min(1).max(2000),
+  siteUrl: z.string().trim().max(300).optional(),
   locale: z.string().trim().min(1).max(10).optional(),
 })
 
@@ -41,6 +42,7 @@ export const Route = createFileRoute('/api/public/quick-question')({
             name: payload.name,
             email: payload.email,
             message: payload.message,
+            siteUrl: payload.siteUrl,
             locale: payload.locale,
           },
           replyTo: payload.email,
