@@ -48,7 +48,7 @@ export function Header() {
           />
         </a>
         <nav className="hidden lg:flex items-center gap-8 text-sm text-muted-foreground">
-          {navLinks.map((l) => (
+          {navLinks.filter((l) => !l.enOnly || i18n.language !== "bg").map((l) => (
             <a key={l.href} href={l.href} className="hover:text-foreground transition">
               {t(l.key)}
             </a>
@@ -84,7 +84,7 @@ export function Header() {
       {open && (
         <div className="lg:hidden border-t border-border/60 glass" style={{ backgroundColor: "#0d0b1a" }}>
           <nav className="mx-auto max-w-7xl px-6 py-4 flex flex-col items-center gap-1">
-            {navLinks.map((l) => (
+            {navLinks.filter((l) => !l.enOnly || i18n.language !== "bg").map((l) => (
               <a
                 key={l.href}
                 href={l.href}
