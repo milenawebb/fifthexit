@@ -38,5 +38,5 @@
 - [x] Homepage compact section after MVP journey, EN-only; nav "Lovable" link between Process and Estimate, EN-only.
 - [x] Estimator: "Finish my Lovable site" type (From $1,500), skips Design step, flows to booking email.
 - [x] Sitemap: /lovable EN-only entry; quick-question endpoint and email template accept siteUrl.
-- [ ] Verify at 390px/1280px, estimator flow, form submit, sitemap, Lighthouse: in progress this turn.
-- [ ] Live-domain check and published Lighthouse: blocked until publishing.
+- [x] Verified at 390px/1280px: page renders, FAQ opens, quick-question tab preselected with required URL field (submit 200), estimator skips Design and shows $1,500, nav link and homepage section EN-only, sitemap lists /lovable with no bg alternate, canonical/hreflang correct, no page errors, no overflow.
+- [ ] Live-domain check and published Lighthouse 95+/100: blocked until publishing.
