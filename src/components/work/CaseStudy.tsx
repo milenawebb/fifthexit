@@ -39,11 +39,12 @@ interface CaseStudyProps {
   liveUrl: string;
   previous: { name: string; href: string };
   next: { name: string; href: string };
+  backToAll?: { label: string; href: string };
 }
 
 const ext = (href: string) => (href.startsWith("/") ? {} : { target: "_blank", rel: "noopener noreferrer" });
 
-export function CaseStudy({ copy, image, imageSize = { width: 1200, height: 718 }, gallery, stack, liveUrl, previous, next }: CaseStudyProps) {
+export function CaseStudy({ copy, image, imageSize = { width: 1200, height: 718 }, gallery, stack, liveUrl, previous, next, backToAll }: CaseStudyProps) {
   const motionRef = useHomeMotion();
   return (
     <div ref={motionRef} className="case-study bg-background text-foreground">
@@ -107,7 +108,14 @@ export function CaseStudy({ copy, image, imageSize = { width: 1200, height: 718 
             <div><h2 className="mb-4 text-lg font-semibold">{copy.stackTitle}</h2><ul className="flex flex-wrap gap-2">{stack.map(name => <li key={name} className="rounded-md border border-border bg-card px-3 py-2 text-sm text-muted-foreground">{name}</li>)}</ul></div>
             <Button asChild className="bg-gradient-hero text-primary-foreground hover:opacity-90"><a href={liveUrl} target="_blank" rel="noopener noreferrer">{copy.visit}</a></Button>
           </section>
-          <nav aria-label={copy.eyebrow} className="grid grid-cols-2 gap-6 py-10 md:py-14">
+          {backToAll && (
+            <div className="pt-10 md:pt-14 text-center">
+              <Link to={backToAll.href} className="text-xs font-mono uppercase tracking-widest text-muted-foreground transition hover:text-accent">
+                {backToAll.label}
+              </Link>
+            </div>
+          )}
+          <nav aria-label={copy.eyebrow} className={`grid grid-cols-2 gap-6 ${backToAll ? "pt-4 pb-10 md:pb-14" : "py-10 md:py-14"}`}>
             <a href={previous.href} {...ext(previous.href)} className="min-w-0 py-2 transition hover:text-accent"><span className="mb-2 block text-xs font-mono uppercase text-muted-foreground">{copy.previous}</span><span className="text-sm font-semibold md:text-lg">{previous.name}</span></a>
             <a href={next.href} {...ext(next.href)} className="min-w-0 py-2 text-right transition hover:text-accent"><span className="mb-2 block text-xs font-mono uppercase text-muted-foreground">{copy.next}</span><span className="text-sm font-semibold md:text-lg">{next.name}</span></a>
           </nav>

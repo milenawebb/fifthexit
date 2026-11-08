@@ -7,6 +7,7 @@ export const ORIGIN_BG = "https://fifthexit.eu";
 export const SITEMAP_PAGES: { path: string; lastmod: string; changefreq: string; priority: string; enOnly?: boolean }[] = [
   { path: "/", lastmod: "2026-10-19", changefreq: "weekly", priority: "1.0" },
   { path: "/lovable", lastmod: "2026-11-03", changefreq: "monthly", priority: "0.8", enOnly: true },
+  { path: "/portfolio", lastmod: "2026-11-08", changefreq: "monthly", priority: "0.8", enOnly: true },
   { path: "/terms", lastmod: "2026-10-18", changefreq: "yearly", priority: "0.3" },
   { path: "/privacy", lastmod: "2026-10-18", changefreq: "yearly", priority: "0.3" },
   { path: "/cookies", lastmod: "2026-10-18", changefreq: "yearly", priority: "0.3" },

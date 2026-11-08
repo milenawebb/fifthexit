@@ -48,10 +48,11 @@ export const Route = createFileRoute("/work/bellhouse-real-estate")({
 });
 
 function BellhouseCaseStudy() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const copy = t("bellhouseCaseStudy", { returnObjects: true }) as CaseStudyCopy;
+  const backToAll = i18n.language === "bg" ? undefined : { label: t("work.backToAll"), href: "/portfolio" };
   const gallery = (copy.gallery ?? [])
     .map((item, index) => ({ ...item, image: galleryImages[index] ?? "" }))
     .filter(item => item.image !== "");
-  return <CaseStudy copy={copy} image={heroImage.url} imageSize={{ width: 1200, height: 750 }} gallery={gallery} stack={["React", "Tailwind CSS", "Supabase"]} liveUrl="https://bellhouserealestate.com" previous={{ name: "RIN Aesthetic Practice", href: "/work/rin-aesthetic-practice" }} next={{ name: "Elite Ride Solutions", href: "https://eliteridesolutions.com" }} />;
+  return <CaseStudy copy={copy} image={heroImage.url} imageSize={{ width: 1200, height: 750 }} gallery={gallery} stack={["React", "Tailwind CSS", "Supabase"]} liveUrl="https://bellhouserealestate.com" previous={{ name: "RIN Aesthetic Practice", href: "/work/rin-aesthetic-practice" }} next={{ name: "Elite Ride Solutions", href: "https://eliteridesolutions.com" }} backToAll={backToAll} />;
 }

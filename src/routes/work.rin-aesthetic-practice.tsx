@@ -48,10 +48,11 @@ export const Route = createFileRoute("/work/rin-aesthetic-practice")({
 });
 
 function RinCaseStudy() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const copy = t("rinCaseStudy", { returnObjects: true }) as CaseStudyCopy;
+  const backToAll = i18n.language === "bg" ? undefined : { label: t("work.backToAll"), href: "/portfolio" };
   const gallery = (copy.gallery ?? [])
     .map((item, index) => ({ ...item, image: galleryImages[index] ?? "" }))
     .filter(item => item.image !== "");
-  return <CaseStudy copy={copy} image={rinImage.url} gallery={gallery} stack={["React", "Tailwind CSS", "Supabase"]} liveUrl="https://rinaestheticsva.com" previous={{ name: "Rotary Club of Charlottesville", href: "https://charlottesvillerotary.org" }} next={{ name: "Bellhouse Real Estate Group", href: "/work/bellhouse-real-estate" }} />;
+  return <CaseStudy copy={copy} image={rinImage.url} gallery={gallery} stack={["React", "Tailwind CSS", "Supabase"]} liveUrl="https://rinaestheticsva.com" previous={{ name: "Rotary Club of Charlottesville", href: "https://charlottesvillerotary.org" }} next={{ name: "Bellhouse Real Estate Group", href: "/work/bellhouse-real-estate" }} backToAll={backToAll} />;
 }

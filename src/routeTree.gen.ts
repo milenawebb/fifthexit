@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as LovableRouteImport } from './routes/lovable'
+import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -49,6 +50,11 @@ const CookiesRoute = CookiesRouteImport.update({
 const LovableRoute = LovableRouteImport.update({
   id: '/lovable',
   path: '/lovable',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortfolioRoute = PortfolioRouteImport.update({
+  id: '/portfolio',
+  path: '/portfolio',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -179,6 +185,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/cookies': typeof CookiesRoute
   '/lovable': typeof LovableRouteWithChildren
+  '/portfolio': typeof PortfolioRoute
   '/privacy': typeof PrivacyRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -207,6 +214,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cookies': typeof CookiesRoute
   '/lovable': typeof LovableRouteWithChildren
+  '/portfolio': typeof PortfolioRoute
   '/privacy': typeof PrivacyRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -236,6 +244,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/cookies': typeof CookiesRoute
   '/lovable': typeof LovableRouteWithChildren
+  '/portfolio': typeof PortfolioRoute
   '/privacy': typeof PrivacyRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -266,6 +275,7 @@ export interface FileRouteTypes {
     | '/'
     | '/cookies'
     | '/lovable'
+    | '/portfolio'
     | '/privacy'
     | '/robots.txt'
     | '/sitemap.xml'
@@ -294,6 +304,7 @@ export interface FileRouteTypes {
     | '/'
     | '/cookies'
     | '/lovable'
+    | '/portfolio'
     | '/privacy'
     | '/robots.txt'
     | '/sitemap.xml'
@@ -322,6 +333,7 @@ export interface FileRouteTypes {
     | '/'
     | '/cookies'
     | '/lovable'
+    | '/portfolio'
     | '/privacy'
     | '/robots.txt'
     | '/sitemap.xml'
@@ -351,6 +363,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CookiesRoute: typeof CookiesRoute
   LovableRoute: typeof LovableRouteWithChildren
+  PortfolioRoute: typeof PortfolioRoute
   PrivacyRoute: typeof PrivacyRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -393,6 +406,13 @@ declare module '@tanstack/react-router' {
       path: '/lovable'
       fullPath: '/lovable'
       preLoaderRoute: typeof LovableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portfolio': {
+      id: '/portfolio'
+      path: '/portfolio'
+      fullPath: '/portfolio'
+      preLoaderRoute: typeof PortfolioRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -580,6 +600,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CookiesRoute: CookiesRoute,
   LovableRoute: LovableRouteWithChildren,
+  PortfolioRoute: PortfolioRoute,
   PrivacyRoute: PrivacyRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,

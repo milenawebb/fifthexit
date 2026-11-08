@@ -31,6 +31,8 @@ export function Header() {
   const close = () => setOpen(false);
   const { t, i18n } = useTranslation();
   const showInstagram = i18n.language !== "bg";
+  const workHref = i18n.language === "bg" ? "/#work" : "/portfolio";
+  const linkHref = (l: (typeof navLinks)[number]) => (l.key === "nav.work" ? workHref : l.href);
 
 
 
@@ -49,7 +51,7 @@ export function Header() {
         </a>
         <nav className="hidden lg:flex items-center gap-8 text-sm text-muted-foreground">
           {navLinks.filter((l) => !l.enOnly || i18n.language !== "bg").map((l) => (
-            <a key={l.href} href={l.href} className="hover:text-foreground transition">
+            <a key={l.href} href={linkHref(l)} className="hover:text-foreground transition">
               {t(l.key)}
             </a>
           ))}
@@ -87,7 +89,7 @@ export function Header() {
             {navLinks.filter((l) => !l.enOnly || i18n.language !== "bg").map((l) => (
               <a
                 key={l.href}
-                href={l.href}
+                href={linkHref(l)}
                 onClick={close}
                 className="px-2 py-3 text-base text-muted-foreground hover:text-foreground transition text-center"
               >
